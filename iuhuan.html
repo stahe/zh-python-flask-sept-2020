@@ -1,0 +1,1987 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/iuhuan.html">
+      
+      
+        <link rel="prev" href="python-ihu.html">
+      
+      
+        <link rel="next" href="iaiinguang.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>4. 字符串 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. 字符串
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="iuhuan.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-str_01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. 脚本 [str_01]：字符串表示法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-str_02str" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. 脚本 [str_02]：&lt;str&gt; 类的的方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-str_03-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. 脚本 [str_03]：字符串编码 (1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-str_042" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. 脚本 [str_04]：字符串编码（2）
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="toc48548934"></a>
+<a id="leschainesde"></a>
+<a id="refheadingtoc3282143081319169"></a></p>
+<h1 id="4">4. <span style="color: #365f91">字符串</span></h1>
+<p><img src="images/1000000100000105000000B67894934F.png" width="92" height="64" style="width:2.431cm;height:1.695cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000105000000B67894934F.png" /></p>
+<p><a id="toc48548935"></a>
+<a id="refheadingtoc3282163081319169"></a></p>
+<h2 id="41-str_01">4.1. <span style="color: #4f81bd">脚本 [str_01]：字符串表示法</span></h2>
+<p>脚本 <strong>[str_01]</strong> 如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#  character strings</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1">#  three possible notations</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="n">chaine1</span> <span class="o">=</span> <span class="s2">&quot;un&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">chaine2</span> <span class="o">=</span> <span class="s1">&#39;deux&#39;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">chaine3</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;hélène va au</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="s2">marché acheter des légumes&quot;&quot;&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1">#  display</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;chaine1=[</span><span class="si">{</span><span class="n">chaine1</span><span class="si">}</span><span class="s2">], chaine2=[</span><span class="si">{</span><span class="n">chaine2</span><span class="si">}</span><span class="s2">], chaine3=[</span><span class="si">{</span><span class="n">chaine3</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 3 行：由双引号 &quot; 分隔的字符串；
+  </li>
+  <li>第 4 行：由单引号 &#x27; 限定的字符串；
+  </li>
+  <li>第 5 行：由三个引号 &quot;&quot;&quot; 包围的字符串。在这种情况下，字符串可以跨多行；
+  </li>
+</ul>
+
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/strings/str_01.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">chaine1=<span style="font-weight:bold">[un]</span>, chaine2=<span style="font-weight:bold">[deux]</span>, chaine3=<span style="font-weight:bold">[hélène va au</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> marché acheter des légumes]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="toc48548936"></a>
+<a id="refheadingtoc3282183081319169"></a></p>
+<h2 id="42-str_02str">4.2. <span style="color: #4f81bd">脚本 [str_02]：&lt;str&gt; 类的的方法</span></h2>
+<p>脚本 <strong>[str_02]</strong> 展示了 &lt;str&gt; 类（即字符串类）的若干方法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">#  string functions</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1">#  lowercase string</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;ABCD&#39;.lower()=</span><span class="si">{</span><span class="s1">&#39;ABCD&#39;</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1">#  string in uppercase</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.upper()=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1">#  character n° 2</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;cheval[2]=</span><span class="si">{</span><span class="s1">&#39;cheval&#39;</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="c1">#  substring with characters 5 and 6</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;caractères accentués&#39;[5:7]=</span><span class="si">{</span><span class="s1">&#39;caractères accentués&#39;</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="c1">#  substring from character 4 inclusive</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;caractères accentués&#39;[4:]=</span><span class="si">{</span><span class="s1">&#39;caractères accentués&#39;</span><span class="p">[</span><span class="mi">4</span><span class="p">:]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1">#  substring up to but not including character 6</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;caractères accentués&#39;[:5]=</span><span class="si">{</span><span class="s1">&#39;caractères accentués&#39;</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="c1">#  chain length</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;len(&#39;123&#39;)=</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="c1">#  elimination of blanks preceding and following the chain</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;  abcd &#39;.strip()=[</span><span class="si">{</span><span class="s1">&#39;  abcd &#39;</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="c1">#  elimination of whites following the chain</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;  abcd &#39;.rstrip()=[</span><span class="si">{</span><span class="s1">&#39;  abcd &#39;</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="c1">#  elimination of blanks preceding the chain</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;  abcd &#39;.lstrip()=[</span><span class="si">{</span><span class="s1">&#39;  abcd &#39;</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="c1">#  the term &quot;white&quot; in fact covers different characteristics</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;  </span><span class="se">\r\n</span><span class="s1">abcd </span><span class="se">\t\f</span><span class="s1">&#39;</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str.strip()=[</span><span class="si">{</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="c1">#  replacing one substring with another</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.replace(&#39;a&#39;,&#39;x&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;x&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.replace(&#39;ab&#39;,&#39;xy&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;ab&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;xy&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="c1">#  search for substring: returns position or -1 if substring not found</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.find(&#39;bc&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;bc&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.find(&#39;bc&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;Bc&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="c1">#  start of a chain</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.startswith(&#39;ab&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;ab&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.startswith(&#39;x&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="c1">#  end of a chain</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.endswith(&#39;cd&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;cd&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd&#39;.endswith(&#39;x&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd&#39;</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="c1">#  switch from a channel list to a channel</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;[X]&#39;.join([&#39;abcd&#39;, &#39;123&#39;, &#39;èéà&#39;])=</span><span class="si">{</span><span class="s1">&#39;[X]&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;èéà&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;&#39;.join([&#39;abcd&#39;, &#39;123&#39;, &#39;èéà&#39;])=</span><span class="si">{</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;123&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;èéà&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="c1">#  switch from a channel to a list of channels</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd 123 cdXY&#39;.split(&#39;cd&#39;)=</span><span class="si">{</span><span class="s1">&#39;abcd 123 cdXY&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;cd&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="c1">#  retrieve words from a string</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;abcd 123 cdXY&#39;.split(None)=</span><span class="si">{</span><span class="s1">&#39;abcd 123 cdXY&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>结合注释和所得结果，足以理解该脚本。结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/strings/str_02.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;ABCD&#x27;.lower()=abcd</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.upper()=ABCD</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;cheval[2]=e</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;caractères accentués&#x27;[5:7]=tè</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;caractères accentués&#x27;[4:]=ctères accentués</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;caractères accentués&#x27;[:5]=carac</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">len(&#x27;123&#x27;)=3</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;  abcd &#x27;.strip()=[abcd]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;  abcd &#x27;.rstrip()=[  abcd]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;  abcd &#x27;.lstrip()=[abcd ]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str.strip()=<span style="font-weight:bold">[abcd]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.replace(&#x27;a&#x27;,&#x27;x&#x27;)=xbcd</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.replace(&#x27;ab&#x27;,&#x27;xy&#x27;)=xycd</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.find(&#x27;bc&#x27;)=1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.find(&#x27;bc&#x27;)=-1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.startswith(&#x27;ab&#x27;)=True</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.startswith(&#x27;x&#x27;)=False</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.endswith(&#x27;cd&#x27;)=True</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&#x27;abcd&#x27;.endswith(&#x27;x&#x27;)=False</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;[X]&#x27;.join([&#x27;abcd&#x27;, &#x27;123&#x27;, &#x27;èéà&#x27;])=abcd[X]123[X]èéà</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;&#x27;.join([&#x27;abcd&#x27;, &#x27;123&#x27;, &#x27;èéà&#x27;])=abcd123èéà</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;abcd 123 cdXY&#x27;.split(&#x27;cd&#x27;)=[&#x27;ab&#x27;, &#x27; 123 &#x27;, &#x27;XY&#x27;]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">&#x27;abcd 123 cdXY&#x27;.split(None)=[&#x27;abcd&#x27;, &#x27;123&#x27;, &#x27;cdXY&#x27;]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="toc48548937"></a>
+<a id="refheadingtoc3282203081319169"></a></p>
+<h2 id="43-str_03-1">4.3. <span style="color: #4f81bd">脚本 [str_03]：字符串编码 (1)</span></h2>
+<p>脚本 <strong>[str_03]</strong> 介绍了与字符串编码相关的概念：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">#  character coding</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1">#  str-type string</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;hélène va au marché acheter des légumes&quot;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str=[</span><span class="si">{</span><span class="nb">str</span><span class="si">}</span><span class="s2">, type=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1">#  utf-8 encoding</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">bytes1</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes1=</span><span class="si">{</span><span class="n">bytes1</span><span class="si">}</span><span class="s2">, type=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="n">bytes2</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes2=</span><span class="si">{</span><span class="n">bytes2</span><span class="si">}</span><span class="s2">, type=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="c1">#  iso-8859-1 encoding</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- iso-8859-1&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="n">bytes1</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;iso-8859-1&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes1=</span><span class="si">{</span><span class="n">bytes1</span><span class="si">}</span><span class="s2">, type=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="n">bytes2</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;iso-8859-1&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes2=</span><span class="si">{</span><span class="n">bytes2</span><span class="si">}</span><span class="s2">, type=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="c1">#  encoding latin1=iso-8859-1</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- latin1&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="n">bytes1</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes1=</span><span class="si">{</span><span class="n">bytes1</span><span class="si">}</span><span class="s2">, type=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="n">bytes2</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;latin1&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes2=</span><span class="si">{</span><span class="n">bytes2</span><span class="si">}</span><span class="s2">, type=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>对 &lt;str&gt; 类型的字符串进行编码会生成一个二进制字符串，其中字符串中的每个字符由一个或多个字节表示。编码类型多种多样。上面的脚本展示了西方最常见的两种编码：“utf-8”和“iso-8859-1”，后者也称为“latin1”。</p>
+<p>编码/解码的原理如下所示（参考 |<a href="https://realpython.com/python-encodings-guide/"><u><span style="color: #0563c1">https://realpython.com/python-encodings-guide/</span></u></a> |）：</p>
+<p><img src="images/1000000000000595000004BDAC9DD9C8.png" width="429" height="364" style="width:11.342cm;height:9.627cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000595000004BDAC9DD9C8.png" /></p>
+<p>评论</p>
+<ul>
+  <li>第4-5行：待编码的初始字符串。&lt;str&gt;类型的实例是Unicode字符串 |<a href="https://realpython.com/python-encodings-guide/"><u><span style="color: #0563c1">https://docs.python.org/3/howto/unicode.html</span></u></a>|, |<a href="https://realpython.com/python-encodings-guide/"><u><span style="color: #0563c1">https://realpython.com/python-encodings-guide/</span></u></a> |;
+  </li>
+  <li>第 6-11 行：将字符串编码为 UTF-8 的两种方法：
+    <ul>
+      <li>第 8 行：str.encode(&#x27;utf-8&#x27;);
+      </li>
+      <li>第 10 行：bytes(str, &#x27;utf-8&#x27;);
+      </li>
+    </ul>
+  </li>
+  <li>第 12-17 行：我们对 &#x27;iso-8859-1&#x27; 编码执行同样的操作；
+  </li>
+  <li>第 18-23 行：&#x27;latin1&#x27; 是 &#x27;iso-8859-1&#x27; 编码的另一个名称；
+  </li>
+</ul>
+
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/strings/str_03.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str=<span style="font-weight:bold">[hélène va au marché acheter des légumes, type=&lt;class &#x27;str&#x27;&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--- utf-8</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes1=b&#x27;h\xc3\xa9l\xc3\xa8ne va au march\xc3\xa9 acheter des l\xc3\xa9gumes&#x27;, type=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes2=b&#x27;h\xc3\xa9l\xc3\xa8ne va au march\xc3\xa9 acheter des l\xc3\xa9gumes&#x27;, type=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--- iso-8859-1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes1=b&#x27;h\xe9l\xe8ne va au march\xe9 acheter des l\xe9gumes&#x27;, type=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes2=b&#x27;h\xe9l\xe8ne va au march\xe9 acheter des l\xe9gumes&#x27;, type=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--- latin1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes1=b&#x27;h\xe9l\xe8ne va au march\xe9 acheter des l\xe9gumes&#x27;, type=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes2=b&#x27;h\xe9l\xe8ne va au march\xe9 acheter des l\xe9gumes&#x27;, type=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 4 行：我们可以看到，带重音的字符使用两个字节进行编码：
+    <ul>
+      <li><b>é: [\xc3\xa9]，</b>即二进制序列 11000011 10101001；
+      </li>
+      <li>è: <b>[\xc3\xa8]，</b>即二进制序列 11000011 10101000；
+      </li>
+    </ul>
+  </li>
+  <li>第7行：在ISO-8859-1编码中，这两个带重音的字符采用不同的编码方式：
+    <ul>
+      <li>é: <b>[\xe9]，</b>二进制序列为 11101001；
+      </li>
+      <li>è: <b>[\xe8]，</b>即二进制序列 11101000；
+      </li>
+    </ul>
+  </li>
+</ul>
+<p><a id="toc48548938"></a>
+<a id="refheadingtoc3282223081319169"></a></p>
+<h2 id="44-str_042">4.4. <span style="color: #4f81bd">脚本 [str_04]：字符串编码（2）</span></h2>
+<p>脚本 <strong>[str_04]</strong> 介绍了另外两种编码类型：“base64”和“quoted-printable”。这两种编码并非对 Unicode 字符串进行编码，而是对二进制对象进行编码。例如，当您将 Word 文档作为附件添加到电子邮件中时，根据所使用的电子邮件客户端不同，该文档将采用这两种编码中的一种。大多数附件文件都是如此。</p>
+<p>脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span>
+<span class="normal"><a href="#__codelineno-3-42">42</a></span>
+<span class="normal"><a href="#__codelineno-3-43">43</a></span>
+<span class="normal"><a href="#__codelineno-3-44">44</a></span>
+<span class="normal"><a href="#__codelineno-3-45">45</a></span>
+<span class="normal"><a href="#__codelineno-3-46">46</a></span>
+<span class="normal"><a href="#__codelineno-3-47">47</a></span>
+<span class="normal"><a href="#__codelineno-3-48">48</a></span>
+<span class="normal"><a href="#__codelineno-3-49">49</a></span>
+<span class="normal"><a href="#__codelineno-3-50">50</a></span>
+<span class="normal"><a href="#__codelineno-3-51">51</a></span>
+<span class="normal"><a href="#__codelineno-3-52">52</a></span>
+<span class="normal"><a href="#__codelineno-3-53">53</a></span>
+<span class="normal"><a href="#__codelineno-3-54">54</a></span>
+<span class="normal"><a href="#__codelineno-3-55">55</a></span>
+<span class="normal"><a href="#__codelineno-3-56">56</a></span>
+<span class="normal"><a href="#__codelineno-3-57">57</a></span>
+<span class="normal"><a href="#__codelineno-3-58">58</a></span>
+<span class="normal"><a href="#__codelineno-3-59">59</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">#  encoding / decoding</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">codecs</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1">#  chain</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- chaîne unicode&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">str1</span> <span class="o">=</span> <span class="s2">&quot;hélène va au marché acheter des légumes&quot;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str1=[</span><span class="si">{</span><span class="n">str1</span><span class="si">}</span><span class="s2">], type(str1)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="c1">#  utf-8 encoding</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- chaîne unicode -&gt; binaire utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="n">bytes1</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes1=[</span><span class="si">{</span><span class="n">bytes1</span><span class="si">}</span><span class="s2">], type(bytes1)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="c1">#  utf-8 decoding</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- binaire utf-8 -&gt; chaîne unicode&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="n">str2</span> <span class="o">=</span> <span class="n">bytes1</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str2=[</span><span class="si">{</span><span class="n">str2</span><span class="si">}</span><span class="s2">], type(str2)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str2==str1=</span><span class="si">{</span><span class="n">str2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">str1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="c1">#  iso-8859-1 encoding</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- chaîne unicode -&gt; binaire iso-8859-1&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a><span class="n">bytes2</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes2=[</span><span class="si">{</span><span class="n">bytes2</span><span class="si">}</span><span class="s2">], type(bytes2)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes2</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="c1">#  iso-8859-1 decoding</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- binaire iso-8859-1 -&gt; chaîne unicode&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a><span class="n">str3</span> <span class="o">=</span> <span class="n">bytes2</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str3=[</span><span class="si">{</span><span class="n">str3</span><span class="si">}</span><span class="s2">], type(str3)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">str3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str3==str1=</span><span class="si">{</span><span class="n">str3</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">str1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a><span class="c1">#  decoding error - bytes1 is in utf-8 - decode it in iso-8859-1</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- binaire utf-8 (décodage iso-8859-1) --&gt; chaîne unicode&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a><span class="n">str4</span> <span class="o">=</span> <span class="n">bytes1</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;iso-8859-1&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str4=[</span><span class="si">{</span><span class="n">str4</span><span class="si">}</span><span class="s2">], type(str4)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">str4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a><span class="c1">#  utf-8 encoding of a Unicode string</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- chaîne unicode -&gt; binaire utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a><span class="n">bytes3</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes3=[</span><span class="si">{</span><span class="n">bytes3</span><span class="si">}</span><span class="s2">], type(bytes3)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a><span class="c1">#  encoding a UTF-8 binary string in base64</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- binaire utf-8 -&gt; binaire base64&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43"></a><span class="n">bytes4</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">bytes1</span><span class="p">,</span> <span class="s2">&quot;base64&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bytes4=[</span><span class="si">{</span><span class="n">bytes4</span><span class="si">}</span><span class="s2">], type(bytes4)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">bytes4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45"></a>
+<a id="__codelineno-3-46" name="__codelineno-3-46"></a><span class="c1">#  return to original unicode string</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- binaire base64 -&gt; binaire utf-8 -&gt; chaîne unicode&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48"></a><span class="n">str6</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bytes4</span><span class="p">,</span> <span class="s2">&quot;base64&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str6=[</span><span class="si">{</span><span class="n">str6</span><span class="si">}</span><span class="s2">], type(str6)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">str6</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50"></a>
+<a id="__codelineno-3-51" name="__codelineno-3-51"></a><span class="c1">#  encoding a binary string in quoted-printable</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- binaire utf-8 -&gt; binaire quoted-printable&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53"></a><span class="n">str7</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">bytes1</span><span class="p">,</span> <span class="s2">&quot;quoted-printable&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-54" name="__codelineno-3-54"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str7=[</span><span class="si">{</span><span class="n">str7</span><span class="si">}</span><span class="s2">], type(str7)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">str7</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55"></a>
+<a id="__codelineno-3-56" name="__codelineno-3-56"></a><span class="c1">#  return to original unicode string</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;---- binaire quoted-printable -&gt; binaire utf-8 -&gt; chaîne unicode&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58"></a><span class="n">str8</span> <span class="o">=</span> <span class="n">codecs</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">str7</span><span class="p">,</span> <span class="s2">&quot;quoted-printable&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;str8=[</span><span class="si">{</span><span class="n">str8</span><span class="si">}</span><span class="s2">], type(str8)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">str8</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 2 行：<b>[codecs]</b> 模块支持 &#x27;base64&#x27; 和 &#x27;quoted-printable&#x27; 编码。它还可以处理许多其他编码；
+  </li>
+  <li>第 4–7 行：将进行各种编码处理的 Unicode 字符串；
+  </li>
+  <li>第 9–12 行：UTF-8 编码。这会生成一个二进制字符串；
+  </li>
+  <li>第 14–18 行：进行 UTF-8 解码以恢复为原始的 Unicode 字符串；
+  </li>
+  <li>第 20–29 行：我们对 &#x27;iso-8859-1&#x27; 编码重复相同的处理过程；
+  </li>
+  <li>第31–34行：显示解码错误：
+  </li>
+  <li>第 33 行：bytes1 是一个以 &#x27;utf-8&#x27; 编码的二进制字符串。我们将它解码为 &#x27;iso-8859-1&#x27;；
+  </li>
+  <li>第 36–39 行：使用 <b>[codecs]</b> 模块将字符串编码为 UTF-8 的另一种方法；
+  </li>
+  <li>第 41–44 行：将 &#x27;utf-8&#x27; 二进制字符串编码为 &#x27;base64&#x27;；
+  </li>
+  <li>第 46–49 行：演示如何将 &#x27;base64&#x27; 二进制字符串转换回原始的 Unicode 字符串；
+  </li>
+  <li>第 51–59 行：我们重复此过程，但使用 &#x27;quoted-printable&#x27; 编码代替 &#x27;base64&#x27;；
+  </li>
+</ul>
+
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/strings/str_04.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- chaîne unicode</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str1=<span style="font-weight:bold">[hélène va au marché acheter des légumes]</span>, type(str1)=&lt;class &#x27;str&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- chaîne unicode -&gt; binaire utf-8</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes1=<span style="font-weight:bold">[b&#x27;h\xc3\xa9l\xc3\xa8ne va au march\xc3\xa9 acheter des l\xc3\xa9gumes&#x27;]</span>, type(bytes1)=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- binaire utf-8 -&gt; chaîne unicode</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str2=<span style="font-weight:bold">[hélène va au marché acheter des légumes]</span>, type(str2)=&lt;class &#x27;str&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str2==str1=True</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- chaîne unicode -&gt; binaire iso-8859-1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes2=<span style="font-weight:bold">[b&#x27;h\xe9l\xe8ne va au march\xe9 acheter des l\xe9gumes&#x27;]</span>, type(bytes2)=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- binaire iso-8859-1 -&gt; chaîne unicode</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str3=<span style="font-weight:bold">[hélène va au marché acheter des légumes]</span>, type(str3)=&lt;class &#x27;str&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str3==str1=True</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--- binaire utf-8 (décodage iso-8859-1) --&gt; chaîne unicode</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str4=<span style="font-weight:bold">[hÃ©lÃ¨ne va au marchÃ© acheter des lÃ©gumes]</span>, type(str4)=&lt;class &#x27;str&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- chaîne unicode -&gt; binaire utf-8</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes3=<span style="font-weight:bold">[b&#x27;h\xc3\xa9l\xc3\xa8ne va au march\xc3\xa9 acheter des l\xc3\xa9gumes&#x27;]</span>, type(bytes3)=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- binaire utf-8 -&gt; binaire base64</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bytes4=<span style="font-weight:bold">[b&#x27;aMOpbMOobmUgdmEgYXUgbWFyY2jDqSBhY2hldGVyIGRlcyBsw6lndW1lcw==\n&#x27;]</span>, type(bytes4)=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- binaire base64 -&gt; binaire utf-8 -&gt; chaîne unicode</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str6=<span style="font-weight:bold">[hélène va au marché acheter des légumes]</span>, type(str6)=&lt;class &#x27;str&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- binaire utf-8 -&gt; binaire quoted-printable</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str7=<span style="font-weight:bold">[b&#x27;h=C3=A9l=C3=A8ne=20va=20au=20march=C3=A9=20acheter=20des=20l=C3=A9gumes&#x27;]</span>, type(str7)=&lt;class &#x27;bytes&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---- binaire quoted-printable -&gt; binaire utf-8 -&gt; chaîne unicode</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">str8=<span style="font-weight:bold">[hélène va au marché acheter des légumes]</span>, type(str8)=&lt;class &#x27;str&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 14-15 行：使用错误的解码器 &#x27;iso-8859-1&#x27; 将 UTF-8 二进制数据解码为 Unicode 字符串。因此，生成的部分 Unicode 字符不正确，本例中为带重音的字符；
+  </li>
+  <li>第 18-19 行：&#x27;base64&#x27; 编码是利用 64 个 ASCII 字符（以 7 位编码）来编码任何二进制数据。如我们所见，这会增加字符串中二进制数据的大小；
+  </li>
+  <li>第22–23行：&#x27;quoted-printable&#x27;编码同样使用ASCII字符（7位编码）来编码任何二进制数据；
+  </li>
+</ul>
+
+<p>需要牢记的是，当接收代表文本的二进制数据（例如来自互联网）时，必须了解其经过的编码方式，才能还原原始文本。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

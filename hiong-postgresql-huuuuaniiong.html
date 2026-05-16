@@ -1,0 +1,2162 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/hiong-postgresql-huuuuaniiong.html">
+      
+      
+        <link rel="prev" href="hiong-mysql-huuuuaniiong.html">
+      
+      
+        <link rel="next" href="ianiehuuuuaniionguuaneaia.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>17. 使用 PostgreSQL 数据库管理系统 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#17-postgresql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              17. 使用 PostgreSQL 数据库管理系统
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#171-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.1. 安装 PostgreSQL 数据库管理系统
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#172-pgadmin-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.2. 使用 [pgAdmin] 工具管理 PostgreSQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#173-postgresql-dbms-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.3. 安装 PostgreSQL 数据库管理系统（DBMS）的 Python 连接器
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#174-mysql-postgresql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4. 将 MySQL 脚本移植为 PostgreSQL 脚本
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="17.4. 将 MySQL 脚本移植为 PostgreSQL 脚本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1741-pgres_module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4.1. [pgres_module]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1742-pgres_01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4.2. 脚本 [pgres_01]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1743-pgres_02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4.3. 脚本 [pgres_02]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1744-pgres_03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4.4. 脚本 [pgres_03]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1745-pgres_04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4.5. 脚本 [pgres_04]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1746-pgres_05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.4.6. 脚本 [pgres_05]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#175" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        17.5. 结论
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="refheadingtoc2522132924280206"></a>
+<a id="toc48549058"></a>
+<a id="utilisationdusgbd1"></a></p>
+<h1 id="17-postgresql">17. <span style="color: #365f91">使用 PostgreSQL 数据库管理系统</span></h1>
+<p>PostgreSQL 数据库管理系统可免费获取。它是 MySQL “社区版”的替代方案。</p>
+<p>我们在此使用它，旨在演示将 Python/MySQL 脚本迁移到 Python/PostgreSQL 脚本是相当简单的。</p>
+<p>在使用 MySQL 数据库管理系统时，我们的脚本架构如下：</p>
+<p><img src="images/100000010000030B000000835DDD29BD.png" width="447" height="75" style="width:11.839cm;height:1.991cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000030B000000835DDD29BD.png" /></p>
+<p>在 PostgreSQL 数据库管理系统下，架构将如下所示：</p>
+<p><img src="images/10000001000003050000007C8CC0D4B2.png" width="448" height="72" style="width:11.852cm;height:1.901cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003050000007C8CC0D4B2.png" /></p>
+<p><a id="refheadingtoc822383439697744"></a>
+<a id="toc48549059"></a>
+<a id="installationdu"></a></p>
+<h2 id="171-postgresql">17.1. <span style="color: #4f81bd">安装 PostgreSQL 数据库管理系统</span></h2>
+<p>PostgreSQL 数据库管理系统发行版可在 <strong>[https://www.postgresql.org/download/]</strong> 获取（2019 年 5 月）。以下演示 64 位 Windows 版本的安装过程：</p>
+<p><img src="images/10000001000003CD000000F6CE4428BA.png" width="621" height="157" style="width:16.431cm;height:4.154cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003CD000000F6CE4428BA.png" /></p>
+<p><img src="images/100000010000042300000087DE31BDCE.png" width="661" height="84" style="width:17.5cm;height:2.231cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000042300000087DE31BDCE.png" /></p>
+<ul>
+  <li>在 <b>[1-4] </b>中，下载 DBMS 安装程序；
+  </li>
+</ul>
+
+<p>运行下载的安装程序：</p>
+<p><img src="images/100000010000040B000001ADD7DF18EE.png" width="663" height="275" style="width:17.542cm;height:7.271cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000040B000001ADD7DF18EE.png" /></p>
+<ul>
+  <li>在 <b>[6]</b> 处，指定安装目录；
+  </li>
+</ul>
+
+<p><img src="images/100000010000040E000001A20CE035B5.png" width="663" height="267" style="width:17.542cm;height:7.064cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000040E000001A20CE035B5.png" /></p>
+<ul>
+  <li>在 <b>[8] </b>中，对于我们当前的操作，无需选择 <b>[Stack Builder]</b> 选项；
+  </li>
+  <li>在 <b>[10]</b> 处，保留默认值；
+  </li>
+</ul>
+
+<p><img src="images/100000010000040B0000019F5729834B.png" width="663" height="266" style="width:17.53cm;height:7.029cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000040B0000019F5729834B.png" /></p>
+<ul>
+  <li>在 <b>[12-13]</b> 处，我们在此输入了密码 <b>[root]</b>。这将是 DBMS 管理员（用户名为 <b>[postgres]</b>）的密码。PostgreSQL 也将此用户称为超级用户；
+  </li>
+  <li>在 <b>[15] </b>中，保留默认值：这是 DBMS 的监听端口；
+  </li>
+</ul>
+
+<p><img src="images/100000010000040B000001A00B7E151F.png" width="662" height="266" style="width:17.521cm;height:7.041cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000040B000001A00B7E151F.png" /></p>
+<ul>
+  <li>在 <b>[17] </b>中，保留默认值；
+  </li>
+  <li>在 <b>[19] </b>中，显示安装配置的摘要；
+  </li>
+</ul>
+
+<p><img src="images/10000001000004080000019BDDDDFC89.png" width="663" height="264" style="width:17.53cm;height:6.981cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000004080000019BDDDDFC89.png" /></p>
+<p><img src="images/1000000100000363000001C0262BCE72.png" width="607" height="314" style="width:16.073cm;height:8.304cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000363000001C0262BCE72.png" /></p>
+<p><a id="service-windows-postgresql"></a>在 Windows 系统中，PostgreSQL 数据库管理系统会作为 Windows 服务安装并自动启动。大多数情况下，这并非理想状态。我们将修改此配置。在 Windows 搜索栏中输入 <strong>[services] [24-26]</strong>：</p>
+<p><img src="images/1000000100000423000001A9DCE190B9.png" width="663" height="266" style="width:17.53cm;height:7.034cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000423000001A9DCE190B9.png" /></p>
+<ul>
+  <li>在 <b>[29] </b>中，可以看到 PostgreSQL 数据库管理系统服务被设置为自动模式。通过访问服务属性 <b>[30]</b> 来更改此设置：
+  </li>
+</ul>
+
+<p><img src="images/1000000100000433000001BB5D7EFFCF.png" width="711" height="293" style="width:18.8cm;height:7.747cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000433000001BB5D7EFFCF.png" /></p>
+<ul>
+  <li>在 <b>[31-32] </b>中，将启动类型设置为“手动”；
+  </li>
+  <li>在 <b>[33] </b>中，停止该服务；
+  </li>
+</ul>
+
+<p>若需手动启动数据库管理系统（DBMS），请返回 <strong>[services]</strong> 应用程序，右键单击 <strong>[postgresql]</strong> 服务（34），然后启动它（35）。</p>
+<p><a id="refheadingtoc900783955410047"></a>
+<a id="toc48549060"></a>
+<a id="administrerpostgresqlavec"></a></p>
+<h2 id="172-pgadmin-postgresql">17.2. <span style="color: #4f81bd">使用 [pgAdmin] 工具管理 PostgreSQL</span></h2>
+<p>启动 PostgreSQL 数据库管理系统（DBMS）的 Windows 服务（参见上一段）。然后，以与启动 <strong>[服务]</strong> 工具相同的方式启动 <strong>[pgAdmin]</strong> 工具，该工具可用于管理 PostgreSQL 数据库管理系统 <strong>[1-3]</strong>：</p>
+<p><img src="images/1000000100000348000001C7000F1039.png" width="552" height="299" style="width:14.61cm;height:7.915cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000348000001C7000F1039.png" /></p>
+<p>系统可能会在某个时候提示您输入超级用户密码。超级用户名为 <strong>[postgres]</strong>。您在 DBMS 安装过程中设置了此密码。在本文档中，我们在安装过程中为超级用户设置了密码 <strong>[root]</strong>。</p>
+<ul>
+  <li>在 <b>[4] </b>中，<b>[pgAdmin]</b> 是一个 Web 应用程序；
+  </li>
+  <li>在 <b>[5] </b>中，是 <b>[pgAdmin]</b> 检测到的 PostgreSQL 服务器列表，此处显示 1 台；
+  </li>
+  <li>在 <b>[6] </b>中，是我们启动的 PostgreSQL 服务器；
+  </li>
+  <li>在 <b>[7] </b>中，表示 DBMS 数据库，此处为 1；
+  </li>
+  <li>在 <b>[8] </b>中，<b>[postgresql]</b> 数据库由超级用户 <b>[postgres]</b> 管理；
+  </li>
+</ul>
+
+<p>首先，让我们创建一个用户 <strong>[admpersonnes]</strong>，密码为 <strong>[nobody]</strong>：</p>
+<p><img src="images/10000001000003F0000000D0D345E5AE.png" width="663" height="137" style="width:17.53cm;height:3.618cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003F0000000D0D345E5AE.png" /></p>
+<p><img src="images/10000001000003940000017EBA90D246.png" width="584" height="244" style="width:15.46cm;height:6.447cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003940000017EBA90D246.png" /></p>
+<ul>
+  <li>在 <b>[17] </b>中，我们输入了 <b>[nobody]</b>；
+  </li>
+</ul>
+
+<p><img src="images/10000001000003A900000118EAB796D2.png" width="585" height="175" style="width:15.482cm;height:4.627cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003A900000118EAB796D2.png" /></p>
+<ul>
+  <li>在 <b>[21] </b>中，<b>[pgAdmin]</b> 工具将向 PostgreSQL 数据库管理系统发送的 SQL 代码。这是学习 PostgreSQL 专有 SQL 语言的一种方式；
+  </li>
+  <li>在 <b>[22] </b>中，通过 <b>[Save]</b> 向导确认后，用户 <b>[admpersonnes]</b> 已创建；
+  </li>
+</ul>
+
+<p>现在我们创建 <strong>[dbpersonnes]</strong> 数据库：</p>
+<p><img src="images/1000000100000399000000DED7F1A0C3.png" width="585" height="141" style="width:15.49cm;height:3.734cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000399000000DED7F1A0C3.png" /></p>
+<p>右键单击 <strong>[23]</strong>，然后依次选择 <strong>[24-25]</strong> 创建新数据库。在 <strong>[26]</strong> 选项卡中，定义数据库名称 <strong>[27]</strong> 及其所有者 <strong>[admpersonnes] [28]</strong>。</p>
+<p><img src="images/10000001000003450000017741FD8F12.png" width="523" height="234" style="width:13.839cm;height:6.2cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003450000017741FD8F12.png" /></p>
+<ul>
+  <li>在<b>[30]</b>中，显示了创建数据库的SQL代码；
+  </li>
+  <li>在 <b>[31] </b>中，通过向导点击 <b>[保存]</b> 后，数据库 <b>[dbpersonnes]</b> 即创建完成；
+  </li>
+</ul>
+
+<p>我们将使用 <strong>[dbpersonnes]</strong> 数据库配合 Python 脚本进行操作。</p>
+<p><a id="toc48549061"></a>
+<a id="refheadingtoc2522152924280206"></a></p>
+<h2 id="173-postgresql-dbms-python">17.3. <span style="color: #4f81bd">安装 PostgreSQL 数据库管理系统（DBMS）的 Python 连接器</span></h2>
+<p><img src="images/10000001000003050000007C8CC0D4B2.png" width="448" height="72" style="width:11.852cm;height:1.901cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003050000007C8CC0D4B2.png" /></p>
+<p>上图展示了一个将 Python 脚本与 PostgreSQL 数据库管理系统连接起来的连接器。目前有多种连接器可供选择。我们将安装 <strong>[psycopg2]</strong> 连接器。此操作在 Python 终端中进行（无论终端所在的目录为何）。使用命令 <strong>[pip install psycopg2]</strong> 安装该连接器：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\troiscouches\v01\tests&gt;<span style="background-color:#fff2cc">pip install psycopg2</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Collecting psycopg2</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  Downloading psycopg2-2.8.5-cp38-cp38-win_amd64.whl (1.1 MB)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">     || 1.1 MB 3.2 MB/s</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Installing collected packages: psycopg2</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Successfully installed psycopg2-2.8.5</span></span>
+</code></pre></div>
+
+<p><a id="toc48549062"></a></p>
+<h2 id="174-mysql-postgresql">17.4. <span style="color: #4f81bd">将 MySQL 脚本移植为 PostgreSQL 脚本</span></h2>
+<p><img src="images/10000000000004CC0000021C60DF9970.png" width="537" height="236" style="width:14.199cm;height:6.244cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004CC0000021C60DF9970.png" /></p>
+<ul>
+  <li>复制包含 MySQL 脚本的文件夹 <b>[1]</b>（Ctrl-C / Ctrl-V），然后将文件名更改为与内容相匹配；
+  </li>
+</ul>
+<p><a id="refheadingtoc2522172924280206"></a>
+<a id="toc48549063"></a></p>
+<h3 id="1741-pgres_module">17.4.1. <span style="color: #4f81bd">[pgres_module]</span></h3>
+<p>此模块是 <strong>[mysql_module]</strong> 模块的副本（参见章节 <u><span style="color: #0563c1">|script </span></u><strong>[mysql-04]</strong><u><span style="color: #0563c1">: 执行 SQL 命令</span></u>文件|）。修改导入语句：</p>
+<p>原代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mysql.connector</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mysql.connector.connection</span><span class="w"> </span><span class="kn">import</span> <span class="n">MySQLConnection</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mysql.connector.cursor</span><span class="w"> </span><span class="kn">import</span> <span class="n">MySQLCursor</span>
+</code></pre></div></td></tr></table></div>
+<p>我们写：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg2</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg2.extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">connection</span><span class="p">,</span> <span class="n">cursor</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>[</strong><strong><span style="color: #000000">display_info</span></strong><strong>]</strong> 函数的签名是：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> afficher_infos(<span style="color:#808080">curseur</span>: <span style="background-color:#fff2cc">MySQLCursor</span>):</span></span>
+</code></pre></div>
+
+<p>现在变为：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> afficher_infos(<span style="color:#808080">curseur</span>: <span style="background-color:#fff2cc">cursor</span>)</span></span>
+</code></pre></div>
+
+<p><strong>[</strong><strong><span style="color: #000000">execute_list_of_commands</span></strong><strong>]</strong> 函数的签名是：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> execute_list_of_commands(<span style="color:#808080">connexion</span>: <span style="background-color:#fff2cc">MySQLConnection</span>, <span style="color:#808080">sql_commands</span>: <span style="color:#2b91af">list</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                             <span style="color:#808080">suivi</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">False</span>, <span style="color:#808080">arrêt</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>, <span style="color:#808080">with_transaction</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>)</span></span>
+</code></pre></div>
+
+<p>现在变为：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> execute_list_of_commands(<span style="color:#808080">connexion</span>: <span style="background-color:#fff2cc">connection</span>, <span style="color:#808080">sql_commands</span>: <span style="color:#2b91af">list</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                             <span style="color:#808080">suivi</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">False</span>, <span style="color:#808080">arrêt</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>, <span style="color:#808080">with_transaction</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>):</span></span>
+</code></pre></div>
+
+<p>除此之外，其他内容保持不变。</p>
+<p><a id="refheadingtoc2522192924280206"></a>
+<a id="toc48549064"></a></p>
+<h3 id="1742-pgres_01">17.4.2. <span style="color: #4f81bd">脚本 [pgres_01]</span></h3>
+<p><strong>[pgres_01]</strong> 脚本是 <strong>[mysql_01]</strong> 脚本的副本（参见章节 <u><span style="color: #0563c1">|script </span></u><strong>[mysql-01]</strong><u><span style="color: #0563c1">: 连接到 MySQL 数据库 -</span></u> 1|）。进行了以下更改：</p>
+<p>原内容：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">#  import module mysql.connector</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mysql.connector</span><span class="w"> </span><span class="kn">import</span> <span class="n">connect</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span>
+</code></pre></div></td></tr></table></div>
+<p>我们编写：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">#  psycopg2 module import</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg2</span><span class="w"> </span><span class="kn">import</span> <span class="n">connect</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span>
+</code></pre></div></td></tr></table></div>
+<p>其余部分保持不变。结果与 MySQL 相同。</p>
+<p><a id="refheadingtoc2522212924280206"></a>
+<a id="toc48549065"></a></p>
+<h3 id="1743-pgres_02">17.4.3. <span style="color: #4f81bd">脚本 [pgres_02]</span></h3>
+<p><strong>[pgres_02]</strong> 脚本是 <strong>[mysql_02]</strong> 脚本的副本（参见章节 <u><span style="color: #0563c1">|script </span></u><strong>[mysql-02]</strong><u><span style="color: #0563c1">: 连接到 MySQL 数据库 -</span></u> 2|）。请进行以下修改：</p>
+<p>将以下内容替换为：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">#  import module mysql.connector</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mysql.connector</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span><span class="p">,</span> <span class="n">connect</span>
+</code></pre></div></td></tr></table></div>
+<p>我们写：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">#  psycopg2 module import</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg2</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span><span class="p">,</span> <span class="n">connect</span>
+</code></pre></div></td></tr></table></div>
+<p>结果与 <strong>[mysql_02]</strong> 脚本的结果不一致：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/databases/postgresql/pgres_02.py
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>Connexion MySQL réussie à la base database=dbpersonnes, host=localhost sous l&#39;identité user=admpersonnes, passwd=nobody
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>Déconnexion MySQL réussie
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<p><strong>[pgres_02]</strong> 脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span>
+<span class="normal"><a href="#__codelineno-7-31">31</a></span>
+<span class="normal"><a href="#__codelineno-7-32">32</a></span>
+<span class="normal"><a href="#__codelineno-7-33">33</a></span>
+<span class="normal"><a href="#__codelineno-7-34">34</a></span>
+<span class="normal"><a href="#__codelineno-7-35">35</a></span>
+<span class="normal"><a href="#__codelineno-7-36">36</a></span>
+<span class="normal"><a href="#__codelineno-7-37">37</a></span>
+<span class="normal"><a href="#__codelineno-7-38">38</a></span>
+<span class="normal"><a href="#__codelineno-7-39">39</a></span>
+<span class="normal"><a href="#__codelineno-7-40">40</a></span>
+<span class="normal"><a href="#__codelineno-7-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">#  import module mysql.connector</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg2</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span><span class="p">,</span> <span class="n">connect</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="c1"># ---------------------------------------------------------------------------------</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">connexion</span><span class="p">(</span><span class="n">host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">login</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">pwd</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="c1">#  connects then disconnects (login,pwd) from the [database] server [host]</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="c1">#  throws DatabaseError exception if problem occurs</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="n">connexion</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>        <span class="c1">#  connection</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>        <span class="n">connexion</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">host</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="n">login</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">pwd</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">)</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>        <span class="nb">print</span><span class="p">(</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>            <span class="sa">f</span><span class="s2">&quot;Connexion réussie à la base database=</span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">, host=</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s2"> sous l&#39;identité user=</span><span class="si">{</span><span class="n">login</span><span class="si">}</span><span class="s2">, passwd=</span><span class="si">{</span><span class="n">pwd</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a>    <span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a>        <span class="c1">#  close the connection if it has been opened</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a>        <span class="k">if</span> <span class="n">connexion</span><span class="p">:</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a>            <span class="n">connexion</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a>            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Déconnexion réussie</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a><span class="c1">#  ---------------------------------------------- main</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="c1">#  login credentials</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="n">USER</span> <span class="o">=</span> <span class="s2">&quot;admpersonnes&quot;</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="n">PASSWD</span> <span class="o">=</span> <span class="s2">&quot;nobody&quot;</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a><span class="n">HOST</span> <span class="o">=</span> <span class="s2">&quot;localhost&quot;</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a><span class="n">DATABASE</span> <span class="o">=</span> <span class="s2">&quot;dbpersonnes&quot;</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a><span class="c1">#  existing user login</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31"></a>    <span class="n">connexion</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">HOST</span><span class="p">,</span> <span class="n">login</span><span class="o">=</span><span class="n">USER</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="n">PASSWD</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">DATABASE</span><span class="p">)</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32"></a><span class="k">except</span> <span class="p">(</span><span class="n">InterfaceError</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">)</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33"></a>    <span class="c1">#  error is displayed</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35"></a>
+<a id="__codelineno-7-36" name="__codelineno-7-36"></a><span class="c1">#  non-existent user login</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38"></a>    <span class="n">connexion</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">HOST</span><span class="p">,</span> <span class="n">login</span><span class="o">=</span><span class="s2">&quot;xx&quot;</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="s2">&quot;yy&quot;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">DATABASE</span><span class="p">)</span>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a><span class="k">except</span> <span class="p">(</span><span class="n">InterfaceError</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">)</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-7-40" name="__codelineno-7-40"></a>    <span class="c1">#  error is displayed</span>
+<a id="__codelineno-7-41" name="__codelineno-7-41"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>虽然第 36–41 行本应显示一条错误消息，指出与 DBMS 的连接失败，但实际上并未显示任何内容。事实上，经过进一步调查，我们发现代码确实进入了第 35–37 行的 <strong>[except]</strong> 代码块，但 <strong>[error]</strong> 变量被设置为 <strong>[None]</strong>。这种情况发生在 <strong>[</strong><strong><span style="color: #6f008a">psycopg2</span></strong><strong>]</strong> 连接器的 2.8.4 版本中。</p>
+<p>我们可以通过编写一条通用但不够精确的错误信息来解决此问题：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">#  non-existent user login</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>    <span class="n">connexion</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">HOST</span><span class="p">,</span> <span class="n">login</span><span class="o">=</span><span class="s2">&quot;xx&quot;</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="s2">&quot;yy&quot;</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="n">DATABASE</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="k">except</span> <span class="p">(</span><span class="n">InterfaceError</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">)</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>    <span class="c1">#  error is displayed</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Erreur de connexion à la base [</span><span class="si">{</span><span class="n">DATABASE</span><span class="si">}</span><span class="s2">] par l&#39;utilisateur [xx/yy]&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/databases/postgresql/pgres_02.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Connexion réussie à la base database=dbpersonnes, host=localhost sous l&#x27;identité user=admpersonnes, passwd=nobody</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Déconnexion réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Erreur de connexion à la base <span style="font-weight:bold">[dbpersonnes]</span> par l&#x27;utilisateur <span style="font-weight:bold">[xx/yy]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="refheadingtoc2522232924280206"></a>
+<a id="toc48549066"></a></p>
+<h3 id="1744-pgres_03">17.4.4. <span style="color: #4f81bd">脚本 [pgres_03]</span></h3>
+<p>脚本 <strong>[pgres_03]</strong> 是脚本 <strong>[mysql_03]</strong> 的副本（参见章节 <u><span style="color: #0563c1">|脚本 </span></u><strong>[mysql-03]</strong><u><span style="color: #0563c1">：创建 MySQL</span></u> 表|）。对其进行了以下修改：</p>
+<p>原代码如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> <span style="color:#6f008a">mysql</span>.<span style="color:#6f008a">connector</span> <span style="color:#0000ff">import</span> DatabaseError, InterfaceError, connect</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> <span style="color:#6f008a">mysql</span>.<span style="color:#6f008a">connector</span>.<span style="color:#6f008a">connection</span> <span style="color:#0000ff">import</span> MySQLConnection</span></span>
+</code></pre></div>
+
+<p>我们写：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> <span style="color:#6f008a">psycopg2</span> <span style="color:#0000ff">import</span> DatabaseError, InterfaceError, connect</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> <span style="color:#6f008a">psycopg2</span>.<span style="color:#6f008a">extensions</span> <span style="color:#0000ff">import</span> connection</span></span>
+</code></pre></div>
+
+<p>此外，<strong>[</strong><strong><span style="color: #000000">execute_sql</span></strong><strong>]</strong> 函数的签名原本是：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> execute_sql(<span style="color:#808080">connexion</span>: MySQLConnection, <span style="color:#808080">update</span>: <span style="color:#2b91af">str</span>):</span></span>
+</code></pre></div>
+
+<p>变为：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> execute_sql(<span style="color:#808080">connexion</span>: connection, <span style="color:#808080">update</span>: <span style="color:#2b91af">str</span>):</span></span>
+</code></pre></div>
+
+<p>其余部分保持不变。结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/databases/postgresql/pgres_03.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">create table personnes (id int PRIMARY KEY, prenom varchar(30) NOT NULL, nom varchar(30) NOT NULL, age integer NOT NULL, unique(nom,prenom))  : <span style="background-color:#fff2cc">requête réussie</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p>您可以使用 <strong>[pgAdmin]</strong> 管理工具验证 <strong>[people]</strong> 表是否存在：</p>
+<p><img src="images/10000000000004DE0000046766E0BCA6.png" width="559" height="506" style="width:14.79cm;height:13.377cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004DE0000046766E0BCA6.png" /></p>
+<p><a id="refheadingtoc2522252924280206"></a>
+<a id="toc48549067"></a></p>
+<h3 id="1745-pgres_04">17.4.5. <span style="color: #4f81bd">脚本 [pgres_04]</span></h3>
+<p><strong>[pgres_04]</strong> 脚本是 <strong>[mysql_04]</strong> 脚本的副本（参见章节 <u><span style="color: #0563c1">|script </span></u><strong>[mysql-04]</strong><u><span style="color: #0563c1">: 执行 SQL 命令</span></u>文件|）。它使用 <strong>[</strong><strong><span style="color: #6f008a">pgres_module</span></strong><strong>]</strong> 模块：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span>
+<span class="normal"><a href="#__codelineno-9-8">8</a></span>
+<span class="normal"><a href="#__codelineno-9-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1">#  retrieve application configuration</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config_04</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config_04</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">pgres_module</span><span class="w"> </span><span class="kn">import</span> <span class="n">execute_file_of_commands</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg2</span><span class="w"> </span><span class="kn">import</span> <span class="n">connect</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span>
+</code></pre></div></td></tr></table></div>
+<p>其余部分保持不变。</p>
+<p>我们创建一个配置 <strong>[pgres pgres-04 without_transaction]</strong>，方法与章节 <a href="#scriptmysql-04"><u><span style="color: #0563c1">|script [mysql-04]: 执行 SQL 命令</span></u></a>文件| 中所述相同。我们还创建了一个配置 <strong>[pgres pgres-04 with_transaction]</strong>。</p>
+<p>执行 <strong>[pgres pgres-04 without_transaction]</strong> 配置将产生以下结果：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/databases/postgresql/<span style="background-color:#fff2cc">pgres_04.py false</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Exécution du fichier SQL C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\databases\postgresql/data/commandes.sql sans transaction</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">drop table if exists personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : -1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">create table personnes (id int primary key, prenom varchar(30) not null, nom varchar(30) not null, age integer not null, unique (nom,prenom))</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : -1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values(1, &#x27;Paul&#x27;,&#x27;Langevin&#x27;,48)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values (2, &#x27;Sylvie&#x27;,&#x27;Lefur&#x27;,70)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select prenom, nom, age from personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">prenom, nom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Paul&#x27;, &#x27;Langevin&#x27;, 48)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Sylvie&#x27;, &#x27;Lefur&#x27;, 70)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">xx : Erreur (ERREUR:  erreur de syntaxe sur ou près de « xx »</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">LINE 1: xx</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        ^</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values (3, &#x27;Pierre&#x27;,&#x27;Nicazou&#x27;,35)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values (4, &#x27;Geraldine&#x27;,&#x27;Colou&#x27;,26)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values (5, &#x27;Paulette&#x27;,&#x27;Girond&#x27;,56)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select prenom, nom, age from personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">prenom, nom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Paul&#x27;, &#x27;Langevin&#x27;, 48)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Sylvie&#x27;, &#x27;Lefur&#x27;, 70)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Pierre&#x27;, &#x27;Nicazou&#x27;, 35)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Geraldine&#x27;, &#x27;Colou&#x27;, 26)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Paulette&#x27;, &#x27;Girond&#x27;, 56)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select nom,prenom from personnes order by nom asc, prenom desc</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nom, prenom,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Colou&#x27;, &#x27;Geraldine&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Girond&#x27;, &#x27;Paulette&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Langevin&#x27;, &#x27;Paul&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Lefur&#x27;, &#x27;Sylvie&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Nicazou&#x27;, &#x27;Pierre&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select nom,prenom,age from personnes where age between 20 and 40 order by age desc, nom asc, prenom asc</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nom, prenom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Nicazou&#x27;, &#x27;Pierre&#x27;, 35)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Colou&#x27;, &#x27;Geraldine&#x27;, 26)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values(6, &#x27;Josette&#x27;,&#x27;Bruneau&#x27;,46)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">update personnes set age=47 where nom=&#x27;Bruneau&#x27;</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select nom,prenom,age from personnes where nom=&#x27;Bruneau&#x27;</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nom, prenom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Bruneau&#x27;, &#x27;Josette&#x27;, 47)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">delete from personnes where nom=&#x27;Bruneau&#x27;</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select nom,prenom,age from personnes where nom=&#x27;Bruneau&#x27;</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nom, prenom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Exécution terminée</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Il y a eu 1 erreur(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">xx : Erreur (ERREUR:  erreur de syntaxe sur ou près de « xx »</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">LINE 1: xx</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        ^</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 5 行：我们不得不修改命令以删除 <b>[people]</b> 表。与 MySQL 连接器不同，如果要删除的表不存在，PostgreSQL 连接器会抛出异常。<b>[drop table]</b> 命令有一个变体 <b>[drop table if exists]，</b>如果表不存在，它不会抛出异常。我们在此使用了该命令。这是一个两个数据库管理系统在类似情况下行为不一致的示例；
+  </li>
+</ul>
+
+<p><strong>[pgAdmin]</strong> 工具中的 <strong>[people]</strong> 表如下所示：</p>
+<p><img src="images/10000000000006310000022E6AD52E07.png" width="691" height="243" style="width:18.292cm;height:6.44cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006310000022E6AD52E07.png" /></p>
+<p>运行配置 <strong>[pgres pgres_04 with_transaction]</strong> 会得到以下结果：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/databases/postgresql/<span style="background-color:#fff2cc">pgres_04.py true</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Exécution du fichier SQL C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\databases\postgresql/data/commandes.sql avec transaction</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">drop table if exists personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : -1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">create table personnes (id int primary key, prenom varchar(30) not null, nom varchar(30) not null, age integer not null, unique (nom,prenom))</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : -1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values(1, &#x27;Paul&#x27;,&#x27;Langevin&#x27;,48)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values (2, &#x27;Sylvie&#x27;,&#x27;Lefur&#x27;,70)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select prenom, nom, age from personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">prenom, nom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Paul&#x27;, &#x27;Langevin&#x27;, 48)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Sylvie&#x27;, &#x27;Lefur&#x27;, 70)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">xx : Erreur (ERREUR:  erreur de syntaxe sur ou près de « xx »</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">LINE 1: xx</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        ^</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Exécution terminée</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Il y a eu 1 erreur(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">xx : Erreur (ERREUR:  erreur de syntaxe sur ou près de « xx »</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">LINE 1: xx</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        ^</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><strong>[pgAdmin]</strong> 工具中的 <strong>[people]</strong> 表如下：</p>
+<p><img src="images/10000000000003F6000002C0A2F89F20.png" width="442" height="307" style="width:11.689cm;height:8.116cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003F6000002C0A2F89F20.png" /></p>
+<p>此处的结果与使用 MySQL 时获得的结果不同。如果我们在相同条件下运行脚本——即在不使用事务的情况下运行脚本——则会得到以下结果：</p>
+<ul>
+  <li>在 MySQL 中，<b>[people]</b> 表为空；
+  </li>
+  <li>而在 PostgreSQL 中，<b>[people]</b> 表并非空表；
+  </li>
+</ul>
+
+<p>差异在于这两个数据库管理系统回滚事务的方式不同：</p>
+<ul>
+  <li>MySQL 不会回滚 <b>[drop table] </b>和 <b>[create table]</b> 命令。最终 <b>[people]</b> 表为空；
+  </li>
+  <li>PostgreSQL 会回滚 <b>[drop table] </b>和 <b>[create table]</b> 命令。该表将恢复到脚本通过事务执行之前的状态；
+  </li>
+</ul>
+<p><a id="refheadingtoc2522272924280206"></a>
+<a id="toc48549068"></a></p>
+<h3 id="1746-pgres_05">17.4.6. <span style="color: #4f81bd">脚本 [pgres_05]</span></h3>
+<p>脚本 <strong>[pgres_05]</strong> 是脚本 <strong>[mysql_05]</strong> 的副本（参见章节 <u><span style="color: #0563c1">|脚本 </span></u><strong>[mysql-05]</strong><u><span style="color: #0563c1">：使用参数化</span></u>查询|）。该脚本的修改如下：</p>
+<p>原代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">mysql.connector</span><span class="w"> </span><span class="kn">import</span> <span class="n">connect</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span>
+</code></pre></div></td></tr></table></div>
+<p>我们写：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">psycopg2</span><span class="w"> </span><span class="kn">import</span> <span class="n">connect</span><span class="p">,</span> <span class="n">DatabaseError</span><span class="p">,</span> <span class="n">InterfaceError</span>
+</code></pre></div></td></tr></table></div>
+<p>其余部分保持不变。</p>
+<p>在 <strong>[pgAdmin]</strong> 中获得的结果如下：</p>
+<p><img src="images/10000000000003F50000029C1102C03E.png" width="442" height="291" style="width:11.689cm;height:7.708cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003F50000029C1102C03E.png" /></p>
+<p><a id="refheadingtoc2522292924280206"></a>
+<a id="toc48549069"></a></p>
+<h2 id="175">17.5. <span style="color: #4f81bd">结论</span></h2>
+<p>将 MySQL 脚本移植到 PostgreSQL 脚本相对容易。但这属于特例。这两个数据库管理系统（DBMS）对 SQL 对象（数据库、表、列、约束、数据类型等）的命名约定不一致，且 SQL 扩展也不兼容……为了确保移植过程简单，必须在两种情况下都遵守 SQL 标准，而不要尝试使用数据库管理系统的专有扩展。但这会以性能为代价。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

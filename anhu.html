@@ -1,0 +1,2561 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/anhu.html">
+      
+      
+        <link rel="prev" href="iaiinguang.html">
+      
+      
+        <link rel="next" href="enenenian.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>6. 函数 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#6" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              6. 函数
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="anhu.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#61-fonc_01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1. 脚本 [fonc_01]：变量作用域
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62-fonc_02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2. 脚本 [fonc_02]：变量作用域
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-fonc_03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3. 脚本 [fonc_03]：变量的作用域
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64-fonc_04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4. 脚本 [fonc_04]：参数传递模式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65-fonc_05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5. 脚本 [fonc_05]：脚本中函数的顺序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66-fonc_06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6. 脚本 [fonc_06]：脚本中函数的执行顺序
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#67-fonc_07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7. 脚本 [fonc_07]：使用模块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#68-fonc_08-python-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.8. 脚本 [fonc_08]：向 [Python Path] 添加文件夹
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#69-fonc_09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.9. 脚本 [fonc_09]：声明参数类型
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#610-fonc_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.10. 脚本 [fonc_10]：命名参数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#611-fonc_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.11. 脚本 [fonc_11]：递归函数
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#612-fonc_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.12. 脚本 [fonc_12]：递归函数
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="toc48548943"></a>
+<a id="lesfonctions"></a>
+<a id="refheadingtoc2521012924280206"></a></p>
+<h1 id="6">6. <span style="color: #365f91">函数</span></h1>
+<p><img src="images/10000001000001D000000225461F936F.png" width="163" height="193" style="width:4.309cm;height:5.098cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000001D000000225461F936F.png" /></p>
+<p><a id="toc48548944"></a>
+<a id="refheadingtoc2521032924280206"></a></p>
+<h2 id="61-fonc_01">6.1. <span style="color: #4f81bd">脚本 [fonc_01]：变量作用域</span></h2>
+<p>脚本 <strong>[fonc_01]</strong> 展示了函数之间变量作用域的示例：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span>
+<span class="normal"><a href="#__codelineno-0-39">39</a></span>
+<span class="normal"><a href="#__codelineno-0-40">40</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#  variable scope</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">():</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="c1">#  avoid using global variables</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="c1">#  global variable i</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="k">global</span> <span class="n">i</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="c1">#  local variable j</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="n">j</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f1[i,j]=[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">():</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>    <span class="c1">#  avoid using global variables</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>    <span class="c1">#  global variable i</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="k">global</span> <span class="n">i</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="c1">#  local variable j</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="n">j</span> <span class="o">=</span> <span class="mi">20</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f2[i,j]=[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="k">def</span><span class="w"> </span><span class="nf">f3</span><span class="p">():</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>    <span class="c1">#  local variable i</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>    <span class="c1">#  local variable j</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>    <span class="n">j</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f3[i,j]=[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="c1">#  main program</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="c1">#  these two variables will only be known by a function f</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="c1">#  only if it explicitly declares in the global instruction that it wants to use them</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="c1">#  or that the function uses the global variable for reading only</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="n">f1</span><span class="p">()</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="n">f2</span><span class="p">()</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="n">f3</span><span class="p">()</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="c1">#  j hasn&#39;t changed but i has</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[i,j]=[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_01.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f1<span style="font-weight:bold">[i,j]</span>=<span style="font-weight:bold">[1,10]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f2<span style="font-weight:bold">[i,j]</span>=<span style="font-weight:bold">[2,20]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f3<span style="font-weight:bold">[i,j]</span>=<span style="font-weight:bold">[1,30]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[i,j]</span>=<span style="font-weight:bold">[2,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><strong>注</strong>：</p>
+<ul>
+  <li>该脚本演示了变量 i 的用法，该变量在函数 f1 和 f2 中被声明为全局变量。在此情况下，主程序与函数 f1 和 f2 共享同一个变量 i。
+  </li>
+</ul>
+<p><a id="toc48548945"></a>
+<a id="refheadingtoc2521052924280206"></a></p>
+<h2 id="62-fonc_02">6.2. <span style="color: #4f81bd">脚本 [fonc_02]：变量作用域</span></h2>
+<p>脚本 <strong>[fonc_03]</strong> 在脚本 <strong>[fonc_02]</strong> 的基础上，演示了如何避免使用全局变量：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">#  variable scope</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="c1">#  local variable i</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="c1">#  local variable j</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="n">j</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f1[i,j]=[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="c1">#  return the modified value</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="k">return</span> <span class="n">i</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>    <span class="c1">#  local variable i</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a>    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>    <span class="c1">#  local variable j</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>    <span class="n">j</span> <span class="o">=</span> <span class="mi">20</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f2[i,j]=[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>    <span class="c1">#  return the modified value</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>    <span class="k">return</span> <span class="n">i</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="k">def</span><span class="w"> </span><span class="nf">f3</span><span class="p">():</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a>    <span class="c1">#  local variable i</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a>    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a>    <span class="c1">#  local variable j</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a>    <span class="n">j</span> <span class="o">=</span> <span class="mi">30</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;f3[i,j]=[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="c1">#  main program</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="c1">#  these two variables will only be known by a function f</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="c1">#  only if it explicitly declares in the global instruction that it wants to use them</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="c1">#  or if the function uses the global variable for reading only</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="n">i</span> <span class="o">=</span> <span class="n">f1</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="n">i</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="n">f3</span><span class="p">()</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="c1">#  j hasn&#39;t changed but i has</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[i,j]=[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong>：</p>
+<ul>
+  <li>第 2 行和第 12 行：变量 <b>[i]</b> 并未被声明为全局变量，而是作为参数传递给了函数 f1 和 f2；
+  </li>
+  <li>第 9 行和第 19 行：函数 f1 和 f2 将修改后的变量 <b>[i]</b> 返回给主程序。主程序在第 36 行和第 37 行中获取该变量；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_02.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f1<span style="font-weight:bold">[i,j]</span>=<span style="font-weight:bold">[1,10]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f2<span style="font-weight:bold">[i,j]</span>=<span style="font-weight:bold">[2,20]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f3<span style="font-weight:bold">[i,j]</span>=<span style="font-weight:bold">[1,30]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[i,j]</span>=<span style="font-weight:bold">[2,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="toc48548946"></a>
+<a id="refheadingtoc2521072924280206"></a></p>
+<h2 id="63-fonc_03">6.3. <span style="color: #4f81bd">脚本 [fonc_03]：变量的作用域</span></h2>
+<p>脚本 <strong>[fonc_03]</strong> 演示了变量在函数内部和调用代码中使用的特殊性，这取决于该变量是否仅在函数内部用于<strong>读取</strong>。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span>
+<span class="normal"><a href="#__codelineno-2-38">38</a></span>
+<span class="normal"><a href="#__codelineno-2-39">39</a></span>
+<span class="normal"><a href="#__codelineno-2-40">40</a></span>
+<span class="normal"><a href="#__codelineno-2-41">41</a></span>
+<span class="normal"><a href="#__codelineno-2-42">42</a></span>
+<span class="normal"><a href="#__codelineno-2-43">43</a></span>
+<span class="normal"><a href="#__codelineno-2-44">44</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">():</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="c1">#  here the global variable i is known</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[f1] i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="c1">#  here the global variable j is known</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[f1] j=</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">():</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="c1">#  here the global variable i is not known</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="c1">#  because the f2 function defines a local variable with the same name</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="c1">#  it then has priority</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>        <span class="c1">#  try displaying the local variable i defined below</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[f2] i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>        <span class="c1">#  the following instruction makes i a local variable of function f2</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>        <span class="n">i</span> <span class="o">=</span> <span class="mi">7</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>    <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[f2] erreur=</span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">f3</span><span class="p">():</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a>    <span class="c1">#  here the global variable i is not known</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a>    <span class="c1">#  because the f3 function defines a local variable with the same name</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a>    <span class="c1">#  it then has priority</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a>    <span class="c1">#  the following instruction makes i a local variable</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a>    <span class="n">i</span> <span class="o">=</span> <span class="mi">7</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a>    <span class="c1">#  display - here i is known</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[f3] i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="c1">#  hand -----------</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a><span class="c1">#  global variables to functions</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">10</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a><span class="n">j</span> <span class="o">=</span> <span class="mi">20</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a><span class="c1">#  call from f1</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a><span class="n">f1</span><span class="p">()</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[main] i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">, j=</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="c1">#  call from f2</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="n">f2</span><span class="p">()</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[main] i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="c1">#  call from f3</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a><span class="n">f3</span><span class="p">()</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[main] i=</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 34 行：主代码定义了一个变量 <b>[i]</b>；
+  </li>
+  <li>第 1–5 行：函数 f1 同样使用了变量 <b>[i]</b>，但未对其赋值。这是对变量 <b>[i] </b>的<b>读取</b>。在此情况下，所使用的变量 <b>[i]</b> 来自调用代码中的第 34 行；
+  </li>
+  <li>第 8–18 行：函数 f2 同样使用变量 <b>[i]</b>，但在第 16 行对其赋值。在 f2 中对变量 <b>[i]</b> 赋值会自动使 <b>[i]</b> 成为函数 <b>[f2] </b>的局部变量。因此，该函数将变量 <b>[i] </b>“隐藏” 起来，使其对调用代码不可见；
+  </li>
+  <li>第 14 行：对局部变量 <b>[i] </b>的写入操作将失败，因为当执行到第 14 行时该变量尚未赋值。它将在第 16 行获得其值。此时将引发异常。因此，第 14 行被置于 try/catch 代码块中；
+  </li>
+  <li>第 21–29 行：f3 函数与 f2 函数功能相同，但更早定义了其局部变量 <b>[i]</b>；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_03.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[f1]</span> i=10</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[f1]</span> j=20</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[main]</span> i=10, j=20</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[f2]</span> erreur=local variable &#x27;i&#x27; referenced before assignment</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[main]</span> i=10</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[f3]</span> i=7</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[main]</span> i=10</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="toc48548947"></a>
+<a id="refheading382622423505"></a></p>
+<h2 id="64-fonc_04">6.4. <span style="color: #4f81bd">脚本 [fonc_04]：参数传递模式</span></h2>
+<p>脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">#  function f1</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="c1">#  function f2</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>    <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>    <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="c1">#  ------------------------ hand</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="n">f1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">, y=</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_04.py
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>x=1
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>x=2, y=3
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>在 Python 中，一切都是对象。有些对象被称为“不可变”：它们无法被修改。数字、字符串和元组就属于这种情况。当 Python 对象作为参数传递给函数时，传递的是对象的引用，除非这些对象是“不可变”的，在这种情况下，传递的是对象的值；
+  </li>
+  <li>函数 <i>f1</i>（第 2 行）和 <i>f2</i>（第 7 行）旨在演示输出参数的传递。我们希望函数的实际参数能被该函数修改；
+  </li>
+  <li>第 2–3 行：函数 <i>f1</i> 修改了其形式参数 a。我们想知道实际参数是否也会被修改；
+  </li>
+  <li>第 14–15 行：实际参数为 <i>x = 1</i>。结果的第 2 行显示实际参数未被修改。因此，实际参数 <b>x </b>和形式参数 <b>a </b>是<b>两个不同的对象；</b>
+  </li>
+  <li>第 8–10 行：函数 <i>f2</i> 修改其形式参数 <b>a </b>和 <b>b</b>，并将它们作为结果返回；
+  </li>
+  <li>第 17–18 行：将实际参数 (x, y) 传递给 <i>f2</i>，并将 <i>f2</i> 的结果赋值给 (x, y)。结果的第 3 行表明实际参数 (x, y) 已被修改。
+  </li>
+</ul>
+
+<p>由此可得，当“不可变”对象作为输出参数时，它们必须是函数返回结果的一部分。</p>
+<p><a id="toc48548948"></a>
+<a id="refheadingtoc2521092924280206"></a></p>
+<h2 id="65-fonc_05">6.5. <span style="color: #4f81bd">脚本 [fonc_05]：脚本中函数的顺序</span></h2>
+<p>脚本 <strong>[fonc_05]</strong> 表明，如果函数在代码中尚未出现过，则无法被调用：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">#  ------------------------ hand</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">f2</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">#  function f1</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="c1">#  function f2</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>    <span class="k">return</span> <span class="n">f1</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 2 行会引发错误，因为它使用了函数 f2，而该函数在脚本中尚未定义；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">fonctions</span><span class="o">/</span><span class="n">fonc_05</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>  <span class="n">File</span> <span class="s2">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_05.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">f2</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="ne">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s1">&#39;f2&#39;</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">1</span>
+</code></pre></div></td></tr></table></div>
+<p><a id="toc48548949"></a>
+<a id="refheadingtoc2521112924280206"></a></p>
+<h2 id="66-fonc_06">6.6. <span style="color: #4f81bd">脚本 [fonc_06]：脚本中函数的执行顺序</span></h2>
+<p>脚本 <strong>[fonc_06]</strong> 表明，适用于调用代码的规则并不适用于函数：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">#  function f2</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>    <span class="k">return</span> <span class="n">f1</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="c1">#  function f1</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="c1">#  ------------------------ hand</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">f2</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 3 行：函数 <b>[f2]</b> 使用了脚本后文定义的函数 <b>[f1]</b>。但这不会引发错误。因此我们可以得出结论：在 Python 脚本中，函数的定义顺序并不重要；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_06.py
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>310
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<p><a id="toc48548950"></a>
+<a id="refheadingtoc2521132924280206"></a></p>
+<h2 id="67-fonc_07">6.7. <span style="color: #4f81bd">脚本 [fonc_07]：使用模块</span></h2>
+<p>脚本 <strong>[fonc_07]</strong> 演示了如何将函数封装在模块中。</p>
+<p><img src="images/10000000000001A2000001E95C62738A.png" width="182" height="213" style="width:4.821cm;height:5.639cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A2000001E95C62738A.png" /></p>
+<p>我们将可重用的函数封装在模块中，而不是将它们从一个脚本移动到另一个脚本：</p>
+<ul>
+  <li>而是将它们放在一个单独的文件中，并以特定方式进行声明；
+  </li>
+  <li>需要这些函数的脚本会“导入”包含这些函数的模块；
+  </li>
+</ul>
+
+<p>脚本 <strong>[fonctions_module_01]</strong> 如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1">#  function f2</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>    <span class="k">return</span> <span class="n">f1</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="c1">#  function f1</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">10</span>
+</code></pre></div></td></tr></table></div>
+<p>有几种方法可以确保 <strong>[fonctions_module_01]</strong> 脚本中的函数能够被其他脚本调用。这些方法因脚本是否在 <strong>[PyCharm]</strong> 中运行而有所不同。</p>
+<p>在 <strong>[PyCharm] 中，</strong>导入的模块会在名为 <strong>[Root Sources]</strong> 的特定文件夹中进行搜索。有两种方法可以将文件夹设为 <strong>[Root Source]</strong>：</p>
+<p><img src="images/10000000000004060000030AD1D7093D.png" width="621" height="469" style="width:16.431cm;height:12.411cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004060000030AD1D7093D.png" /></p>
+<ul>
+  <li>在 <b>[4] </b>中，该文件夹的颜色已发生变化；
+  </li>
+</ul>
+
+<p>完成此操作后，<strong>[functions/modules]</strong> 文件夹将被识别为源文件夹。随后您可以在脚本中编写：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fonctions_module_01</span><span class="w"> </span><span class="kn">import</span> <span class="n">f2</span>
+</code></pre></div>
+<p>以此导入并使用在 <strong>[functions_module_01.py]</strong> 模块中定义的函数 f2。</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000051C000002086882FC9E.png" width="571" height="227" style="display:inline-block; margin:4px;width:15.109cm;height:6.008cm;" class="odt-zoomable" data-zoom-src="images/100000000000051C000002086882FC9E.png" /></td></tr></table>
+
+<p>另一种方法是使用项目属性：</p>
+<ul>
+  <li>在上文中，序列 <b>[1-6]</b> 允许将 <b>[shared]</b> 文件夹用作存储待导入模块的文件夹；
+  </li>
+</ul>
+
+<p>目前，除了项目根目录之外，我们不会将任何文件夹声明为 <strong>[Sources Root]</strong>：</p>
+<p><img src="images/1000000000000557000002557F6FC5D5.png" width="546" height="239" style="width:14.452cm;height:6.311cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000557000002557F6FC5D5.png" /></p>
+<p>完成上述设置后，我们可以编写以下 <strong>[fonc-07]</strong> 脚本：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1">#  using modules</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="c1">#  ------------------------ hand</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python path=</span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fonctions.shared.fonctions_module_01</span><span class="w"> </span><span class="kn">import</span> <span class="n">f2</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">f2</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行：我们导入 <b>[sys]</b> 对象，以便在第 5 行使用其 <b>[path]</b> 属性，该属性提供所谓的 <b>[Python Path]</b>：一个用于搜索导入模块的目录列表；
+  </li>
+  <li>第 6 行：我们从 <b>[</b><b><span style="color: #000000">fonctions_module_01</span></b><b>]</b> 模块导入 f2 函数。要引用该模块，我们使用从项目根目录到该模块的路径。在 PyCharm 中，当在脚本中查找导入的模块时，项目根目录始终包含在搜索的文件夹中。因此，该文件夹是项目 <b>[Python Path]</b> 的一部分。这正是第 5 行将帮助我们验证的内容；
+  </li>
+  <li>第 6 行：若要描述从项目根目录到 <b>[</b><b><span style="color: #000000">fonctions_module_01</span></b><b>]</b> 文件夹的路径，我们会写成 <b>[</b><b><span style="color: #000000">fonctions/shared/fonctions_module_01</span></b><b>]</b>。在模块路径中，斜杠 (/) 会被替换为点 (.)。因此我们写成 <b>[fonctions.modules.</b><b><span style="color: #000000">fonctions_module_01</span></b><b>]</b>；
+  </li>
+  <li>第 6 行之后定义了函数 f2。我们在第 8 行中使用了它；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_07.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Python path=<span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">&#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions</span><span style="font-weight:bold">&#x27;, </span><span style="font-weight:bold;background-color:#e2efd9">&#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020</span><span style="font-weight:bold">&#x27;, </span><span style="font-weight:bold;background-color:#deeaf6">&#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions\\shared</span><span style="font-weight:bold">&#x27;, &#x27;C:\\myprograms\\Python38\\python38.zip&#x27;, &#x27;C:\\myprograms\\Python38\\DLLs&#x27;, &#x27;C:\\myprograms\\Python38\\lib&#x27;, &#x27;C:\\myprograms\\Python38&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv\\lib\\site-packages&#x27;]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">310</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p>上文：</p>
+<ul>
+  <li>绿色高亮部分显示，项目根目录是 <b>[Python Path]</b> 的一部分；
+  </li>
+  <li>黄色高亮部分显示，包含已执行脚本的文件夹也是 <b>[Python Path]</b> 的一部分；
+  </li>
+  <li><b>[Python Path]</b> 的其他元素则直接来自 Python 安装目录；
+  </li>
+</ul>
+
+<p>如果我们不使用 PyCharm 来运行 <strong>[fonc-07]</strong>，会发生什么？</p>
+<p><img src="images/10000001000001A4000001F247934B80.png" width="268" height="318" style="width:7.093cm;height:8.41cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000001A4000001F247934B80.png" /></p>
+<p><img src="images/100000000000058400000154DD0D1166.png" width="616" height="148" style="width:16.311cm;height:3.928cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000058400000154DD0D1166.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，我们运行 <b>[fonc-07]</b> 脚本。当前所在位置为 <b>[functions]</b> 文件夹；
+  </li>
+  <li>在 <b>[2] </b>中，我们可以看到执行目录是 <b>[Python Path] </b>的一部分。这种情况总是成立的。我们还可以看到，根目录 <b>[C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020]</b> 并不属于 <b>[Python Path]</b>；
+  </li>
+  <li>在 <b>[3] </b>中，Python 解释器报告无法找到 <b>[fonctions]</b> 模块；
+  </li>
+</ul>
+
+<p>为了查找被导入的模块 <strong>[</strong><strong><span style="color: #000000">fonctions.shared.fonctions_module_01</span></strong><strong>]</strong>，Python 解释器会在 <strong>[Python Path]</strong> 中的文件夹内搜索名为 <strong>[fonctions]</strong> 的子文件夹。但无论在何处都找不到该文件夹。 这是因为 <strong>[fonctions]</strong> 子文件夹位于 <strong>[C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020]</strong> 文件夹下<strong>，</strong>而该文件夹不属于 <strong>[Python Path]</strong>。</p>
+<p><strong>[fonc-08]</strong> 脚本为该问题提供了一种可能的解决方案。</p>
+<p><a id="toc48548951"></a>
+<a id="refheadingtoc2521152924280206"></a></p>
+<h2 id="68-fonc_08-python-path">6.8. <span style="color: #4f81bd">脚本 [fonc_08]：向 [Python Path] 添加文件夹</span></h2>
+<p>可以通过编程方式修改 <strong>[Python Path]</strong>，具体方法如 <strong>[fonc-08]</strong> 脚本所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1">#  using modules</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="c1">#  script folder</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="c1">#  Python Path before modification</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python path avant=</span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="c1">#  add the [shared] folder to the Python Path</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">script_dir</span><span class="si">}</span><span class="s2">/shared&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="c1">#  Python Path after modification</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Python path après=</span><span class="si">{</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="c1">#  import f2</span>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="kn">from</span><span class="w"> </span><span class="nn">fonctions_module_01</span><span class="w"> </span><span class="kn">import</span> <span class="n">f2</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="c1">#  ------------------------ hand</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">f2</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 4 行：特殊变量 <b>[__file__]</b> 表示正在执行的脚本名称。根据执行上下文的不同，该名称可能是绝对路径（PyCharm）或相对路径（控制台）。<b>[os.path.abspath]</b> 函数返回传入名称对应的文件的绝对路径。<b>[os.path.dirname]</b> 函数返回传入名称对应的文件所在目录的绝对路径；
+  </li>
+  <li>第 10 行：<b>[sys.path]</b> 是一个列表，其中包含在查找模块时需要搜索的目录名称。我们将第 4 行定义的项目根目录添加到该列表中；
+  </li>
+  <li>我们分别显示修改前（第 8 行）和修改后（第 12 行）的 <b>[Python Path]</b>；
+  </li>
+  <li>第 15 行：我们导入 <b>[</b><b><span style="color: #6f008a">fonctions_module_01</span></b><b>]</b> 模块，该模块包含 f2 函数；
+  </li>
+</ul>
+
+<p>在 PyCharm 中执行后得到以下结果：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_08.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">Python path avant</span>=<span style="font-weight:bold">[&#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions\\shared&#x27;, &#x27;C:\\myprograms\\Python38\\python38.zip&#x27;, &#x27;C:\\myprograms\\Python38\\DLLs&#x27;, &#x27;C:\\myprograms\\Python38\\lib&#x27;, &#x27;C:\\myprograms\\Python38&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv\\lib\\site-packages&#x27;]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">Python path après</span>=<span style="font-weight:bold">[&#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions\\shared&#x27;, &#x27;C:\\myprograms\\Python38\\python38.zip&#x27;, &#x27;C:\\myprograms\\Python38\\DLLs&#x27;, &#x27;C:\\myprograms\\Python38\\lib&#x27;, &#x27;C:\\myprograms\\Python38&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv\\lib\\site-packages&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions/shared&#x27;]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">310</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 3 行：我们可以看到 <b>[shared]</b> 文件夹在 <b>[Python Path] </b>中出现了两次。虽然可以避免这种情况，但在此处不会造成任何问题；
+  </li>
+  <li>第 4 行：f2 函数已成功执行；
+  </li>
+</ul>
+
+<p>现在让我们在终端中运行 <strong>[fonc-08]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\fonctions&gt;python fonc_08.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">Python path avant</span>=<span style="font-weight:bold">[&#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions&#x27;, &#x27;C:\\myprograms\\Python38\\python38.zip&#x27;, &#x27;C:\\myprograms\\Python38\\DLLs&#x27;, &#x27;C:\\myprograms\\Python38\\lib&#x27;, &#x27;C:\\myprograms\\Python38&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv\\lib\\site-packages&#x27;]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">Python path après</span>=<span style="font-weight:bold">[&#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions&#x27;, &#x27;C:\\myprograms\\Python38\\python38.zip&#x27;, &#x27;C:\\myprograms\\Python38\\DLLs&#x27;, &#x27;C:\\myprograms\\Python38\\lib&#x27;, &#x27;C:\\myprograms\\Python38&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\venv\\lib\\site-packages&#x27;, &#x27;C:\\Data\\st-2020\\dev\\python\\cours-2020\\python3-flask-2020\\fonctions/shared&#x27;]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">310</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 2 行：与之前一样，<b>[shared]</b> 文件夹不在 <b>[Python Path] </b>中；
+  </li>
+  <li>第 3 行：现在已包含；
+  </li>
+  <li>第 4 行：找到了函数 f2；
+  </li>
+</ul>
+<p><a id="toc48548952"></a>
+<a id="refheadingtoc2521172924280206"></a></p>
+<h2 id="69-fonc_09">6.9. <span style="color: #4f81bd">脚本 [fonc_09]：声明参数类型</span></h2>
+<p><strong>[fonc_09]</strong> 脚本表明，您可以声明函数参数的类型以及返回值的类型。不过，这种声明仅用于记录函数信息。Python 解释器不会检查实际函数参数是否为预期类型。但 PyCharm 会标记实际参数与形式参数之间的类型不一致。仅凭这一点，类型声明就变得不可或缺。 </p>
+<p>脚本内容如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1">#  a function with parameter type indication</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="c1">#  this is for documentation purposes only, as the python interpreter ignores it</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">show</span><span class="p">(</span><span class="n">param</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;param=</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">, type(param)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a>    <span class="k">return</span> <span class="n">param</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="c1">#  hand -------------------------</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">show</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="n">show</span><span class="p">(</span><span class="s2">&quot;xyz&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 5 行：我们声明形式参数 <b>[param] </b>的类型为 <b>[int]</b>，且函数的返回类型也是 <b>[int]</b>；
+  </li>
+  <li>第 11 行：函数 <b>[show] </b>的实际参数类型正确；
+  </li>
+  <li>第 12 行：函数 <b>[show] </b>的实际参数类型不正确；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_09.py
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>param=4, type(param)=&lt;class &#39;int&#39;&gt;
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>5
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a>param=xyz, type(param)=&lt;class &#39;str&#39;&gt;
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a>Traceback (most recent call last):
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a>  File &quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_09.py&quot;, line 11, in &lt;module&gt;
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a>    show(&quot;xyz&quot;)
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a>  File &quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_09.py&quot;, line 6, in show
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a>    return param + 1
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a>TypeError: can only concatenate str (not &quot;int&quot;) to str
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a>Process finished with exit code 1
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 10 行：参数 <b>[param] </b>的类型是 <b>[str]</b>。当此消息出现时，我们已经进入了函数 <b>[show] </b>的代码。因此，Python 解释器已接受函数 <b>[show] </b>的实际参数类型为 <b>[str]</b>；
+  </li>
+  <li>代码的第 7 行触发了结果中第 4–10 行所示的异常；
+  </li>
+</ul>
+
+<p>尽管如此，PyCharm 仍提示存在问题：</p>
+<p><img src="images/10000000000002D9000001945D4D8660.png" width="318" height="176" style="width:8.41cm;height:4.66cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D9000001945D4D8660.png" /></p>
+<p>在 <strong>[1]</strong> 中，PyCharm 已将错误的调用标记出来。</p>
+<p><a id="toc48548953"></a>
+<a id="refheadingtoc2521192924280206"></a></p>
+<h2 id="610-fonc_10">6.10. <span style="color: #4f81bd">脚本 [fonc_10]：命名参数</span></h2>
+<p>要向函数传递参数，可以使用其形式参数的名称。在这种情况下，无需遵循形式参数的顺序：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1">#  we can refer to the actual parameters by their formal names</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="c1">#  hand</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 2 行：函数 f 有两个形式参数，x 和 y；
+  </li>
+  <li>第 7 行：调用函数 f 时，可以使用形式参数的名称。这种做法至少在以下两种情况下很有用：
+    <ul>
+      <li>函数参数较多，且其中大部分具有默认值。调用函数时，上述方法允许您仅对不希望使用默认值的参数进行初始化；
+      </li>
+      <li>如果形式参数具有有意义的名称，那么在函数调用中使用命名参数可以提高代码的可读性；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_10.py
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a>13
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<p><a id="toc48548954"></a></p>
+<h2 id="611-fonc_11">6.11. <span style="color: #4f81bd">脚本 [fonc_11]：递归函数</span></h2>
+<p>脚本 <strong>[fonc_11]</strong> 是一个递归函数（即调用自身的函数）的示例：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span>
+<span class="normal"><a href="#__codelineno-17-12">12</a></span>
+<span class="normal"><a href="#__codelineno-17-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1">#  recursive function</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">fact</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a>    <span class="c1">#  factorial(1) is 1</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a>    <span class="c1">#  a recursive function must terminate at a certain point</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5"></a>    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6"></a>        <span class="k">return</span> <span class="mi">1</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8"></a>        <span class="c1">#  factorial(i)=i*factorial(i-1)</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9"></a>        <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="n">fact</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10"></a>
+<a id="__codelineno-17-11" name="__codelineno-17-11"></a>
+<a id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="c1">#  ---------- hand</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fact(8)=</span><span class="si">{</span><span class="n">fact</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 1-9 行：阶乘函数；
+  </li>
+  <li>第 9 行：<b>[阶乘]</b> 函数调用自身；
+  </li>
+  <li>第5-6行：递归函数必须在满足某个条件时终止；否则，就会发生无限递归；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_11.py
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a>fact(8)=40320
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<p><a id="toc48548955"></a></p>
+<h2 id="612-fonc_12">6.12. <span style="color: #4f81bd">脚本 [fonc_12]：递归函数</span></h2>
+<p><strong>[fonc_12]</strong> 函数进一步详细说明了递归的工作原理：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span>
+<span class="normal"><a href="#__codelineno-19-11">11</a></span>
+<span class="normal"><a href="#__codelineno-19-12">12</a></span>
+<span class="normal"><a href="#__codelineno-19-13">13</a></span>
+<span class="normal"><a href="#__codelineno-19-14">14</a></span>
+<span class="normal"><a href="#__codelineno-19-15">15</a></span>
+<span class="normal"><a href="#__codelineno-19-16">16</a></span>
+<span class="normal"><a href="#__codelineno-19-17">17</a></span>
+<span class="normal"><a href="#__codelineno-19-18">18</a></span>
+<span class="normal"><a href="#__codelineno-19-19">19</a></span>
+<span class="normal"><a href="#__codelineno-19-20">20</a></span>
+<span class="normal"><a href="#__codelineno-19-21">21</a></span>
+<span class="normal"><a href="#__codelineno-19-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c1">#  recursive function</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="c1">#  behavior of parameter j</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a>
+<a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">fact</span><span class="p">(</span><span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6"></a>    <span class="c1">#  stop recursive function</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7"></a>    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;j=</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9"></a>        <span class="k">return</span> <span class="mi">1</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11"></a>        <span class="c1">#  we manipulate j</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12"></a>        <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;avant fact j=</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14"></a>        <span class="c1">#  recursivity</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15"></a>        <span class="n">f</span> <span class="o">=</span> <span class="n">fact</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;après fact j=</span><span class="si">{</span><span class="n">j</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17"></a>        <span class="c1">#  result</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18"></a>        <span class="k">return</span> <span class="n">i</span> <span class="o">*</span> <span class="n">f</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19"></a>
+<a id="__codelineno-19-20" name="__codelineno-19-20"></a>
+<a id="__codelineno-19-21" name="__codelineno-19-21"></a><span class="c1">#  ---------- hand</span>
+<a id="__codelineno-19-22" name="__codelineno-19-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;fact(8)=</span><span class="si">{</span><span class="n">fact</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 5 行：我们仍然关注阶乘函数。我们向其中添加了参数 <b>[j]</b>；
+  </li>
+  <li>第12行：变量j在每次阶乘计算后都会递增。我们在递归（第15行）之前（第12行）和之后（第16行）显示其值；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span>
+<span class="normal"><a href="#__codelineno-20-11">11</a></span>
+<span class="normal"><a href="#__codelineno-20-12">12</a></span>
+<span class="normal"><a href="#__codelineno-20-13">13</a></span>
+<span class="normal"><a href="#__codelineno-20-14">14</a></span>
+<span class="normal"><a href="#__codelineno-20-15">15</a></span>
+<span class="normal"><a href="#__codelineno-20-16">16</a></span>
+<span class="normal"><a href="#__codelineno-20-17">17</a></span>
+<span class="normal"><a href="#__codelineno-20-18">18</a></span>
+<span class="normal"><a href="#__codelineno-20-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/fonctions/fonc_12.py
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a>avant fact j=1
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a>avant fact j=2
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a>avant fact j=3
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a>avant fact j=4
+<a id="__codelineno-20-6" name="__codelineno-20-6"></a>avant fact j=5
+<a id="__codelineno-20-7" name="__codelineno-20-7"></a>avant fact j=6
+<a id="__codelineno-20-8" name="__codelineno-20-8"></a>avant fact j=7
+<a id="__codelineno-20-9" name="__codelineno-20-9"></a>j=7
+<a id="__codelineno-20-10" name="__codelineno-20-10"></a>après fact j=7
+<a id="__codelineno-20-11" name="__codelineno-20-11"></a>après fact j=6
+<a id="__codelineno-20-12" name="__codelineno-20-12"></a>après fact j=5
+<a id="__codelineno-20-13" name="__codelineno-20-13"></a>après fact j=4
+<a id="__codelineno-20-14" name="__codelineno-20-14"></a>après fact j=3
+<a id="__codelineno-20-15" name="__codelineno-20-15"></a>après fact j=2
+<a id="__codelineno-20-16" name="__codelineno-20-16"></a>après fact j=1
+<a id="__codelineno-20-17" name="__codelineno-20-17"></a>fact(8)=40320
+<a id="__codelineno-20-18" name="__codelineno-20-18"></a>
+<a id="__codelineno-20-19" name="__codelineno-20-19"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第2–8行：我们可以看到，只要递归仍在进行，<b>[j]</b>的值就会增加，直到满足递归停止的条件。从那一刻起，<b>[fact]</b>函数的调用返回将按与调用相反的顺序进行；
+  </li>
+  <li>第 10–16 行：这些输出反映了阶乘调用中连续的返回过程。变量 <b>[j]</b> 恢复到其初始值 1；
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2838 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/eiuuiiang.html">
+      
+      
+        <link rel="prev" href="hiianianii-3-an.html">
+      
+      
+        <link rel="next" href="ongongei-baseentity-e-myexception.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>12. 类与对象 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#12" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              12. 类与对象
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="eiuuiiang.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#121-classes_01-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1. 脚本 [classes_01]：一个 Object 类
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-classes_02person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2. 脚本 [classes_02]：Person 类
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123-classes_03-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3. 脚本 [classes_03]：带构造函数的 Person 类
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124-classes_04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4. 脚本 [classes_04]：静态方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125-classes_05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5. 脚本 [classes_05]：属性有效性检查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#126-classes_06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.6. 脚本 [classes_06]：添加对象初始化方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#127-classes_07person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.7. 脚本 [classes_07]：Person 对象的列表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#128-classes_08-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.8. 脚本 [classes_08]：创建一个从 Person 类派生的类
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#129-classes_09-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.9. 脚本 [classes_09]：从 Person 类派生的第二个类
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1210-classes_10__dict__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.10. 脚本 [classes_10]：[__dict__] 属性
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="refheading382342423505-copie-1"></a>
+<a id="toc48548914-copie-1"></a>
+<a id="installationdunenvironnement-copie-1"></a>
+<a id="refheading382362423505-copie-1"></a>
+<a id="toc48548915-copie-1"></a>
+<a id="lesbasesde-copie-1"></a>
+<a id="refheading382422423505-copie-1"></a>
+<a id="toc48548922-copie-1"></a>
+<a id="leschainesde-copie-1"></a>
+<a id="refheadingtoc3282143081319169-copie-1"></a>
+<a id="toc48548934-copie-1"></a>
+<a id="lesexceptions-copie-1"></a>
+<a id="refheading352241169597484-copie-1"></a>
+<a id="toc48548939-copie-1"></a>
+<a id="lesfonctions-copie-1"></a>
+<a id="refheadingtoc2521012924280206-copie-1"></a>
+<a id="toc48548943-copie-1"></a>
+<a id="lesfichierstexte-copie-1"></a>
+<a id="refheadingtoc2521212924280206-copie-1"></a>
+<a id="toc48548956-copie-1"></a>
+<a id="refheading382662423505-copie-1"></a>
+<a id="toc48548962-copie-1"></a>
+<a id="lesimports-copie-1"></a>
+<a id="toc48548982-copie-1"></a>
+<a id="exercicedapplication1-copie-1"></a>
+<a id="toc48548993-copie-1"></a>
+<a id="version2-copie-1"></a>
+<a id="refheadingtoc510331566649833-copie-1"></a>
+<a id="toc48548994-copie-1"></a>
+<a id="lesclasseset"></a>
+<a id="refheading382742423505"></a>
+<a id="toc48549002"></a>
+<a id="avant-propos-copie-1"></a></p>
+<h1 id="12">12. <span style="color: #365f91">类与对象</span></h1>
+<p>类是创建<strong>对象的</strong>模板。对象被称为类的<strong>实例</strong>。</p>
+<p><img src="images/100000000000010E000001D257FE4F52.png" width="118" height="204" style="width:3.12cm;height:5.385cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000010E000001D257FE4F52.png" /></p>
+<p><strong>注意</strong>：<strong>[shared]</strong> 文件夹已放置在项目的 <strong>[Root Sources]</strong> 中。</p>
+<p><a id="refheading382762423505"></a>
+<a id="toc48549003"></a></p>
+<h2 id="121-classes_01-object">12.1. <span style="color: #4f81bd">脚本 [classes_01]：一个 Object 类</span></h2>
+<p><strong>[classes_01]</strong> 脚本演示了一种已过时的类用法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#  a class</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Objet</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;une classe Objet vide&quot;&quot;&quot;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1">#  any variable of type [Object] can have attributes by construction</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">obj1</span> <span class="o">=</span> <span class="n">Objet</span><span class="p">()</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="n">obj1</span><span class="o">.</span><span class="n">attr1</span> <span class="o">=</span> <span class="s2">&quot;un&quot;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="n">obj1</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="mi">100</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="c1">#  displays the</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;objet1=[</span><span class="si">{</span><span class="n">obj1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj1</span><span class="p">)</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">obj1</span><span class="p">)</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj1</span><span class="o">.</span><span class="n">attr1</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj1</span><span class="o">.</span><span class="n">attr2</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="c1">#  modify object</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="n">obj1</span><span class="o">.</span><span class="n">attr2</span> <span class="o">+=</span> <span class="mi">100</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="c1">#  displays the</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;objet1=[</span><span class="si">{</span><span class="n">obj1</span><span class="o">.</span><span class="n">attr1</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj1</span><span class="o">.</span><span class="n">attr2</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="c1">#  assign reference obj1 to obj2</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="n">obj2</span> <span class="o">=</span> <span class="n">obj1</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="c1">#  modifies the object pointed to by obj2</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="n">obj2</span><span class="o">.</span><span class="n">attr2</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="c1">#  displays both objects - obj1 now points to a modified object</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;objet1=[</span><span class="si">{</span><span class="n">obj1</span><span class="o">.</span><span class="n">attr1</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj1</span><span class="o">.</span><span class="n">attr2</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;objet2=[</span><span class="si">{</span><span class="n">obj2</span><span class="o">.</span><span class="n">attr1</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj2</span><span class="o">.</span><span class="n">attr2</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="c1">#  obj1 and obj2 point to the same object</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;objet1=[</span><span class="si">{</span><span class="n">obj1</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">obj1</span><span class="p">)</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj1</span><span class="o">.</span><span class="n">attr1</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj1</span><span class="o">.</span><span class="n">attr2</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;objet2=[</span><span class="si">{</span><span class="n">obj2</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="nb">id</span><span class="p">(</span><span class="n">obj2</span><span class="p">)</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj2</span><span class="o">.</span><span class="n">attr1</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">obj2</span><span class="o">.</span><span class="n">attr2</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="nb">print</span><span class="p">(</span><span class="n">obj1</span> <span class="o">==</span> <span class="n">obj2</span><span class="p">)</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="c1">#  instance type obj1</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;type(obj1)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">obj1</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;isinstance(obj1,Objet)=</span><span class="si">{</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">obj1</span><span class="p">,</span><span class="w"> </span><span class="n">Objet</span><span class="p">)</span><span class="si">}</span><span class="s2">, isinstance(obj1,object)=</span><span class="si">{</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">obj1</span><span class="p">,</span><span class="w"> </span><span class="nb">object</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="c1">#  any type is an object in Python</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;type(4)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;isinstance(4, int)=</span><span class="si">{</span><span class="nb">isinstance</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nb">int</span><span class="p">)</span><span class="si">}</span><span class="s2">, isinstance(4, object)=</span><span class="si">{</span><span class="nb">isinstance</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nb">object</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 2-3 行：一个空的 <b>[Object]</b> 类；
+  </li>
+  <li>第2行：该类可以有三种声明形式：
+    <ul>
+      <li>class Object;
+      </li>
+      <li>class Object();
+      </li>
+      <li>class Object(object);
+      </li>
+    </ul>
+  </li>
+  <li>第 3 行：另一种注释形式。这种注释前缀为三个 &quot;&quot;,，可以跨多行；
+  </li>
+  <li>第 7 行：Object 类的实例化。结果是一个地址，如第 24–26 行所示；
+  </li>
+  <li>第 8–9 行：直接初始化对象的两个属性；
+  </li>
+  <li>第 17 行：复制引用。变量 <i>obj1 </i>和 <i>obj2</i> 是指向同一个对象的两个指针（引用）；
+  </li>
+  <li>第 19 行：我们修改了 <b>[obj2] 所指向的</b>对象。由于 <b>[obj1] </b>和 <b>[obj2]</b> 指向同一个对象，第 21 行和第 22 行中对象 <b>[obj1, obj2] </b>的显示结果将表明 <b>[obj1]</b> 所指向的对象已发生变化；
+  </li>
+  <li>第 24–26 行：这些行旨在证明变量 <b>[obj1] </b>和 <b>[obj2]</b> 相等。第 26 行的输出将证实这一点。在此比较中，<b>[obj1] </b>和 <b>[obj2] 的地址</b>是相等的；
+  </li>
+  <li>每个 Python 对象都通过表达式 <b>[id(object)]</b> 获取的唯一 ID 来标识。第 24 行和第 25 行将显示 <b>[obj1] </b>和 <b>[obj2]</b> 所指向的对象的 ID 完全相同，从而证明这两个引用指向同一个对象；
+  </li>
+  <li>第 27–29 行：函数 <b>[isinstance(expr, Type)]</b> 返回布尔值 True，若表达式 <b>[expr] </b>的类型为 <b>[Type]</b>。在此，我们将看到 <b>[obj1] </b>的类型为 <b>[Object]</b>，这似乎很自然，但同时也属于 <b>[object]</b> 类型。 <b>[object]</b> 类是所有 Python 类的<b>父</b>类。根据类继承的特性<b>，子类 F</b> 拥有<b>其父类 P </b>的所有属性，且函数 <b>[isinstance(F 的实例, P)]</b> 返回 True；
+  </li>
+  <li>第 30–32 行：表明类型 <b>[int]</b> 也是类型 <b>[object]</b>。所有 Python 类型都继承自 <b>[object]</b> 类；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_01.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">objet1=<span style="font-weight:bold">[&lt;__main__.Objet object at 0x0000025C3F469BB0&gt;, &lt;class &#x27;__main__.Objet&#x27;&gt;,2595221838768,un,100]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">objet1=<span style="font-weight:bold">[un,200]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">objet1=<span style="font-weight:bold">[un,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">objet2=<span style="font-weight:bold">[un,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">objet1=<span style="font-weight:bold">[&lt;__main__.Objet object at 0x0000025C3F469BB0&gt;, 2595221838768,un,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">objet2=<span style="font-weight:bold">[&lt;__main__.Objet object at 0x0000025C3F469BB0&gt;, 2595221838768,un,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">True</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">type(obj1)=&lt;class &#x27;__main__.Objet&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">isinstance(obj1,Objet)=True, isinstance(obj1,object)=True</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">type(4)=&lt;class &#x27;int&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">isinstance(4, int)=True, isinstance(4, object)=True</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="refheading382782423505"></a>
+<a id="toc48549004"></a></p>
+<h2 id="122-classes_02person">12.2. <span style="color: #4f81bd">脚本 [classes_02]：Person 类</span></h2>
+<p><strong>[classes_02]</strong> 脚本演示了类属性的公开性：它们可以直接从类外部访问。这是另一个不推荐的类使用示例。不过，我们仍将其纳入其中，因为你可能会偶尔遇到此类代码（Python 允许这样做），而你需要能够理解它。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">#  person class</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Personne</span><span class="p">:</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="c1">#  class attributes</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="c1">#  undeclared - can be created dynamically</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="c1">#  method</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">identité</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="c1">#  a priori, uses non-existent attributes</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prénom</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nom</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">âge</span><span class="si">}</span><span class="s2">]&quot;</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="c1">#  ---------------------------------- main</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="c1">#  attributes are public and can be created dynamically</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="c1">#  class instantiation</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="n">p</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">()</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="c1">#  direct initialization of class attributes</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="n">p</span><span class="o">.</span><span class="n">prénom</span> <span class="o">=</span> <span class="s2">&quot;Paul&quot;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="n">p</span><span class="o">.</span><span class="n">nom</span> <span class="o">=</span> <span class="s2">&quot;de la Hûche&quot;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="n">p</span><span class="o">.</span><span class="n">âge</span> <span class="o">=</span> <span class="mi">48</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="c1">#  call a method of the</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;personne=</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">identité</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="c1">#  instance type p</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;type(p)=</span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;isinstance(Personne)=</span><span class="si">{</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">Personne</span><span class="p">)</span><span class="si">}</span><span class="s2">, isinstance(object)=</span><span class="si">{</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="nb">object</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 2–9 行：包含方法的类；
+  </li>
+  <li>第 7 行：类的每个方法都必须将 <i><b>self</b></i> 对象（指当前对象）作为其第一个参数。<b>[identity]</b> 方法返回一个字符串；
+  </li>
+  <li>第 15 行：实例化一个 <b>[Person]</b> 对象；
+  </li>
+  <li>第 16–19 行：展示对象的属性可以动态创建（它们并不存在于类定义中）；
+  </li>
+  <li>第 9 行：类的属性使用 <b>[self.attribute]</b> 这种表示法；
+  </li>
+  <li>第 23–24 行表明对象 <b>[p]</b> 既是 <b>[Person]</b> 类的实例，也是 <b>[object]</b> 类的实例；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_02.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">personne=<span style="font-weight:bold">[Paul,de la Hûche,48]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">type(p)=&lt;class &#x27;__main__.Personne&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">isinstance(Personne)=True, isinstance(object)=True</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="refheading382802423505"></a>
+<a id="toc48549005"></a></p>
+<h2 id="123-classes_03-person">12.3. <span style="color: #4f81bd">脚本 [classes_03]：带构造函数的 Person 类</span></h2>
+<p>脚本 <strong>[classes_03]</strong> 演示了类的标准用法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">#  person class</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">Personne</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="c1">#  builder - initializes three attributes</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">prénom</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">nom</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">âge</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>        <span class="c1">#  first name: person&#39;s first name</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>        <span class="c1">#  name: person&#39;s name</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>        <span class="c1">#  age: age of the person</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">prénom</span> <span class="o">=</span> <span class="n">prénom</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nom</span> <span class="o">=</span> <span class="n">nom</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">âge</span> <span class="o">=</span> <span class="n">âge</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>    <span class="c1">#  renders class attributes in string form</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">identité</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prénom</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">nom</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">âge</span><span class="si">}</span><span class="s2">]&quot;</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="c1">#  ---------------------------------- main</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="c1">#  a Person object</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="n">p</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="s2">&quot;de la Hûche&quot;</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="c1">#  method call</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;personne=</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">identité</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 4 行：类的构造函数名为 <b>__init__</b>。与其他方法一样，其第一个参数是 <b>self；</b>
+  </li>
+  <li>第 20 行：使用类构造函数创建了一个 <i>Person</i> 对象；
+  </li>
+  <li>第 13–15 行：<b>[identity]</b> 方法返回一个字符串，表示该对象的内容；
+  </li>
+  <li>第 22 行：显示该人的身份；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_03.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">personne=<span style="font-weight:bold">[Paul,de la Hûche,48]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="refheading382822423505"></a>
+<a id="toc48549006"></a></p>
+<h2 id="124-classes_04">12.4. <span style="color: #4f81bd">脚本 [classes_04]：静态方法</span></h2>
+<p>我们在 <strong>[modules]</strong> 文件夹中定义了以下 <strong>[Utils]</strong> 类（utils.py）：</p>
+<p><img src="images/100000000000011900000106A9D0BD48.png" width="122" height="114" style="width:3.24cm;height:3.022cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000011900000106A9D0BD48.png" /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Utils</span><span class="p">:</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="c1">#  static method</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="nd">@staticmethod</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_string_ok</span><span class="p">(</span><span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>        <span class="c1">#  string is a string</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>        <span class="n">erreur</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>            <span class="c1">#  is the chain empty?</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>            <span class="n">erreur</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>        <span class="c1">#  result</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>        <span class="k">return</span> <span class="ow">not</span> <span class="n">erreur</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 3 行：<b>[</b><b><span style="color: #2b91af">@staticmethod</span></b><b>]</b> 注解表明，带有该注解的方法是类方法，而非实例方法。这从注解方法的第一个参数不是 <b>[self]</b> 关键字这一事实中可以明显看出。因此，静态方法无法访问对象的属性。不要这样写：
+  </li>
+</ul>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">u</span><span class="o">=</span><span class="n">Utils</span><span class="p">()</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">u</span><span class="o">.</span><span class="n">is_string_ok</span><span class="p">(</span><span class="s2">&quot;abcd&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>我们写</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">Utils</span><span class="o">.</span><span class="n">is_string_ok</span><span class="p">(</span><span class="s2">&quot;abcd&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>由于我们在上面写了 <strong>[Utils.is_string_ok]</strong>，因此 <strong>[is_string_ok]</strong> 方法被称为类方法（此处指 Utils 类）。要实现这一点，<strong>[Utils.is_string_ok]</strong> 方法必须使用 <strong>[</strong><strong><span style="color: #2b91af">@staticmethod</span></strong><strong>]</strong> 关键字进行注解。</p>
+<p>静态方法 <strong>[Utils.is_string_ok]</strong> 允许我们在此处验证一段数据是否为非空字符串。</p>
+<p><strong>[classes_04]</strong>脚本对<strong>[Utils]</strong>类的用法如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">utilitaires</span><span class="w"> </span><span class="kn">import</span> <span class="n">Utils</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">Utils</span><span class="o">.</span><span class="n">is_string_ok</span><span class="p">(</span><span class="s2">&quot;  &quot;</span><span class="p">))</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">Utils</span><span class="o">.</span><span class="n">is_string_ok</span><span class="p">(</span><span class="mi">47</span><span class="p">))</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">Utils</span><span class="o">.</span><span class="n">is_string_ok</span><span class="p">(</span><span class="s2">&quot; q &quot;</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 1-4 行：我们使用一个配置脚本；
+  </li>
+</ul>
+
+<p>配置脚本 <strong>[config.py]</strong> 如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">():</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="c1">#  configuration file folder</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="c1">#  absolute paths of folders to put in the syspath</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="n">absolute_dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">script_dir</span><span class="si">}</span><span class="s2">/shared&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>        <span class="s2">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/venv/lib/site-packages&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>        <span class="s2">&quot;C:/myprograms/Python38/lib&quot;</span><span class="p">,</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>        <span class="s2">&quot;C:/myprograms/Python38/DLLs&quot;</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>    <span class="p">]</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a>    <span class="c1">#  update syspath</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">myutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_syspath</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a>    <span class="n">set_syspath</span><span class="p">(</span><span class="n">absolute_dependencies</span><span class="p">)</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a>    <span class="c1">#  return the config</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a>    <span class="k">return</span> <span class="p">{}</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 9 行：<b>[shared]</b> 文件夹将被添加到 Python 路径中；
+  </li>
+</ul>
+
+<p>执行结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_04.py
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>False
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>False
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>True
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<p><a id="refheadingtoc2521592924280206"></a>
+<a id="toc48549007"></a></p>
+<h2 id="125-classes_05">12.5. <span style="color: #4f81bd">脚本 [classes_05]：属性有效性检查</span></h2>
+<p><strong>[classes_05]</strong> 脚本介绍了新概念：</p>
+<ul>
+  <li>自定义异常类型的定义；
+  </li>
+  <li>定义 <b>[_str_]</b> 方法，该方法是类的默认身份识别方法；
+  </li>
+  <li>属性定义；
+  </li>
+</ul>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-9-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-9-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-9-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-9-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-9-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-9-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-9-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-9-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-9-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-9-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-9-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-9-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-9-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-9-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-9-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-9-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-9-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-9-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-9-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-9-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-9-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-9-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-9-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-9-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-9-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-9-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-9-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-9-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-9-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-9-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-9-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-9-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-9-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-9-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-9-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-9-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-9-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-9-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-9-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-9-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-9-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-9-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-9-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-9-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-9-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-9-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-9-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-9-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-9-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-9-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-9-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-9-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-9-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-9-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-9-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-9-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-9-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-9-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-9-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-9-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-9-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-9-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-9-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-9-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-9-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-9-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-9-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-9-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-9-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-9-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-9-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-9-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-9-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-9-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-9-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-9-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-9-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-9-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-9-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-9-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-9-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-9-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-9-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-9-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-9-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-9-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-9-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-9-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-9-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-9-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-9-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-9-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-9-100">100</a></span>
+<span class="normal"><a href="#__codelineno-9-101">101</a></span>
+<span class="normal"><a href="#__codelineno-9-102">102</a></span>
+<span class="normal"><a href="#__codelineno-9-103">103</a></span>
+<span class="normal"><a href="#__codelineno-9-104">104</a></span>
+<span class="normal"><a href="#__codelineno-9-105">105</a></span>
+<span class="normal"><a href="#__codelineno-9-106">106</a></span>
+<span class="normal"><a href="#__codelineno-9-107">107</a></span>
+<span class="normal"><a href="#__codelineno-9-108">108</a></span>
+<span class="normal"><a href="#__codelineno-9-109">109</a></span>
+<span class="normal"><a href="#__codelineno-9-110">110</a></span>
+<span class="normal"><a href="#__codelineno-9-111">111</a></span>
+<span class="normal"><a href="#__codelineno-9-112">112</a></span>
+<span class="normal"><a href="#__codelineno-9-113">113</a></span>
+<span class="normal"><a href="#__codelineno-9-114">114</a></span>
+<span class="normal"><a href="#__codelineno-9-115">115</a></span>
+<span class="normal"><a href="#__codelineno-9-116">116</a></span>
+<span class="normal"><a href="#__codelineno-9-117">117</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">utilitaires</span><span class="w"> </span><span class="kn">import</span> <span class="n">Utils</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="c1">#  a proprietary exception class derived from [BaseException]</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyException</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>    <span class="c1">#  do nothing: empty classroom</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>    <span class="k">pass</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="c1">#  person class</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="k">class</span><span class="w"> </span><span class="nc">Personne</span><span class="p">:</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a>    <span class="c1">#  manufacturer</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">prénom</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">nom</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">âge</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a>        <span class="c1">#  first name: person&#39;s first name</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a>        <span class="c1">#  name: person&#39;s name</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a>        <span class="c1">#  age: age of the person</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a>        <span class="c1">#  parameter storage</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a>        <span class="c1">#  initializations will be made via setters</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">prénom</span> <span class="o">=</span> <span class="n">prénom</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nom</span> <span class="o">=</span> <span class="n">nom</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">âge</span> <span class="o">=</span> <span class="n">âge</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a>
+<a id="__codelineno-9-30" name="__codelineno-9-30"></a>    <span class="c1">#  method toString of class</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__prénom</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__nom</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__âge</span><span class="si">}</span><span class="s2">]&quot;</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33"></a>
+<a id="__codelineno-9-34" name="__codelineno-9-34"></a>    <span class="c1">#  getters</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35"></a>    <span class="nd">@property</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">prénom</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__prénom</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38"></a>
+<a id="__codelineno-9-39" name="__codelineno-9-39"></a>    <span class="nd">@property</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">nom</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__nom</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42"></a>
+<a id="__codelineno-9-43" name="__codelineno-9-43"></a>    <span class="nd">@property</span>
+<a id="__codelineno-9-44" name="__codelineno-9-44"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">âge</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__âge</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46"></a>
+<a id="__codelineno-9-47" name="__codelineno-9-47"></a>    <span class="c1">#  setters</span>
+<a id="__codelineno-9-48" name="__codelineno-9-48"></a>    <span class="nd">@prénom</span><span class="o">.</span><span class="n">setter</span>
+<a id="__codelineno-9-49" name="__codelineno-9-49"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">prénom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prénom</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-9-50" name="__codelineno-9-50"></a>        <span class="c1">#  first name must be non-empty</span>
+<a id="__codelineno-9-51" name="__codelineno-9-51"></a>        <span class="k">if</span> <span class="n">Utils</span><span class="o">.</span><span class="n">is_string_ok</span><span class="p">(</span><span class="n">prénom</span><span class="p">):</span>
+<a id="__codelineno-9-52" name="__codelineno-9-52"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__prénom</span> <span class="o">=</span> <span class="n">prénom</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-9-53" name="__codelineno-9-53"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-54" name="__codelineno-9-54"></a>            <span class="k">raise</span> <span class="n">MyException</span><span class="p">(</span><span class="s2">&quot;Le prénom doit être une chaîne de caractères non vide&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-55" name="__codelineno-9-55"></a>
+<a id="__codelineno-9-56" name="__codelineno-9-56"></a>    <span class="nd">@nom</span><span class="o">.</span><span class="n">setter</span>
+<a id="__codelineno-9-57" name="__codelineno-9-57"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">nom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nom</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-9-58" name="__codelineno-9-58"></a>        <span class="c1">#  first name must be non-empty</span>
+<a id="__codelineno-9-59" name="__codelineno-9-59"></a>        <span class="k">if</span> <span class="n">Utils</span><span class="o">.</span><span class="n">is_string_ok</span><span class="p">(</span><span class="n">nom</span><span class="p">):</span>
+<a id="__codelineno-9-60" name="__codelineno-9-60"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__nom</span> <span class="o">=</span> <span class="n">nom</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<a id="__codelineno-9-61" name="__codelineno-9-61"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-62" name="__codelineno-9-62"></a>            <span class="k">raise</span> <span class="n">MyException</span><span class="p">(</span><span class="s2">&quot;Le nom doit être une chaîne de caractères non vide&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-63" name="__codelineno-9-63"></a>
+<a id="__codelineno-9-64" name="__codelineno-9-64"></a>    <span class="nd">@âge</span><span class="o">.</span><span class="n">setter</span>
+<a id="__codelineno-9-65" name="__codelineno-9-65"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">âge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">âge</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-9-66" name="__codelineno-9-66"></a>        <span class="c1">#  age must be an integer &gt;=0</span>
+<a id="__codelineno-9-67" name="__codelineno-9-67"></a>        <span class="n">erreur</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-9-68" name="__codelineno-9-68"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">âge</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-9-69" name="__codelineno-9-69"></a>            <span class="k">if</span> <span class="n">âge</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-9-70" name="__codelineno-9-70"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__âge</span> <span class="o">=</span> <span class="n">âge</span>
+<a id="__codelineno-9-71" name="__codelineno-9-71"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-72" name="__codelineno-9-72"></a>                <span class="n">erreur</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-9-73" name="__codelineno-9-73"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-9-74" name="__codelineno-9-74"></a>            <span class="n">erreur</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-9-75" name="__codelineno-9-75"></a>        <span class="c1">#  mistake?</span>
+<a id="__codelineno-9-76" name="__codelineno-9-76"></a>        <span class="k">if</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-9-77" name="__codelineno-9-77"></a>            <span class="k">raise</span> <span class="n">MyException</span><span class="p">(</span><span class="s2">&quot;L&#39;âge doit être un entier &gt;=0&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-78" name="__codelineno-9-78"></a>
+<a id="__codelineno-9-79" name="__codelineno-9-79"></a>
+<a id="__codelineno-9-80" name="__codelineno-9-80"></a><span class="c1">#  ---------------------------------- main</span>
+<a id="__codelineno-9-81" name="__codelineno-9-81"></a><span class="c1">#  a Person object</span>
+<a id="__codelineno-9-82" name="__codelineno-9-82"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-83" name="__codelineno-9-83"></a>    <span class="c1">#  instantiation Person class</span>
+<a id="__codelineno-9-84" name="__codelineno-9-84"></a>    <span class="n">p</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="s2">&quot;de la Hûche&quot;</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>
+<a id="__codelineno-9-85" name="__codelineno-9-85"></a>    <span class="c1">#  object display p</span>
+<a id="__codelineno-9-86" name="__codelineno-9-86"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;personne=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-87" name="__codelineno-9-87"></a><span class="k">except</span> <span class="n">MyException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-9-88" name="__codelineno-9-88"></a>    <span class="c1">#  error display</span>
+<a id="__codelineno-9-89" name="__codelineno-9-89"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-9-90" name="__codelineno-9-90"></a>
+<a id="__codelineno-9-91" name="__codelineno-9-91"></a><span class="c1">#  another object Nobody</span>
+<a id="__codelineno-9-92" name="__codelineno-9-92"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-93" name="__codelineno-9-93"></a>    <span class="c1">#  instantiation Person class</span>
+<a id="__codelineno-9-94" name="__codelineno-9-94"></a>    <span class="n">p</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;xx&quot;</span><span class="p">,</span> <span class="s2">&quot;yy&quot;</span><span class="p">,</span> <span class="s2">&quot;zz&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-95" name="__codelineno-9-95"></a>    <span class="c1">#  object display p</span>
+<a id="__codelineno-9-96" name="__codelineno-9-96"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;personne=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-97" name="__codelineno-9-97"></a><span class="k">except</span> <span class="n">MyException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-9-98" name="__codelineno-9-98"></a>    <span class="c1">#  error display</span>
+<a id="__codelineno-9-99" name="__codelineno-9-99"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-9-100" name="__codelineno-9-100"></a>
+<a id="__codelineno-9-101" name="__codelineno-9-101"></a><span class="c1">#  another person without parameters this time</span>
+<a id="__codelineno-9-102" name="__codelineno-9-102"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-9-103" name="__codelineno-9-103"></a>    <span class="c1">#  instantiation Person class</span>
+<a id="__codelineno-9-104" name="__codelineno-9-104"></a>    <span class="n">p</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">()</span>
+<a id="__codelineno-9-105" name="__codelineno-9-105"></a>    <span class="c1">#  object display p</span>
+<a id="__codelineno-9-106" name="__codelineno-9-106"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;personne=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-107" name="__codelineno-9-107"></a><span class="k">except</span> <span class="n">MyException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-9-108" name="__codelineno-9-108"></a>    <span class="c1">#  error msg display</span>
+<a id="__codelineno-9-109" name="__codelineno-9-109"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-9-110" name="__codelineno-9-110"></a>
+<a id="__codelineno-9-111" name="__codelineno-9-111"></a><span class="c1">#  you cannot access the __attr private attributes of the</span>
+<a id="__codelineno-9-112" name="__codelineno-9-112"></a><span class="n">p</span><span class="o">.</span><span class="n">__prénom</span> <span class="o">=</span> <span class="s2">&quot;Gaëlle&quot;</span>
+<a id="__codelineno-9-113" name="__codelineno-9-113"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p.prénom=</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">prénom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-114" name="__codelineno-9-114"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p.__prénom=</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">__prénom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-115" name="__codelineno-9-115"></a><span class="n">p</span><span class="o">.</span><span class="n">prénom</span> <span class="o">=</span> <span class="s2">&quot;Sébastien&quot;</span>
+<a id="__codelineno-9-116" name="__codelineno-9-116"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p.prénom=</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">prénom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-117" name="__codelineno-9-117"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p.__prénom=</span><span class="si">{</span><span class="n">p</span><span class="o">.</span><span class="n">__prénom</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 10–13 行：一个从 <i>BaseException</i> 类派生的 <i>MyException</i> 类（我们稍后会详细讨论这一点）。它并未为后者增添任何功能，仅用于提供自定义异常；
+  </li>
+  <li>第 19 行：构造函数的参数具有默认值。因此，操作 <i>p = Person() </i>等同于 <i>p = Person(&quot;x&quot;, &quot;y&quot;, 0)</i>;
+  </li>
+  <li>第 34–45 行：类属性。这些是标注了 <b>[</b><b><span style="color: #2b91af">@property</span></b><b>]</b> 关键字的方法，用于设置属性的值；
+  </li>
+  <li>第 47–77 行：类的设置器。这些是标注了 <b>[</b><b><span style="color: #2b91af">@attributsetter</span></b><b>]</b> 关键字的方法。它们用于设置属性的值；
+  </li>
+  <li>第 48–54 行：<b>[first_name]</b> 属性的设置器。每当向 <b>[first_name]</b> 属性赋值时，都会调用此方法：
+  </li>
+</ul>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a>p=Personne(…)
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>p.prénom=valeur
+</code></pre></div></td></tr></table></div>
+<p>第 2 行将触发 <strong>[p.firstName(value)]</strong> 的调用。使用设置器为属性赋值的优势在于，由于设置器是一个函数，我们可以验证赋予该属性的值是否有效；</p>
+<ul>
+  <li>第 51 行：我们验证分配给 <b>[first_name]</b> 属性的值是否为非空字符串。为此，我们使用了前面提到的静态方法 <b>[</b><b><span style="color: #2b91af">Utils</span></b><b><span style="color: #000000">.isStringOk</span></b><b>]</b>；
+  </li>
+  <li>第 52 行：将 <b>[first_name]</b> 属性的值去除首尾空格后，赋值给 <b>[</b><b><span style="color: #808080">self</span></b><b><span style="color: #000000">.__first_name</span></b><b>]</b> 属性。因此，此处并未直接使用 <b>[first_name]</b> 属性本身。 我们别无选择，否则将导致无限递归调用。我们本可以使用任何属性名称。但我们使用了以两个下划线开头的<b> [__prénom]</b> 属性，这具有特殊含义：以两个下划线开头的属性属于类私有属性。这意味着它们在类外部不可见。因此，我们不能这样写：
+  </li>
+</ul>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a>p=Personne(…)
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a>p.__prénom=valeur
+</code></pre></div></td></tr></table></div>
+<p>实际上，我们很快就会看到，虽然可以这样写，但它并不会更改名字。它做了别的事情；</p>
+<ul>
+  <li>第 53–54 行：如果赋给 first_name 的值不正确，将抛出异常。这样，调用代码就会知道其调用是错误的；
+  </li>
+  <li>第 35–37 行：<b>[first_name]</b> 属性。每当表达式中写入<b> [p.first_name]</b> 时，它都会被调用。随后将调用 <b>[p.first_name()]</b> 方法。 第 37 行：我们返回 <b>[__first_name]</b> 属性的值，因为我们看到 <b>[first_name]</b> 属性的设置器会将其值赋给私有属性<b> [__first_name]</b>；
+  </li>
+  <li>第 56–62 行：<b>[last_name]</b> 属性的设置器与 <b>[first_name]</b> 属性的设置器构建方式类似。第 64–77 行中 <b>[age]</b> 属性的设置器也是如此；
+  </li>
+  <li>尽管 <b>[first_name, last_name, value]</b> 并非实际的属性（实际属性应为 <b>[__first_name, __last_name, __age]</b>），但我们将继续将其称为类属性，因为它们在实际使用中就是作为类属性存在的；
+  </li>
+  <li>第 19–28 行：类构造函数隐式地使用了 <b>[first_name、last_name、age]</b> 属性的设置器。实际上，通过在第 26 行编写 <b>[</b><b><span style="color: #808080">self</span></b><b><span style="color: #000000">.first_name = </span></b><b><span style="color: #808080">first_name</span></b><b>]</b>，隐式地调用了方法 <b>[first_name(self, first_name)]</b>。 随后将对 <b>[first_name]</b> 参数的有效性进行检查。其他两个属性 <b>[last_name, age]</b> 也是如此；
+  </li>
+  <li>采用这种模式，我们无法为类属性 <b>[first_name, last_name, age]</b> 赋值错误的值；
+  </li>
+  <li>第 30–32 行：<i>__str__</i> 函数取代了之前名为 <i>identity</i> 的方法。名称 <b>[__str__]</b>（前后各两个下划线）并非毫无意义。我们稍后将看到这一点；
+  </li>
+  <li>第 83–86 行：实例化一个 Person 对象，随后显示其身份信息；
+  </li>
+  <li>第 84 行：实例化；
+  </li>
+  <li>第 86 行：显示。该操作需要将对象 <i>p</i> 作为字符串显示。如果该方法存在，Python 解释器会<b>自动</b>调用 <i>p.__str__()</i>。该方法的作用与 Java 或 .NET 语言中的 <i>toString()</i> 方法相同；
+  </li>
+  <li>第 87–89 行：处理可能<i>抛出的 </i>MyException，随后显示错误信息；
+  </li>
+  <li>第 91–99 行：与上述操作相同，但针对使用错误参数实例化的第二个对象；
+  </li>
+  <li>第 102–109 行：与上述情况相同，但针对使用默认参数实例化的第三个人：未传递任何参数。此处将使用构造函数中这些参数的默认值；
+  </li>
+  <li>第 112–117 行：我们提到 <b>[__first_name]</b> 属性是私有的，因此通常无法从类外部访问。我们需要验证这一点；
+  </li>
+  <li>第 112–114 行：我们为 <b>[__first_name]</b> 属性赋值，然后检查 <b>[__first_name] </b>和 <b>[first_name]</b> 属性的值，这两者通常应保持一致；
+  </li>
+  <li>第 115–117 行：我们重复该操作，这次初始化 <b>[first_name]</b> 属性；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_05.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">personne=<span style="font-weight:bold">[Paul,de la Hûche,48]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">L&#x27;âge doit être un entier &gt;=0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">personne=<span style="font-weight:bold">[x,y,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">p.prénom=x</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">p.__prénom=Gaëlle</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">p.prénom=Sébastien</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">p.__prénom=Gaëlle</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><strong>备注</strong></p>
+<ul>
+  <li>第 5-6 行：我们可以看到，赋值语句 <b>[</b><b><span style="color: #000000">p.__first_name = </span></b><b><span style="color: #a31515">&quot;Gaëlle&quot;</span></b><b>]</b> 并未改变 <b>[first_name]</b> 属性的值（第 5 行）；
+  </li>
+  <li>第 7-8 行：我们可以看到，赋值 <b>[</b><b><span style="color: #000000">p.first_name = </span></b><b><span style="color: #a31515">&quot;Sébastien&quot;</span></b><b>]</b> 并未改变 <b>[__first_name]</b> 属性的值（第 8 行）；
+  </li>
+</ul>
+
+<p>我们可以得出什么结论？这很可能说明，操作 <strong>[</strong><strong><span style="color: #000000">p.__first_name = </span></strong><strong><span style="color: #a31515">&quot;Gaëlle&quot;</span></strong><strong>]</strong> 为该类创建了一个公共属性 <strong>[</strong><strong><span style="color: #000000">__first_name</span></strong><strong>]</strong>，但这与类内部操作的私有属性 <strong>[</strong><strong><span style="color: #000000">__first_name</span></strong><strong>]</strong> 不同；</p>
+<p><a id="refheading382842423505"></a>
+<a id="toc48549008"></a></p>
+<h2 id="126-classes_06">12.6. <span style="color: #4f81bd">脚本 [classes_06]：添加对象初始化方法</span></h2>
+<p>脚本 <strong>[classes_06]</strong> 为 <strong>[Person]</strong> 类添加了一个方法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span>
+<span class="normal"><a href="#__codelineno-12-20">20</a></span>
+<span class="normal"><a href="#__codelineno-12-21">21</a></span>
+<span class="normal"><a href="#__codelineno-12-22">22</a></span>
+<span class="normal"><a href="#__codelineno-12-23">23</a></span>
+<span class="normal"><a href="#__codelineno-12-24">24</a></span>
+<span class="normal"><a href="#__codelineno-12-25">25</a></span>
+<span class="normal"><a href="#__codelineno-12-26">26</a></span>
+<span class="normal"><a href="#__codelineno-12-27">27</a></span>
+<span class="normal"><a href="#__codelineno-12-28">28</a></span>
+<span class="normal"><a href="#__codelineno-12-29">29</a></span>
+<span class="normal"><a href="#__codelineno-12-30">30</a></span>
+<span class="normal"><a href="#__codelineno-12-31">31</a></span>
+<span class="normal"><a href="#__codelineno-12-32">32</a></span>
+<span class="normal"><a href="#__codelineno-12-33">33</a></span>
+<span class="normal"><a href="#__codelineno-12-34">34</a></span>
+<span class="normal"><a href="#__codelineno-12-35">35</a></span>
+<span class="normal"><a href="#__codelineno-12-36">36</a></span>
+<span class="normal"><a href="#__codelineno-12-37">37</a></span>
+<span class="normal"><a href="#__codelineno-12-38">38</a></span>
+<span class="normal"><a href="#__codelineno-12-39">39</a></span>
+<span class="normal"><a href="#__codelineno-12-40">40</a></span>
+<span class="normal"><a href="#__codelineno-12-41">41</a></span>
+<span class="normal"><a href="#__codelineno-12-42">42</a></span>
+<span class="normal"><a href="#__codelineno-12-43">43</a></span>
+<span class="normal"><a href="#__codelineno-12-44">44</a></span>
+<span class="normal"><a href="#__codelineno-12-45">45</a></span>
+<span class="normal"><a href="#__codelineno-12-46">46</a></span>
+<span class="normal"><a href="#__codelineno-12-47">47</a></span>
+<span class="normal"><a href="#__codelineno-12-48">48</a></span>
+<span class="normal"><a href="#__codelineno-12-49">49</a></span>
+<span class="normal"><a href="#__codelineno-12-50">50</a></span>
+<span class="normal"><a href="#__codelineno-12-51">51</a></span>
+<span class="normal"><a href="#__codelineno-12-52">52</a></span>
+<span class="normal"><a href="#__codelineno-12-53">53</a></span>
+<span class="normal"><a href="#__codelineno-12-54">54</a></span>
+<span class="normal"><a href="#__codelineno-12-55">55</a></span>
+<span class="normal"><a href="#__codelineno-12-56">56</a></span>
+<span class="normal"><a href="#__codelineno-12-57">57</a></span>
+<span class="normal"><a href="#__codelineno-12-58">58</a></span>
+<span class="normal"><a href="#__codelineno-12-59">59</a></span>
+<span class="normal"><a href="#__codelineno-12-60">60</a></span>
+<span class="normal"><a href="#__codelineno-12-61">61</a></span>
+<span class="normal"><a href="#__codelineno-12-62">62</a></span>
+<span class="normal"><a href="#__codelineno-12-63">63</a></span>
+<span class="normal"><a href="#__codelineno-12-64">64</a></span>
+<span class="normal"><a href="#__codelineno-12-65">65</a></span>
+<span class="normal"><a href="#__codelineno-12-66">66</a></span>
+<span class="normal"><a href="#__codelineno-12-67">67</a></span>
+<span class="normal"><a href="#__codelineno-12-68">68</a></span>
+<span class="normal"><a href="#__codelineno-12-69">69</a></span>
+<span class="normal"><a href="#__codelineno-12-70">70</a></span>
+<span class="normal"><a href="#__codelineno-12-71">71</a></span>
+<span class="normal"><a href="#__codelineno-12-72">72</a></span>
+<span class="normal"><a href="#__codelineno-12-73">73</a></span>
+<span class="normal"><a href="#__codelineno-12-74">74</a></span>
+<span class="normal"><a href="#__codelineno-12-75">75</a></span>
+<span class="normal"><a href="#__codelineno-12-76">76</a></span>
+<span class="normal"><a href="#__codelineno-12-77">77</a></span>
+<span class="normal"><a href="#__codelineno-12-78">78</a></span>
+<span class="normal"><a href="#__codelineno-12-79">79</a></span>
+<span class="normal"><a href="#__codelineno-12-80">80</a></span>
+<span class="normal"><a href="#__codelineno-12-81">81</a></span>
+<span class="normal"><a href="#__codelineno-12-82">82</a></span>
+<span class="normal"><a href="#__codelineno-12-83">83</a></span>
+<span class="normal"><a href="#__codelineno-12-84">84</a></span>
+<span class="normal"><a href="#__codelineno-12-85">85</a></span>
+<span class="normal"><a href="#__codelineno-12-86">86</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">utilitaires</span><span class="w"> </span><span class="kn">import</span> <span class="n">Utils</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="c1">#  a proprietary exception class derived from [BaseException]</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyException</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a>    <span class="c1">#  do nothing: empty classroom</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a>    <span class="k">pass</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="c1">#  person class</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="k">class</span><span class="w"> </span><span class="nc">Personne</span><span class="p">:</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a>    <span class="c1">#  manufacturer</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">prénom</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">nom</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">âge</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20"></a>        <span class="c1">#  first name: person&#39;s first name</span>
+<a id="__codelineno-12-21" name="__codelineno-12-21"></a>        <span class="c1">#  name: person&#39;s name</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22"></a>        <span class="c1">#  age: age of the person</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23"></a>
+<a id="__codelineno-12-24" name="__codelineno-12-24"></a>        <span class="c1">#  parameter storage</span>
+<a id="__codelineno-12-25" name="__codelineno-12-25"></a>        <span class="c1">#  initializations will be made via setters</span>
+<a id="__codelineno-12-26" name="__codelineno-12-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">prénom</span> <span class="o">=</span> <span class="n">prénom</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">nom</span> <span class="o">=</span> <span class="n">nom</span>
+<a id="__codelineno-12-28" name="__codelineno-12-28"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">âge</span> <span class="o">=</span> <span class="n">âge</span>
+<a id="__codelineno-12-29" name="__codelineno-12-29"></a>
+<a id="__codelineno-12-30" name="__codelineno-12-30"></a>    <span class="c1">#  other initialization method</span>
+<a id="__codelineno-12-31" name="__codelineno-12-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">init_with_personne</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">p</span><span class="p">:</span> <span class="nb">object</span><span class="p">):</span>
+<a id="__codelineno-12-32" name="__codelineno-12-32"></a>        <span class="c1">#  initializes the current object with a person p</span>
+<a id="__codelineno-12-33" name="__codelineno-12-33"></a>        <span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">prénom</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">nom</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">âge</span><span class="p">)</span>
+<a id="__codelineno-12-34" name="__codelineno-12-34"></a>
+<a id="__codelineno-12-35" name="__codelineno-12-35"></a>    <span class="c1">#  method toString of class</span>
+<a id="__codelineno-12-36" name="__codelineno-12-36"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-12-37" name="__codelineno-12-37"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__prénom</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__nom</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__âge</span><span class="si">}</span><span class="s2">]&quot;</span>
+<a id="__codelineno-12-38" name="__codelineno-12-38"></a>
+<a id="__codelineno-12-39" name="__codelineno-12-39"></a>    <span class="c1">#  getters</span>
+<a id="__codelineno-12-40" name="__codelineno-12-40"></a>    <span class="err">…</span>
+<a id="__codelineno-12-41" name="__codelineno-12-41"></a>
+<a id="__codelineno-12-42" name="__codelineno-12-42"></a>    <span class="c1">#  setters</span>
+<a id="__codelineno-12-43" name="__codelineno-12-43"></a>    <span class="err">…</span>
+<a id="__codelineno-12-44" name="__codelineno-12-44"></a>
+<a id="__codelineno-12-45" name="__codelineno-12-45"></a>
+<a id="__codelineno-12-46" name="__codelineno-12-46"></a><span class="c1">#  ---------------------------------- main</span>
+<a id="__codelineno-12-47" name="__codelineno-12-47"></a><span class="c1">#  a Person object</span>
+<a id="__codelineno-12-48" name="__codelineno-12-48"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-12-49" name="__codelineno-12-49"></a>    <span class="c1">#  instantiation Person class</span>
+<a id="__codelineno-12-50" name="__codelineno-12-50"></a>    <span class="n">p</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="s2">&quot;de la Hûche&quot;</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>
+<a id="__codelineno-12-51" name="__codelineno-12-51"></a>    <span class="c1">#  object display p</span>
+<a id="__codelineno-12-52" name="__codelineno-12-52"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;personne=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-53" name="__codelineno-12-53"></a><span class="k">except</span> <span class="n">MyException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-12-54" name="__codelineno-12-54"></a>    <span class="c1">#  error msg display</span>
+<a id="__codelineno-12-55" name="__codelineno-12-55"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-12-56" name="__codelineno-12-56"></a>
+<a id="__codelineno-12-57" name="__codelineno-12-57"></a><span class="c1">#  another object Nobody</span>
+<a id="__codelineno-12-58" name="__codelineno-12-58"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-12-59" name="__codelineno-12-59"></a>    <span class="c1">#  instantiation Person class</span>
+<a id="__codelineno-12-60" name="__codelineno-12-60"></a>    <span class="n">p</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;xx&quot;</span><span class="p">,</span> <span class="s2">&quot;yy&quot;</span><span class="p">,</span> <span class="s2">&quot;zz&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-61" name="__codelineno-12-61"></a>    <span class="c1">#  object display p</span>
+<a id="__codelineno-12-62" name="__codelineno-12-62"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-63" name="__codelineno-12-63"></a><span class="k">except</span> <span class="n">MyException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-12-64" name="__codelineno-12-64"></a>    <span class="c1">#  error msg display</span>
+<a id="__codelineno-12-65" name="__codelineno-12-65"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-12-66" name="__codelineno-12-66"></a>
+<a id="__codelineno-12-67" name="__codelineno-12-67"></a><span class="c1">#  another person without parameters this time</span>
+<a id="__codelineno-12-68" name="__codelineno-12-68"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-12-69" name="__codelineno-12-69"></a>    <span class="c1">#  instantiation Person class</span>
+<a id="__codelineno-12-70" name="__codelineno-12-70"></a>    <span class="n">p</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">()</span>
+<a id="__codelineno-12-71" name="__codelineno-12-71"></a>    <span class="c1">#  object display p</span>
+<a id="__codelineno-12-72" name="__codelineno-12-72"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p=</span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-73" name="__codelineno-12-73"></a><span class="k">except</span> <span class="n">MyException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-12-74" name="__codelineno-12-74"></a>    <span class="c1">#  error msg display</span>
+<a id="__codelineno-12-75" name="__codelineno-12-75"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-12-76" name="__codelineno-12-76"></a>
+<a id="__codelineno-12-77" name="__codelineno-12-77"></a><span class="c1">#  another Person obtained by recopying</span>
+<a id="__codelineno-12-78" name="__codelineno-12-78"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-12-79" name="__codelineno-12-79"></a>    <span class="c1">#  instantiation Person class</span>
+<a id="__codelineno-12-80" name="__codelineno-12-80"></a>    <span class="n">p2</span> <span class="o">=</span> <span class="n">Personne</span><span class="p">()</span>
+<a id="__codelineno-12-81" name="__codelineno-12-81"></a>    <span class="n">p2</span><span class="o">.</span><span class="n">init_with_personne</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<a id="__codelineno-12-82" name="__codelineno-12-82"></a>    <span class="c1">#  object display p2</span>
+<a id="__codelineno-12-83" name="__codelineno-12-83"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;p2=</span><span class="si">{</span><span class="n">p2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-12-84" name="__codelineno-12-84"></a><span class="k">except</span> <span class="n">MyException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-12-85" name="__codelineno-12-85"></a>    <span class="c1">#  error msg display</span>
+<a id="__codelineno-12-86" name="__codelineno-12-86"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>与前一个脚本的区别在于第30至33行。我们添加了 <i>initWithPerson</i> 方法<i>。</i>该方法调用了 <i>__init__</i> 构造函数。与类型化语言不同，这里无法通过参数性质或返回值来区分同名方法。因此，无法拥有多个构造函数来根据不同的参数（本例中为 <i>Person</i> 类型的对象）创建对象；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_06.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">personne=<span style="font-weight:bold">[Paul,de la Hûche,48]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">L&#x27;âge doit être un entier &gt;=0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">p=<span style="font-weight:bold">[x,y,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">p2=<span style="font-weight:bold">[x,y,0]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="refheading382862423505"></a>
+<a id="toc48549009"></a></p>
+<h2 id="127-classes_07person">12.7. <span style="color: #4f81bd">脚本 [classes_07]：Person 对象的列表</span></h2>
+<p>现在我们将 <strong>[MyException]</strong> 和 <strong>[Person]</strong> 类放入一个模块中，这样我们就可以直接使用它们，而无需复制它们的代码：</p>
+<p><img src="images/100000000000015F00000148B85B5F11.png" width="153" height="143" style="width:4.052cm;height:3.785cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015F00000148B85B5F11.png" /></p>
+<p>这两个类都将位于上文提到的 <strong>[myclasses.py]</strong> 模块中。</p>
+<p><strong>[classes_07]</strong> 脚本展示了我们可以创建一个对象列表：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Personne</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="c1">#  ---------------------------------- main</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="c1">#  create a list of person objects</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="n">groupe</span> <span class="o">=</span> <span class="p">[</span><span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="s2">&quot;Langevin&quot;</span><span class="p">,</span> <span class="mi">48</span><span class="p">),</span> <span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;Sylvie&quot;</span><span class="p">,</span> <span class="s2">&quot;Lefur&quot;</span><span class="p">,</span> <span class="mi">70</span><span class="p">)]</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="c1">#  identity of these persons</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">groupe</span><span class="p">)):</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;groupe[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]=</span><span class="si">{</span><span class="n">groupe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 7 行：我们导入了 <b>[</b><b><span style="color: #2b91af">Person</span></b><b>]</b> 类；
+  </li>
+  <li>第 11 行：一个 <b>[Person]</b> 类型的对象列表；
+  </li>
+  <li>第 13–14 行：遍历该列表以显示其中的每个元素；
+  </li>
+  <li>第 14 行：<b>[print]</b> 函数将显示表示对象 <b>[</b><b><span style="color: #a31515">group[i</span></b><b>]</b>] 的字符串。默认情况下，将调用这些对象的 <b>[__str__]</b> 方法；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Users\serge\.virtualenvs\cours-python-v02\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/v-02/classes/01/classes_07.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">groupe<span style="font-weight:bold">[0]</span>=<span style="font-weight:bold">[Paul,Langevin,48]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">groupe<span style="font-weight:bold">[1]</span>=<span style="font-weight:bold">[Sylvie,Lefur,70]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="refheading382882423505"></a>
+<a id="toc48549010"></a></p>
+<h2 id="128-classes_08-person">12.8. <span style="color: #4f81bd">脚本 [classes_08]：创建一个从 Person 类派生的类</span></h2>
+<p>我们在 <strong>[myclasses]</strong> 模块中定义了以下 <strong>[Teacher]</strong> 类：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"># classe Enseignant</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> </span><span style="color:#2b91af">Enseignant</span><span style="color:#000000">(</span><span style="color:#2b91af">Personne</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># constructeur</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __init__(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">prénom</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000"> = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">, </span><span style="color:#808080">nom</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000"> = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">, </span><span style="color:#808080">âge</span><span style="color:#000000">: </span><span style="color:#2b91af">int</span><span style="color:#000000"> = 0, </span><span style="color:#808080">discipline</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000"> = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># prénom : prénom de la personne</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># nom : nom de la personne</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># âge : âge de la personne</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># discipline : discpline enseignée</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># initialisation du parent</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#2b91af">Personne</span><span style="color:#000000">.__init__(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">prénom</span><span style="color:#000000">, </span><span style="color:#808080">nom</span><span style="color:#000000">, </span><span style="color:#808080">âge</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># autres initialisations</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#808080">self</span><span style="color:#000000">.discipline = </span><span style="color:#808080">discipline</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># toString</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __str__(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#a31515">f&quot;enseignant</span><span style="font-weight:bold;color:#a31515">[{super().__str__()},{self.discipline}]</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># propriétés</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> discipline(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__discipline</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#808080">discipline</span><span style="color:#000000">.setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="color:#808080">discipline</span><span style="color:#000000">(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">discipline</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># la discipline doit être une chaîne non vide</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#2b91af">Utils</span><span style="color:#000000">.is_string_ok(</span><span style="color:#808080">discipline</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">self</span><span style="color:#000000">.__discipline = </span><span style="color:#808080">discipline</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(</span><span style="color:#a31515">&quot;La discipline doit être une chaîne de caractères non vide&quot;</span><span style="color:#000000">)</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 2 行：声明 Teacher 类为 Person 类的子类。子类拥有父类的所有属性（包括属性与方法）以及自身的属性；
+  </li>
+  <li>第 13 行：<b>[Teacher]</b> 类定义了一个新属性 <b>[subject]</b>；
+  </li>
+  <li>第 11 行：派生类 <i>Teacher</i> 的构造函数必须调用父类 <i>Person</i> 的构造函数，并向其传递预期的参数；
+  </li>
+  <li>第 17 行：<b>[super()]</b> 函数调用父类。此处，我们调用了父类的 <b>[__str__]</b> 函数；
+  </li>
+  <li>第 19–30 行：定义了新属性<b> [subject] </b>的 getter 和 setter 方法；
+  </li>
+</ul>
+
+<p><strong>[classes_08]</strong>脚本使用<strong>[Teacher]</strong>类的示例如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Personne</span><span class="p">,</span> <span class="n">Enseignant</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="c1">#  ---------------------------------- main</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="c1">#  creation of an array of Personne and derived objects</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="n">groupe</span> <span class="o">=</span> <span class="p">[</span><span class="n">Enseignant</span><span class="p">(</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="s2">&quot;Langevin&quot;</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="s2">&quot;anglais&quot;</span><span class="p">),</span> <span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;Sylvie&quot;</span><span class="p">,</span> <span class="s2">&quot;Lefur&quot;</span><span class="p">,</span> <span class="mi">70</span><span class="p">)]</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="c1">#  identity of these persons</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">groupe</span><span class="p">)):</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;groupe[</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">]=</span><span class="si">{</span><span class="n">groupe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 7 行：我们导入了 <b>[myclasses.py]</b> 文件中定义的 <b>[Person] </b>和 <b>[Teacher]</b> 类；
+  </li>
+  <li>第11–14行：我们定义了一组人，然后显示他们的身份；
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_08.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">groupe<span style="font-weight:bold">[0]</span>=enseignant<span style="font-weight:bold">[[Paul,Langevin,48]</span>,anglais]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">groupe<span style="font-weight:bold">[1]</span>=<span style="font-weight:bold">[Sylvie,Lefur,70]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="refheading382902423505"></a>
+<a id="toc48549011"></a></p>
+<h2 id="129-classes_09-person">12.9. <span style="color: #4f81bd">脚本 [classes_09]：从 Person 类派生的第二个类</span></h2>
+<p>脚本 <strong>[classes_09]</strong> 介绍了从 <strong>[Person]</strong> 类派生的 <strong>[Student]</strong> 类。该类在模块 <strong>[myclasses]</strong> 中定义如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"># classe Etudiant</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> </span><span style="color:#2b91af">Etudiant</span><span style="color:#000000">(</span><span style="color:#2b91af">Personne</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># constructeur</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __init__(</span><span style="color:#808080">self</span><span style="color:#000000">: </span><span style="color:#2b91af">object</span><span style="color:#000000">, </span><span style="color:#808080">prénom</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000"> = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">, </span><span style="color:#808080">nom</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000"> = </span><span style="color:#a31515">&quot;y&quot;</span><span style="color:#000000">, </span><span style="color:#808080">âge</span><span style="color:#000000">: </span><span style="color:#2b91af">int</span><span style="color:#000000"> = 0, </span><span style="color:#808080">formation</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000"> = </span><span style="color:#a31515">&quot;x&quot;</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#2b91af">Personne</span><span style="color:#000000">.__init__(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">prénom</span><span style="color:#000000">, </span><span style="color:#808080">nom</span><span style="color:#000000">, </span><span style="color:#808080">âge</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#808080">self</span><span style="color:#000000">.formation = </span><span style="color:#808080">formation</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># toString</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __str__(</span><span style="color:#808080">self</span><span style="color:#000000">: </span><span style="color:#2b91af">object</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#a31515">f&quot;étudiant</span><span style="font-weight:bold;color:#a31515">[{super().__str__()},{self.formation}]</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># propriétés</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> formation(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__formation</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#808080">formation</span><span style="color:#000000">.setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="color:#808080">formation</span><span style="color:#000000">(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">formation</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># la formation doit être une chaîne non vide</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#2b91af">Utils</span><span style="color:#000000">.is_string_ok(</span><span style="color:#808080">formation</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">self</span><span style="color:#000000">.__formation = </span><span style="color:#808080">formation</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(</span><span style="color:#a31515">&quot;La formation doit être une chaîne de caractères non vide&quot;</span><span style="color:#000000">)</span></span></span>
+</code></pre></div>
+
+<p><strong>[classes_09]</strong> 脚本如下所示使用 <strong>[Student]</strong> 类：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span>
+<span class="normal"><a href="#__codelineno-15-13">13</a></span>
+<span class="normal"><a href="#__codelineno-15-14">14</a></span>
+<span class="normal"><a href="#__codelineno-15-15">15</a></span>
+<span class="normal"><a href="#__codelineno-15-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Personne</span><span class="p">,</span> <span class="n">Enseignant</span><span class="p">,</span> <span class="n">Etudiant</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8"></a>
+<a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="c1">#  ---------------------------------- main</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="c1">#  creation of an array of Personne and derived objects</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="n">groupe</span> <span class="o">=</span> <span class="p">[</span><span class="n">Enseignant</span><span class="p">(</span><span class="s2">&quot;Paul&quot;</span><span class="p">,</span> <span class="s2">&quot;Langevin&quot;</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="s2">&quot;anglais&quot;</span><span class="p">),</span> <span class="n">Personne</span><span class="p">(</span><span class="s2">&quot;Sylvie&quot;</span><span class="p">,</span> <span class="s2">&quot;Lefur&quot;</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12"></a>          <span class="n">Etudiant</span><span class="p">(</span><span class="s2">&quot;Steve&quot;</span><span class="p">,</span> <span class="s2">&quot;Boer&quot;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">&quot;iup2 qualité&quot;</span><span class="p">)]</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="c1">#  identity of these persons</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="k">for</span> <span class="n">personne</span> <span class="ow">in</span> <span class="n">groupe</span><span class="p">:</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15"></a>    <span class="c1">#  person display</span>
+<a id="__codelineno-15-16" name="__codelineno-15-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">personne</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>此脚本与前一个类似。
+  </li>
+</ul>
+
+<p><strong>结果</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_09.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant<span style="font-weight:bold">[[Paul,Langevin,48]</span>,anglais]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">[Sylvie,Lefur,70]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">étudiant<span style="font-weight:bold">[[Steve,Boer,22]</span>,iup2 qualité]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><a id="toc48549012"></a></p>
+<h2 id="1210-classes_10__dict__">12.10. <span style="color: #4f81bd">脚本 [classes_10]：[__dict__] 属性</span></h2>
+<p><strong>[classes_10]</strong> 脚本介绍了 <strong>[__dict__]</strong> 属性，我们后续会频繁使用它：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5"></a>
+<a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Etudiant</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8"></a>
+<a id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="c1">#  ---------------------------------- main</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="c1">#  student creation</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="n">étudiant</span><span class="o">=</span><span class="n">Etudiant</span><span class="p">(</span><span class="s2">&quot;Steve&quot;</span><span class="p">,</span> <span class="s2">&quot;Boer&quot;</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="s2">&quot;iup2 qualité&quot;</span><span class="p">)</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12"></a><span class="c1">#  property dictionary</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">étudiant</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 1-4 行：应用程序的初始化；
+  </li>
+  <li>第 7 行：导入 <b>[Student]</b> 类；
+  </li>
+  <li>第 11 行：创建一个学生实例；
+  </li>
+  <li>第 13 行：使用预定义方法 <b>[__dict__]</b>（标识符前后各有一个下划线）；
+  </li>
+</ul>
+
+<p>结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/01/classes_10.py
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a>{&#39;_Personne__prénom&#39;: &#39;Steve&#39;, &#39;<span class="ge">_Personne__nom&#39;: &#39;Boer&#39;, &#39;_</span>Personne__âge&#39;: 22, &#39;<span class="ge">_Etudiant_</span>_formation&#39;: &#39;iup2 qualité&#39;}
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a>
+<a id="__codelineno-17-4" name="__codelineno-17-4"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>在第 2 行，我们得到一个字典，其键是对象的属性，并在属性名前加上所属类的名称作为前缀。我们将利用这个字典在对象与字典之间建立一座桥梁；
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

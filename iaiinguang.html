@@ -1,0 +1,2132 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/iaiinguang.html">
+      
+      
+        <link rel="prev" href="iuhuan.html">
+      
+      
+        <link rel="next" href="anhu.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>5. 例外情况 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5. 例外情况
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="iaiinguang.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#51-exceptions_01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1. 脚本 [exceptions_01]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-exceptions_02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2. 脚本 [exceptions_02]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-exceptions_03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. 脚本 [exceptions_03]
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="toc48548939"></a>
+<a id="lesexceptions"></a>
+<a id="refheading352241169597484"></a></p>
+<h1 id="5">5. <span style="color: #365f91">例外情况</span></h1>
+<p>接下来我们将关注异常。</p>
+<p><img src="images/1000000100000181000000996FC8CA33.png" width="136" height="54" style="width:3.602cm;height:1.431cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000181000000996FC8CA33.png" /></p>
+<p><a id="toc48548940"></a>
+<a id="refheadingtoc2520952924280206"></a></p>
+<h2 id="51-exceptions_01">5.1. <span style="color: #4f81bd">脚本 [exceptions_01]</span></h2>
+<p>第一个脚本说明了处理异常的必要性。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="gh"># on provoque volontairement une erreur</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>x = 4 / 0
+</code></pre></div></td></tr></table></div>
+<p>我们故意触发一个错误，以观察会发生什么（<em>exceptions-01.py</em>）：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/exceptions/exceptions_01.py
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>Traceback (most recent call last):
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>  File &quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/exceptions/exceptions_01.py&quot;, line 2, in &lt;module&gt;
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>    x = 4 / 0
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>ZeroDivisionError: division by zero
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>Process finished with exit code 1
+</code></pre></div></td></tr></table></div>
+<p>第 4 行显示：</p>
+<ul>
+  <li>异常类型：ZeroDivisionError；
+  </li>
+  <li>相关的错误信息：除以零。该信息为英文。您可能需要修改这一点。
+  </li>
+</ul>
+
+<p>一条关键规则是：我们必须尽一切可能避免由 Python 解释器触发的异常。我们需要自行处理错误。</p>
+<p>异常处理的语法如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">try</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    actions susceptibles de lancer une exception</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">except</span> (Ex1, Ex2…) as ex:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    actions de gestion de l&#x27;exception <span style="font-weight:bold">[ex]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">except</span> (Ex11, Ex12…) as ex:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    actions de gestion de l&#x27;exception <span style="font-weight:bold">[ex]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">finally</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">   actions toujours exécutées qu&#x27;il y ait exception ou non</span></span>
+</code></pre></div>
+
+<p>在 <strong>try 代码块</strong>中，一旦发生异常（错误），操作的执行将立即停止。此时，执行将转至其中一个 <strong>except</strong> 子句中的操作：</p>
+<ul>
+  <li>第 3 行：如果发生的异常 <b>[ex]</b> 属于元组 (Ex1, Ex2…) 中的类型或其派生类型，则执行第 4 行的操作；
+  </li>
+  <li>第 5 行：如果该异常未被第 3 行捕获，且存在另一个 <b>[except]</b> 子句，则执行相同的处理流程。以此类推；
+  </li>
+  <li><b>[except]</b> 子句的数量可根据需要任意增加，以处理 <b>[try]</b> 代码块内可能发生的各类异常；
+  </li>
+  <li>如果该异常未被任何 <b>[except]</b> 子句处理，则会回传至调用代码。若调用代码本身位于 <b>try/except</b> 结构中，则再次处理该异常；否则，异常将继续沿被调用方法的调用链向上传播。最终，异常将到达 Python 解释器。此时解释器将终止正在运行的程序，并显示如前例所示类型的错误信息。 因此，规则是主程序必须捕获所有可能从被调用方法传播过来的异常；
+  </li>
+  <li>第 7 行：无论是否发生异常（在 <b>`except`</b> 之后）或未发生异常（在 `<b>try`</b> 之后），`<b>[finally]</b>` 子句都会被执行。即使发生了异常但未被捕获，情况也是如此。在这种情况下，<b>`[finally]</b>` 子句将在异常回传至调用代码之前被执行；
+  </li>
+</ul>
+
+<p>异常携带有关所发生错误的信息。可通过以下语法获取这些信息：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">except</span> MyException <span style="font-weight:bold">as</span> exception:</span></span>
+</code></pre></div>
+
+<p><strong>[exception]</strong> 是发生的异常。<strong>[exception.args]</strong> 表示该异常参数的元组。</p>
+<p>要抛出异常，请使用以下语法</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">raise</span> MyException(param1, param2…)</span></span>
+</code></pre></div>
+
+<p>其中 <em>MyException</em> 通常是继承自 <em>BaseException</em> 类的子类。传递给该类构造函数的参数，在异常处理结构的 <strong>except</strong> 子句中可通过 <strong>[ex.args]</strong> 语法访问，前提是 <strong>[ex]</strong> 是 <strong>[except]</strong> 子句捕获的异常。</p>
+<p>以下脚本演示了这些概念。</p>
+<p><a id="toc48548941"></a>
+<a id="refheadingtoc2520972924280206"></a></p>
+<h2 id="52-exceptions_02">5.2. <span style="color: #4f81bd">脚本 [exceptions_02]</span></h2>
+<p>以下脚本显式处理了错误：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-2-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-2-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-2-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-2-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-2-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-2-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-2-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-2-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-2-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-2-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-2-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-2-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-2-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-2-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-2-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-2-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-2-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-2-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-2-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-2-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-2-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-2-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-2-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-2-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-2-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-2-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-2-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-2-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-2-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-2-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-2-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-2-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-2-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-2-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-2-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-2-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-2-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-2-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-2-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-2-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-2-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-2-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-2-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-2-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-2-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-2-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-2-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-2-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-2-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-2-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-2-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-2-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-2-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-2-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-2-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-2-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-2-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-2-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-2-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-2-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-2-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-2-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-2-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-2-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-2-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-2-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-2-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-2-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-2-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-2-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-2-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-2-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-2-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-2-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-2-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-2-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-2-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-2-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-2-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-2-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-2-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-2-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-2-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-2-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-2-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-2-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-2-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-2-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-2-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-2-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-2-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-2-100">100</a></span>
+<span class="normal"><a href="#__codelineno-2-101">101</a></span>
+<span class="normal"><a href="#__codelineno-2-102">102</a></span>
+<span class="normal"><a href="#__codelineno-2-103">103</a></span>
+<span class="normal"><a href="#__codelineno-2-104">104</a></span>
+<span class="normal"><a href="#__codelineno-2-105">105</a></span>
+<span class="normal"><a href="#__codelineno-2-106">106</a></span>
+<span class="normal"><a href="#__codelineno-2-107">107</a></span>
+<span class="normal"><a href="#__codelineno-2-108">108</a></span>
+<span class="normal"><a href="#__codelineno-2-109">109</a></span>
+<span class="normal"><a href="#__codelineno-2-110">110</a></span>
+<span class="normal"><a href="#__codelineno-2-111">111</a></span>
+<span class="normal"><a href="#__codelineno-2-112">112</a></span>
+<span class="normal"><a href="#__codelineno-2-113">113</a></span>
+<span class="normal"><a href="#__codelineno-2-114">114</a></span>
+<span class="normal"><a href="#__codelineno-2-115">115</a></span>
+<span class="normal"><a href="#__codelineno-2-116">116</a></span>
+<span class="normal"><a href="#__codelineno-2-117">117</a></span>
+<span class="normal"><a href="#__codelineno-2-118">118</a></span>
+<span class="normal"><a href="#__codelineno-2-119">119</a></span>
+<span class="normal"><a href="#__codelineno-2-120">120</a></span>
+<span class="normal"><a href="#__codelineno-2-121">121</a></span>
+<span class="normal"><a href="#__codelineno-2-122">122</a></span>
+<span class="normal"><a href="#__codelineno-2-123">123</a></span>
+<span class="normal"><a href="#__codelineno-2-124">124</a></span>
+<span class="normal"><a href="#__codelineno-2-125">125</a></span>
+<span class="normal"><a href="#__codelineno-2-126">126</a></span>
+<span class="normal"><a href="#__codelineno-2-127">127</a></span>
+<span class="normal"><a href="#__codelineno-2-128">128</a></span>
+<span class="normal"><a href="#__codelineno-2-129">129</a></span>
+<span class="normal"><a href="#__codelineno-2-130">130</a></span>
+<span class="normal"><a href="#__codelineno-2-131">131</a></span>
+<span class="normal"><a href="#__codelineno-2-132">132</a></span>
+<span class="normal"><a href="#__codelineno-2-133">133</a></span>
+<span class="normal"><a href="#__codelineno-2-134">134</a></span>
+<span class="normal"><a href="#__codelineno-2-135">135</a></span>
+<span class="normal"><a href="#__codelineno-2-136">136</a></span>
+<span class="normal"><a href="#__codelineno-2-137">137</a></span>
+<span class="normal"><a href="#__codelineno-2-138">138</a></span>
+<span class="normal"><a href="#__codelineno-2-139">139</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">#  exception handling</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">essai</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">#  cause an error and manage it</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="c1">#  error is the exception intercepted</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="c1">#  the value of x has not changed</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="c1">#  here we go again</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>    <span class="c1">#  we intercept the most general exception</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>    <span class="c1">#  error is the exception intercepted</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="c1">#  different types of exceptions can be intercepted</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="c1">#  execution stops on the 1st [except] able to handle the exception</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a>    <span class="c1">#  this exception does not occur here</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a>    <span class="c1">#  we intercept the most general exception</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : (Exception) </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a><span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a>    <span class="c1">#  we intercept a specific type</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : (ZeroDivisionError) </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a><span class="c1">#  start again, changing the order </span>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a>    <span class="c1">#  this exception does not occur here</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45"></a><span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46"></a>    <span class="c1">#  we intercept a specific type</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : (ZeroDivisionError) </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48"></a><span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49"></a>    <span class="c1">#  we intercept the most general exception</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : (Exception) </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51"></a>
+<a id="__codelineno-2-52" name="__codelineno-2-52"></a><span class="c1">#  an except clause with no arguments</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56"></a><span class="k">except</span><span class="p">:</span>
+<a id="__codelineno-2-57" name="__codelineno-2-57"></a>    <span class="c1">#  we&#39;re not interested in the nature of the exception</span>
+<a id="__codelineno-2-58" name="__codelineno-2-58"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : il y a eu un problème&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59"></a>
+<a id="__codelineno-2-60" name="__codelineno-2-60"></a><span class="c1">#  another type of exception</span>
+<a id="__codelineno-2-61" name="__codelineno-2-61"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-62" name="__codelineno-2-62"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-63" name="__codelineno-2-63"></a>    <span class="c1">#  x cannot be converted to an integer</span>
+<a id="__codelineno-2-64" name="__codelineno-2-64"></a>    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-65" name="__codelineno-2-65"></a><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-66" name="__codelineno-2-66"></a>    <span class="c1">#  error is the exception intercepted</span>
+<a id="__codelineno-2-67" name="__codelineno-2-67"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-68" name="__codelineno-2-68"></a>
+<a id="__codelineno-2-69" name="__codelineno-2-69"></a><span class="c1">#  an exception transports information in a tuple accessible to the program</span>
+<a id="__codelineno-2-70" name="__codelineno-2-70"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-71" name="__codelineno-2-71"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-72" name="__codelineno-2-72"></a>    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-73" name="__codelineno-2-73"></a><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-74" name="__codelineno-2-74"></a>    <span class="c1">#  error is the exception intercepted</span>
+<a id="__codelineno-2-75" name="__codelineno-2-75"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">, paramètres=</span><span class="si">{</span><span class="n">erreur</span><span class="o">.</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-76" name="__codelineno-2-76"></a>
+<a id="__codelineno-2-77" name="__codelineno-2-77"></a><span class="c1">#  exceptions can be thrown</span>
+<a id="__codelineno-2-78" name="__codelineno-2-78"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-79" name="__codelineno-2-79"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-80" name="__codelineno-2-80"></a>    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;param1&quot;</span><span class="p">,</span> <span class="s2">&quot;param2&quot;</span><span class="p">,</span> <span class="s2">&quot;param3&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-81" name="__codelineno-2-81"></a><span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-82" name="__codelineno-2-82"></a>    <span class="c1">#  error is the exception intercepted</span>
+<a id="__codelineno-2-83" name="__codelineno-2-83"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">, paramètres=</span><span class="si">{</span><span class="n">erreur</span><span class="o">.</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-84" name="__codelineno-2-84"></a>
+<a id="__codelineno-2-85" name="__codelineno-2-85"></a>
+<a id="__codelineno-2-86" name="__codelineno-2-86"></a><span class="c1">#  you can create your own exceptions</span>
+<a id="__codelineno-2-87" name="__codelineno-2-87"></a><span class="c1">#  they must derive from class [BaseException]</span>
+<a id="__codelineno-2-88" name="__codelineno-2-88"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyError</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+<a id="__codelineno-2-89" name="__codelineno-2-89"></a>    <span class="k">pass</span>
+<a id="__codelineno-2-90" name="__codelineno-2-90"></a>
+<a id="__codelineno-2-91" name="__codelineno-2-91"></a>
+<a id="__codelineno-2-92" name="__codelineno-2-92"></a><span class="c1">#  throw MyError exception</span>
+<a id="__codelineno-2-93" name="__codelineno-2-93"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-94" name="__codelineno-2-94"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-95" name="__codelineno-2-95"></a>    <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s2">&quot;info1&quot;</span><span class="p">,</span> <span class="s2">&quot;info2&quot;</span><span class="p">,</span> <span class="s2">&quot;info3&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-96" name="__codelineno-2-96"></a><span class="k">except</span> <span class="n">MyError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-97" name="__codelineno-2-97"></a>    <span class="c1">#  error is the exception intercepted</span>
+<a id="__codelineno-2-98" name="__codelineno-2-98"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">, paramètres=</span><span class="si">{</span><span class="n">erreur</span><span class="o">.</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-99" name="__codelineno-2-99"></a>
+<a id="__codelineno-2-100" name="__codelineno-2-100"></a><span class="c1">#  throw MyError exception with error msg</span>
+<a id="__codelineno-2-101" name="__codelineno-2-101"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-102" name="__codelineno-2-102"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-103" name="__codelineno-2-103"></a>    <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s2">&quot;mon msg d&#39;erreur&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-104" name="__codelineno-2-104"></a><span class="k">except</span> <span class="n">MyError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-105" name="__codelineno-2-105"></a>    <span class="c1">#  error is the exception intercepted</span>
+<a id="__codelineno-2-106" name="__codelineno-2-106"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : </span><span class="si">{</span><span class="n">erreur</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-107" name="__codelineno-2-107"></a>
+<a id="__codelineno-2-108" name="__codelineno-2-108"></a><span class="c1">#  the finally clause is always executed</span>
+<a id="__codelineno-2-109" name="__codelineno-2-109"></a><span class="c1">#  whether or not there is an exception</span>
+<a id="__codelineno-2-110" name="__codelineno-2-110"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-111" name="__codelineno-2-111"></a><span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-2-112" name="__codelineno-2-112"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-113" name="__codelineno-2-113"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<a id="__codelineno-2-114" name="__codelineno-2-114"></a><span class="k">except</span><span class="p">:</span>
+<a id="__codelineno-2-115" name="__codelineno-2-115"></a>    <span class="c1">#  exception</span>
+<a id="__codelineno-2-116" name="__codelineno-2-116"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : exception&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-117" name="__codelineno-2-117"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-2-118" name="__codelineno-2-118"></a>    <span class="c1">#  executed in all cases</span>
+<a id="__codelineno-2-119" name="__codelineno-2-119"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : finally x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-120" name="__codelineno-2-120"></a>
+<a id="__codelineno-2-121" name="__codelineno-2-121"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-122" name="__codelineno-2-122"></a><span class="n">x</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-2-123" name="__codelineno-2-123"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-124" name="__codelineno-2-124"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-2-125" name="__codelineno-2-125"></a><span class="k">except</span><span class="p">:</span>
+<a id="__codelineno-2-126" name="__codelineno-2-126"></a>    <span class="c1">#  exception</span>
+<a id="__codelineno-2-127" name="__codelineno-2-127"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : exception&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-128" name="__codelineno-2-128"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-2-129" name="__codelineno-2-129"></a>    <span class="c1">#  executed in all cases</span>
+<a id="__codelineno-2-130" name="__codelineno-2-130"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : finally x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-131" name="__codelineno-2-131"></a>
+<a id="__codelineno-2-132" name="__codelineno-2-132"></a><span class="c1">#  we don&#39;t have to include an except clause</span>
+<a id="__codelineno-2-133" name="__codelineno-2-133"></a><span class="n">essai</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-2-134" name="__codelineno-2-134"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-135" name="__codelineno-2-135"></a>    <span class="c1">#  we cause an error</span>
+<a id="__codelineno-2-136" name="__codelineno-2-136"></a>    <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">0</span>
+<a id="__codelineno-2-137" name="__codelineno-2-137"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-2-138" name="__codelineno-2-138"></a>    <span class="c1">#  executed in all cases</span>
+<a id="__codelineno-2-139" name="__codelineno-2-139"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;essai n° </span><span class="si">{</span><span class="n">essai</span><span class="si">}</span><span class="s2"> : finally x=</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 4–12 行：处理除以零的情况；
+  </li>
+  <li>第 8 行：捕获发生的具体异常并显示它；
+  </li>
+  <li>第 12 行：由于发生了异常，第 7 行中的 <i>x</i> 未获得值，因此其值未发生改变；
+  </li>
+  <li>第 14–21 行：我们执行相同操作，但捕获类型为 <i>BaseException</i> 的更高层级异常。由于 <i>ZeroDivisionError</i> 异常是 <i>BaseException</i> 的子类，因此 <i>except</i> 子句将捕获它；
+  </li>
+  <li>第 23–36 行：我们使用多个 <i>except</i> 子句来处理多种异常类型。仅会执行其中一个 <i>except</i> 子句，若异常与任何 <i>except</i> 子句均不匹配，则不会执行任何子句<i>；</i>
+  </li>
+  <li>第 38–50 行：我们采用相同的方法，通过调整 <b>[except]</b> 子句的顺序来展示它们的作用；
+  </li>
+  <li>第 52–58 行：<i>`except`</i> 子句可以不带参数。在这种情况下，它会捕获所有异常；
+  </li>
+  <li>第 60–67 行：引入 <i>ValueError</i> 异常<i>；</i>
+  </li>
+  <li>第 69–75 行：我们获取异常携带的信息；
+  </li>
+  <li>第 77–83 行：介绍如何抛出异常；
+  </li>
+  <li>第 86–106 行：演示自定义异常类 <i>MyError</i> 的用法。MyError 类仅继承自<i>基类 </i>BaseException，并未向基类添加任何内容。但现在可以在 <i>`except</i>` 子句中显式指定该类<i>；</i>
+  </li>
+  <li>第 108–130 行：演示 <i>finally</i> 子句的使用；
+  </li>
+  <li>第 132–139 行：这些行表明 <b>[except]</b> 子句并非强制要求；
+  </li>
+</ul>
+
+<p>屏幕输出如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/exceptions/exceptions_02.py
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>Traceback (most recent call last):
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>  File &quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/exceptions/exceptions_02.py&quot;, line 136, in &lt;module&gt;
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    x = 4 / 0
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>ZeroDivisionError: division by zero
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>essai n° 0 : division by zero
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>x=2
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>essai n° 1 : division by zero
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>essai n° 2 : (Exception) division by zero
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>essai n° 3 : (ZeroDivisionError) division by zero
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>essai n° 4 : il y a eu un problème
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>essai n° 5 : invalid literal for int() with base 10: &#39;x&#39;
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>essai n° 6 : invalid literal for int() with base 10: &#39;x&#39;, paramètres=(&quot;invalid literal for int() with base 10: &#39;x&#39;&quot;,)
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>essai n° 7 : (&#39;param1&#39;, &#39;param2&#39;, &#39;param3&#39;), paramètres=(&#39;param1&#39;, &#39;param2&#39;, &#39;param3&#39;)
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>essai n° 8 : (&#39;info1&#39;, &#39;info2&#39;, &#39;info3&#39;), paramètres=(&#39;info1&#39;, &#39;info2&#39;, &#39;info3&#39;)
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>essai n° 9 : mon msg d&#39;erreur
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>essai n° 10 : finally x=1
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>essai n° 11 : exception
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>essai n° 11 : finally x=None
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a>essai n° 12 : finally x=None
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>Process finished with exit code 1
+</code></pre></div></td></tr></table></div>
+<p><a id="toc48548942"></a>
+<a id="refheadingtoc2520992924280206"></a></p>
+<h2 id="53-exceptions_03">5.3. <span style="color: #4f81bd">脚本 [exceptions_03]</span></h2>
+<p>这个新脚本演示了异常如何沿调用函数链向上传播：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span>
+<span class="normal"><a href="#__codelineno-4-46">46</a></span>
+<span class="normal"><a href="#__codelineno-4-47">47</a></span>
+<span class="normal"><a href="#__codelineno-4-48">48</a></span>
+<span class="normal"><a href="#__codelineno-4-49">49</a></span>
+<span class="normal"><a href="#__codelineno-4-50">50</a></span>
+<span class="normal"><a href="#__codelineno-4-51">51</a></span>
+<span class="normal"><a href="#__codelineno-4-52">52</a></span>
+<span class="normal"><a href="#__codelineno-4-53">53</a></span>
+<span class="normal"><a href="#__codelineno-4-54">54</a></span>
+<span class="normal"><a href="#__codelineno-4-55">55</a></span>
+<span class="normal"><a href="#__codelineno-4-56">56</a></span>
+<span class="normal"><a href="#__codelineno-4-57">57</a></span>
+<span class="normal"><a href="#__codelineno-4-58">58</a></span>
+<span class="normal"><a href="#__codelineno-4-59">59</a></span>
+<span class="normal"><a href="#__codelineno-4-60">60</a></span>
+<span class="normal"><a href="#__codelineno-4-61">61</a></span>
+<span class="normal"><a href="#__codelineno-4-62">62</a></span>
+<span class="normal"><a href="#__codelineno-4-63">63</a></span>
+<span class="normal"><a href="#__codelineno-4-64">64</a></span>
+<span class="normal"><a href="#__codelineno-4-65">65</a></span>
+<span class="normal"><a href="#__codelineno-4-66">66</a></span>
+<span class="normal"><a href="#__codelineno-4-67">67</a></span>
+<span class="normal"><a href="#__codelineno-4-68">68</a></span>
+<span class="normal"><a href="#__codelineno-4-69">69</a></span>
+<span class="normal"><a href="#__codelineno-4-70">70</a></span>
+<span class="normal"><a href="#__codelineno-4-71">71</a></span>
+<span class="normal"><a href="#__codelineno-4-72">72</a></span>
+<span class="normal"><a href="#__codelineno-4-73">73</a></span>
+<span class="normal"><a href="#__codelineno-4-74">74</a></span>
+<span class="normal"><a href="#__codelineno-4-75">75</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">#  a proprietary exception</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyError</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="k">pass</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="c1">#  three functions</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>    <span class="c1">#  exceptions are not handled - they are automatically raised</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>    <span class="k">return</span> <span class="n">f2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">(</span><span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>    <span class="c1">#  exceptions are not handled - they are automatically raised</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a>    <span class="k">return</span> <span class="n">f3</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="k">def</span><span class="w"> </span><span class="nf">f3</span><span class="p">(</span><span class="n">z</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">z</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a>        <span class="c1">#  if z is even, throw an exception</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a>        <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s2">&quot;exception dans f3&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a>        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">z</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="c1">#  ---------- hand</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="c1">#  exceptions go up the chain of methods called</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="c1">#  until a method intercepts it. In this case, it will be main</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">f1</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="k">except</span> <span class="n">MyError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;type : </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span><span class="si">}</span><span class="s2">, arguments : </span><span class="si">{</span><span class="n">erreur</span><span class="o">.</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a>
+<a id="__codelineno-4-34" name="__codelineno-4-34"></a>
+<a id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="c1">#  three other functions that enrich the exceptions it tracks</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36"></a><span class="k">def</span><span class="w"> </span><span class="nf">f4</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38"></a>        <span class="k">return</span> <span class="n">f5</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39"></a>    <span class="k">except</span> <span class="n">MyError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40"></a>        <span class="c1">#  we enrich the exception then relaunch it</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41"></a>        <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s2">&quot;exception dans f4&quot;</span><span class="p">,</span> <span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42"></a>
+<a id="__codelineno-4-43" name="__codelineno-4-43"></a>
+<a id="__codelineno-4-44" name="__codelineno-4-44"></a><span class="k">def</span><span class="w"> </span><span class="nf">f5</span><span class="p">(</span><span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46"></a>        <span class="k">return</span> <span class="n">f6</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47"></a>    <span class="k">except</span> <span class="n">MyError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48"></a>        <span class="c1">#  we enrich the exception then relaunch it</span>
+<a id="__codelineno-4-49" name="__codelineno-4-49"></a>        <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s2">&quot;exception dans f5&quot;</span><span class="p">,</span> <span class="n">erreur</span><span class="p">)</span>
+<a id="__codelineno-4-50" name="__codelineno-4-50"></a>
+<a id="__codelineno-4-51" name="__codelineno-4-51"></a>
+<a id="__codelineno-4-52" name="__codelineno-4-52"></a><span class="k">def</span><span class="w"> </span><span class="nf">f6</span><span class="p">(</span><span class="n">z</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<a id="__codelineno-4-53" name="__codelineno-4-53"></a>    <span class="k">if</span> <span class="p">(</span><span class="n">z</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-4-54" name="__codelineno-4-54"></a>        <span class="c1">#  throw an exception if z is even</span>
+<a id="__codelineno-4-55" name="__codelineno-4-55"></a>        <span class="k">raise</span> <span class="n">MyError</span><span class="p">(</span><span class="s2">&quot;exception dans f6&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-56" name="__codelineno-4-56"></a>    <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-57" name="__codelineno-4-57"></a>        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">z</span>
+<a id="__codelineno-4-58" name="__codelineno-4-58"></a>
+<a id="__codelineno-4-59" name="__codelineno-4-59"></a>
+<a id="__codelineno-4-60" name="__codelineno-4-60"></a><span class="c1">#  ---------- hand</span>
+<a id="__codelineno-4-61" name="__codelineno-4-61"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-4-62" name="__codelineno-4-62"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">f4</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-4-63" name="__codelineno-4-63"></a><span class="k">except</span> <span class="n">MyError</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-4-64" name="__codelineno-4-64"></a>    <span class="c1">#  exception display</span>
+<a id="__codelineno-4-65" name="__codelineno-4-65"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;type : </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">erreur</span><span class="p">)</span><span class="si">}</span><span class="s2">, arguments : </span><span class="si">{</span><span class="n">erreur</span><span class="o">.</span><span class="n">args</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-66" name="__codelineno-4-66"></a>    <span class="c1">#  you can move up the exception stack</span>
+<a id="__codelineno-4-67" name="__codelineno-4-67"></a>    <span class="n">err</span> <span class="o">=</span> <span class="n">erreur</span>
+<a id="__codelineno-4-68" name="__codelineno-4-68"></a>    <span class="c1">#  error msg is displayed</span>
+<a id="__codelineno-4-69" name="__codelineno-4-69"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<a id="__codelineno-4-70" name="__codelineno-4-70"></a>    <span class="c1">#  is an exception encapsulated?</span>
+<a id="__codelineno-4-71" name="__codelineno-4-71"></a>    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="ne">BaseException</span><span class="p">):</span>
+<a id="__codelineno-4-72" name="__codelineno-4-72"></a>        <span class="c1">#  exception change</span>
+<a id="__codelineno-4-73" name="__codelineno-4-73"></a>        <span class="n">err</span> <span class="o">=</span> <span class="n">err</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-4-74" name="__codelineno-4-74"></a>        <span class="c1">#  the 1st argument is the error msg</span>
+<a id="__codelineno-4-75" name="__codelineno-4-75"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注</strong>：</p>
+<ul>
+  <li>第 25–32 行：在调用 <i>main → f1 → f2 → f3</i>（第 30 行）的过程中，由 <i>f3</i> 引发的 <i>MyError</i> 异常将向上传播至 <i>main</i>。随后，该异常将由第 31 行的 <i>except</i> 子句进行处理；
+  </li>
+  <li>第 61–75 行：在 <i>main → f4 → f5 → f6 </i>的调用链中（第 62 行），由 <i>f6</i> 抛出的 <i>MyError</i> 异常将向上传播至 <i>main</i>。随后，它将由第 63 行的 <i>except</i> 子句进行处理。这一次，随着异常沿调用函数链向上传播，该 <i>MyError</i> 异常本身被封装在另一个异常之中；
+  </li>
+  <li>第 66–75 行：演示如何追踪异常堆栈；
+  </li>
+  <li>第 71 行：函数 <b>[isinstance(instance, Class)]</b> 返回 True，当对象 <b>[instance]</b> 属于类型 <b>[Class] </b>或其子类时。此处我们使用了最高级别的异常 <b>[BaseException]</b>，以确保捕获所有异常；
+  </li>
+</ul>
+
+<p>屏幕输出如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/exceptions/exceptions_03.py
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>type : &lt;class &#39;<span class="gs">__main__</span>.MyError&#39;&gt;, arguments : (&#39;exception dans f3&#39;,)
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>type : &lt;class &#39;<span class="gs">__main__</span>.MyError&#39;&gt;, arguments : (&#39;exception dans f4&#39;, MyError(&#39;exception dans f5&#39;, MyError(&#39;exception dans f6&#39;)))
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>exception dans f4
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>exception dans f5
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>exception dans f6
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

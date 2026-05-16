@@ -1,0 +1,2630 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/-ingongianii-8-an.html">
+      
+      
+        <link rel="prev" href="ianiii-7-an.html">
+      
+      
+        <link rel="next" href="ongiianao-xml-ianianghuanuan.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>25. 应用练习：第 8 版 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#25-8" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              25.  应用练习：第 8 版
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="-ingongianii-8-an.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#251" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.1. 简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#252-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.2. Web 服务器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25.2. Web 服务器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2521" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.2.1. 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2522-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.2.2. 主脚本 [main]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2523-index_controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.2.3. [index_controller] 控制器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#253-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.3. Web 客户端
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25.3. Web 客户端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2531-dao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.3.1. [dao] 层
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="25.3.1. [dao] 层">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#25311-impotsdaowithhttpsession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.3.1.1. [ImpôtsDaoWithHttpSession] 类
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25312-flask" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.3.1.2. Flask 会话解码函数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25313-impotsdaowithhttpsessionfactory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.3.1.3. [ImpôtsDaoWithHttpSessionFactory] 类
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2532" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.3.2. 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2533" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.3.3. 客户端的主脚本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2534" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.3.4. 客户端执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#254-dao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        25.4. 测试 [DAO] 层
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="exercicedapplication4"></a>
+<a id="toc48549196"></a></p>
+<h1 id="25-8">25. <span style="color: #365f91">应用练习：第 8 版</span></h1>
+<p><a id="toc48549197"></a></p>
+<h2 id="251">25.1. <span style="color: #4f81bd">简介</span></h2>
+<p>我们将编写一个新的客户端/服务器应用程序。该服务器的全新特性在于它将管理会话。我们将税务管理数据放置在 <strong>[会话]</strong> 作用域对象中，而非 <strong>[应用程序]</strong> 作用域对象中。这样做会降低代码的性能。 当一个对象可以被所有用户以只读模式共享时，将其设为 <strong>[application]</strong> 作用域对象比设为 <strong>[session]</strong> 作用域对象更为可取。由于这会减小会话 Cookie 的大小，因此我们至少能节省一些带宽。但我们希望演示一个客户端与服务器之间交换会话 Cookie 的客户端/服务器应用程序。</p>
+<p>应用程序架构保持不变：</p>
+<p><img src="images/10000000000003BE000003E50F9DB416.png" width="419" height="436" style="width:11.083cm;height:11.534cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003BE000003E50F9DB416.png" /></p>
+<p><a id="toc48549198"></a></p>
+<h2 id="252-web">25.2. <span style="color: #4f81bd">Web 服务器</span></h2>
+<p>服务器脚本的目录结构如下：</p>
+<p><img src="images/100000000000019000000205E9DBED3E.png" width="175" height="226" style="width:4.63cm;height:5.985cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000019000000205E9DBED3E.png" /></p>
+<p><strong>[http-servers/03]</strong> 文件夹最初是通过复制 <strong>[http-servers/02]</strong> 文件夹创建的。随后对其进行了修改。</p>
+<p><a id="toc48549199"></a></p>
+<h3 id="2521">25.2.1. <span style="color: #4f81bd">配置</span></h3>
+<p><a href="#configuration1"><u><span style="color: #0563c1">与</span></u></a> |<a href="#configuration1"><u><span style="color: #0563c1">上一</span></u></a>版本| 相同，仅在 <strong>[config]</strong> 脚本中进行了少量修改：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"># dépendances absolues</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    absolute_dependencies = </span><span style="font-weight:bold;color:#000000">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># dossiers du projet</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># BaseEntity, MyException</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">        </span><span style="font-weight:bold;color:#a31515">f&quot;{root_dir}/classes/02/entities&quot;</span><span style="font-weight:bold;color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># InterfaceImpôtsDao, InterfaceImpôtsMétier, InterfaceImpôtsUi</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">        </span><span style="font-weight:bold;color:#a31515">f&quot;{root_dir}/impots/v04/interfaces&quot;</span><span style="font-weight:bold;color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># AbstractImpôtsdao, ImpôtsConsole, ImpôtsMétier</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">        </span><span style="font-weight:bold;color:#a31515">f&quot;{root_dir}/impots/v04/services&quot;</span><span style="font-weight:bold;color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># ImpotsDaoWithAdminDataInDatabase</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">        </span><span style="font-weight:bold;color:#a31515">f&quot;{root_dir}/impots/v05/services&quot;</span><span style="font-weight:bold;color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># AdminData, ImpôtsError, TaxPayer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">        </span><span style="font-weight:bold;color:#a31515">f&quot;{root_dir}/impots/v04/entities&quot;</span><span style="font-weight:bold;color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># Constantes, Tranches</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">        </span><span style="font-weight:bold;color:#a31515">f&quot;{root_dir}/impots/v05/entities&quot;</span><span style="font-weight:bold;color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># index_controller</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#000000">        </span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">f&quot;{script_dir}/../controllers&quot;</span><span style="font-weight:bold;color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold;color:#000000"># scripts [config_database, config_layers]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        script_dir,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># Logger, SendAdminMail</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="background-color:#fff2cc;color:#a31515">f&quot;{root_dir}/impots/http-servers/02/utilities&quot;</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ]</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 17 行：我们将重写 <b>[index]</b> 函数的控制器，用于处理 / URL；
+  </li>
+  <li>第 21 行：我们使用 <a href="#lesutilitaires"><u><span style="color: #0563c1">|上一</span></u></a>版本| 中的实用工具；
+  </li>
+</ul>
+<p><a id="toc48549200"></a></p>
+<h3 id="2522-main">25.2.2. <span style="color: #4f81bd">主脚本 [main]</span></h3>
+<p>新的 <strong>[main]</strong> 脚本对上一版本的主 <strong>[main]</strong> 脚本进行了一些改动：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"># l&#x27;application Flask peut démarrer</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">app = Flask(__name__)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># clé secrète de la session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#000000">app.secret_key</span><span style="color:#000000"> = </span><span style="color:#6f008a">os</span><span style="color:#000000">.urandom(12).hex()</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 4 行：我们为应用程序创建一个密钥。我们知道这是会话管理所必需的；
+  </li>
+</ul>
+
+<p>接下来，<strong>[main]</strong> 代码中不再请求税务数据。以下几行代码被移除：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#  data recovery from tax authorities</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">erreur</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="c1">#  admindata will be read-only application data</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;admindata&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">][</span><span class="s2">&quot;dao&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_admindata</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="c1">#  success log</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;[serveur] connexion à la base de données réussie</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="k">except</span> <span class="n">ImpôtsError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    <span class="c1">#  we note the error</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="n">erreur</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="c1">#  error log</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="n">log</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;L&#39;erreur suivante s&#39;est produite : </span><span class="si">{</span><span class="n">ex</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>    <span class="c1">#  console</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="c1">#  log file</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>    <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">log</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="c1">#  mail to administrator</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="n">send_adminmail</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">log</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>此外，<strong>[index_controller]</strong> 控制器还接受一个额外参数，即 Flask 会话：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">request</span><span class="p">,</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">session</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="err">…</span><span class="o">.</span>        
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>        <span class="c1">#  the request is executed by a controller</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>        <span class="n">résultat</span><span class="p">,</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">index_controller</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><a id="toc48549201"></a></p>
+<h3 id="2523-index_controller">25.2.3. <span style="color: #4f81bd">[index_controller] 控制器</span></h3>
+<p><strong>[index_controller]</strong> 控制器现在管理一个会话：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span>
+<span class="normal"><a href="#__codelineno-2-35">35</a></span>
+<span class="normal"><a href="#__codelineno-2-36">36</a></span>
+<span class="normal"><a href="#__codelineno-2-37">37</a></span>
+<span class="normal"><a href="#__codelineno-2-38">38</a></span>
+<span class="normal"><a href="#__codelineno-2-39">39</a></span>
+<span class="normal"><a href="#__codelineno-2-40">40</a></span>
+<span class="normal"><a href="#__codelineno-2-41">41</a></span>
+<span class="normal"><a href="#__codelineno-2-42">42</a></span>
+<span class="normal"><a href="#__codelineno-2-43">43</a></span>
+<span class="normal"><a href="#__codelineno-2-44">44</a></span>
+<span class="normal"><a href="#__codelineno-2-45">45</a></span>
+<span class="normal"><a href="#__codelineno-2-46">46</a></span>
+<span class="normal"><a href="#__codelineno-2-47">47</a></span>
+<span class="normal"><a href="#__codelineno-2-48">48</a></span>
+<span class="normal"><a href="#__codelineno-2-49">49</a></span>
+<span class="normal"><a href="#__codelineno-2-50">50</a></span>
+<span class="normal"><a href="#__codelineno-2-51">51</a></span>
+<span class="normal"><a href="#__codelineno-2-52">52</a></span>
+<span class="normal"><a href="#__codelineno-2-53">53</a></span>
+<span class="normal"><a href="#__codelineno-2-54">54</a></span>
+<span class="normal"><a href="#__codelineno-2-55">55</a></span>
+<span class="normal"><a href="#__codelineno-2-56">56</a></span>
+<span class="normal"><a href="#__codelineno-2-57">57</a></span>
+<span class="normal"><a href="#__codelineno-2-58">58</a></span>
+<span class="normal"><a href="#__codelineno-2-59">59</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">#  import dependencies</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1">#  URL set: /?married=xx&amp;children=yy&amp;salary=zz</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">AdminData</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdminData</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ImpôtsError</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImpôtsError</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>    <span class="c1">#  dependencies</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">TaxPayer</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaxPayer</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>    <span class="c1">#  initially no errors</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>    <span class="n">erreurs</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>    <span class="err">…</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a>    <span class="c1">#  mistakes?</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a>    <span class="k">if</span> <span class="n">erreurs</span><span class="p">:</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a>        <span class="c1">#  an error response is returned to the client</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;erreurs&quot;</span><span class="p">:</span> <span class="n">erreurs</span><span class="p">}},</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a>    <span class="c1">#  no mistakes, we can work</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a>    <span class="c1">#  retrieve the config associated with the thread</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a>    <span class="n">thread_name</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span><span class="o">.</span><span class="n">name</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30"></a>    <span class="n">logger</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="n">thread_name</span><span class="p">][</span><span class="s2">&quot;config&quot;</span><span class="p">][</span><span class="s2">&quot;logger&quot;</span><span class="p">]</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31"></a>    <span class="c1">#  execute the query</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32"></a>    <span class="n">réponse</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34"></a>        <span class="c1">#  the simplest case - admindata is already in session</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35"></a>        <span class="k">if</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;client_id&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36"></a>            <span class="c1">#  retrieve session information</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37"></a>            <span class="n">client_id</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;client_id&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38"></a>            <span class="n">admindata</span> <span class="o">=</span> <span class="n">AdminData</span><span class="p">()</span><span class="o">.</span><span class="n">fromdict</span><span class="p">(</span><span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;admindata&#39;</span><span class="p">))</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39"></a>            <span class="c1">#  log</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40"></a>            <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[index_controller] client [</span><span class="si">{</span><span class="n">client_id</span><span class="si">}</span><span class="s2">], données fiscales prises en session</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42"></a>            <span class="c1">#  data recovery from tax authorities</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43"></a>            <span class="n">admindata</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">][</span><span class="s2">&quot;dao&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_admindata</span><span class="p">()</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44"></a>            <span class="c1">#  admindata session</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45"></a>            <span class="n">session</span><span class="p">[</span><span class="s1">&#39;admindata&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">admindata</span><span class="o">.</span><span class="n">asdict</span><span class="p">()</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46"></a>            <span class="c1">#  we give the customer a number and put it in the session</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47"></a>            <span class="c1">#  this will allow us to track it in the server logs</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48"></a>            <span class="n">client_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">urandom</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">hex</span><span class="p">()</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49"></a>            <span class="n">session</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">client_id</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50"></a>            <span class="c1">#  log</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51"></a>            <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[index_controller] client [</span><span class="si">{</span><span class="n">client_id</span><span class="si">}</span><span class="s2">], données fiscales prises dans la couche dao</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52"></a>        <span class="c1">#  tAX CALCULATION</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53"></a>        <span class="n">taxpayer</span> <span class="o">=</span> <span class="n">TaxPayer</span><span class="p">()</span><span class="o">.</span><span class="n">fromdict</span><span class="p">({</span><span class="s1">&#39;marié&#39;</span><span class="p">:</span> <span class="n">marié</span><span class="p">,</span> <span class="s1">&#39;enfants&#39;</span><span class="p">:</span> <span class="n">enfants</span><span class="p">,</span> <span class="s1">&#39;salaire&#39;</span><span class="p">:</span> <span class="n">salaire</span><span class="p">})</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54"></a>        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">][</span><span class="s2">&quot;métier&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">calculate_tax</span><span class="p">(</span><span class="n">taxpayer</span><span class="p">,</span> <span class="n">admindata</span><span class="p">)</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55"></a>        <span class="c1">#  we return the answer to the customer</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">taxpayer</span><span class="o">.</span><span class="n">asdict</span><span class="p">()}},</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span>
+<a id="__codelineno-2-57" name="__codelineno-2-57"></a>    <span class="k">except</span> <span class="p">(</span><span class="ne">BaseException</span><span class="p">,</span> <span class="n">ImpôtsError</span><span class="p">)</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-2-58" name="__codelineno-2-58"></a>        <span class="c1">#  we return the answer to the customer</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;erreurs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]}},</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_500_INTERNAL_SERVER_ERROR</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 14 行：控制器从 Web 客户端接收当前会话；
+  </li>
+  <li>第 35–38 行：如果客户端有会话，则该会话包含两个键：
+    <ul>
+      <li><b>[client_id]</b>：客户端 ID（第 37 行）；
+      </li>
+      <li><b>[admindata]</b>：以字典形式存储的税务管理数据（第 38 行）；
+      </li>
+    </ul>
+  </li>
+  <li>第 35 行：检查会话是否包含预期的两个键之一；
+  </li>
+  <li>第 42–51 行：处理客户端会话尚未初始化的情况；
+    <ul>
+      <li>第 43 行：从 <b>[dao]</b> 层检索税务机关数据；
+      </li>
+      <li>第 45 行：将该数据以字典形式存入会话；
+      </li>
+      <li>第 48 行：为客户分配一个随机数。该数值对每个客户而言均不相同；
+      </li>
+      <li>第 49 行：将该数字存储在会话中；
+      </li>
+      <li>第 51 行：记录 <b>[dao]</b> 层已检索税务机关数据的事实。访问 <b>[dao]</b> 层通常成本较高，因此必须加以限制。 此处的思路是：从 <b>[dao]</b> 层一次性检索税务数据，将其存储在会话中，并在同一客户端的后续请求中从会话中获取。请注意，这并非最佳解决方案。由于来自税务局的税务数据对所有客户端都是一样的，因此它应属于应用程序范围的对象；
+      </li>
+    </ul>
+  </li>
+  <li>第 35–40 行：客户端会话在先前请求中已初始化的情况；
+    <ul>
+      <li>第 37 行：从会话中获取客户端 ID；
+      </li>
+      <li>第 38 行：从会话中检索管理员的税费数据；
+      </li>
+      <li>第 40 行：记录客户端已从会话中获取了行政部门的税务数据；
+      </li>
+    </ul>
+  </li>
+</ul>
+<p><a id="toc48549202"></a></p>
+<h2 id="253-web">25.3. <span style="color: #4f81bd">Web 客户端</span></h2>
+<p><img src="images/1000000000000208000001F24E91AAF1.png" width="227" height="218" style="width:6.01cm;height:5.756cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000208000001F24E91AAF1.png" /></p>
+<p><a id="toc48549203"></a></p>
+<h3 id="2531-dao">25.3.1. <span style="color: #4f81bd">[dao] 层</span></h3>
+<h4 id="25311-impotsdaowithhttpsession">25.3.1.1. <span style="color: #4f81bd">[<span style="color: #2b91af">ImpôtsDaoWithHttpSession</span>] 类</span></h4>
+<p><strong>[dao]</strong> 层由以下 <strong>[</strong><strong><span style="color: #2b91af">ImpôtsDaoWithHttpSession</span></strong><strong>]</strong> 类实现：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span>
+<span class="normal"><a href="#__codelineno-3-42">42</a></span>
+<span class="normal"><a href="#__codelineno-3-43">43</a></span>
+<span class="normal"><a href="#__codelineno-3-44">44</a></span>
+<span class="normal"><a href="#__codelineno-3-45">45</a></span>
+<span class="normal"><a href="#__codelineno-3-46">46</a></span>
+<span class="normal"><a href="#__codelineno-3-47">47</a></span>
+<span class="normal"><a href="#__codelineno-3-48">48</a></span>
+<span class="normal"><a href="#__codelineno-3-49">49</a></span>
+<span class="normal"><a href="#__codelineno-3-50">50</a></span>
+<span class="normal"><a href="#__codelineno-3-51">51</a></span>
+<span class="normal"><a href="#__codelineno-3-52">52</a></span>
+<span class="normal"><a href="#__codelineno-3-53">53</a></span>
+<span class="normal"><a href="#__codelineno-3-54">54</a></span>
+<span class="normal"><a href="#__codelineno-3-55">55</a></span>
+<span class="normal"><a href="#__codelineno-3-56">56</a></span>
+<span class="normal"><a href="#__codelineno-3-57">57</a></span>
+<span class="normal"><a href="#__codelineno-3-58">58</a></span>
+<span class="normal"><a href="#__codelineno-3-59">59</a></span>
+<span class="normal"><a href="#__codelineno-3-60">60</a></span>
+<span class="normal"><a href="#__codelineno-3-61">61</a></span>
+<span class="normal"><a href="#__codelineno-3-62">62</a></span>
+<span class="normal"><a href="#__codelineno-3-63">63</a></span>
+<span class="normal"><a href="#__codelineno-3-64">64</a></span>
+<span class="normal"><a href="#__codelineno-3-65">65</a></span>
+<span class="normal"><a href="#__codelineno-3-66">66</a></span>
+<span class="normal"><a href="#__codelineno-3-67">67</a></span>
+<span class="normal"><a href="#__codelineno-3-68">68</a></span>
+<span class="normal"><a href="#__codelineno-3-69">69</a></span>
+<span class="normal"><a href="#__codelineno-3-70">70</a></span>
+<span class="normal"><a href="#__codelineno-3-71">71</a></span>
+<span class="normal"><a href="#__codelineno-3-72">72</a></span>
+<span class="normal"><a href="#__codelineno-3-73">73</a></span>
+<span class="normal"><a href="#__codelineno-3-74">74</a></span>
+<span class="normal"><a href="#__codelineno-3-75">75</a></span>
+<span class="normal"><a href="#__codelineno-3-76">76</a></span>
+<span class="normal"><a href="#__codelineno-3-77">77</a></span>
+<span class="normal"><a href="#__codelineno-3-78">78</a></span>
+<span class="normal"><a href="#__codelineno-3-79">79</a></span>
+<span class="normal"><a href="#__codelineno-3-80">80</a></span>
+<span class="normal"><a href="#__codelineno-3-81">81</a></span>
+<span class="normal"><a href="#__codelineno-3-82">82</a></span>
+<span class="normal"><a href="#__codelineno-3-83">83</a></span>
+<span class="normal"><a href="#__codelineno-3-84">84</a></span>
+<span class="normal"><a href="#__codelineno-3-85">85</a></span>
+<span class="normal"><a href="#__codelineno-3-86">86</a></span>
+<span class="normal"><a href="#__codelineno-3-87">87</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">myutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">decode_flask_session</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">AbstractImpôtsDao</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractImpôtsDao</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">AdminData</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdminData</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ImpôtsError</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImpôtsError</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceImpôtsMétier</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceImpôtsMétier</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">TaxPayer</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaxPayer</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="k">class</span><span class="w"> </span><span class="nc">ImpôtsDaoWithHttpSession</span><span class="p">(</span><span class="n">AbstractImpôtsDao</span><span class="p">,</span> <span class="n">InterfaceImpôtsMétier</span><span class="p">):</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>    <span class="c1">#  manufacturer</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>        <span class="c1">#  parent initialization</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>        <span class="n">AbstractImpôtsDao</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a>        <span class="c1">#  saving configuration items</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>        <span class="c1">#  general configuration</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__config</span> <span class="o">=</span> <span class="n">config</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>        <span class="c1">#  server</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a>        <span class="c1">#  debug mode</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__debug</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;debug&quot;</span><span class="p">]</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a>        <span class="c1">#  logger</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a>        <span class="c1">#  cookies</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__cookies</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a>    <span class="c1">#  unused method</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_admindata</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AdminData</span><span class="p">:</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a>        <span class="k">pass</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a>    <span class="c1">#  tAX CALCULATION</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_tax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">taxpayer</span><span class="p">:</span> <span class="n">TaxPayer</span><span class="p">,</span> <span class="n">admindata</span><span class="p">:</span> <span class="n">AdminData</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a>        <span class="c1">#  we let the exceptions rise</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a>        <span class="c1">#  get parameters</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a>        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;marié&quot;</span><span class="p">:</span> <span class="n">taxpayer</span><span class="o">.</span><span class="n">marié</span><span class="p">,</span> <span class="s2">&quot;enfants&quot;</span><span class="p">:</span> <span class="n">taxpayer</span><span class="o">.</span><span class="n">enfants</span><span class="p">,</span> <span class="s2">&quot;salaire&quot;</span><span class="p">:</span> <span class="n">taxpayer</span><span class="o">.</span><span class="n">salaire</span><span class="p">}</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a>        <span class="c1">#  connection with Auth Basic authentication?</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span><span class="p">[</span><span class="s1">&#39;authBasic&#39;</span><span class="p">]:</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43"></a>            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44"></a>                <span class="c1">#  URL of the queried server</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span><span class="p">[</span><span class="s1">&#39;urlServer&#39;</span><span class="p">],</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46"></a>                <span class="c1">#  URL parameters</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47"></a>                <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48"></a>                <span class="c1">#  basic authentication</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49"></a>                <span class="n">auth</span><span class="o">=</span><span class="p">(</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">][</span><span class="s2">&quot;login&quot;</span><span class="p">],</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">][</span><span class="s2">&quot;password&quot;</span><span class="p">]),</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52"></a>                <span class="n">cookies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cookies</span><span class="p">)</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53"></a>
+<a id="__codelineno-3-54" name="__codelineno-3-54"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55"></a>            <span class="c1">#  connection without Auth Basic authentication</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56"></a>            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span><span class="p">[</span><span class="s1">&#39;urlServer&#39;</span><span class="p">],</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">cookies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cookies</span><span class="p">)</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57"></a>        <span class="c1">#  retrieve response cookies, if any</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58"></a>        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span><span class="p">:</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__cookies</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span>
+<a id="__codelineno-3-60" name="__codelineno-3-60"></a>            <span class="c1">#  retrieve the session cookie</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61"></a>            <span class="n">session_cookie</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-62" name="__codelineno-3-62"></a>            <span class="c1">#  we decode it to log it</span>
+<a id="__codelineno-3-63" name="__codelineno-3-63"></a>            <span class="k">if</span> <span class="n">session_cookie</span><span class="p">:</span>
+<a id="__codelineno-3-64" name="__codelineno-3-64"></a>                <span class="c1">#  logger</span>
+<a id="__codelineno-3-65" name="__codelineno-3-65"></a>                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span><span class="p">:</span>
+<a id="__codelineno-3-66" name="__codelineno-3-66"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">[</span><span class="s1">&#39;logger&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-67" name="__codelineno-3-67"></a>                <span class="c1">#  log on</span>
+<a id="__codelineno-3-68" name="__codelineno-3-68"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cookie de session=</span><span class="si">{</span><span class="n">decode_flask_session</span><span class="p">(</span><span class="n">session_cookie</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-69" name="__codelineno-3-69"></a>
+<a id="__codelineno-3-70" name="__codelineno-3-70"></a>        <span class="c1">#  debug mode?</span>
+<a id="__codelineno-3-71" name="__codelineno-3-71"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__debug</span><span class="p">:</span>
+<a id="__codelineno-3-72" name="__codelineno-3-72"></a>            <span class="c1">#  logger</span>
+<a id="__codelineno-3-73" name="__codelineno-3-73"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span><span class="p">:</span>
+<a id="__codelineno-3-74" name="__codelineno-3-74"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">[</span><span class="s1">&#39;logger&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-75" name="__codelineno-3-75"></a>            <span class="c1">#  log on</span>
+<a id="__codelineno-3-76" name="__codelineno-3-76"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-77" name="__codelineno-3-77"></a>        <span class="c1">#  response status code HTTP</span>
+<a id="__codelineno-3-78" name="__codelineno-3-78"></a>        <span class="n">status_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+<a id="__codelineno-3-79" name="__codelineno-3-79"></a>        <span class="c1">#  we put the response jSON in a dictionary</span>
+<a id="__codelineno-3-80" name="__codelineno-3-80"></a>        <span class="n">résultat</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<a id="__codelineno-3-81" name="__codelineno-3-81"></a>        <span class="c1">#  error if status code other than 200 OK</span>
+<a id="__codelineno-3-82" name="__codelineno-3-82"></a>        <span class="k">if</span> <span class="n">status_code</span> <span class="o">!=</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">:</span>
+<a id="__codelineno-3-83" name="__codelineno-3-83"></a>            <span class="c1">#  we know that the errors have been associated with the [errors] key in the response</span>
+<a id="__codelineno-3-84" name="__codelineno-3-84"></a>            <span class="k">raise</span> <span class="n">ImpôtsError</span><span class="p">(</span><span class="mi">87</span><span class="p">,</span> <span class="n">résultat</span><span class="p">[</span><span class="s1">&#39;réponse&#39;</span><span class="p">][</span><span class="s1">&#39;erreurs&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-85" name="__codelineno-3-85"></a>        <span class="c1">#  we know that the result has been associated with the [result] key in the response</span>
+<a id="__codelineno-3-86" name="__codelineno-3-86"></a>        <span class="c1">#  modify the input parameter with this result</span>
+<a id="__codelineno-3-87" name="__codelineno-3-87"></a>        <span class="n">taxpayer</span><span class="o">.</span><span class="n">fromdict</span><span class="p">(</span><span class="n">résultat</span><span class="p">[</span><span class="s2">&quot;réponse&quot;</span><span class="p">][</span><span class="s2">&quot;result&quot;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 30 行：<b>[dao]</b> 层将管理一个 Cookie 字典；
+  </li>
+  <li>第 58 行：<b>[response.cookies]</b> 属性是一个字典，其中包含服务器通过 <b>[Set-Cookie] </b>HTTP 头发送的 Cookie；
+  </li>
+  <li>第 59 行：这些 Cookie 存储在 <b>[dao]</b> 层中。在同一客户端后续的请求中，它们将被发回给服务器；
+  </li>
+  <li>第 60–68 行：虽然并非绝对必要，但我们还是会获取会话 Cookie。在服务器发送的 Cookie 字典中，会话 Cookie 与键 <b>[session]</b> 相关联；
+  </li>
+  <li>第 62–68 行：我们解码会话 Cookie 以登录用户；
+  </li>
+  <li>第 68 行：稍后我们将回到 <b>[</b><b><span style="color: #a31515">decode_flask_session</span></b><b>]</b> 函数，该函数负责解码会话 Cookie；
+  </li>
+  <li>第 52 行和第 57 行：对于来自同一客户端的每次请求，服务器都会将发送的 Cookie 返回给该客户端。这就是 Flask 在客户端和服务器之间维护会话的方式；
+  </li>
+</ul>
+
+<p>现在我们必须记住，<strong>[dao]</strong> 层将由多个线程同时执行。因此，我们必须检查类实例的所有属性，并确认同时访问这些属性是否会引发问题。 在此，我们在第 30 行添加了 <strong>[self.__cookies]</strong> 属性。该属性在第 59 行被修改。因此，我们拥有对所有线程共享数据的写入权限。然而，这种访问方式存在问题：代表特定客户端的每个线程都有其独立的会话 Cookie。实际上，它包含每个客户端的唯一客户端 ID（即线程 ID）。如果我们不采取任何措施，线程 T2 可能会覆盖线程 T1 的 Cookie。</p>
+<p>我们已经见过一种解决此问题的方法：可以在作为构造函数参数传递的 <strong>[config]</strong> 文件中（第 17 行）为每个线程创建不同的键。例如，我们可以使用线程名称作为键：</p>
+<ul>
+  <li>第 59 行，我们可以这样写：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">config<span style="font-weight:bold">[thread_name][‘cookies’]</span>=cookies</span></span>
+</code></pre></div>
+
+<ul>
+  <li>在第 52 行，我们可以写：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">cookies=config<span style="font-weight:bold">[thread_name][‘cookies’]</span></span></span>
+</code></pre></div>
+
+<p>这里，我们将采用一种不同的技术：每个线程（=客户端）都将拥有自己的 <strong>[dao]</strong> 层。这样一来，第 59 行就不再是问题，因为所使用的 cookies 属于单个客户端。</p>
+<p>为此，我们将创建一个新类 <strong>[</strong><strong><span style="color: #2b91af">ImpôtsDaoWithHttpSessionFactory</span></strong><strong>]</strong>。</p>
+<h4 id="25312-flask">25.3.1.2. <span style="color: #4f81bd">Flask 会话解码函数</span></h4>
+<p><strong>[</strong><strong><span style="color: #a31515">decode_flask_session</span></strong><strong>]</strong> 函数定义在 <strong>[myutils]</strong> 脚本中：</p>
+<p><img src="images/1000000000000146000001109F11451C.png" width="142" height="119" style="width:3.761cm;height:3.138cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000146000001109F11451C.png" /></p>
+<p>我们之前已经学习过 |myutils| 脚本。该脚本是一个全局模块，本课程中的各个脚本均可通过以下语句将其导入：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">myutils</span>
+</code></pre></div>
+<p>在其中，我们定义了 <strong>[decode_flask_session]</strong> 函数，如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">decode_flask_session</span><span class="p">(</span><span class="n">cookie</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>    <span class="c1">#  source : https://www.kirsle.net/wizards/flask-session.cgi</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="n">compressed</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="n">payload</span> <span class="o">=</span> <span class="n">cookie</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>    <span class="k">if</span> <span class="n">payload</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>        <span class="n">compressed</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>        <span class="n">payload</span> <span class="o">=</span> <span class="n">payload</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">payload</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>    <span class="n">data</span> <span class="o">=</span> <span class="n">base64_decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>    <span class="k">if</span> <span class="n">compressed</span><span class="p">:</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>        <span class="n">data</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行：我找到此函数的 URL；
+  </li>
+  <li>第 1 行：<b>[cookie]</b> 参数是 Web 客户端接收到的 Cookie 字典中与 <b>[session]</b> 键关联的字符串；
+  </li>
+  <li>第 3–16 行：我不会对这段代码进行评论，因为我尚未完全理解它；
+  </li>
+</ul>
+
+<p>我们在 <strong>[__init__.py]</strong> 文件中添加一个新的导入：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> .<span style="color:#6f008a">myutils</span> <span style="color:#0000ff">import</span> set_syspath, json_response, <span style="background-color:#fff2cc">decode_flask_session</span></span></span>
+</code></pre></div>
+
+<p>通过在 PyCharm 终端中执行 <strong>[pip install .]</strong> 命令，将 <strong>[myutils]</strong> 的新版本安装到全局模块中：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 3144;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\<span style="background-color:#fff2cc">packages</span>&gt;<span style="background-color:#fff2cc">pip install .</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Processing c:\data\st-2020\dev\python\cours-2020\python3-flask-2020\packages</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Using legacy setup.py install for myutils, since package &#x27;wheel&#x27; is not installed.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Installing collected packages: myutils</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  Attempting uninstall: myutils</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    Found existing installation: myutils 0.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    Uninstalling myutils-0.1:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Successfully uninstalled myutils-0.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    Running setup.py install for myutils ... done</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Successfully installed myutils-0.1</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 1 行：您必须位于 <b>[packages]</b> 文件夹中才能输入此命令；
+  </li>
+</ul>
+<h4 id="25313-impotsdaowithhttpsessionfactory">25.3.1.3. <span style="color: #4f81bd">[ImpôtsDaoWithHttpSessionFactory] 类</span></h4>
+<p><strong>[</strong><strong><span style="color: #2b91af">ImpôtsDaoWithHttpSessionFactory</span></strong><strong>]</strong> 类如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ImpôtsDaoWithHttpSession</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImpôtsDaoWithHttpSession</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">ImpôtsDaoWithHttpSessionFactory</span><span class="p">:</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>        <span class="c1">#  the parameter</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__config</span> <span class="o">=</span> <span class="n">config</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">new_instance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>        <span class="c1">#  render an instance of the [dao] layer</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>        <span class="k">return</span> <span class="n">ImpôtsDaoWithHttpSession</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li><b>[</b><b><span style="color: #2b91af">ImpôtsDaoWithHttpSessionFactory</span></b><b>]</b> 类允许我们通过第 10–12 行中的 <b>[</b><b><span style="color: #000000">new_instance</span></b><b>]</b> 方法创建 <b>[dao]</b> 层的新实现；
+  </li>
+</ul>
+<p><a id="toc48549204"></a></p>
+<h3 id="2532">25.3.2. <span style="color: #4f81bd">配置</span></h3>
+<p>用于配置 Web 客户端层的 <strong>[config_layers]</strong> 脚本修改如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>    <span class="c1">#  instantiation of applicatuon layers</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="c1">#  dao layer</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ImpôtsDaoWithHttpSessionFactory</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImpôtsDaoWithHttpSessionFactory</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>    <span class="n">dao_factory</span> <span class="o">=</span> <span class="n">ImpôtsDaoWithHttpSessionFactory</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="c1">#  make the layer configuration</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>        <span class="s2">&quot;dao_factory&quot;</span><span class="p">:</span> <span class="n">dao_factory</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 5-6 行：与之前直接实例化单个 <b>[DAO]</b> 层不同，我们为该层实例化了一个“工厂”（工厂 = 对象生成工厂，此处指 <b>[DAO]</b> 层）；
+  </li>
+  <li>第 9-11 行：返回该层的配置；
+  </li>
+</ul>
+<p><a id="toc48549205"></a></p>
+<h3 id="2533">25.3.3. <span style="color: #4f81bd">客户端的主脚本</span></h3>
+<p>与上一版本相比，<strong>[main]</strong>脚本发生了以下变化：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span>
+<span class="normal"><a href="#__codelineno-8-31">31</a></span>
+<span class="normal"><a href="#__codelineno-8-32">32</a></span>
+<span class="normal"><a href="#__codelineno-8-33">33</a></span>
+<span class="normal"><a href="#__codelineno-8-34">34</a></span>
+<span class="normal"><a href="#__codelineno-8-35">35</a></span>
+<span class="normal"><a href="#__codelineno-8-36">36</a></span>
+<span class="normal"><a href="#__codelineno-8-37">37</a></span>
+<span class="normal"><a href="#__codelineno-8-38">38</a></span>
+<span class="normal"><a href="#__codelineno-8-39">39</a></span>
+<span class="normal"><a href="#__codelineno-8-40">40</a></span>
+<span class="normal"><a href="#__codelineno-8-41">41</a></span>
+<span class="normal"><a href="#__codelineno-8-42">42</a></span>
+<span class="normal"><a href="#__codelineno-8-43">43</a></span>
+<span class="normal"><a href="#__codelineno-8-44">44</a></span>
+<span class="normal"><a href="#__codelineno-8-45">45</a></span>
+<span class="normal"><a href="#__codelineno-8-46">46</a></span>
+<span class="normal"><a href="#__codelineno-8-47">47</a></span>
+<span class="normal"><a href="#__codelineno-8-48">48</a></span>
+<span class="normal"><a href="#__codelineno-8-49">49</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">({})</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="c1">#  dependencies</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ImpôtsError</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImpôtsError</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">Logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="c1">#  executing the [dao] layer in a thread</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="c1">#  taxpayers is a list of taxpayers</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">thread_function</span><span class="p">(</span><span class="n">thread_dao</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">taxpayers</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a>    <span class="err">…</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="c1">#  list of client threads</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="n">logger</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="c1">#  code</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a>    <span class="err">…</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a>    <span class="n">l_taxpayers</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxpayers</span><span class="p">)</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a>    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">taxpayers</span><span class="p">):</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a>        <span class="err">…</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a>        <span class="c1">#  each thread must have its own [dao] layer to properly manage its session cookie</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30"></a>        <span class="n">thread_dao</span> <span class="o">=</span> <span class="n">dao_factory</span><span class="o">.</span><span class="n">new_instance</span><span class="p">()</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31"></a>        <span class="c1">#  create the thread</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32"></a>        <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_function</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">thread_dao</span><span class="p">,</span> <span class="n">logger</span><span class="p">,</span> <span class="n">thread_taxpayers</span><span class="p">))</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33"></a>        <span class="c1">#  we add it to the list of threads in the main script</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34"></a>        <span class="n">threads</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35"></a>        <span class="c1">#  we launch the thread - this operation is asynchronous - we don&#39;t wait for the thread&#39;s result</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36"></a>        <span class="n">thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37"></a>    <span class="c1">#  the main thread waits for all threads it has launched to finish</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38"></a>    <span class="err">…</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39"></a><span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40"></a>    <span class="c1">#  error display</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;L&#39;erreur suivante s&#39;est produite : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-42" name="__codelineno-8-42"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-8-43" name="__codelineno-8-43"></a>    <span class="c1">#  close the logger</span>
+<a id="__codelineno-8-44" name="__codelineno-8-44"></a>    <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
+<a id="__codelineno-8-45" name="__codelineno-8-45"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-8-46" name="__codelineno-8-46"></a>    <span class="c1">#  we&#39;re done</span>
+<a id="__codelineno-8-47" name="__codelineno-8-47"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Travail terminé...&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-48" name="__codelineno-8-48"></a>    <span class="c1">#  end of threads that might still exist if we stopped on error</span>
+<a id="__codelineno-8-49" name="__codelineno-8-49"></a>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第29-30行：每个线程都有自己的 <b>[dao]</b> 层；
+  </li>
+</ul>
+<p><a id="toc48549206"></a></p>
+<h3 id="2534">25.3.4. <span style="color: #4f81bd">客户端执行</span></h3>
+<p>Web 服务器启动，DBMS 启动，邮件服务器 <strong>[hMailServer]</strong> 启动。随后我们启动 Web 客户端的 <strong>[main]</strong> 脚本。此时 <strong>[data/logs/logs.txt]</strong> 中的执行日志如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.478511, Thread-1 : début du thread <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">Thread-1</span><span style="font-weight:bold">]</span> avec 1 contribuable(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.479111, Thread-1 : début du calcul de l&#x27;impôt de {&quot;id&quot;: 1, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 55555}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.479111, Thread-2 : début du thread <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">Thread-2</span><span style="font-weight:bold">]</span> avec 1 contribuable(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.480195, Thread-3 : début du thread <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">Thread-3</span><span style="font-weight:bold">]</span> avec 2 contribuable(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.480195, Thread-2 : début du calcul de l&#x27;impôt de {&quot;id&quot;: 2, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 50000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.481137, Thread-4 : début du thread <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">Thread-4</span><span style="font-weight:bold">]</span> avec <span style="background-color:#fff2cc">3</span> contribuable(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.481137, Thread-3 : début du calcul de l&#x27;impôt de {&quot;id&quot;: 3, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 50000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.482279, Thread-5 : début du thread <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">Thread-5</span><span style="font-weight:bold">]</span> avec 3 contribuable(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.482622, Thread-6 : début du thread <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">Thread-6</span><span style="font-weight:bold">]</span> avec 1 contribuable(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.482622, <span style="background-color:#fff2cc">Thread-4</span> : début du calcul de l&#x27;impôt de {&quot;id&quot;: 5, &quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.485923, Thread-5 : début du calcul de l&#x27;impôt de {&quot;id&quot;: 8, &quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 100000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.485923, Thread-6 : début du calcul de l&#x27;impôt de {&quot;id&quot;: 11, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 200000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.725910, <span style="background-color:#fff2cc">Thread-4</span> : cookie de session={&quot;<span style="background-color:#fff2cc">admindata</span>&quot;:{&quot;abattement_dixpourcent_max&quot;:12502.0,&quot;abattement_dixpourcent_min&quot;:437.0,&quot;coeffn&quot;:<span style="font-weight:bold">[0.0,1394.96,5798.0,13913.7,20163.4]</span>,&quot;coeffr&quot;:<span style="font-weight:bold">[0.0,0.14,0.3,0.41,0.45]</span>,&quot;id&quot;:1,&quot;limites&quot;:<span style="font-weight:bold">[9964.0,27519.0,73779.0,156244.0,90000.0]</span>,&quot;plafond_decote_celibataire&quot;:1196.0,&quot;plafond_decote_couple&quot;:1970.0,&quot;plafond_impot_celibataire_pour_decote&quot;:1595.0,&quot;plafond_impot_couple_pour_decote&quot;:2627.0,&quot;plafond_qf_demi_part&quot;:1551.0,&quot;plafond_revenus_celibataire_pour_reduction&quot;:21037.0,&quot;plafond_revenus_couple_pour_reduction&quot;:42074.0,&quot;valeur_reduc_demi_part&quot;:3797.0},&quot;client_id&quot;:&quot;<span style="background-color:#fff2cc">fa3c83b82761c83e13217967</span>&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.725910, <span style="background-color:#fff2cc">Thread-4</span> : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 16782, &quot;surcôte&quot;: 7176, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.725910, <span style="background-color:#fff2cc">Thread-4</span> : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 5, &quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 16782, &quot;surcôte&quot;: 7176, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.726960, <span style="background-color:#fff2cc">Thread-4</span> : début du calcul de l&#x27;impôt de {&quot;id&quot;: 6, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.514108, Thread-3 : cookie de session={&quot;admindata&quot;:{&quot;abattement_dixpourcent_max&quot;:12502.0,&quot;abattement_dixpourcent_min&quot;:437.0,&quot;coeffn&quot;:<span style="font-weight:bold">[0.0,1394.96,5798.0,13913.7,20163.4]</span>,&quot;coeffr&quot;:<span style="font-weight:bold">[0.0,0.14,0.3,0.41,0.45]</span>,&quot;id&quot;:1,&quot;limites&quot;:<span style="font-weight:bold">[9964.0,27519.0,73779.0,156244.0,24999.5]</span>,&quot;plafond_decote_celibataire&quot;:1196.0,&quot;plafond_decote_couple&quot;:1970.0,&quot;plafond_impot_celibataire_pour_decote&quot;:1595.0,&quot;plafond_impot_couple_pour_decote&quot;:2627.0,&quot;plafond_qf_demi_part&quot;:1551.0,&quot;plafond_revenus_celibataire_pour_reduction&quot;:21037.0,&quot;plafond_revenus_couple_pour_reduction&quot;:42074.0,&quot;valeur_reduc_demi_part&quot;:3797.0},&quot;client_id&quot;:&quot;700e3f5dc808c7c48f0c9007&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.514610, Thread-3 : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 720, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.514939, Thread-3 : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 3, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 720, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.514939, Thread-3 : début du calcul de l&#x27;impôt de {&quot;id&quot;: 4, &quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 100000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.527211, Thread-5 : cookie de session={&quot;admindata&quot;:{&quot;abattement_dixpourcent_max&quot;:12502.0,&quot;abattement_dixpourcent_min&quot;:437.0,&quot;coeffn&quot;:<span style="font-weight:bold">[0.0,1394.96,5798.0,13913.7,20163.4]</span>,&quot;coeffr&quot;:<span style="font-weight:bold">[0.0,0.14,0.3,0.41,0.45]</span>,&quot;id&quot;:1,&quot;limites&quot;:<span style="font-weight:bold">[9964.0,27519.0,73779.0,156244.0,90000.0]</span>,&quot;plafond_decote_celibataire&quot;:1196.0,&quot;plafond_decote_couple&quot;:1970.0,&quot;plafond_impot_celibataire_pour_decote&quot;:1595.0,&quot;plafond_impot_couple_pour_decote&quot;:2627.0,&quot;plafond_qf_demi_part&quot;:1551.0,&quot;plafond_revenus_celibataire_pour_reduction&quot;:21037.0,&quot;plafond_revenus_couple_pour_reduction&quot;:42074.0,&quot;valeur_reduc_demi_part&quot;:3797.0},&quot;client_id&quot;:&quot;9e14a5d4a3057f69ab95ab2d&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.527211, Thread-2 : cookie de session={&quot;admindata&quot;:{&quot;abattement_dixpourcent_max&quot;:12502.0,&quot;abattement_dixpourcent_min&quot;:437.0,&quot;coeffn&quot;:<span style="font-weight:bold">[0.0,1394.96,5798.0,13913.7,20163.4]</span>,&quot;coeffr&quot;:<span style="font-weight:bold">[0.0,0.14,0.3,0.41,0.45]</span>,&quot;id&quot;:1,&quot;limites&quot;:<span style="font-weight:bold">[9964.0,27519.0,73779.0,156244.0,22500.0]</span>,&quot;plafond_decote_celibataire&quot;:1196.0,&quot;plafond_decote_couple&quot;:1970.0,&quot;plafond_impot_celibataire_pour_decote&quot;:1595.0,&quot;plafond_impot_couple_pour_decote&quot;:2627.0,&quot;plafond_qf_demi_part&quot;:1551.0,&quot;plafond_revenus_celibataire_pour_reduction&quot;:21037.0,&quot;plafond_revenus_couple_pour_reduction&quot;:42074.0,&quot;valeur_reduc_demi_part&quot;:3797.0},&quot;client_id&quot;:&quot;a06e8fd70a44c9e311f4dce0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.527211, Thread-5 : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 22986, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.527211, Thread-1 : cookie de session={&quot;admindata&quot;:{&quot;abattement_dixpourcent_max&quot;:12502.0,&quot;abattement_dixpourcent_min&quot;:437.0,&quot;coeffn&quot;:<span style="font-weight:bold">[0.0,1394.96,5798.0,13913.7,20163.4]</span>,&quot;coeffr&quot;:<span style="font-weight:bold">[0.0,0.14,0.3,0.41,0.45]</span>,&quot;id&quot;:1,&quot;limites&quot;:<span style="font-weight:bold">[9964.0,27519.0,73779.0,156244.0,90000.0]</span>,&quot;plafond_decote_celibataire&quot;:1196.0,&quot;plafond_decote_couple&quot;:1970.0,&quot;plafond_impot_celibataire_pour_decote&quot;:1595.0,&quot;plafond_impot_couple_pour_decote&quot;:2627.0,&quot;plafond_qf_demi_part&quot;:1551.0,&quot;plafond_revenus_celibataire_pour_reduction&quot;:21037.0,&quot;plafond_revenus_couple_pour_reduction&quot;:42074.0,&quot;valeur_reduc_demi_part&quot;:3797.0},&quot;client_id&quot;:&quot;28c38df998f67685b3a482b8&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.527211, Thread-2 : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 1384, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 384, &quot;réduction&quot;: 347}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.528341, Thread-5 : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 8, &quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 22986, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.528341, Thread-1 : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 55555, &quot;impôt&quot;: 2814, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.528842, Thread-2 : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 2, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 1384, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 384, &quot;réduction&quot;: 347}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.529349, Thread-5 : début du calcul de l&#x27;impôt de {&quot;id&quot;: 9, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 30000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.529699, Thread-1 : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 1, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 55555, &quot;impôt&quot;: 2814, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.529699, Thread-2 : fin du thread <span style="font-weight:bold">[Thread-2]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.531905, Thread-1 : fin du thread <span style="font-weight:bold">[Thread-1]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.536121, Thread-6 : cookie de session={&quot;admindata&quot;:{&quot;abattement_dixpourcent_max&quot;:12502.0,&quot;abattement_dixpourcent_min&quot;:437.0,&quot;coeffn&quot;:<span style="font-weight:bold">[0.0,1394.96,5798.0,13913.7,20163.4]</span>,&quot;coeffr&quot;:<span style="font-weight:bold">[0.0,0.14,0.3,0.41,0.45]</span>,&quot;id&quot;:1,&quot;limites&quot;:<span style="font-weight:bold">[9964.0,27519.0,73779.0,156244.0,93749.0]</span>,&quot;plafond_decote_celibataire&quot;:1196.0,&quot;plafond_decote_couple&quot;:1970.0,&quot;plafond_impot_celibataire_pour_decote&quot;:1595.0,&quot;plafond_impot_couple_pour_decote&quot;:2627.0,&quot;plafond_qf_demi_part&quot;:1551.0,&quot;plafond_revenus_celibataire_pour_reduction&quot;:21037.0,&quot;plafond_revenus_couple_pour_reduction&quot;:42074.0,&quot;valeur_reduc_demi_part&quot;:3797.0},&quot;client_id&quot;:&quot;38499b63076516c02f2770ec&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.537161, Thread-3 : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 19884, &quot;surcôte&quot;: 4480, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.537161, Thread-6 : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 42842, &quot;surcôte&quot;: 17283, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.538156, Thread-3 : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 4, &quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 19884, &quot;surcôte&quot;: 4480, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.538557, Thread-6 : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 11, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 42842, &quot;surcôte&quot;: 17283, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.538828, Thread-3 : fin du thread <span style="font-weight:bold">[Thread-3]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.538828, Thread-6 : fin du thread <span style="font-weight:bold">[Thread-6]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.546198, Thread-5 : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 30000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.0, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.546198, Thread-5 : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 9, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 30000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.0, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.546198, Thread-5 : début du calcul de l&#x27;impôt de {&quot;id&quot;: 10, &quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 200000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.739643, <span style="background-color:#fff2cc">Thread-4</span> : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 9200, &quot;surcôte&quot;: 2180, &quot;taux&quot;: 0.3, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.739643, <span style="background-color:#fff2cc">Thread-4</span> : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 6, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 9200, &quot;surcôte&quot;: 2180, &quot;taux&quot;: 0.3, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.740668, <span style="background-color:#fff2cc">Thread-4</span> : début du calcul de l&#x27;impôt de {&quot;id&quot;: 7, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 5, &quot;salaire&quot;: 100000}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.557469, Thread-5 : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 64210, &quot;surcôte&quot;: 7498, &quot;taux&quot;: 0.45, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.558715, Thread-5 : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 10, &quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 64210, &quot;surcôte&quot;: 7498, &quot;taux&quot;: 0.45, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.558715, Thread-5 : fin du thread <span style="font-weight:bold">[Thread-5]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.753025, <span style="background-color:#fff2cc">Thread-4</span> : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 5, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 4230, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.753318, <span style="background-color:#fff2cc">Thread-4</span> : fin du calcul de l&#x27;impôt de {&quot;id&quot;: 7, &quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 5, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 4230, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.753540, <span style="background-color:#fff2cc">Thread-4</span> : fin du thread <span style="font-weight:bold">[Thread-4]</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>共有 6 个线程，即 6 个客户端（第 1、3、4、6、8、9 行）同时向税费计算服务器发起查询；
+  </li>
+  <li>我们将关注线程 <b>[Thread-4]，</b>该线程处理 3 名纳税人（第 6 行）。它将向税费计算服务器发出三个连续的请求；
+  </li>
+  <li>第10行：<b>[Thread-4]</b>的首次请求；
+  </li>
+  <li>第13行：<b>[Thread-4]</b> 已收到其首次请求的响应。其中包含一个会话cookie，内含服务器分配给它的编号 <b>[</b><b><mark style="background-color: #fff2cc">fa3c83b82761c83e13217967</mark></b><b>]</b>；
+  </li>
+  <li>第14行：第一位纳税人的税额；
+  </li>
+  <li>第 16 行：<b>[Thread-4]</b> 针对第二位纳税人发起请求；
+  </li>
+  <li>第 43 行：<b>[Thread-4]</b> 收到第二位纳税人的税额；
+  </li>
+  <li>第 45 行：<b>[Thread-4]</b> 向第三位纳税人发起请求；
+  </li>
+  <li>第 49 行：<b>[Thread-4]</b> 收到第三位纳税人的税额；
+  </li>
+  <li>第 51 行：<b>[Thread-4]</b> 已完成其工作；
+  </li>
+</ul>
+
+<p>现在，让我们看看服务器端是如何处理来自 <strong>[Thread-4]</strong> 的这三个请求的。我们可以使用其客户端 ID <strong>[</strong><strong><mark style="background-color: #fff2cc">fa3c83b82761c83e13217967</mark></strong><strong>]</strong> 在服务器日志中追踪这些请求。</p>
+<p>服务器端日志 <strong>[data/logs/logs.txt]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:39.187366, MainThread : <span style="font-weight:bold">[serveur]</span> démarrage du serveur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:40.439093, MainThread : <span style="font-weight:bold">[serveur]</span> démarrage du serveur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.502011, Thread-2 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=oui&amp;enfants=3&amp;salaire=50000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.504049, Thread-2 : <span style="font-weight:bold">[index]</span> mis en pause du thread pendant 1 seconde(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.505452, Thread-3 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=oui&amp;enfants=2&amp;salaire=55555&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.506257, Thread-3 : <span style="font-weight:bold">[index]</span> mis en pause du thread pendant 1 seconde(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.507292, Thread-4 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=non&amp;enfants=0&amp;salaire=100000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.507292, Thread-4 : <span style="font-weight:bold">[index]</span> mis en pause du thread pendant 1 seconde(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.508301, Thread-5 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=oui&amp;enfants=2&amp;salaire=50000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.509293, Thread-5 : <span style="font-weight:bold">[index]</span> mis en pause du thread pendant 1 seconde(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.511808, Thread-6 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=non&amp;enfants=3&amp;salaire=100000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.517604, Thread-7 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=oui&amp;enfants=3&amp;salaire=200000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.517604, Thread-7 : <span style="font-weight:bold">[index]</span> mis en pause du thread pendant 1 seconde(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.719504, Thread-6 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">fa3c83b82761c83e13217967</span><span style="font-weight:bold">]</span>, données fiscales prises dans <span style="background-color:#fff2cc">la couche dao</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.720003, Thread-6 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;non&#x27;, &#x27;enfants&#x27;: 3, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 16782, &#x27;surcôte&#x27;: 7176, &#x27;taux&#x27;: 0.41, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.736108, Thread-8 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=oui&amp;enfants=3&amp;salaire=100000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:46.736108, Thread-8 : <span style="font-weight:bold">[index]</span> mis en pause du thread pendant 1 seconde(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.506709, Thread-2 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[700e3f5dc808c7c48f0c9007]</span>, données fiscales prises dans la couche dao</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.507216, Thread-2 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 3, &#x27;salaire&#x27;: 50000, &#x27;impôt&#x27;: 0, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.14, &#x27;décôte&#x27;: 720, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.507216, Thread-3 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[28c38df998f67685b3a482b8]</span>, données fiscales prises dans la couche dao</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.508442, Thread-4 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[9e14a5d4a3057f69ab95ab2d]</span>, données fiscales prises dans la couche dao</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.508940, Thread-3 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 2, &#x27;salaire&#x27;: 55555, &#x27;impôt&#x27;: 2814, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.14, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.510506, Thread-4 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;non&#x27;, &#x27;enfants&#x27;: 0, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 22986, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.41, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.511513, Thread-5 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[a06e8fd70a44c9e311f4dce0]</span>, données fiscales prises dans la couche dao</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.514939, Thread-5 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 2, &#x27;salaire&#x27;: 50000, &#x27;impôt&#x27;: 1384, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.14, &#x27;décôte&#x27;: 384, &#x27;réduction&#x27;: 347}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.520727, Thread-7 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[38499b63076516c02f2770ec]</span>, données fiscales prises dans la couche dao</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.523162, Thread-7 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 3, &#x27;salaire&#x27;: 200000, &#x27;impôt&#x27;: 42842, &#x27;surcôte&#x27;: 17283, &#x27;taux&#x27;: 0.41, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.530835, Thread-9 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=non&amp;enfants=2&amp;salaire=100000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.531736, Thread-9 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[700e3f5dc808c7c48f0c9007]</span>, données fiscales prises en session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.531905, Thread-9 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;non&#x27;, &#x27;enfants&#x27;: 2, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 19884, &#x27;surcôte&#x27;: 4480, &#x27;taux&#x27;: 0.41, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.541899, Thread-10 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=oui&amp;enfants=2&amp;salaire=30000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.542488, Thread-10 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[9e14a5d4a3057f69ab95ab2d]</span>, données fiscales prises en session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.542488, Thread-10 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 2, &#x27;salaire&#x27;: 30000, &#x27;impôt&#x27;: 0, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.0, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.553628, Thread-11 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=non&amp;enfants=0&amp;salaire=200000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.553628, Thread-11 : <span style="font-weight:bold">[index]</span> mis en pause du thread pendant 1 seconde(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.736910, Thread-8 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">fa3c83b82761c83e13217967</span><span style="font-weight:bold">]</span>, données fiscales prises en <span style="background-color:#fff2cc">session</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.737191, Thread-8 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 3, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 9200, &#x27;surcôte&#x27;: 2180, &#x27;taux&#x27;: 0.3, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.748226, Thread-12 : <span style="font-weight:bold">[index]</span> requête : &lt;Request &#x27;http://127.0.0.1:5000/?marié=oui&amp;enfants=5&amp;salaire=100000&#x27; <span style="font-weight:bold">[GET]</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:47.748226, Thread-12 : <span style="font-weight:bold">[index]</span> mis en pause du thread pendant 1 seconde(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.554695, Thread-11 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[9e14a5d4a3057f69ab95ab2d]</span>, données fiscales prises en session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.555070, Thread-11 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;non&#x27;, &#x27;enfants&#x27;: 0, &#x27;salaire&#x27;: 200000, &#x27;impôt&#x27;: 64210, &#x27;surcôte&#x27;: 7498, &#x27;taux&#x27;: 0.45, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.748753, Thread-12 : <span style="font-weight:bold">[index_controller]</span> client <span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">fa3c83b82761c83e13217967</span><span style="font-weight:bold">]</span>, données fiscales prises en <span style="background-color:#fff2cc">session</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-25 10:21:48.748753, Thread-12 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 5, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 4230, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.14, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}}}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第14行首次出现客户端 <b>[</b><b><mark style="background-color: #fff2cc">fa3c83b82761c83e13217967</mark></b><b>]</b>：为了计算税款，服务器必须从税务机关的数据库中检索数据；
+  </li>
+  <li>随后在第36行再次看到客户端 <b>[</b><b><mark style="background-color: #fff2cc">fa3c83b82761c83e13217967</mark></b><b>]</b>。这次，服务器从会话中检索税务局数据，从而省去了可能耗费资源的 <b>[DAO]</b> 层访问；
+  </li>
+  <li>我们在第 42 行第三次遇到客户端 <b>[</b><b><mark style="background-color: #fff2cc">fa3c83b82761c83e13217967</mark></b><b>]</b>，此时服务器再次使用了该客户端的会话；
+  </li>
+</ul>
+
+<p>这个示例清楚地说明了会话对客户端的价值：它存储了该客户端所有请求共用的数据，而检索这些数据通常成本很高。</p>
+<p>在客户端，文件 <strong>[data/output/results.json]</strong> 中的结果与之前版本一致。</p>
+<p><a id="toc48549207"></a></p>
+<h2 id="254-dao">25.4. <span style="color: #4f81bd">测试 [DAO] 层</span></h2>
+<p>与 |<a href="#testsdela"><u><span style="color: #0563c1">前几个</span></u></a>版本| 一样，我们测试客户端的 <strong>[dao]</strong> 层：</p>
+<p><img src="images/10000000000003CF000003C7638DD447.png" width="426" height="422" style="width:11.269cm;height:11.178cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003CF000003C7638DD447.png" /></p>
+<p>该测试类将在以下环境中执行：</p>
+<p><img src="images/10000000000001AA000001F423CB28F2.png" width="186" height="218" style="width:4.911cm;height:5.764cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001AA000001F423CB28F2.png" /></p>
+<ul>
+  <li>配置 <b>[2]</b> 与我们刚刚分析过的配置 <b>[1]</b> 完全相同；
+  </li>
+</ul>
+
+<p><strong>[</strong><strong><span style="color: #2b91af">TestHttpClientDao</span></strong><strong>]</strong> 测试类如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span>
+<span class="normal"><a href="#__codelineno-9-35">35</a></span>
+<span class="normal"><a href="#__codelineno-9-36">36</a></span>
+<span class="normal"><a href="#__codelineno-9-37">37</a></span>
+<span class="normal"><a href="#__codelineno-9-38">38</a></span>
+<span class="normal"><a href="#__codelineno-9-39">39</a></span>
+<span class="normal"><a href="#__codelineno-9-40">40</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">Logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">TestHttpClientDao</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">test_1</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>        <span class="kn">from</span><span class="w"> </span><span class="nn">TaxPayer</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaxPayer</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>        <span class="c1">#  { &#39;married&#39;: &#39;yes&#39;, &#39;children&#39;: 2, &#39;salary&#39;: 55555,</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>        <span class="c1">#  tax&#39;: 2814, &#39;surcôte&#39;: 0, &#39;décôte&#39;: 0, &#39;réduction&#39;: 0, &#39;taux&#39;: 0.14}</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>        <span class="n">taxpayer</span> <span class="o">=</span> <span class="n">TaxPayer</span><span class="p">()</span><span class="o">.</span><span class="n">fromdict</span><span class="p">({</span><span class="s2">&quot;marié&quot;</span><span class="p">:</span> <span class="s2">&quot;oui&quot;</span><span class="p">,</span> <span class="s2">&quot;enfants&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;salaire&quot;</span><span class="p">:</span> <span class="mi">55555</span><span class="p">})</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a>        <span class="n">dao</span><span class="o">.</span><span class="n">calculate_tax</span><span class="p">(</span><span class="n">taxpayer</span><span class="p">)</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a>        <span class="c1">#  check</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">taxpayer</span><span class="o">.</span><span class="n">impôt</span><span class="p">,</span> <span class="mi">2815</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">taxpayer</span><span class="o">.</span><span class="n">décôte</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">taxpayer</span><span class="o">.</span><span class="n">réduction</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">assertAlmostEqual</span><span class="p">(</span><span class="n">taxpayer</span><span class="o">.</span><span class="n">taux</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">taxpayer</span><span class="o">.</span><span class="n">surcôte</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="err">…</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a>    <span class="c1">#  configure the application</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">({})</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a>    <span class="c1">#  logger</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30"></a>    <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;logsFilename&quot;</span><span class="p">])</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31"></a>    <span class="c1">#  we save it in the config</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32"></a>    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;logger&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">logger</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33"></a>    <span class="c1">#  retrieve the [dao] layer factory</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34"></a>    <span class="n">dao_factory</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;layers&quot;</span><span class="p">][</span><span class="s2">&quot;dao_factory&quot;</span><span class="p">]</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35"></a>    <span class="c1">#  create an instance of the [dao] layer</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36"></a>    <span class="n">dao</span> <span class="o">=</span> <span class="n">dao_factory</span><span class="o">.</span><span class="n">new_instance</span><span class="p">()</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37"></a>
+<a id="__codelineno-9-38" name="__codelineno-9-38"></a>    <span class="c1">#  test methods are executed</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tests en cours...&quot;</span><span class="p">)</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40"></a>    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>我们为该测试创建一个 <a href="#testsdela"><u><span style="color: #0563c1">|执行</span></u></a>配置|；
+  </li>
+  <li>我们启动 Web 服务器及其完整运行环境；
+  </li>
+  <li>运行测试；
+  </li>
+</ul>
+
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/impots/<span style="background-color:#bdd6ee">http-clients/03/tests/TestHttpClientDao</span>.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">tests en cours...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">...........</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">----------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#bdd6ee">Ran 11 tests</span> in 3.392s</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">OK</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

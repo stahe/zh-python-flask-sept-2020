@@ -1,0 +1,2646 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/hiianianii-14-an.html">
+      
+      
+        <link rel="prev" href="ingongianii13an.html">
+      
+      
+        <link rel="next" href="ingongianii15an.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>34. 实践练习：第 14 版 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#34-14" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              34. 实践练习：第 14 版
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="hiianianii-14-an.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#341" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.1. 简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#342" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.2. 配置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#343-csrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3. CSRF 实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="34.3. CSRF 实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3431-flask_wtf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.1. [flask_wtf] 模块
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3432" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.2. 视图模板
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3433" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.3. 视图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3434" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.4. 路由
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3435-maincontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.5. [MainController]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#344" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.4. 浏览器测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#345" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.5. 控制台客户端
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="exercicedapplication10"></a>
+<a id="toc48549313"></a></p>
+<h1 id="34-14">34. <span style="color: #365f91">实践练习：第 14 版</span></h1>
+<p>版本 14 的 <strong>[http-servers/09]</strong> 文件夹是通过复制版本 13 的 <strong>[http-servers/08]</strong> 文件夹获得的。</p>
+<p><a id="toc48549314"></a></p>
+<h2 id="341">34.1. <span style="color: #4f81bd">简介</span></h2>
+<p>CSRF（跨站请求伪造）是一种会话劫持技术。维基百科（<a href="https://fr.wikipedia.org/wiki/Cross-site_request_forgery"><u><span style="color: #0563c1">https://fr.wikipedia.org/wiki/Cross-site_request_forgery</span></u></a>）对此解释如下：</p>
+<div style="margin:0 0 0.75em 0; background-color:#fff2cc; padding:0.35em 0.6em">假设爱丽丝是某论坛的管理员，并通过会话系统登录。玛洛丽是该论坛的成员，想要删除其中一篇帖子。由于她的账户没有相应的权限，她便通过 CSRF 攻击利用了爱丽丝的账户。</div>
+
+<ol>
+  <li><div style="margin:0; background-color:#fff2cc; padding:0.35em 0.6em">玛洛丽设法找到了允许她删除该帖子的链接。</div>
+  </li>
+  <li><div style="margin:0; background-color:#fff2cc; padding:0.35em 0.6em">玛洛丽向爱丽丝发送了一条包含待显示伪图片（实际上是一个脚本）的消息。该图片的URL正是指向删除目标消息的脚本链接。</div>
+  </li>
+  <li><div style="margin:0; background-color:#fff2cc; padding:0.35em 0.6em">爱丽丝的浏览器中必须已打开玛洛莉目标网站的会话。这是攻击悄无声息地成功实施的先决条件，否则会触发身份验证请求，从而引起爱丽丝的警觉。该会话必须具备执行玛洛莉破坏性请求所需的权限。目标网站的浏览器标签页无需处于打开状态，甚至浏览器无需正在运行，只要会话处于活动状态即可。</div>
+  </li>
+  <li><div style="margin:0; background-color:#fff2cc; padding:0.35em 0.6em">爱丽丝阅读了玛洛丽的消息；她的浏览器利用了爱丽丝的已建立会话，并未请求交互式身份验证。浏览器尝试获取图片内容。在此过程中，浏览器触发了链接并删除了消息，随后将一个纯文本网页作为图片内容返回。 由于浏览器无法识别该图片的关联类型，因此不会显示图片，爱丽丝也并未意识到玛洛丽刚刚迫使她违背意愿删除了这条消息。</div>
+  </li>
+</ol>
+
+<p>即便这样解释，CSRF 技术仍难以理解。让我们画个图示：</p>
+<p><img src="images/10000000000003E50000024D46F14920.png" width="435" height="257" style="width:11.501cm;height:6.795cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003E50000024D46F14920.png" /></p>
+<ul>
+  <li>在<b>[1-2]</b>中，爱丽丝与论坛（网站A）进行通信。该论坛为每位用户维护一个会话。爱丽丝的浏览器将此会话cookie存储在本地，并在每次向网站A发出新请求时将其发回；
+  </li>
+  <li>在<b>[3]</b>中，玛洛莉向爱丽丝发送了一条消息。爱丽丝在浏览器中阅读了这条消息。该消息采用HTML格式，其中包含一个指向网站B上某张图片的链接。实际上，这个链接指向的是一段JavaScript脚本，该脚本会在到达爱丽丝的浏览器后自动运行；
+  </li>
+  <li>随后，该 JavaScript 脚本向网站 A 发起请求。爱丽丝的浏览器会自动将该请求连同本地存储的会话 Cookie 一并发送出去。攻击就在此时发生：玛洛莉已成功利用爱丽丝的会话凭据访问了网站 A。从这一刻起，无论后续发生什么，攻击都已得逞；
+  </li>
+</ul>
+
+<p>为防范此类攻击，网站 A 可采取以下措施：</p>
+<ul>
+  <li>在与爱丽丝的每次交互<b>[1-2]</b>中，网站A都会发送一个密钥（以下简称CSRF令牌），爱丽丝必须在下次请求中返回该令牌。因此，每次请求时，爱丽丝必须发送两项信息：
+    <ul>
+      <li>会话 Cookie；
+      </li>
+      <li>上次向网站 A 发送请求时在响应中收到的 CSRF 令牌；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>保护机制的原理在于：虽然浏览器会自动将会话 Cookie 发回给网站 A，但不会自动发送 CSRF 令牌。因此，攻击脚本执行的第 6-7 次交互将被拒绝，因为第 6 次请求中并未包含 CSRF 令牌；</p>
+<p>对于 HTML 应用程序，网站 A 可以通过多种方式向爱丽丝发送 CSRF 令牌：</p>
+<ul>
+  <li>它可以在每次请求中发送一个HTML页面，其中所有链接都包含CSRF令牌，例如 <b>[http://siteA/chemin/csrf_token]</b>。当爱丽丝在下次请求中点击其中一个链接时，网站A只需从请求URL中提取CSRF令牌并验证其有效性。本文将采用此方法；
+  </li>
+  <li>对于包含表单的 HTML 页面，网站 A 可以发送一个包含隐藏字段 <b>[input type=&#x27;hidden&#x27;] </b>的表单，该字段中包含 CSRF 令牌。当爱丽丝提交页面时，该令牌将随表单自动提交。网站 A 将从请求主体中提取 CSRF 令牌；
+  </li>
+  <li>还有其他可能的技术；
+  </li>
+</ul>
+<p><a id="toc48549315"></a></p>
+<h2 id="342">34.2. <span style="color: #4f81bd">配置</span></h2>
+<p><img src="images/1000000000000127000000E642E6C9B2.png" width="129" height="100" style="width:3.41cm;height:2.658cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000127000000E642E6C9B2.png" /></p>
+<p>我们在应用程序的 <strong>[parameters]</strong> 配置中添加两个布尔值：</p>
+<ul>
+  <li><b>[with_redissession]</b>：设置为 True 时，应用程序使用 Redis 会话；设置为 False 时，应用程序使用标准的 Flask 会话；
+  </li>
+  <li><b>[with_csrftoken]</b>：当设置为 True 时，应用程序的 URL 中包含一个 CSRF 令牌；
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># durée pause thread en secondes</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;sleep_time&quot;</span><span style="color:#000000">: </span><span style="color:#098658">0</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># serveur Redis</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;with_redissession&quot;</span><span style="color:#000000">: </span><span style="color:#0000ff">True</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;redis&quot;</span><span style="color:#000000">: {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">&quot;host&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;127.0.0.1&quot;</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">&quot;port&quot;</span><span style="color:#000000">: </span><span style="color:#098658">6379</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># token csrf</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;with_csrftoken&quot;</span><span style="color:#000000">: </span><span style="color:#0000ff">False</span><span style="color:#000000">,</span></span></span>
+</code></pre></div>
+
+<p><a id="toc48549316"></a></p>
+<h2 id="343-csrf">34.3. <span style="color: #4f81bd">CSRF 实现</span></h2>
+<p>我们将确保在以下情况下：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">&#x27;parameters&#x27;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+</code></pre></div>
+
+<p>设置为 <strong>[True]</strong> 时，应用程序发送给客户端浏览器的网页链接中将包含一个 CSRF 令牌。</p>
+<p><a id="toc48549317"></a></p>
+<h3 id="3431-flask_wtf">34.3.1. <span style="color: #4f81bd">[flask_wtf] 模块</span></h3>
+<p>CSRF 令牌将通过 <strong>[flask_wtf]</strong> 模块实现，我们可在 PyCharm 终端中安装该模块：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\packages&gt;<span style="background-color:#fff2cc">pip install flask_wtf</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Collecting flask_wtf</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+</code></pre></div>
+
+<p><a id="toc48549318"></a></p>
+<h3 id="3432">34.3.2. <span style="color: #4f81bd">视图模板</span></h3>
+<p>我们在模型中引入了一个新类：</p>
+<p><img src="images/10000000000001D4000001CE1812B1F9.png" width="205" height="202" style="width:5.412cm;height:5.343cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D4000001CE1812B1F9.png" /></p>
+<p><strong>[AbstractBaseModelForView]</strong> 类如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">abstractmethod</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Request</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_wtf.csrf</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_csrf</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceModelForView</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceModelForView</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">AbstractBaseModelForView</span><span class="p">(</span><span class="n">InterfaceModelForView</span><span class="p">):</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="nd">@abstractmethod</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_model_for_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">résultat</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>        <span class="k">pass</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_csrftoken</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>        <span class="c1">#  csrf_token</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>        <span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;with_csrftoken&#39;</span><span class="p">]:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">generate_csrf</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>            <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 9 行：<b>[AbstractBaseModelForView]</b> 类实现了由模型类实现的 <b>[</b><b><mark style="background-color: #fff2cc">InterfaceModelForView</mark></b><b>]</b> 接口；
+  </li>
+  <li>第 11–13 行：<b>[</b><b><mark style="background-color: #fff2cc">get_model_for_view</mark></b><b>]</b> 方法未实现；
+  </li>
+  <li>第 15–20 行：如果应用程序已配置为使用 CSRF 令牌，<b>[</b><b><mark style="background-color: #fff2cc">get_csrftoken</mark></b><b>]</b> 方法将生成 CSRF 令牌。根据具体情况，该函数会返回一个前面带斜杠 (/) 的令牌或一个空字符串。<b>[generate_csrf]</b> 函数对于给定的客户端请求总是生成相同的值。 处理请求涉及执行多个函数。在这些函数中使用 <b>[generate_csrf]</b> 始终会生成相同的值。但在下一次请求时，将生成一个新的 CSRF 令牌；
+  </li>
+</ul>
+
+<p>视图 V 的所有 M 模型都将按以下方式包含 CSRF 令牌：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ModelForAuthentificationView</span><span class="p">(</span><span class="n">AbstractBaseModelForView</span><span class="p">):</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_model_for_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">résultat</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>        <span class="c1">#  we encapsulate the paged data in the model</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>        <span class="n">modèle</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>        <span class="err">…</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="c1">#  csrf token</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>        <span class="n">modèle</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_csrftoken</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>        <span class="c1">#  we render the model</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>        <span class="k">return</span> <span class="n">modèle</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>每个模型类都继承自基类 <b>[</b><b><mark style="background-color: #fff2cc">AbstractBaseModelForView</mark></b><b>]</b>；
+  </li>
+  <li>第 8 行：从父类请求 CSRF 令牌。 我们得到的要么是空字符串，要么是类似 <b>[/Ijk4NjQ2ZDdjZjI0ZDJiYTVjZTZjYmFhZGNjMjE3Y2U5M2I3ODI0NzYi.Xy5Okg.n-kSR_nslkndfT7AFVy2UDtdb8c] </b>的字符串；
+  </li>
+</ul>
+
+<p><a id="toc48549319"></a></p>
+<h3 id="3433">34.3.3. <span style="color: #4f81bd">视图</span></h3>
+<p>根据刚才的讨论，所有视图 V 都会在其模板 M 中包含 CSRF 令牌。因此，它们可以在其中的链接中使用该令牌。让我们看几个示例：</p>
+<p><u><strong>身份验证片段</strong> </u><strong>[v_authentification.html]</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- form HTML - post its values with the [authenticate-user] action --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;form</span><span style="color:#000000"> </span><span style="color:#ff0000">method</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;post&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">action</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;/authentifier-utilisateur</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.csrf_token}}</span><span style="color:#0000ff">&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- title --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;div</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert alert-primary&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">role</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#800000">&lt;h4&gt;</span><span style="color:#000000">Veuillez vous authentifier</span><span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;/div&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/form&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 2 行：根据刚才所见，<b>[action]</b> 属性的 URL 将为：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;color:#0000ff">/authentifier-utilisateur</span><span style="font-weight:bold;color:#ff0000">/</span><span style="font-weight:bold">Ijk4NjQ2ZDdjZjI0ZDJiYTVjZTZjYmFhZGNjMjE3Y2U5M2I3ODI0NzYi.Xy5Okg.n-kSR_nslkndfT7AFVy2UDtdb8c]</span></span></span>
+</code></pre></div>
+
+<p>或</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>[/authentifier-utilisateur]
+</code></pre></div>
+<p>这取决于应用程序是否已配置为使用 CSRF 令牌；</p>
+<p><u><strong>税费计算片段</strong> </u><strong>[v-calcul-impot.html]</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- form HTML posted --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;form</span><span style="color:#000000"> </span><span style="color:#ff0000">method</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;post&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">action</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;/calculer-impot</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.csrf_token}}</span><span style="color:#0000ff">&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- 12-column message on blue background --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;div</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;col-md-12&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#800000">&lt;div</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert alert-primary&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">role</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#800000">&lt;h4&gt;</span><span style="color:#000000">Remplissez le formulaire ci-dessous puis validez-le</span><span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#800000">&lt;/div&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;/div&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/form&gt;</span></span>
+</code></pre></div>
+
+<p><u><strong>模拟部分</strong> </u><strong>[v-liste-simulations.html]</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">{% if modèle.simulations is undefined or modèle.simulations|length==0 %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- message on blue background --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;div</span> <span style="color:#ff0000">class</span>=<span style="color:#0000ff">&quot;alert alert-primary&quot;</span> <span style="color:#ff0000">role</span>=<span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;h4&gt;</span>Votre liste de simulations est vide<span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/div&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{% endif %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{% if modèle.simulations is defined and modèle.simulations|length!=0 %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- message on blue background --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;div</span> <span style="color:#ff0000">class</span>=<span style="color:#0000ff">&quot;alert alert-primary&quot;</span> <span style="color:#ff0000">role</span>=<span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;h4&gt;</span>Liste de vos simulations<span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/div&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- simulation table --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;table</span> <span style="color:#ff0000">class</span>=<span style="color:#0000ff">&quot;table table-sm table-hover table-striped&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">…</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- table body (data displayed) --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;tbody&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- display each simulation by browsing the simulation table --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% for simulation in modèle.simulations %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- display a table row with 6 columns - &lt;tr&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 1: row header (simulation no.) - &lt;th scope=&#x27;row&#x27; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 2: parameter value [married] - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 3: parameter value [children] - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 4: parameter value [salary] - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 5: [tax] parameter value - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 6: parameter value [surcôte] - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 7: parameter value [discount] - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 8: parameter value [reduction] - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 9: parameter value [rate] (of tax) - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- column 10: link to delete simulation - &lt;td&gt; tag --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;th</span> <span style="color:#ff0000">scope</span>=<span style="color:#0000ff">&quot;row&quot;</span><span style="color:#800000">&gt;</span>{{simulation.id}}<span style="color:#800000">&lt;/th&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.marié}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.enfants}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.salaire}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.impôt}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.surcôte}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.décôte}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.réduction}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.taux}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;&lt;a</span> <span style="color:#ff0000">href</span>=<span style="color:#0000ff">&quot;/supprimer-simulation/{{simulation.id}}</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.csrf_token}}</span><span style="color:#0000ff">&quot;</span><span style="color:#800000">&gt;</span>Supprimer<span style="color:#800000">&lt;/a&gt;&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% endfor %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tbody&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/table&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{% endif %}</span></span>
+</code></pre></div>
+
+<p><u><strong>菜单代码片段</strong> </u><strong>[v-menu.html]</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- bootstrap menu --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;nav</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;nav flex-column&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- display a list of links HTML --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% for optionMenu in modèle.optionsMenu %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;a</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;nav-link&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">href</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;{{optionMenu.url}}</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.csrf_token}}</span><span style="color:#0000ff">&quot;</span><span style="color:#800000">&gt;</span><span style="color:#000000">{{optionMenu.text}}</span><span style="color:#800000">&lt;/a&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% endfor %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/nav&gt;</span></span>
+</code></pre></div>
+
+<p><a id="toc48549320"></a></p>
+<h3 id="3434">34.3.4. <span style="color: #4f81bd"><span style="color: #4f81bd">路由</span></span></h3>
+<p>目前有两种类型的路由，取决于它们是否使用 CSRF 令牌：</p>
+<p><img src="images/100000000000018F00000106A63E3323.png" width="174" height="114" style="width:4.613cm;height:3.029cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018F00000106A63E3323.png" /></p>
+<ul>
+  <li><b>[routes_without_csrftoken]</b> 指不使用 CSRF 令牌的路由。这些是上一版本中的路由；
+  </li>
+  <li><b>[routes_with_csrftoken] </b>是包含 CSRF 令牌的路由。
+  </li>
+</ul>
+
+<p>在 <strong>[routes_with_csrftoken]</strong> 中，路由现在多了一个参数，即 CSRF 令牌：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span>
+<span class="normal"><a href="#__codelineno-3-27">27</a></span>
+<span class="normal"><a href="#__codelineno-3-28">28</a></span>
+<span class="normal"><a href="#__codelineno-3-29">29</a></span>
+<span class="normal"><a href="#__codelineno-3-30">30</a></span>
+<span class="normal"><a href="#__codelineno-3-31">31</a></span>
+<span class="normal"><a href="#__codelineno-3-32">32</a></span>
+<span class="normal"><a href="#__codelineno-3-33">33</a></span>
+<span class="normal"><a href="#__codelineno-3-34">34</a></span>
+<span class="normal"><a href="#__codelineno-3-35">35</a></span>
+<span class="normal"><a href="#__codelineno-3-36">36</a></span>
+<span class="normal"><a href="#__codelineno-3-37">37</a></span>
+<span class="normal"><a href="#__codelineno-3-38">38</a></span>
+<span class="normal"><a href="#__codelineno-3-39">39</a></span>
+<span class="normal"><a href="#__codelineno-3-40">40</a></span>
+<span class="normal"><a href="#__codelineno-3-41">41</a></span>
+<span class="normal"><a href="#__codelineno-3-42">42</a></span>
+<span class="normal"><a href="#__codelineno-3-43">43</a></span>
+<span class="normal"><a href="#__codelineno-3-44">44</a></span>
+<span class="normal"><a href="#__codelineno-3-45">45</a></span>
+<span class="normal"><a href="#__codelineno-3-46">46</a></span>
+<span class="normal"><a href="#__codelineno-3-47">47</a></span>
+<span class="normal"><a href="#__codelineno-3-48">48</a></span>
+<span class="normal"><a href="#__codelineno-3-49">49</a></span>
+<span class="normal"><a href="#__codelineno-3-50">50</a></span>
+<span class="normal"><a href="#__codelineno-3-51">51</a></span>
+<span class="normal"><a href="#__codelineno-3-52">52</a></span>
+<span class="normal"><a href="#__codelineno-3-53">53</a></span>
+<span class="normal"><a href="#__codelineno-3-54">54</a></span>
+<span class="normal"><a href="#__codelineno-3-55">55</a></span>
+<span class="normal"><a href="#__codelineno-3-56">56</a></span>
+<span class="normal"><a href="#__codelineno-3-57">57</a></span>
+<span class="normal"><a href="#__codelineno-3-58">58</a></span>
+<span class="normal"><a href="#__codelineno-3-59">59</a></span>
+<span class="normal"><a href="#__codelineno-3-60">60</a></span>
+<span class="normal"><a href="#__codelineno-3-61">61</a></span>
+<span class="normal"><a href="#__codelineno-3-62">62</a></span>
+<span class="normal"><a href="#__codelineno-3-63">63</a></span>
+<span class="normal"><a href="#__codelineno-3-64">64</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">#  the front controller</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">front_controller</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="c1">#  forward the request to the main controller</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="n">main_controller</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">][</span><span class="s1">&#39;controllers&#39;</span><span class="p">][</span><span class="s1">&#39;main-controller&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="k">return</span> <span class="n">main_controller</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>    <span class="c1">#  redirect to /init-session/html</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;init_session&quot;</span><span class="p">,</span> <span class="n">type_response</span><span class="o">=</span><span class="s2">&quot;html&quot;</span><span class="p">,</span> <span class="n">csrf_token</span><span class="o">=</span><span class="n">generate_csrf</span><span class="p">()),</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_302_FOUND</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="c1">#  init-session</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/init-session/&lt;string:type_response&gt;/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="k">def</span><span class="w"> </span><span class="nf">init_session</span><span class="p">(</span><span class="n">type_response</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="c1">#  authenticate-user</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/authentifier-utilisateur/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="k">def</span><span class="w"> </span><span class="nf">authentifier_utilisateur</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a><span class="c1">#  calculate-tax</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/calculer-impot/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculer_impot</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29"></a>
+<a id="__codelineno-3-30" name="__codelineno-3-30"></a><span class="c1">#  batch tax calculation</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/calculer-impots/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32"></a><span class="k">def</span><span class="w"> </span><span class="nf">calculer_impots</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35"></a>
+<a id="__codelineno-3-36" name="__codelineno-3-36"></a><span class="c1">#  lister-simulations</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/lister-simulations/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38"></a><span class="k">def</span><span class="w"> </span><span class="nf">lister_simulations</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-3-41" name="__codelineno-3-41"></a>
+<a id="__codelineno-3-42" name="__codelineno-3-42"></a><span class="c1">#  delete-simulation</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/supprimer-simulation/&lt;int:numero&gt;/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44"></a><span class="k">def</span><span class="w"> </span><span class="nf">supprimer_simulation</span><span class="p">(</span><span class="n">numero</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47"></a>
+<a id="__codelineno-3-48" name="__codelineno-3-48"></a><span class="c1">#  end of session</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/fin-session/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50"></a><span class="k">def</span><span class="w"> </span><span class="nf">fin_session</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53"></a>
+<a id="__codelineno-3-54" name="__codelineno-3-54"></a><span class="c1">#  display-calculation-tax</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-calcul-impot/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_calcul_impot</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-58" name="__codelineno-3-58"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59"></a>
+<a id="__codelineno-3-60" name="__codelineno-3-60"></a><span class="c1">#  get-admindata</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/get-admindata/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-3-62" name="__codelineno-3-62"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_admindata</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-3-63" name="__codelineno-3-63"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-3-64" name="__codelineno-3-64"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>现在所有路由的参数中都包含 CSRF 令牌，包括 <strong>[/init-session]</strong> 路由。这意味着客户端无法通过直接输入 URL <strong>[/init-session/html]</strong> 来启动应用程序，因为此时会缺少 CSRF 令牌。现在必须通过第 7–10 行中的 <strong>[/]</strong> URL 进行访问。</p>
+<p>路由是在主脚本 <strong>[main]</strong> 中选定的：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="err">…</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="c1">#  the main thread no longer needs the logger</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">logger</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c1">#  if there has been an error, we stop</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="k">if</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="c1">#  import routes from web application</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;with_csrftoken&#39;</span><span class="p">]:</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">routes_with_csrftoken</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">routes</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">routes_without_csrftoken</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">routes</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="c1">#  route configuration</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="n">routes</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="c1">#  start Flask application</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="n">routes</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 9–13 行：根据应用程序是否使用 CSRF 令牌来选择路由；
+  </li>
+</ul>
+<p><a id="toc48549321"></a></p>
+<h3 id="3435-maincontroller">34.3.5. <span style="color: #4f81bd">[MainController]</span></h3>
+<p>对于每个请求，服务器必须验证 CSRF 令牌是否存在<strong>。</strong>我们将在主控制器 <strong>[MainController]</strong> 中实现这一功能<strong>，</strong>该控制器负责处理所有请求：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span>
+<span class="normal"><a href="#__codelineno-5-25">25</a></span>
+<span class="normal"><a href="#__codelineno-5-26">26</a></span>
+<span class="normal"><a href="#__codelineno-5-27">27</a></span>
+<span class="normal"><a href="#__codelineno-5-28">28</a></span>
+<span class="normal"><a href="#__codelineno-5-29">29</a></span>
+<span class="normal"><a href="#__codelineno-5-30">30</a></span>
+<span class="normal"><a href="#__codelineno-5-31">31</a></span>
+<span class="normal"><a href="#__codelineno-5-32">32</a></span>
+<span class="normal"><a href="#__codelineno-5-33">33</a></span>
+<span class="normal"><a href="#__codelineno-5-34">34</a></span>
+<span class="normal"><a href="#__codelineno-5-35">35</a></span>
+<span class="normal"><a href="#__codelineno-5-36">36</a></span>
+<span class="normal"><a href="#__codelineno-5-37">37</a></span>
+<span class="normal"><a href="#__codelineno-5-38">38</a></span>
+<span class="normal"><a href="#__codelineno-5-39">39</a></span>
+<span class="normal"><a href="#__codelineno-5-40">40</a></span>
+<span class="normal"><a href="#__codelineno-5-41">41</a></span>
+<span class="normal"><a href="#__codelineno-5-42">42</a></span>
+<span class="normal"><a href="#__codelineno-5-43">43</a></span>
+<span class="normal"><a href="#__codelineno-5-44">44</a></span>
+<span class="normal"><a href="#__codelineno-5-45">45</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_wtf.csrf</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_csrf</span><span class="p">,</span> <span class="n">validate_csrf</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="err">…</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>       <span class="c1">#  we process the request</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>            <span class="c1">#  logger</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>            <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;logsFilename&#39;</span><span class="p">])</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>            <span class="err">…</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>            <span class="c1">#  path elements are retrieved</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>            <span class="n">params</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>            <span class="c1">#  action is the 1st element</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>            <span class="n">action</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a>            <span class="err">…</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a>            <span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;with_csrftoken&#39;</span><span class="p">]:</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19"></a>                <span class="c1">#  the csrf_token is the last element of the path</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20"></a>                <span class="n">csrf_token</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21"></a>                <span class="c1">#  check token validity</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22"></a>                <span class="c1">#  an exception will be thrown if the csrf_token is not the expected one</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23"></a>                <span class="n">validate_csrf</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">)</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24"></a>
+<a id="__codelineno-5-25" name="__codelineno-5-25"></a>            <span class="err">…</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26"></a>
+<a id="__codelineno-5-27" name="__codelineno-5-27"></a>        <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28"></a>            <span class="c1">#  csrf token invalid</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29"></a>            <span class="n">résultat</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">121</span><span class="p">,</span> <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exception</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]}</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30"></a>            <span class="n">status_code</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+<a id="__codelineno-5-31" name="__codelineno-5-31"></a>
+<a id="__codelineno-5-32" name="__codelineno-5-32"></a>        <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33"></a>            <span class="c1">#  other (unexpected) exceptions</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34"></a>            <span class="n">résultat</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">131</span><span class="p">,</span> <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exception</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]}</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35"></a>            <span class="n">status_code</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36"></a>
+<a id="__codelineno-5-37" name="__codelineno-5-37"></a>        <span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38"></a>            <span class="k">pass</span>
+<a id="__codelineno-5-39" name="__codelineno-5-39"></a>
+<a id="__codelineno-5-40" name="__codelineno-5-40"></a>        <span class="c1">#  add the csrf_token to the result</span>
+<a id="__codelineno-5-41" name="__codelineno-5-41"></a>        <span class="n">résultat</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">generate_csrf</span><span class="p">()</span>
+<a id="__codelineno-5-42" name="__codelineno-5-42"></a>
+<a id="__codelineno-5-43" name="__codelineno-5-43"></a>        <span class="c1">#  we log the result sent to the customer</span>
+<a id="__codelineno-5-44" name="__codelineno-5-44"></a>        <span class="n">log</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;[MainController] </span><span class="si">{</span><span class="n">résultat</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-45" name="__codelineno-5-45"></a>        <span class="n">logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">log</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 20 行：从表单的请求 URL <b>[http://machine:port/path/action/param1/param2/…/csrf_token] </b>中获取 CSRF 令牌。会话令牌总是 URL 的最后一个元素；
+  </li>
+  <li>第 23 行：将从 URL 获取的 CSRF 令牌与会话的 CSRF 令牌进行有效性校验。若无效，<b>[validate_csrf]</b> 函数将抛出 <b>[ValidationError]</b> 异常（第 27 行）；
+  </li>
+  <li>第 41 行：将 CSRF 令牌包含在发送给客户端的响应中。JSON 和 XML 客户端需要该令牌。这是因为这些客户端收到的 HTML 页面中，链接内并不包含 CSRF 令牌。因此，它们将通过服务器发送的 JSON 或 XML 响应获取该令牌；
+  </li>
+</ul>
+
+<p><strong>注意</strong>：第 23 行的 <strong>[validate_csrf]</strong> 函数并不检查是否完全匹配。CSRF 令牌存储在会话中，键名为 <strong>[csrf_token]</strong>。 测试结果表明，只要 CSRF 令牌是在当前会话期间生成的，它就是有效的。因此，如果你手动将浏览器中显示的 URL 中的 CSRF 令牌 <strong>[xyz]</strong>（例如 (/lister-simulations/xyz)）替换为之前在某次操作中接收到的另一个令牌 <strong>[abc]</strong>，那么 <strong>[/lister-simulations]</strong> 操作将成功；</p>
+<p><a id="toc48549322"></a></p>
+<h2 id="344">34.4. <span style="color: #4f81bd">浏览器测试</span></h2>
+<p>首先：</p>
+<ul>
+  <li>以 <b>[with_csrftoken]</b> 参数设为 <b>[True] </b>的方式启动服务器；
+  </li>
+  <li>使用浏览器请求 URL <b>[http://localhost:5000]</b>；
+  </li>
+</ul>
+
+<p><img src="images/10000000000004710000029076ACA4C7.png" width="497" height="287" style="width:13.139cm;height:7.581cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004710000029076ACA4C7.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，CSRF 令牌；
+  </li>
+</ul>
+
+<p>让我们执行一些操作，直到获得一组模拟列表：</p>
+<p><img src="images/100000000000058E00000254BCAB1B42.png" width="621" height="260" style="width:16.431cm;height:6.886cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000058E00000254BCAB1B42.png" /></p>
+<p>现在，手动输入 URL <strong>[http://localhost:5000/supprimer-simulation/1/x]</strong> 以删除 id=1 的模拟。我们故意输入一个错误的 CSRF 令牌，以观察会发生什么。服务器的响应如下：</p>
+<p><img src="images/100000000000058E0000021B39C49A61.png" width="620" height="235" style="width:16.409cm;height:6.219cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000058E0000021B39C49A61.png" /></p>
+<p><strong>注 1</strong>：不能确定此处使用的方法总能有效抵御 CSRF 攻击。让我们回到攻击示意图：</p>
+<p><img src="images/10000000000003E50000024D46F14920.png" width="435" height="257" style="width:11.501cm;height:6.795cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003E50000024D46F14920.png" /></p>
+<p>如果在 <strong>[5]</strong> 处下载的 JavaScript 脚本能够读取爱丽丝使用的浏览器历史记录，它将能够获取浏览器执行过的 URL，例如 <strong>[/target/csrf_token]</strong>。随后，它便能获取会话令牌 <strong>[csrf_token]</strong> 并在 <strong>[6-7]</strong> 处实施攻击。然而，浏览器仅允许访问脚本运行所在的浏览器窗口的历史记录。 因此，如果爱丽丝没有使用同一个窗口与网站 A 进行交互 <strong>[1-2]</strong> 并阅读玛洛莉的消息 <strong>[3]</strong>，CSRF 攻击将无法实现。</p>
+<p><a id="toc48549323"></a></p>
+<h2 id="345">34.5. <span style="color: #4f81bd">控制台客户端</span></h2>
+<p>测试应用程序第 14 版另一种方法是复用第 12 版的测试用例，并将其适配到新服务器上。</p>
+<p><img src="images/10000000000000E4000000E6E2289AB8.png" width="99" height="100" style="width:2.632cm;height:2.655cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E4000000E6E2289AB8.png" /></p>
+<p><strong>[impots/http-clients/09]</strong> 文件夹最初是通过复制 <strong>[impots/http-clients/07]</strong> 文件夹创建的，随后对其进行了修改。</p>
+<p>让我们回到初始化会话的路由：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1">#  application root</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="c1">#  redirect to /init-session/html</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;init_session&quot;</span><span class="p">,</span> <span class="n">type_response</span><span class="o">=</span><span class="s2">&quot;html&quot;</span><span class="p">,</span> <span class="n">csrf_token</span><span class="o">=</span><span class="n">generate_csrf</span><span class="p">()),</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_302_FOUND</span><span class="p">)</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="c1"># init-session-with-csrf-token</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/init-session/&lt;string:type_response&gt;/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">init_session</span><span class="p">(</span><span class="n">type_response</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>以下这些路由都不适合用于初始化 JSON 或 XML 会话：</p>
+<ul>
+  <li>第 2–5 行：<b>[/]</b> 路由初始化的是 HTML 会话；
+  </li>
+  <li>第 8–11 行：<b>[/init-session]</b> 路由需要一个我们不知道的 CSRF 令牌；
+  </li>
+</ul>
+
+<p>我们决定在服务器上添加一个新路由：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">#  init-session-without-csrftoken</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/init-session-without-csrftoken/&lt;string:type_response&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">init_session_without_csrftoken</span><span class="p">(</span><span class="n">type_response</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="c1">#  redirect to /init-session/type_response</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s2">&quot;init_session&quot;</span><span class="p">,</span> <span class="n">type_response</span><span class="o">=</span><span class="n">type_response</span><span class="p">,</span> <span class="n">csrf_token</span><span class="o">=</span><span class="n">generate_csrf</span><span class="p">()),</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_302_FOUND</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行：新的路由。它不期望 CSRF 令牌。因此，我们回到了上一版本的 <b>[/init-session]</b> 路由；
+  </li>
+  <li>第 4-5 行：我们将客户端（JSON、XML、HTML）重定向至 <b>[/init-session]</b> 路由，该路由的参数中包含 CSRF 令牌；
+  </li>
+</ul>
+
+<p>您可以在浏览器中测试此新路由：</p>
+<p><img src="images/10000000000003CF000000A47ACF6ACC.png" width="426" height="72" style="width:11.269cm;height:1.896cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003CF000000A47ACF6ACC.png" /></p>
+<p>服务器的响应（配置为 <strong>[with_csrftoken=True]</strong>）如下：</p>
+<p><img src="images/100000000000063C000000A5FABB0D6C.png" width="697" height="72" style="width:18.433cm;height:1.907cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000063C000000A5FABB0D6C.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，服务器被重定向到 <b>[/init-session]</b> 路由，CSRF 令牌包含在 URL 中；
+  </li>
+  <li>在 <b>[2] </b>中，CSRF 令牌位于服务器发送的 JSON 字典中，与 <b>[csrf_token]</b> 键相关联；
+  </li>
+</ul>
+
+<p>让我们回到客户端代码：</p>
+<p><img src="images/1000000000000119000001395F3D944C.png" width="122" height="136" style="width:3.24cm;height:3.609cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000119000001395F3D944C.png" /></p>
+<p>我们将 <strong>[config]</strong> 配置修改如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">   config.update({</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># fichier des contribuables</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;taxpayersFilename&quot;</span>: <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../data/input/taxpayersdata.txt&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># fichier des résultats</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;resultsFilename&quot;</span>: <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../data/output/résultats.json&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># fichier des erreurs</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;errorsFilename&quot;</span>: <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../data/output/errors.txt&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># fichier de logs</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;logsFilename&quot;</span>: <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../data/logs/logs.txt&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># le serveur de calcul de l&#x27;impôt</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;server&quot;</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#a31515">&quot;urlServer&quot;</span>: <span style="color:#a31515">&quot;http://127.0.0.1:5000&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#a31515">&quot;user&quot;</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;login&quot;</span>: <span style="color:#a31515">&quot;admin&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;password&quot;</span>: <span style="color:#a31515">&quot;admin&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#a31515">&quot;url_services&quot;</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;calculate-tax&quot;</span>: <span style="color:#a31515">&quot;/calculer-impot&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;get-admindata&quot;</span>: <span style="color:#a31515">&quot;/get-admindata&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;calculate-tax-in-bulk-mode&quot;</span>: <span style="color:#a31515">&quot;/calculer-impots&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;init-session&quot;</span>: <span style="color:#a31515">&quot;/init-session-without-csrftoken&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;end-session&quot;</span>: <span style="color:#a31515">&quot;/fin-session&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;authenticate-user&quot;</span>: <span style="color:#a31515">&quot;/authentifier-utilisateur&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;get-simulations&quot;</span>: <span style="color:#a31515">&quot;/lister-simulations&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;delete-simulation&quot;</span>: <span style="color:#a31515">&quot;/supprimer-simulation&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># mode debug</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;debug&quot;</span>: <span style="color:#0000ff">True</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># csrf_token</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="background-color:#fff2cc;color:#a31515">&quot;with_csrftoken&quot;</span><span style="background-color:#fff2cc">: </span><span style="background-color:#fff2cc;color:#0000ff">True</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    )</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># route init-session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    url_services = config<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;server&#x27;</span><span style="font-weight:bold">][</span><span style="font-weight:bold;color:#a31515">&#x27;url_services&#x27;</span><span style="font-weight:bold">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        url_services</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">&#x27;init-session&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = </span>&#x27;/init-session-without-csrftoken&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        url_services</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">&#x27;init-session&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = </span>&#x27;/init-session&#x27;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 31 行：一个布尔值将向客户端指示其所连接的服务器是否支持 CSRF 令牌；
+  </li>
+  <li>第 37–40 行：设置 <b>[init-session]</b> 操作的服务 URL：
+    <ul>
+      <li>如果服务器使用 CSRF 令牌，则服务 URL 为 <b>[/init-session-without-csrftoken]</b>；
+      </li>
+      <li>否则，服务 URL 为 <b>[/init-session]</b>；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>已引入路由 <strong>[/init-session-without-csrftoken]</strong>。它允许 JSON/XML 客户端在没有 CSRF 令牌的情况下与服务器建立会话。客户端将在服务器的响应中找到该令牌。</p>
+<p>接下来，我们修改实现客户 <strong>[dao]</strong> 层的 <strong>[</strong><strong><span style="color: #000000">ImpôtsDaoWithHttpSession</span></strong><strong>]</strong> 类：</p>
+<p><img src="images/100000000000023A0000012AE88F5267.png" width="248" height="130" style="width:6.57cm;height:3.434cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000023A0000012AE88F5267.png" /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">  1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">  2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">  3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">  4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">  5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">  6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">  7</a></span>
+<span class="normal"><a href="#__codelineno-8-8">  8</a></span>
+<span class="normal"><a href="#__codelineno-8-9">  9</a></span>
+<span class="normal"><a href="#__codelineno-8-10"> 10</a></span>
+<span class="normal"><a href="#__codelineno-8-11"> 11</a></span>
+<span class="normal"><a href="#__codelineno-8-12"> 12</a></span>
+<span class="normal"><a href="#__codelineno-8-13"> 13</a></span>
+<span class="normal"><a href="#__codelineno-8-14"> 14</a></span>
+<span class="normal"><a href="#__codelineno-8-15"> 15</a></span>
+<span class="normal"><a href="#__codelineno-8-16"> 16</a></span>
+<span class="normal"><a href="#__codelineno-8-17"> 17</a></span>
+<span class="normal"><a href="#__codelineno-8-18"> 18</a></span>
+<span class="normal"><a href="#__codelineno-8-19"> 19</a></span>
+<span class="normal"><a href="#__codelineno-8-20"> 20</a></span>
+<span class="normal"><a href="#__codelineno-8-21"> 21</a></span>
+<span class="normal"><a href="#__codelineno-8-22"> 22</a></span>
+<span class="normal"><a href="#__codelineno-8-23"> 23</a></span>
+<span class="normal"><a href="#__codelineno-8-24"> 24</a></span>
+<span class="normal"><a href="#__codelineno-8-25"> 25</a></span>
+<span class="normal"><a href="#__codelineno-8-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-8-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-8-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-8-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-8-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-8-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-8-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-8-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-8-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-8-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-8-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-8-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-8-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-8-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-8-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-8-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-8-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-8-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-8-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-8-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-8-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-8-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-8-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-8-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-8-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-8-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-8-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-8-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-8-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-8-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-8-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-8-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-8-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-8-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-8-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-8-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-8-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-8-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-8-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-8-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-8-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-8-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-8-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-8-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-8-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-8-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-8-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-8-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-8-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-8-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-8-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-8-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-8-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-8-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-8-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-8-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-8-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-8-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-8-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-8-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-8-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-8-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-8-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-8-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-8-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-8-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-8-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-8-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-8-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-8-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-8-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-8-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-8-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-8-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-8-100">100</a></span>
+<span class="normal"><a href="#__codelineno-8-101">101</a></span>
+<span class="normal"><a href="#__codelineno-8-102">102</a></span>
+<span class="normal"><a href="#__codelineno-8-103">103</a></span>
+<span class="normal"><a href="#__codelineno-8-104">104</a></span>
+<span class="normal"><a href="#__codelineno-8-105">105</a></span>
+<span class="normal"><a href="#__codelineno-8-106">106</a></span>
+<span class="normal"><a href="#__codelineno-8-107">107</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">xmltodict</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">AbstractImpôtsDao</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractImpôtsDao</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">AdminData</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdminData</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">ImpôtsError</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImpôtsError</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceImpôtsDaoWithHttpSession</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceImpôtsDaoWithHttpSession</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">TaxPayer</span><span class="w"> </span><span class="kn">import</span> <span class="n">TaxPayer</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="k">class</span><span class="w"> </span><span class="nc">ImpôtsDaoWithHttpSession</span><span class="p">(</span><span class="n">InterfaceImpôtsDaoWithHttpSession</span><span class="p">):</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a>    <span class="c1">#  manufacturer</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a>        <span class="c1">#  parent initialization</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a>        <span class="n">AbstractImpôtsDao</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a>        <span class="c1">#  saving configuration items</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a>        <span class="c1">#  general configuration</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__config</span> <span class="o">=</span> <span class="n">config</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a>        <span class="c1">#  server</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a>        <span class="c1">#  services</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__config_services</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">][</span><span class="s1">&#39;url_services&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a>        <span class="c1">#  debug mode</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__debug</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;debug&quot;</span><span class="p">]</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a>        <span class="c1">#  logger</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31"></a>        <span class="c1">#  cookies</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__cookies</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33"></a>        <span class="c1">#  session type (json, xml)</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__session_type</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35"></a>        <span class="c1">#  token CSRF</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__csrf_token</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37"></a>
+<a id="__codelineno-8-38" name="__codelineno-8-38"></a>    <span class="c1"># étape request / response</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">url_service</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_value</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">json_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40"></a>        <span class="c1">#  [method]: HTTP GET or POST method</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41"></a>        <span class="c1">#  [url_service] : URL of service</span>
+<a id="__codelineno-8-42" name="__codelineno-8-42"></a>        <span class="c1">#  [data]: POST parameters in x-www-form-urlencoded</span>
+<a id="__codelineno-8-43" name="__codelineno-8-43"></a>        <span class="c1">#  [json]: POST parameters in json</span>
+<a id="__codelineno-8-44" name="__codelineno-8-44"></a>        <span class="c1">#  [cookies]: cookies to include in the request</span>
+<a id="__codelineno-8-45" name="__codelineno-8-45"></a>
+<a id="__codelineno-8-46" name="__codelineno-8-46"></a>        <span class="c1">#  you must have a XML or JSON session, otherwise you won&#39;t be able to handle the response</span>
+<a id="__codelineno-8-47" name="__codelineno-8-47"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__session_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;xml&#39;</span><span class="p">]:</span>
+<a id="__codelineno-8-48" name="__codelineno-8-48"></a>            <span class="k">raise</span> <span class="n">ImpôtsError</span><span class="p">(</span><span class="mi">73</span><span class="p">,</span> <span class="s2">&quot;il n&#39;y a pas de session valide en cours&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-49" name="__codelineno-8-49"></a>
+<a id="__codelineno-8-50" name="__codelineno-8-50"></a>        <span class="c1">#  we add the CSRF token to the URL service token</span>
+<a id="__codelineno-8-51" name="__codelineno-8-51"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__csrf_token</span><span class="p">:</span>
+<a id="__codelineno-8-52" name="__codelineno-8-52"></a>            <span class="n">url_service</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">url_service</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__csrf_token</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-8-53" name="__codelineno-8-53"></a>
+<a id="__codelineno-8-54" name="__codelineno-8-54"></a>        <span class="c1">#  query execution</span>
+<a id="__codelineno-8-55" name="__codelineno-8-55"></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span>
+<a id="__codelineno-8-56" name="__codelineno-8-56"></a>                                    <span class="n">url_service</span><span class="p">,</span>
+<a id="__codelineno-8-57" name="__codelineno-8-57"></a>                                    <span class="n">data</span><span class="o">=</span><span class="n">data_value</span><span class="p">,</span>
+<a id="__codelineno-8-58" name="__codelineno-8-58"></a>                                    <span class="n">json</span><span class="o">=</span><span class="n">json_value</span><span class="p">,</span>
+<a id="__codelineno-8-59" name="__codelineno-8-59"></a>                                    <span class="n">cookies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cookies</span><span class="p">,</span>
+<a id="__codelineno-8-60" name="__codelineno-8-60"></a>                                    <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-8-61" name="__codelineno-8-61"></a>
+<a id="__codelineno-8-62" name="__codelineno-8-62"></a>        <span class="c1">#  debug mode?</span>
+<a id="__codelineno-8-63" name="__codelineno-8-63"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__debug</span><span class="p">:</span>
+<a id="__codelineno-8-64" name="__codelineno-8-64"></a>            <span class="c1">#  logger</span>
+<a id="__codelineno-8-65" name="__codelineno-8-65"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span><span class="p">:</span>
+<a id="__codelineno-8-66" name="__codelineno-8-66"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">[</span><span class="s1">&#39;logger&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-67" name="__codelineno-8-67"></a>            <span class="c1">#  log on</span>
+<a id="__codelineno-8-68" name="__codelineno-8-68"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-69" name="__codelineno-8-69"></a>
+<a id="__codelineno-8-70" name="__codelineno-8-70"></a>        <span class="c1">#  result</span>
+<a id="__codelineno-8-71" name="__codelineno-8-71"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__session_type</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+<a id="__codelineno-8-72" name="__codelineno-8-72"></a>            <span class="n">résultat</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<a id="__codelineno-8-73" name="__codelineno-8-73"></a>        <span class="k">else</span><span class="p">:</span>  <span class="c1">#  xml</span>
+<a id="__codelineno-8-74" name="__codelineno-8-74"></a>            <span class="n">résultat</span> <span class="o">=</span> <span class="n">xmltodict</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">39</span><span class="p">:])[</span><span class="s1">&#39;root&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-75" name="__codelineno-8-75"></a>
+<a id="__codelineno-8-76" name="__codelineno-8-76"></a>        <span class="c1">#  retrieve response cookies, if any</span>
+<a id="__codelineno-8-77" name="__codelineno-8-77"></a>        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span><span class="p">:</span>
+<a id="__codelineno-8-78" name="__codelineno-8-78"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__cookies</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">cookies</span>
+<a id="__codelineno-8-79" name="__codelineno-8-79"></a>
+<a id="__codelineno-8-80" name="__codelineno-8-80"></a>        <span class="c1">#  we retrieve the CSRF token</span>
+<a id="__codelineno-8-81" name="__codelineno-8-81"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">[</span><span class="s1">&#39;with_csrftoken&#39;</span><span class="p">]:</span>
+<a id="__codelineno-8-82" name="__codelineno-8-82"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__csrf_token</span> <span class="o">=</span> <span class="n">résultat</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<a id="__codelineno-8-83" name="__codelineno-8-83"></a>
+<a id="__codelineno-8-84" name="__codelineno-8-84"></a>        <span class="c1">#  status code</span>
+<a id="__codelineno-8-85" name="__codelineno-8-85"></a>        <span class="n">status_code</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+<a id="__codelineno-8-86" name="__codelineno-8-86"></a>
+<a id="__codelineno-8-87" name="__codelineno-8-87"></a>        <span class="c1">#  if status code other than 200 OK</span>
+<a id="__codelineno-8-88" name="__codelineno-8-88"></a>        <span class="k">if</span> <span class="n">status_code</span> <span class="o">!=</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">:</span>
+<a id="__codelineno-8-89" name="__codelineno-8-89"></a>            <span class="k">raise</span> <span class="n">ImpôtsError</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span> <span class="n">résultat</span><span class="p">[</span><span class="s1">&#39;réponse&#39;</span><span class="p">])</span>
+<a id="__codelineno-8-90" name="__codelineno-8-90"></a>
+<a id="__codelineno-8-91" name="__codelineno-8-91"></a>        <span class="c1">#  we return the result</span>
+<a id="__codelineno-8-92" name="__codelineno-8-92"></a>        <span class="k">return</span> <span class="n">résultat</span><span class="p">[</span><span class="s1">&#39;réponse&#39;</span><span class="p">]</span>
+<a id="__codelineno-8-93" name="__codelineno-8-93"></a>
+<a id="__codelineno-8-94" name="__codelineno-8-94"></a>
+<a id="__codelineno-8-95" name="__codelineno-8-95"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">init_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-8-96" name="__codelineno-8-96"></a>        <span class="c1">#  note the session type</span>
+<a id="__codelineno-8-97" name="__codelineno-8-97"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__session_type</span> <span class="o">=</span> <span class="n">session_type</span>
+<a id="__codelineno-8-98" name="__codelineno-8-98"></a>
+<a id="__codelineno-8-99" name="__codelineno-8-99"></a>        <span class="c1">#  delete the CSRF token from previous calls</span>
+<a id="__codelineno-8-100" name="__codelineno-8-100"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__csrf_token</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-8-101" name="__codelineno-8-101"></a>
+<a id="__codelineno-8-102" name="__codelineno-8-102"></a>        <span class="c1">#  the URL of the init-session action is requested</span>
+<a id="__codelineno-8-103" name="__codelineno-8-103"></a>        <span class="n">url_service</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span><span class="p">[</span><span class="s1">&#39;urlServer&#39;</span><span class="p">]</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">__config_services</span><span class="p">[</span><span class="s1">&#39;init-session&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">session_type</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-8-104" name="__codelineno-8-104"></a>
+<a id="__codelineno-8-105" name="__codelineno-8-105"></a>        <span class="c1">#  request execution</span>
+<a id="__codelineno-8-106" name="__codelineno-8-106"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">get_response</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url_service</span><span class="p">)</span>
+<a id="__codelineno-8-107" name="__codelineno-8-107"></a><span class="err">…</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 38–92 行：CSRF 令牌的处理主要在 <b>[get_response]</b> 方法中进行；
+  </li>
+  <li>第 60 行：关键点在于 <b>[allow_redirects=True]</b> 参数。这是其默认值，但我们特意将其突出显示；
+  </li>
+</ul>
+
+<p>在 <strong>[with_csrftoken=True]</strong> 模式下：</p>
+<ul>
+  <li>客户端通过调用路由 <b>[/init-session_without_csftoken/type_response]</b> 开始与服务器的交互；
+  </li>
+  <li>服务器对此请求的响应是重定向至 <b>[/init-session/type_response/csrf_token]</b> 路由；
+  </li>
+  <li>由于 <b>[allow_redirects=True]</b> 参数的作用，客户端将跟随此重定向 <b>[requests]</b>；
+  </li>
+  <li>在第 72 行和第 74 行获取的结果中，将找到与键 <b>[csrf_token]</b> 关联的 CSRF 令牌；
+  </li>
+</ul>
+
+<p>在 <strong>[with_csrftoken=False]</strong> 模式下：</p>
+<ul>
+  <li>（待续）
+    <ul>
+      <li>客户端通过调用路由 <b>[/init-session/type_response]</b> 开始与服务器的交互；
+      </li>
+      <li>服务器对此请求的响应是重定向至 <b>[/init-session/type_response]</b> 路由；
+      </li>
+      <li>由于 <b>[allow_redirects=True]</b> 参数，客户端 <b>[requests]</b> 会跟随此重定向；
+      </li>
+      <li>第 81–82 行中没有 CSRF 令牌可获取。因此，属性 <b>[self.__csrf_token]</b> 仍为 None（第 36 行）；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ul>
+  <li>第 51–52 行：对于所有后续请求，如果存在 CSRF 令牌，则将其添加到初始路由中；
+  </li>
+  <li>第 81–82 行：服务器为每个新客户端请求生成的令牌会被本地存储，以便在第 52 行随下一次请求一并返回；
+  </li>
+</ul>
+
+<p>此外，<strong>[init_session]</strong> 方法也略有调整：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">init_session</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">session_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>        <span class="c1">#  note the session type</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__session_type</span> <span class="o">=</span> <span class="n">session_type</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>        <span class="c1">#  delete the CSRF token from previous calls</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">__csrf_token</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>        <span class="c1">#  the URL of the init-session action is requested</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>        <span class="n">url_service</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__config_server</span><span class="p">[</span><span class="s1">&#39;urlServer&#39;</span><span class="p">]</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">__config_services</span><span class="p">[</span><span class="s1">&#39;init-session&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">session_type</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>        <span class="c1">#  request execution</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">get_response</span><span class="p">(</span><span class="s2">&quot;GET&quot;</span><span class="p">,</span> <span class="n">url_service</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>这里需要记住的是，我们创建了一个路由 <strong>[/init-session-without-csrftoken/&lt;response-type&gt;]</strong>，用于在不使用 CSRF 令牌的情况下初始化客户端/服务器对话。 然而，我们可以看到，代码第 12 行调用的 <strong>[get_response]</strong> 方法会系统地将存储在 <strong>[</strong><strong><span style="color: #0000ff"><mark style="background-color: #fff2cc">self</mark></span></strong><strong><mark style="background-color: #fff2cc">.__csrf_token</mark></strong><strong>]</strong> 中的 CSRF 令牌追加到服务 URL 的末尾。这就是为什么在代码第 6 行，如果存在该 CSRF 令牌，我们会将其移除。</p>
+<p>就这样。为了测试，我们将运行：</p>
+<ul>
+  <li>the console clients <b>[main, main2, main3]</b>;
+  </li>
+  <li>测试类 <b>[Test1HttpClientDaoWithSession] </b>和 <b>[Test2HttpClientDaoWithSession]</b>；
+  </li>
+</ul>
+
+<p>通过依次将配置参数 <strong>[with_csrftoken]</strong> 设置为 True，然后设置为 False。</p>
+<p><img src="images/1000000000000239000002062A0C2A4E.png" width="248" height="226" style="width:6.57cm;height:5.981cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000239000002062A0C2A4E.png" /></p>
+<p>以下是在 <strong>[with_csrftoken=True]</strong> 条件下运行 <strong>[main json]</strong> 客户端时获得的日志示例：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, MainThread : début du calcul de l&#x27;impôt des contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, Thread-1 : début du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, Thread-2 : début du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, Thread-3 : début du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, Thread-4 : début du calcul de l&#x27;impôt des 1 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.379221, Thread-2 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">init-session</span>&quot;, &quot;état&quot;: 700, &quot;réponse&quot;: <span style="font-weight:bold">[&quot;session démarrée avec le type de réponse json&quot;]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImFiZmZkYjZmMzFkZDc2YWRjNWYwOGM0NTBmMGM4ODJjYzViOWI4NGEi.Xy63sw.H5L0--yWsvfaWvggrGw78z5VnN0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.381073, Thread-4 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">init-session</span>&quot;, &quot;état&quot;: 700, &quot;réponse&quot;: <span style="font-weight:bold">[&quot;session démarrée avec le type de réponse json&quot;]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImY5YzQyMjlkYzcyYmM4YmZiMGI0NWY5MjE4MzIzNDExZjc0MGQ3MWQi.Xy63sw.q6olg7IP_g2ro_RBFRCX1BX90g8&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.386982, Thread-3 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">init-session</span>&quot;, &quot;état&quot;: 700, &quot;réponse&quot;: <span style="font-weight:bold">[&quot;session démarrée avec le type de réponse json&quot;]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjkxZGNlN2YyMmUxMjQ0M2Y0MTdjNDQ4ZmQ1MDMxZjkwNjBhNzAzZjMi.Xy63sw.-6buL11No3UJBlElpW4tX4B-lp0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.390269, Thread-1 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">init-session</span>&quot;, &quot;état&quot;: 700, &quot;réponse&quot;: <span style="font-weight:bold">[&quot;session démarrée avec le type de réponse json&quot;]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjIxNmU4MDQyZDFmZmIyZDlmZjE4MzNlNDUzYzFjMGYxMWYxYzEwNGYi.Xy63sw.fgs6Cm2owsJf4NjTm7gKrVESabI&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.413206, Thread-2 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">authentifier-utilisateur</span>&quot;, &quot;état&quot;: 200, &quot;réponse&quot;: &quot;Authentification réussie&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImFiZmZkYjZmMzFkZDc2YWRjNWYwOGM0NTBmMGM4ODJjYzViOWI4NGEi.Xy63sw.H5L0--yWsvfaWvggrGw78z5VnN0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.422877, Thread-2 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">calculer-impots</span>&quot;, &quot;état&quot;: 1500, &quot;réponse&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 16782, &quot;surcôte&quot;: 7176, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 1}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 9200, &quot;surcôte&quot;: 2180, &quot;taux&quot;: 0.3, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 2}]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImFiZmZkYjZmMzFkZDc2YWRjNWYwOGM0NTBmMGM4ODJjYzViOWI4NGEi.Xy63sw.H5L0--yWsvfaWvggrGw78z5VnN0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.428622, Thread-4 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">authentifier-utilisateur</span>&quot;, &quot;état&quot;: 200, &quot;réponse&quot;: &quot;Authentification réussie&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImY5YzQyMjlkYzcyYmM4YmZiMGI0NWY5MjE4MzIzNDExZjc0MGQ3MWQi.Xy63sw.q6olg7IP_g2ro_RBFRCX1BX90g8&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.429127, Thread-3 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">authentifier-utilisateur</span>&quot;, &quot;état&quot;: 200, &quot;réponse&quot;: &quot;Authentification réussie&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjkxZGNlN2YyMmUxMjQ0M2Y0MTdjNDQ4ZmQ1MDMxZjkwNjBhNzAzZjMi.Xy63sw.-6buL11No3UJBlElpW4tX4B-lp0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.429127, Thread-1 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">authentifier-utilisateur</span>&quot;, &quot;état&quot;: 200, &quot;réponse&quot;: &quot;Authentification réussie&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjIxNmU4MDQyZDFmZmIyZDlmZjE4MzNlNDUzYzFjMGYxMWYxYzEwNGYi.Xy63sw.fgs6Cm2owsJf4NjTm7gKrVESabI&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.429127, Thread-2 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">fin-session</span>&quot;, &quot;état&quot;: 400, &quot;réponse&quot;: &quot;session réinitialisée&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjU1YjlmZDA0OWRhNTJlODFmYjgyYjlhM2ExYWNhZmUzNTk2NjA5NGIi.Xy63sw.nyNSvkcG6iG0oIMBjtYPo8ySgdw&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.438519, Thread-2 : fin du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.443033, Thread-4 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">calculer-impots</span>&quot;, &quot;état&quot;: 1500, &quot;réponse&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 42842, &quot;surcôte&quot;: 17283, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 1}]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImY5YzQyMjlkYzcyYmM4YmZiMGI0NWY5MjE4MzIzNDExZjc0MGQ3MWQi.Xy63sw.q6olg7IP_g2ro_RBFRCX1BX90g8&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.446510, Thread-3 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">calculer-impots</span>&quot;, &quot;état&quot;: 1500, &quot;réponse&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 5, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 4230, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 1}, {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 22986, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 2}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 30000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.0, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 3}, {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 64210, &quot;surcôte&quot;: 7498, &quot;taux&quot;: 0.45, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 4}]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjkxZGNlN2YyMmUxMjQ0M2Y0MTdjNDQ4ZmQ1MDMxZjkwNjBhNzAzZjMi.Xy63sw.-6buL11No3UJBlElpW4tX4B-lp0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.453477, Thread-1 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">calculer-impots</span>&quot;, &quot;état&quot;: 1500, &quot;réponse&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 55555, &quot;impôt&quot;: 2814, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 1}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 1384, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 384, &quot;réduction&quot;: 347, &quot;id&quot;: 2}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 720, &quot;réduction&quot;: 0, &quot;id&quot;: 3}, {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 19884, &quot;surcôte&quot;: 4480, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 4}]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjIxNmU4MDQyZDFmZmIyZDlmZjE4MzNlNDUzYzFjMGYxMWYxYzEwNGYi.Xy63sw.fgs6Cm2owsJf4NjTm7gKrVESabI&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.457912, Thread-4 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">fin-session</span>&quot;, &quot;état&quot;: 400, &quot;réponse&quot;: &quot;session réinitialisée&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjQ0ZDQxODgzN2M5NjRiYWI0NjA2MTk5YWFkNGFhMzY1M2IxNWMyNDIi.Xy63sw.mOa5MKXvJ-EXf_qEok-OqC5j_mg&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.458442, Thread-4 : fin du calcul de l&#x27;impôt des 1 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.459045, Thread-3 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">fin-session</span>&quot;, &quot;état&quot;: 400, &quot;réponse&quot;: &quot;session réinitialisée&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImQ0NDZlYmViYjY1ZDUxYzJhMTNmM2JiZTRkMjBjZGJkYzE0OGVkYzMi.Xy63sw.fviTJz4zFDqVLlVlkrosT_JRPww&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.459700, Thread-3 : fin du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.460492, Thread-1 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">fin-session</span>&quot;, &quot;état&quot;: 400, &quot;réponse&quot;: &quot;session réinitialisée&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;Ijg3MjQ1NGUyYTUyOGEyNTdmZmNmYWZkMmU2OTgyMzUwNjI1YTlhZjIi.Xy63sw.I0xBl9Q8DzsuXPSgOdeARc_VKBA&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.460492, Thread-1 : fin du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.460492, MainThread : fin du calcul de l&#x27;impôt des contribuables</span></span>
+</code></pre></div>
+
+<p>如果我们观察依次接收到的CSRF令牌，会发现它们各不相同。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

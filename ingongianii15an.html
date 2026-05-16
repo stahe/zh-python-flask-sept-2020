@@ -1,0 +1,2978 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/ingongianii15an.html">
+      
+      
+        <link rel="prev" href="hiianianii-14-an.html">
+      
+      
+        <link rel="next" href="ingongianii-16-an.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>35. 应用练习：第15版 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#35-15" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              35. 应用练习：第15版
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ingongianii15an.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#351" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.1. 简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#352" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.2. 实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="35.2. 实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3521" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.2.1. 新路由
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3522" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.2.2. 新的控制器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3523-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.2.3. 新的 MVC 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3524" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.2.4. 新模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3525" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.2.5. 新的主控制器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3526-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.2.6. 新的 HTML 响应
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#353" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        35.3. 测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="exercicedapplication11"></a>
+<a id="toc48549324"></a></p>
+<h1 id="35-15">35. <span style="color: #365f91">应用练习：第15版</span></h1>
+<p><a id="toc48549325"></a></p>
+<h2 id="351">35.1. <span style="color: #4f81bd">简介</span></h2>
+<p>本版本旨在解决与在浏览器中刷新应用程序页面（F5）相关的问题。让我们举个例子。用户刚刚删除了 id=3 的模拟：</p>
+<p><img src="images/10000000000005BF0000026D6053DA9E.png" width="641" height="271" style="width:16.97cm;height:7.163cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005BF0000026D6053DA9E.png" /></p>
+<p>删除后，浏览器中的 URL 为 <strong>[/delete-simulation/3/…]</strong>. 如果用户刷新页面（F5），URL <strong>[1]</strong> 会被重新发送。因此，我们再次请求删除 id=3 的模拟。结果如下：</p>
+<p><img src="images/10000000000004710000022510AE0224.png" width="497" height="240" style="width:13.139cm;height:6.345cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004710000022510AE0224.png" /></p>
+<p>再看另一个例子。用户刚刚计算了一笔税款：</p>
+<ul>
+  <li>在 <b>[1] </b>中，URL <b>[/calculate-tax]</b> 刚刚通过 POST 请求被查询；
+
+<img src="images/100000000000054A000003ADADB5C962.png" width="591" height="411" style="width:15.649cm;height:10.876cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000054A000003ADADB5C962.png" />
+
+
+  </li>
+</ul>
+
+<p>如果用户刷新页面（F5），将收到一条警告信息：</p>
+<p><img src="images/10000000000002D40000011C5B0E676C.png" width="316" height="124" style="width:8.35cm;height:3.276cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D40000011C5B0E676C.png" /></p>
+<p>页面刷新操作会重新执行浏览器发出的最后一次请求，本例中即 <strong>[POST /calculate-tax]</strong>。当被要求重新执行 POST 请求时，浏览器会显示类似上文的警告。该警告提示正在重新执行已完成的操作。假设此 POST 请求完成了购买操作，重复执行将造成不必要的后果。</p>
+<p>此外，我们将限制用户在浏览器中输入 URL 的能力。让我们以之前的视图之一为例：</p>
+<p><img src="images/100000000000054A000003ADADB5C962.png" width="591" height="411" style="width:15.649cm;height:10.876cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000054A000003ADADB5C962.png" /></p>
+<p>该页面提供的链接包括：</p>
+<ul>
+  <li><b>[模拟列表]</b>，对应 URL <b>[/lister-simulations]</b>；
+  </li>
+  <li><b>[结束会话]</b>，对应 URL <b>[/end-session]</b>；
+  </li>
+  <li><b>[提交]</b>，对应 URL <b>[/calculate-tax]</b>（上文未显示）；
+  </li>
+</ul>
+
+<p>当显示税费计算视图时，我们仅接受 <strong>[/list-simulations、/end-session、/calculate-tax]</strong> 这三个操作。如果用户在浏览器中输入其他操作，系统将抛出错误。我们将对应用程序的全部四个视图执行此类验证。</p>
+<p>我们建议按以下方式解决页面刷新问题：</p>
+<ul>
+  <li>我们将区分两种类型的操作：
+    <ul>
+      <li>ADS（执行操作）操作：会修改应用程序状态。此类操作通常在 URL 或请求正文中包含参数；
+      </li>
+      <li>ASV（Action Show View）操作，用于显示视图而不改变应用程序的状态。ASV操作的数量与视图V的数量相同。ASV操作不包含参数；
+      </li>
+    </ul>
+  </li>
+  <li>此前，ADS 操作在执行后，会先准备视图 V 的模型 M，然后通过显示该视图 V 来完成操作。从现在起，它们将把视图的模型 M 放入会话中，并指示浏览器重定向至负责显示视图 V 的 ASV 操作；
+  </li>
+  <li>视图 V 仅会在 ASV 操作之后显示。它们将从会话中检索其模型；
+  </li>
+</ul>
+
+<p>此方法的优势在于，浏览器地址栏将显示 ASV 的 URL。 刷新页面将重新执行 ASV 操作。该操作不会修改应用程序的状态，且使用会话中的模型（ ）。因此，同一页面将无任何副作用地重新显示。最后，由于重定向机制，用户在浏览器中仅会看到 ASV 操作的 URL，从而产生在页面间流畅导航的体验；</p>
+<p><a id="toc48549326"></a></p>
+<h2 id="352">35.2. <span style="color: #4f81bd">实现</span></h2>
+<p><img src="images/100000000000013800000146F0CE2B83.png" width="136" height="142" style="width:3.602cm;height:3.764cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000013800000146F0CE2B83.png" /></p>
+<p><strong>[impots/http-servers/10]</strong> 目录最初是通过复制 <strong>[impots/http-servers/09]</strong> 目录创建的。随后对其进行了修改。</p>
+<p><a id="toc48549327"></a></p>
+<h3 id="3521">35.2.1. <span style="color: #4f81bd">新路由</span></h3>
+<p><img src="images/100000000000019B000001C6F398E1E6.png" width="180" height="198" style="width:4.75cm;height:5.248cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000019B000001C6F398E1E6.png" /></p>
+<p>在 <strong>[routes_with_csrftoken]</strong> 和 <strong>[routes_without_csrftoken]</strong> 这两个文件中，我们需要为显示四个视图的四个 ASV 操作创建相应的四条路由。其余路由保持不变。</p>
+<p>在 <strong>[routes_with_csrftoken]</strong> 中：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#  afficher-vue-calcul-impot</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-vue-calcul-impot/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_vue_calcul_impot</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1">#  display-view-authentication</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-vue-authentification/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_vue_authentification</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="c1">#  display-view-list-simulations</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-vue-liste-simulations/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_vue_liste_simulations</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="c1">#  display-view-error_list</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-vue-liste-erreurs/&lt;string:csrf_token&gt;&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_vue_liste_erreurs</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>第 1–23 行：我们为四个 ASV 操作创建了四个路由：</p>
+<ul>
+  <li><b>[/display-authentication-view]</b>，第 8 行，显示身份验证视图；
+  </li>
+  <li><b>[/display-tax-calculation-view]</b>，第 2 行，显示税费计算视图；
+  </li>
+  <li><b>[/display-simulation-list-view]</b>，第 14 行，显示模拟视图；
+  </li>
+  <li><b>[/display-error-list-view]</b>，第 20 行，显示意外错误视图；
+  </li>
+</ul>
+
+<p>对于没有令牌的路由，我们在 <strong>[routes_with_csrftoken]</strong> 文件中也做了同样的处理：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">#  routes ASV -------------------------</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1">#  afficher-vue-calcul-impot</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-vue-calcul-impot&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_vue_calcul_impot</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="c1">#  display-view-authentication</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-vue-authentification&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_vue_authentification</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="c1">#  display-view-list-simulations</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-vue-liste-simulations&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_vue_liste_simulations</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="c1">#  display-view-error_list</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/afficher-vue-liste-erreurs&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="k">def</span><span class="w"> </span><span class="nf">afficher_vue_liste_erreurs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a>    <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a>    <span class="k">return</span> <span class="n">front_controller</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p><a id="toc48549328"></a></p>
+<h3 id="3522">35.2.2. <span style="color: #4f81bd">新的控制器</span></h3>
+<p><img src="images/100000000000021300000153E76C55DB.png" width="232" height="148" style="width:6.13cm;height:3.914cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000021300000153E76C55DB.png" /></p>
+<p><strong>[AuthenticationViewController]</strong> 执行 ASV 操作 <strong>[/display-authentication-view]</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceController</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceController</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">AfficherVueAuthentificationController</span><span class="p">(</span><span class="n">InterfaceController</span><span class="p">):</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>        <span class="c1">#  path elements are retrieved</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>        <span class="n">params</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>        <span class="n">action</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>        <span class="c1">#  change of view - just a status code to set</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">1100</span><span class="p">,</span> <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span>
+</code></pre></div></td></tr></table></div>
+<p>我们提到过，ASV 操作没有参数，也不会修改应用程序的状态。我们只需在第 14 行设置一个状态码，即可显示所需的视图。</p>
+<p><strong>[AfficherVueCalculImpotController]</strong> 控制器执行 ASV 操作 <strong>[/afficher-vue-calcul-impot]</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceController</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceController</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">AfficherVueCalculImpotController</span><span class="p">(</span><span class="n">InterfaceController</span><span class="p">):</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>        <span class="c1">#  path elements are retrieved</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>        <span class="n">params</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>        <span class="n">action</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>        <span class="c1">#  view change - just a status code to set</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">1400</span><span class="p">,</span> <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>[AfficherVueListeSimulationsController]</strong> 控制器执行 ASV 操作 <strong>[/afficher-vue-liste-simulations]</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceController</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceController</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">AfficherVueListeSimulationsController</span><span class="p">(</span><span class="n">InterfaceController</span><span class="p">):</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>        <span class="c1">#  path elements are retrieved</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>        <span class="n">params</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>        <span class="n">action</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a>        <span class="c1">#  view change - just a status code to set</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">1200</span><span class="p">,</span> <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>[AfficherVueListeErreursController]</strong> 控制器执行 ASV 操作 <strong>[/afficher-vue-liste-erreurs]</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceController</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceController</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">AfficherVueListeErreursController</span><span class="p">(</span><span class="n">InterfaceController</span><span class="p">):</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>        <span class="c1">#  path elements are retrieved</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>        <span class="n">params</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>        <span class="n">action</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a>        <span class="c1">#  view change - just a status code to set</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">1300</span><span class="p">,</span> <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">},</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span>
+</code></pre></div></td></tr></table></div>
+<p>让我们总结一下状态码：</p>
+<ul>
+  <li>代码 1100 应显示身份验证视图；
+  </li>
+  <li>代码 1400 应显示税费计算视图；
+  </li>
+  <li>代码 1200 应显示模拟视图；
+  </li>
+  <li>代码 1300 应显示意外错误视图；
+  </li>
+</ul>
+<p><a id="toc48549329"></a></p>
+<h3 id="3523-mvc">35.2.3. <span style="color: #4f81bd">新的 MVC 配置</span></h3>
+<p>由于规模过大，MVC 配置已拆分为四个文件：</p>
+<ul>
+  <li><b>[controllers]</b>：MVC 应用程序的 C 控制器列表；
+  </li>
+  <li><b>[ads_actions]</b>：列出 ADS（Action Do Something）操作；
+  </li>
+  <li><b>[asv_actions]</b>：列出 ASV（Action Show View）操作；
+  </li>
+  <li><b>[responses]</b>：列出了应用程序的 HTTP 响应类；
+  </li>
+</ul>
+
+<p>让我们从最简单的开始，即 HTTP 响应文件 <strong>[responses]</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span>
+<span class="normal"><a href="#__codelineno-6-17">17</a></span>
+<span class="normal"><a href="#__codelineno-6-18">18</a></span>
+<span class="normal"><a href="#__codelineno-6-19">19</a></span>
+<span class="normal"><a href="#__codelineno-6-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>    <span class="c1">#  application configuration MVC</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="c1">#  answers HTTP</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">HtmlResponse</span><span class="w"> </span><span class="kn">import</span> <span class="n">HtmlResponse</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">JsonResponse</span><span class="w"> </span><span class="kn">import</span> <span class="n">JsonResponse</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">XmlResponse</span><span class="w"> </span><span class="kn">import</span> <span class="n">XmlResponse</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>    <span class="c1">#  different response types (json, xml, html)</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="n">responses</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>        <span class="s2">&quot;json&quot;</span><span class="p">:</span> <span class="n">JsonResponse</span><span class="p">(),</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>        <span class="s2">&quot;html&quot;</span><span class="p">:</span> <span class="n">HtmlResponse</span><span class="p">(),</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a>        <span class="s2">&quot;xml&quot;</span><span class="p">:</span> <span class="n">XmlResponse</span><span class="p">()</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a>    <span class="p">}</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15"></a>
+<a id="__codelineno-6-16" name="__codelineno-6-16"></a>    <span class="c1">#  return response dictionary HTTP</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-6-18" name="__codelineno-6-18"></a>        <span class="c1">#  answers HTTP</span>
+<a id="__codelineno-6-19" name="__codelineno-6-19"></a>        <span class="s2">&quot;responses&quot;</span><span class="p">:</span> <span class="n">responses</span><span class="p">,</span>
+<a id="__codelineno-6-20" name="__codelineno-6-20"></a>    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这没什么意外。</p>
+<p><strong>[controllers]</strong> 文件的内容也毫不意外。我们只是为 ASV 操作添加了新的控制器。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span>
+<span class="normal"><a href="#__codelineno-7-31">31</a></span>
+<span class="normal"><a href="#__codelineno-7-32">32</a></span>
+<span class="normal"><a href="#__codelineno-7-33">33</a></span>
+<span class="normal"><a href="#__codelineno-7-34">34</a></span>
+<span class="normal"><a href="#__codelineno-7-35">35</a></span>
+<span class="normal"><a href="#__codelineno-7-36">36</a></span>
+<span class="normal"><a href="#__codelineno-7-37">37</a></span>
+<span class="normal"><a href="#__codelineno-7-38">38</a></span>
+<span class="normal"><a href="#__codelineno-7-39">39</a></span>
+<span class="normal"><a href="#__codelineno-7-40">40</a></span>
+<span class="normal"><a href="#__codelineno-7-41">41</a></span>
+<span class="normal"><a href="#__codelineno-7-42">42</a></span>
+<span class="normal"><a href="#__codelineno-7-43">43</a></span>
+<span class="normal"><a href="#__codelineno-7-44">44</a></span>
+<span class="normal"><a href="#__codelineno-7-45">45</a></span>
+<span class="normal"><a href="#__codelineno-7-46">46</a></span>
+<span class="normal"><a href="#__codelineno-7-47">47</a></span>
+<span class="normal"><a href="#__codelineno-7-48">48</a></span>
+<span class="normal"><a href="#__codelineno-7-49">49</a></span>
+<span class="normal"><a href="#__codelineno-7-50">50</a></span>
+<span class="normal"><a href="#__codelineno-7-51">51</a></span>
+<span class="normal"><a href="#__codelineno-7-52">52</a></span>
+<span class="normal"><a href="#__codelineno-7-53">53</a></span>
+<span class="normal"><a href="#__codelineno-7-54">54</a></span>
+<span class="normal"><a href="#__codelineno-7-55">55</a></span>
+<span class="normal"><a href="#__codelineno-7-56">56</a></span>
+<span class="normal"><a href="#__codelineno-7-57">57</a></span>
+<span class="normal"><a href="#__codelineno-7-58">58</a></span>
+<span class="normal"><a href="#__codelineno-7-59">59</a></span>
+<span class="normal"><a href="#__codelineno-7-60">60</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>    <span class="c1">#  application configuration MVC</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>    <span class="c1">#  the main controller</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">MainController</span><span class="w"> </span><span class="kn">import</span> <span class="n">MainController</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a>    <span class="c1">#  action controllers ADS</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">AuthentifierUtilisateurController</span><span class="w"> </span><span class="kn">import</span> <span class="n">AuthentifierUtilisateurController</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">CalculerImpotController</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalculerImpotController</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">CalculerImpotsController</span><span class="w"> </span><span class="kn">import</span> <span class="n">CalculerImpotsController</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">FinSessionController</span><span class="w"> </span><span class="kn">import</span> <span class="n">FinSessionController</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">GetAdminDataController</span><span class="w"> </span><span class="kn">import</span> <span class="n">GetAdminDataController</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">InitSessionController</span><span class="w"> </span><span class="kn">import</span> <span class="n">InitSessionController</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ListerSimulationsController</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListerSimulationsController</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">SupprimerSimulationController</span><span class="w"> </span><span class="kn">import</span> <span class="n">SupprimerSimulationController</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">AfficherCalculImpotController</span><span class="w"> </span><span class="kn">import</span> <span class="n">AfficherCalculImpotController</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17"></a>
+<a id="__codelineno-7-18" name="__codelineno-7-18"></a>    <span class="c1">#  action controllers ASV</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">AfficherVueCalculImpotController</span><span class="w"> </span><span class="kn">import</span> <span class="n">AfficherVueCalculImpotController</span>
+<a id="__codelineno-7-20" name="__codelineno-7-20"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">AfficherVueAuthentificationController</span><span class="w"> </span><span class="kn">import</span> <span class="n">AfficherVueAuthentificationController</span>
+<a id="__codelineno-7-21" name="__codelineno-7-21"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">AfficherVueListeErreursController</span><span class="w"> </span><span class="kn">import</span> <span class="n">AfficherVueListeErreursController</span>
+<a id="__codelineno-7-22" name="__codelineno-7-22"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">AfficherVueListeSimulationsController</span><span class="w"> </span><span class="kn">import</span> <span class="n">AfficherVueListeSimulationsController</span>
+<a id="__codelineno-7-23" name="__codelineno-7-23"></a>
+<a id="__codelineno-7-24" name="__codelineno-7-24"></a>    <span class="c1">#  authorized shares and their controllers</span>
+<a id="__codelineno-7-25" name="__codelineno-7-25"></a>    <span class="n">controllers</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26"></a>        <span class="c1">#  initialization of a calculation session</span>
+<a id="__codelineno-7-27" name="__codelineno-7-27"></a>        <span class="s2">&quot;init-session&quot;</span><span class="p">:</span> <span class="n">InitSessionController</span><span class="p">(),</span>
+<a id="__codelineno-7-28" name="__codelineno-7-28"></a>        <span class="c1">#  user authentication</span>
+<a id="__codelineno-7-29" name="__codelineno-7-29"></a>        <span class="s2">&quot;authentifier-utilisateur&quot;</span><span class="p">:</span> <span class="n">AuthentifierUtilisateurController</span><span class="p">(),</span>
+<a id="__codelineno-7-30" name="__codelineno-7-30"></a>        <span class="c1">#  link to tax calculation view</span>
+<a id="__codelineno-7-31" name="__codelineno-7-31"></a>        <span class="s2">&quot;afficher-calcul-impot&quot;</span><span class="p">:</span> <span class="n">AfficherCalculImpotController</span><span class="p">(),</span>
+<a id="__codelineno-7-32" name="__codelineno-7-32"></a>        <span class="c1">#  tax calculation in individual mode</span>
+<a id="__codelineno-7-33" name="__codelineno-7-33"></a>        <span class="s2">&quot;calculer-impot&quot;</span><span class="p">:</span> <span class="n">CalculerImpotController</span><span class="p">(),</span>
+<a id="__codelineno-7-34" name="__codelineno-7-34"></a>        <span class="c1">#  batch mode tax calculation</span>
+<a id="__codelineno-7-35" name="__codelineno-7-35"></a>        <span class="s2">&quot;calculer-impots&quot;</span><span class="p">:</span> <span class="n">CalculerImpotsController</span><span class="p">(),</span>
+<a id="__codelineno-7-36" name="__codelineno-7-36"></a>        <span class="c1">#  list of simulations</span>
+<a id="__codelineno-7-37" name="__codelineno-7-37"></a>        <span class="s2">&quot;lister-simulations&quot;</span><span class="p">:</span> <span class="n">ListerSimulationsController</span><span class="p">(),</span>
+<a id="__codelineno-7-38" name="__codelineno-7-38"></a>        <span class="c1">#  deleting a simulation</span>
+<a id="__codelineno-7-39" name="__codelineno-7-39"></a>        <span class="s2">&quot;supprimer-simulation&quot;</span><span class="p">:</span> <span class="n">SupprimerSimulationController</span><span class="p">(),</span>
+<a id="__codelineno-7-40" name="__codelineno-7-40"></a>        <span class="c1">#  end of calculation session</span>
+<a id="__codelineno-7-41" name="__codelineno-7-41"></a>        <span class="s2">&quot;fin-session&quot;</span><span class="p">:</span> <span class="n">FinSessionController</span><span class="p">(),</span>
+<a id="__codelineno-7-42" name="__codelineno-7-42"></a>        <span class="c1">#  obtaining data from tax authorities</span>
+<a id="__codelineno-7-43" name="__codelineno-7-43"></a>        <span class="s2">&quot;get-admindata&quot;</span><span class="p">:</span> <span class="n">GetAdminDataController</span><span class="p">(),</span>
+<a id="__codelineno-7-44" name="__codelineno-7-44"></a>        <span class="c1">#  main controller</span>
+<a id="__codelineno-7-45" name="__codelineno-7-45"></a>        <span class="s2">&quot;main-controller&quot;</span><span class="p">:</span> <span class="n">MainController</span><span class="p">(),</span>
+<a id="__codelineno-7-46" name="__codelineno-7-46"></a>        <span class="c1">#  display authentication view</span>
+<a id="__codelineno-7-47" name="__codelineno-7-47"></a>        <span class="s2">&quot;afficher-vue-authentification&quot;</span><span class="p">:</span> <span class="n">AfficherVueAuthentificationController</span><span class="p">(),</span>
+<a id="__codelineno-7-48" name="__codelineno-7-48"></a>        <span class="c1">#  display tax calculation view</span>
+<a id="__codelineno-7-49" name="__codelineno-7-49"></a>        <span class="s2">&quot;afficher-vue-calcul-impot&quot;</span><span class="p">:</span> <span class="n">AfficherVueCalculImpotController</span><span class="p">(),</span>
+<a id="__codelineno-7-50" name="__codelineno-7-50"></a>        <span class="c1">#  displaying the simulation view</span>
+<a id="__codelineno-7-51" name="__codelineno-7-51"></a>        <span class="s2">&quot;afficher-vue-liste-simulations&quot;</span><span class="p">:</span> <span class="n">AfficherVueListeSimulationsController</span><span class="p">(),</span>
+<a id="__codelineno-7-52" name="__codelineno-7-52"></a>        <span class="c1">#  displaying the error view</span>
+<a id="__codelineno-7-53" name="__codelineno-7-53"></a>        <span class="s2">&quot;afficher-vue-liste-erreurs&quot;</span><span class="p">:</span> <span class="n">AfficherVueListeErreursController</span><span class="p">()</span>
+<a id="__codelineno-7-54" name="__codelineno-7-54"></a>    <span class="p">}</span>
+<a id="__codelineno-7-55" name="__codelineno-7-55"></a>
+<a id="__codelineno-7-56" name="__codelineno-7-56"></a>    <span class="c1">#  make the controller configuration</span>
+<a id="__codelineno-7-57" name="__codelineno-7-57"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-7-58" name="__codelineno-7-58"></a>        <span class="c1">#  controllers</span>
+<a id="__codelineno-7-59" name="__codelineno-7-59"></a>        <span class="s2">&quot;controllers&quot;</span><span class="p">:</span> <span class="n">controllers</span><span class="p">,</span>
+<a id="__codelineno-7-60" name="__codelineno-7-60"></a>    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>ASV 操作的 <strong>[asv_actions]</strong> 配置如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span>
+<span class="normal"><a href="#__codelineno-8-31">31</a></span>
+<span class="normal"><a href="#__codelineno-8-32">32</a></span>
+<span class="normal"><a href="#__codelineno-8-33">33</a></span>
+<span class="normal"><a href="#__codelineno-8-34">34</a></span>
+<span class="normal"><a href="#__codelineno-8-35">35</a></span>
+<span class="normal"><a href="#__codelineno-8-36">36</a></span>
+<span class="normal"><a href="#__codelineno-8-37">37</a></span>
+<span class="normal"><a href="#__codelineno-8-38">38</a></span>
+<span class="normal"><a href="#__codelineno-8-39">39</a></span>
+<span class="normal"><a href="#__codelineno-8-40">40</a></span>
+<span class="normal"><a href="#__codelineno-8-41">41</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>    <span class="c1">#  application configuration MVC</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>    <span class="c1">#  HTML views and their models depend on the state rendered by the controller</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>    <span class="c1">#  actions ASV (Action Show view)</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>    <span class="n">asv</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>        <span class="p">{</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>            <span class="c1">#  authentication view</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a>            <span class="s2">&quot;états&quot;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>                <span class="mi">1100</span><span class="p">,</span>  <span class="c1">#  /show-view-authentication</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a>            <span class="p">],</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>            <span class="s2">&quot;view_name&quot;</span><span class="p">:</span> <span class="s2">&quot;views/vue-authentification.html&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a>        <span class="p">},</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a>        <span class="p">{</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15"></a>            <span class="c1">#  tax calculation</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16"></a>            <span class="s2">&quot;états&quot;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17"></a>                <span class="mi">1400</span><span class="p">,</span>  <span class="c1">#  /display-view-tax-calculation</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18"></a>            <span class="p">],</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19"></a>            <span class="s2">&quot;view_name&quot;</span><span class="p">:</span> <span class="s2">&quot;views/vue-calcul-impot.html&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20"></a>        <span class="p">},</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21"></a>        <span class="p">{</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22"></a>            <span class="c1">#  view of simulation list</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23"></a>            <span class="s2">&quot;états&quot;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24"></a>                <span class="mi">1200</span><span class="p">,</span>  <span class="c1">#  /display-view-list-simulations</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25"></a>            <span class="p">],</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26"></a>            <span class="s2">&quot;view_name&quot;</span><span class="p">:</span> <span class="s2">&quot;views/vue-liste-simulations.html&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27"></a>        <span class="p">},</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28"></a>        <span class="p">{</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29"></a>            <span class="c1">#  view of error list</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30"></a>            <span class="s2">&quot;états&quot;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31"></a>                <span class="mi">1300</span><span class="p">,</span>  <span class="c1">#  /display-view-error-list</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32"></a>            <span class="p">],</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33"></a>            <span class="s2">&quot;view_name&quot;</span><span class="p">:</span> <span class="s2">&quot;views/vue-erreurs.html&quot;</span><span class="p">,</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34"></a>        <span class="p">},</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35"></a>    <span class="p">]</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36"></a>
+<a id="__codelineno-8-37" name="__codelineno-8-37"></a>    <span class="c1">#  return the ASV configuration</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39"></a>        <span class="c1">#  views and models</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40"></a>        <span class="s2">&quot;asv&quot;</span><span class="p">:</span> <span class="n">asv</span><span class="p">,</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41"></a>    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li><b>[asv_actions]</b> 文件包含四个新操作，其功能总结如下：
+    <ul>
+      <li>它们不带参数；
+      </li>
+      <li>它们会显示一个特定视图，其模板位于会话中；
+      </li>
+    </ul>
+  </li>
+  <li>第 6–35 行中的 <b>[asv]</b> 列表将每个 ASV 操作与一个视图相关联；
+  </li>
+</ul>
+
+<p><strong>[ads_actions]</strong> 文件包含 ADS 操作：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span>
+<span class="normal"><a href="#__codelineno-9-35">35</a></span>
+<span class="normal"><a href="#__codelineno-9-36">36</a></span>
+<span class="normal"><a href="#__codelineno-9-37">37</a></span>
+<span class="normal"><a href="#__codelineno-9-38">38</a></span>
+<span class="normal"><a href="#__codelineno-9-39">39</a></span>
+<span class="normal"><a href="#__codelineno-9-40">40</a></span>
+<span class="normal"><a href="#__codelineno-9-41">41</a></span>
+<span class="normal"><a href="#__codelineno-9-42">42</a></span>
+<span class="normal"><a href="#__codelineno-9-43">43</a></span>
+<span class="normal"><a href="#__codelineno-9-44">44</a></span>
+<span class="normal"><a href="#__codelineno-9-45">45</a></span>
+<span class="normal"><a href="#__codelineno-9-46">46</a></span>
+<span class="normal"><a href="#__codelineno-9-47">47</a></span>
+<span class="normal"><a href="#__codelineno-9-48">48</a></span>
+<span class="normal"><a href="#__codelineno-9-49">49</a></span>
+<span class="normal"><a href="#__codelineno-9-50">50</a></span>
+<span class="normal"><a href="#__codelineno-9-51">51</a></span>
+<span class="normal"><a href="#__codelineno-9-52">52</a></span>
+<span class="normal"><a href="#__codelineno-9-53">53</a></span>
+<span class="normal"><a href="#__codelineno-9-54">54</a></span>
+<span class="normal"><a href="#__codelineno-9-55">55</a></span>
+<span class="normal"><a href="#__codelineno-9-56">56</a></span>
+<span class="normal"><a href="#__codelineno-9-57">57</a></span>
+<span class="normal"><a href="#__codelineno-9-58">58</a></span>
+<span class="normal"><a href="#__codelineno-9-59">59</a></span>
+<span class="normal"><a href="#__codelineno-9-60">60</a></span>
+<span class="normal"><a href="#__codelineno-9-61">61</a></span>
+<span class="normal"><a href="#__codelineno-9-62">62</a></span>
+<span class="normal"><a href="#__codelineno-9-63">63</a></span>
+<span class="normal"><a href="#__codelineno-9-64">64</a></span>
+<span class="normal"><a href="#__codelineno-9-65">65</a></span>
+<span class="normal"><a href="#__codelineno-9-66">66</a></span>
+<span class="normal"><a href="#__codelineno-9-67">67</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a>    <span class="c1">#  application configuration MVC</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a>    <span class="c1">#  view models</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ModelForAuthentificationView</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelForAuthentificationView</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ModelForCalculImpotView</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelForCalculImpotView</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ModelForErreursView</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelForErreursView</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">ModelForListeSimulationsView</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModelForListeSimulationsView</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a>    <span class="c1">#  actions ADS (Action Do Something)</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a>    <span class="n">ads</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a>        <span class="p">{</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a>            <span class="s2">&quot;états&quot;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a>                <span class="mi">400</span><span class="p">,</span>  <span class="c1">#  /end-session success</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a>            <span class="p">],</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a>            <span class="c1">#  redirection to action ADS</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a>            <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;/init-session/html&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a>        <span class="p">},</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a>        <span class="p">{</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a>            <span class="s2">&quot;états&quot;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a>                <span class="mi">700</span><span class="p">,</span>  <span class="c1">#  /init-session - success</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a>                <span class="mi">201</span><span class="p">,</span>  <span class="c1">#  /authentifier-user failure</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a>            <span class="p">],</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a>            <span class="c1">#  redirection to action ASV</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a>            <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;/afficher-vue-authentification&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a>            <span class="c1">#  model of the following view</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a>            <span class="s2">&quot;model_for_view&quot;</span><span class="p">:</span> <span class="n">ModelForAuthentificationView</span><span class="p">()</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a>        <span class="p">},</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a>        <span class="p">{</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30"></a>            <span class="s2">&quot;états&quot;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31"></a>                <span class="mi">200</span><span class="p">,</span>  <span class="c1">#  /authentifier-user success</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32"></a>                <span class="mi">300</span><span class="p">,</span>  <span class="c1">#  /calculate-tax-success</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33"></a>                <span class="mi">301</span><span class="p">,</span>  <span class="c1">#  /calculate-tax failure</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34"></a>                <span class="mi">800</span><span class="p">,</span>  <span class="c1">#  /display-tax-calculation link</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35"></a>            <span class="p">],</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36"></a>            <span class="c1">#  redirection to action ASV</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37"></a>            <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;/afficher-vue-calcul-impot&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38"></a>            <span class="c1">#  model of the following view</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39"></a>            <span class="s2">&quot;model_for_view&quot;</span><span class="p">:</span> <span class="n">ModelForCalculImpotView</span><span class="p">()</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40"></a>        <span class="p">},</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41"></a>        <span class="p">{</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42"></a>            <span class="s2">&quot;états&quot;</span><span class="p">:</span> <span class="p">[</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43"></a>                <span class="mi">500</span><span class="p">,</span>  <span class="c1">#  /lister-simulations success</span>
+<a id="__codelineno-9-44" name="__codelineno-9-44"></a>                <span class="mi">600</span><span class="p">,</span>  <span class="c1">#  /suppress-simulation success</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45"></a>            <span class="p">],</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46"></a>            <span class="c1">#  redirection to action ASV</span>
+<a id="__codelineno-9-47" name="__codelineno-9-47"></a>            <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;/afficher-vue-liste-simulations&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-48" name="__codelineno-9-48"></a>            <span class="c1">#  model of the following view</span>
+<a id="__codelineno-9-49" name="__codelineno-9-49"></a>            <span class="s2">&quot;model_for_view&quot;</span><span class="p">:</span> <span class="n">ModelForListeSimulationsView</span><span class="p">()</span>
+<a id="__codelineno-9-50" name="__codelineno-9-50"></a>        <span class="p">},</span>
+<a id="__codelineno-9-51" name="__codelineno-9-51"></a>    <span class="p">]</span>
+<a id="__codelineno-9-52" name="__codelineno-9-52"></a>
+<a id="__codelineno-9-53" name="__codelineno-9-53"></a>    <span class="c1">#  view of unexpected errors</span>
+<a id="__codelineno-9-54" name="__codelineno-9-54"></a>    <span class="n">view_erreurs</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-9-55" name="__codelineno-9-55"></a>        <span class="c1">#  redirection to action ASV</span>
+<a id="__codelineno-9-56" name="__codelineno-9-56"></a>        <span class="s2">&quot;to&quot;</span><span class="p">:</span> <span class="s2">&quot;/afficher-vue-liste-erreurs&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-57" name="__codelineno-9-57"></a>        <span class="c1">#  model of the following view</span>
+<a id="__codelineno-9-58" name="__codelineno-9-58"></a>        <span class="s2">&quot;model_for_view&quot;</span><span class="p">:</span> <span class="n">ModelForErreursView</span><span class="p">()</span>
+<a id="__codelineno-9-59" name="__codelineno-9-59"></a>    <span class="p">}</span>
+<a id="__codelineno-9-60" name="__codelineno-9-60"></a>
+<a id="__codelineno-9-61" name="__codelineno-9-61"></a>    <span class="c1">#  return the MVC configuration</span>
+<a id="__codelineno-9-62" name="__codelineno-9-62"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-9-63" name="__codelineno-9-63"></a>        <span class="c1">#  shares ADS</span>
+<a id="__codelineno-9-64" name="__codelineno-9-64"></a>        <span class="s2">&quot;ads&quot;</span><span class="p">:</span> <span class="n">ads</span><span class="p">,</span>
+<a id="__codelineno-9-65" name="__codelineno-9-65"></a>        <span class="c1">#  the sight of unexpected errors</span>
+<a id="__codelineno-9-66" name="__codelineno-9-66"></a>        <span class="s2">&quot;view_erreurs&quot;</span><span class="p">:</span> <span class="n">view_erreurs</span><span class="p">,</span>
+<a id="__codelineno-9-67" name="__codelineno-9-67"></a>    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 11–51 行：ADS（Action Do Something）操作的列表。包含所有旧版本中的操作。不过，它们的行为已发生变化：
+    <ul>
+      <li>它们不再直接显示视图 V，而是仅为该视图 V 准备模型 M；
+      </li>
+      <li>它们通过重定向至与视图 V 关联的 ASV 操作来请求显示视图 V；
+      </li>
+    </ul>
+  </li>
+  <li>并非所有 ADS 操作都会重定向到 ASV 操作：第 12–18 行，ADS 操作 <b>[/fin-session]</b> 会重定向到 ADS 操作 <b>[/init-session/html]</b>。为了区分 ADS -&gt; ADS 和 ADS -&gt; ASV 重定向，我们可以使用 <b>[model_for_view]</b> 模板。对于 ADS -&gt; ADS 重定向，该模板不存在；
+  </li>
+</ul>
+
+<p>包含所有配置的 <strong>[main/config]</strong> 文件将发生如下变化：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span>
+<span class="normal"><a href="#__codelineno-10-16">16</a></span>
+<span class="normal"><a href="#__codelineno-10-17">17</a></span>
+<span class="normal"><a href="#__codelineno-10-18">18</a></span>
+<span class="normal"><a href="#__codelineno-10-19">19</a></span>
+<span class="normal"><a href="#__codelineno-10-20">20</a></span>
+<span class="normal"><a href="#__codelineno-10-21">21</a></span>
+<span class="normal"><a href="#__codelineno-10-22">22</a></span>
+<span class="normal"><a href="#__codelineno-10-23">23</a></span>
+<span class="normal"><a href="#__codelineno-10-24">24</a></span>
+<span class="normal"><a href="#__codelineno-10-25">25</a></span>
+<span class="normal"><a href="#__codelineno-10-26">26</a></span>
+<span class="normal"><a href="#__codelineno-10-27">27</a></span>
+<span class="normal"><a href="#__codelineno-10-28">28</a></span>
+<span class="normal"><a href="#__codelineno-10-29">29</a></span>
+<span class="normal"><a href="#__codelineno-10-30">30</a></span>
+<span class="normal"><a href="#__codelineno-10-31">31</a></span>
+<span class="normal"><a href="#__codelineno-10-32">32</a></span>
+<span class="normal"><a href="#__codelineno-10-33">33</a></span>
+<span class="normal"><a href="#__codelineno-10-34">34</a></span>
+<span class="normal"><a href="#__codelineno-10-35">35</a></span>
+<span class="normal"><a href="#__codelineno-10-36">36</a></span>
+<span class="normal"><a href="#__codelineno-10-37">37</a></span>
+<span class="normal"><a href="#__codelineno-10-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a>    <span class="c1">#  syspath configuration</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">syspath</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a>    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;syspath&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">syspath</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5"></a>
+<a id="__codelineno-10-6" name="__codelineno-10-6"></a>    <span class="c1">#  application setup</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">parameters</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8"></a>    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9"></a>
+<a id="__codelineno-10-10" name="__codelineno-10-10"></a>    <span class="c1">#  database configuration</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">database</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12"></a>    <span class="n">config</span><span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13"></a>
+<a id="__codelineno-10-14" name="__codelineno-10-14"></a>    <span class="c1">#  instantiation of application layers</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">layers</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16"></a>    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;layers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">layers</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17"></a>
+<a id="__codelineno-10-18" name="__codelineno-10-18"></a>    <span class="c1">#  configuration MVC of the [web] layer</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19"></a>    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20"></a>
+<a id="__codelineno-10-21" name="__codelineno-10-21"></a>    <span class="c1">#  web] layer controller configuration</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">controllers</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23"></a>    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">controllers</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24"></a>
+<a id="__codelineno-10-25" name="__codelineno-10-25"></a>    <span class="c1">#  actions ASV (Action Show View)</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">asv_actions</span>
+<a id="__codelineno-10-27" name="__codelineno-10-27"></a>    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">asv_actions</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28"></a>
+<a id="__codelineno-10-29" name="__codelineno-10-29"></a>    <span class="c1">#  actions ADS (Action Do Something)</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">ads_actions</span>
+<a id="__codelineno-10-31" name="__codelineno-10-31"></a>    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">ads_actions</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+<a id="__codelineno-10-32" name="__codelineno-10-32"></a>
+<a id="__codelineno-10-33" name="__codelineno-10-33"></a>    <span class="c1">#  response configuration HTTP</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">responses</span>
+<a id="__codelineno-10-35" name="__codelineno-10-35"></a>    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">responses</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">config</span><span class="p">))</span>
+<a id="__codelineno-10-36" name="__codelineno-10-36"></a>
+<a id="__codelineno-10-37" name="__codelineno-10-37"></a>    <span class="c1">#  we return the configuration</span>
+<a id="__codelineno-10-38" name="__codelineno-10-38"></a>    <span class="k">return</span> <span class="n">config</span>
+</code></pre></div></td></tr></table></div>
+<p><a id="toc48549330"></a></p>
+<h3 id="3524">35.2.4. <span style="color: #4f81bd"><span style="color: #4f81bd">新模型</span></span></h3>
+<p><img src="images/10000000000001AC000001E163AC4D3B.png" width="187" height="210" style="width:4.949cm;height:5.562cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001AC000001E163AC4D3B.png" /></p>
+<p>模型将生成新的信息。以身份验证视图模型为例：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Request</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">AbstractBaseModelForView</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractBaseModelForView</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">ModelForAuthentificationView</span><span class="p">(</span><span class="n">AbstractBaseModelForView</span><span class="p">):</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7"></a>
+<a id="__codelineno-11-8" name="__codelineno-11-8"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_model_for_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">résultat</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9"></a>        <span class="c1">#  we encapsulate the paged data in the model</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10"></a>        <span class="n">modèle</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11"></a>        <span class="err">…</span>
+<a id="__codelineno-11-12" name="__codelineno-11-12"></a>
+<a id="__codelineno-11-13" name="__codelineno-11-13"></a>        <span class="c1">#  csrf token</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14"></a>        <span class="n">modèle</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_csrftoken</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15"></a>
+<a id="__codelineno-11-16" name="__codelineno-11-16"></a>        <span class="c1">#  possible actions from the view</span>
+<a id="__codelineno-11-17" name="__codelineno-11-17"></a>        <span class="n">modèle</span><span class="p">[</span><span class="s1">&#39;actions_possibles&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;afficher-vue-authentification&quot;</span><span class="p">,</span> <span class="s2">&quot;authentifier-utilisateur&quot;</span><span class="p">]</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18"></a>
+<a id="__codelineno-11-19" name="__codelineno-11-19"></a>        <span class="c1">#  we render the model</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20"></a>        <span class="k">return</span> <span class="n">modèle</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>新功能位于第 17 行：当显示视图 V（该视图对应的模型即为 M）时，每个模型都会生成一个可能操作的列表。要查看这些操作，我们需要返回视图 V。以身份验证视图为例：
+  </li>
+</ul>
+
+<p><img src="images/1000000000000434000002F135E4756E.png" width="470" height="329" style="width:12.43cm;height:8.7cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000434000002F135E4756E.png" /></p>
+<ul>
+  <li>我们可以看到，认证视图仅提供一个操作，即 <b>[Validate]</b> 按钮的操作。该操作为 <b>[/authenticate-user]</b>；
+  </li>
+</ul>
+
+<p>我们编写了：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">        # actions possibles à partir de la vue</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        modèle<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;actions_possibles&#x27;</span><span style="font-weight:bold">]</span> = <span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;afficher-vue-authentification&quot;</span><span style="font-weight:bold">, </span><span style="font-weight:bold;color:#a31515">&quot;authentifier-utilisateur&quot;</span><span style="font-weight:bold">]</span></span></span>
+</code></pre></div>
+
+<p>在上方的视图中，我们可以看到，如果用户刷新视图，操作 <strong>[1] [/display-authentication-view]</strong> 将被重新执行。因此，该操作必须经过授权。我们本可以选择不对其进行授权，但在这种情况下，用户每次刷新页面时都会遇到错误。我们认为这种情况是不理想的。</p>
+<p>可能的操作被放置在视图模型中。我们知道该模型将被存储在会话中。</p>
+<p>我们对四个视图中的每一个都进行此操作。此时，可能的操作如下：</p>
+<p><u><strong>身份验证视图</strong></u></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">modèle<span style="font-weight:bold">[&#x27;actions_possibles&#x27;]</span> = <span style="font-weight:bold">[&quot;afficher-vue-authentification&quot;, &quot;authentifier-utilisateur&quot;]</span></span></span>
+</code></pre></div>
+
+<p><u><strong>税费计算视图</strong></u></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"># actions possibles à partir de la vue</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">modèle</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;actions_possibles&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;afficher-vue-calcul-impot&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;calculer-impot&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;lister-simulations&quot;</span><span style="font-weight:bold;color:#000000">,</span><span style="font-weight:bold;color:#a31515">&quot;fin-session&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+</code></pre></div>
+
+<p><u><strong>模拟列表视图</strong></u></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># possible actions from the view</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">actions_possibles = </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;afficher-vue-liste-simulations&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;afficher-calcul-impot&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;fin-session&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> len(modèle</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;simulations&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">) != </span><span style="color:#098658">0</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  actions_possibles.append(</span><span style="color:#a31515">&quot;supprimer-simulation&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">modèle</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;actions_possibles&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = actions_possibles</span></span></span>
+</code></pre></div>
+
+<p><u><strong>错误列表视图</strong></u></p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"># actions possibles à partir de la vue</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">modèle</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;actions_possibles&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;afficher-vue-liste-erreurs&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;afficher-calcul-impot&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;lister-simulations&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;fin-session&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+</code></pre></div>
+
+<p><a id="toc48549331"></a></p>
+<h3 id="3525">35.2.5. <span style="color: #4f81bd">新的主控制器</span></h3>
+<p><img src="images/100000000000020B00000246374424F9.png" width="228" height="254" style="width:6.04cm;height:6.72cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000020B00000246374424F9.png" /></p>
+<p><strong>[MainController]</strong> 进行了若干改动：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span>
+<span class="normal"><a href="#__codelineno-12-20">20</a></span>
+<span class="normal"><a href="#__codelineno-12-21">21</a></span>
+<span class="normal"><a href="#__codelineno-12-22">22</a></span>
+<span class="normal"><a href="#__codelineno-12-23">23</a></span>
+<span class="normal"><a href="#__codelineno-12-24">24</a></span>
+<span class="normal"><a href="#__codelineno-12-25">25</a></span>
+<span class="normal"><a href="#__codelineno-12-26">26</a></span>
+<span class="normal"><a href="#__codelineno-12-27">27</a></span>
+<span class="normal"><a href="#__codelineno-12-28">28</a></span>
+<span class="normal"><a href="#__codelineno-12-29">29</a></span>
+<span class="normal"><a href="#__codelineno-12-30">30</a></span>
+<span class="normal"><a href="#__codelineno-12-31">31</a></span>
+<span class="normal"><a href="#__codelineno-12-32">32</a></span>
+<span class="normal"><a href="#__codelineno-12-33">33</a></span>
+<span class="normal"><a href="#__codelineno-12-34">34</a></span>
+<span class="normal"><a href="#__codelineno-12-35">35</a></span>
+<span class="normal"><a href="#__codelineno-12-36">36</a></span>
+<span class="normal"><a href="#__codelineno-12-37">37</a></span>
+<span class="normal"><a href="#__codelineno-12-38">38</a></span>
+<span class="normal"><a href="#__codelineno-12-39">39</a></span>
+<span class="normal"><a href="#__codelineno-12-40">40</a></span>
+<span class="normal"><a href="#__codelineno-12-41">41</a></span>
+<span class="normal"><a href="#__codelineno-12-42">42</a></span>
+<span class="normal"><a href="#__codelineno-12-43">43</a></span>
+<span class="normal"><a href="#__codelineno-12-44">44</a></span>
+<span class="normal"><a href="#__codelineno-12-45">45</a></span>
+<span class="normal"><a href="#__codelineno-12-46">46</a></span>
+<span class="normal"><a href="#__codelineno-12-47">47</a></span>
+<span class="normal"><a href="#__codelineno-12-48">48</a></span>
+<span class="normal"><a href="#__codelineno-12-49">49</a></span>
+<span class="normal"><a href="#__codelineno-12-50">50</a></span>
+<span class="normal"><a href="#__codelineno-12-51">51</a></span>
+<span class="normal"><a href="#__codelineno-12-52">52</a></span>
+<span class="normal"><a href="#__codelineno-12-53">53</a></span>
+<span class="normal"><a href="#__codelineno-12-54">54</a></span>
+<span class="normal"><a href="#__codelineno-12-55">55</a></span>
+<span class="normal"><a href="#__codelineno-12-56">56</a></span>
+<span class="normal"><a href="#__codelineno-12-57">57</a></span>
+<span class="normal"><a href="#__codelineno-12-58">58</a></span>
+<span class="normal"><a href="#__codelineno-12-59">59</a></span>
+<span class="normal"><a href="#__codelineno-12-60">60</a></span>
+<span class="normal"><a href="#__codelineno-12-61">61</a></span>
+<span class="normal"><a href="#__codelineno-12-62">62</a></span>
+<span class="normal"><a href="#__codelineno-12-63">63</a></span>
+<span class="normal"><a href="#__codelineno-12-64">64</a></span>
+<span class="normal"><a href="#__codelineno-12-65">65</a></span>
+<span class="normal"><a href="#__codelineno-12-66">66</a></span>
+<span class="normal"><a href="#__codelineno-12-67">67</a></span>
+<span class="normal"><a href="#__codelineno-12-68">68</a></span>
+<span class="normal"><a href="#__codelineno-12-69">69</a></span>
+<span class="normal"><a href="#__codelineno-12-70">70</a></span>
+<span class="normal"><a href="#__codelineno-12-71">71</a></span>
+<span class="normal"><a href="#__codelineno-12-72">72</a></span>
+<span class="normal"><a href="#__codelineno-12-73">73</a></span>
+<span class="normal"><a href="#__codelineno-12-74">74</a></span>
+<span class="normal"><a href="#__codelineno-12-75">75</a></span>
+<span class="normal"><a href="#__codelineno-12-76">76</a></span>
+<span class="normal"><a href="#__codelineno-12-77">77</a></span>
+<span class="normal"><a href="#__codelineno-12-78">78</a></span>
+<span class="normal"><a href="#__codelineno-12-79">79</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1">#  import dependencies</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5"></a>
+<a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_wtf.csrf</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_csrf</span><span class="p">,</span> <span class="n">validate_csrf</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">wtforms</span><span class="w"> </span><span class="kn">import</span> <span class="n">ValidationError</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10"></a>
+<a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceController</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceController</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="kn">from</span><span class="w"> </span><span class="nn">Logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span>
+<a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="kn">from</span><span class="w"> </span><span class="nn">SendAdminMail</span><span class="w"> </span><span class="kn">import</span> <span class="n">SendAdminMail</span>
+<a id="__codelineno-12-14" name="__codelineno-12-14"></a>
+<a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="k">def</span><span class="w"> </span><span class="nf">send_adminmail</span><span class="p">(</span><span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-12-16" name="__codelineno-12-16"></a>    <span class="c1">#  send an e-mail to the application administrator</span>
+<a id="__codelineno-12-17" name="__codelineno-12-17"></a>    <span class="n">config_mail</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;adminMail&#39;</span><span class="p">]</span>
+<a id="__codelineno-12-18" name="__codelineno-12-18"></a>    <span class="n">config_mail</span><span class="p">[</span><span class="s2">&quot;logger&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;logger&#39;</span><span class="p">]</span>
+<a id="__codelineno-12-19" name="__codelineno-12-19"></a>    <span class="n">SendAdminMail</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">config_mail</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+<a id="__codelineno-12-20" name="__codelineno-12-20"></a>
+<a id="__codelineno-12-21" name="__codelineno-12-21"></a><span class="c1">#  main application controller</span>
+<a id="__codelineno-12-22" name="__codelineno-12-22"></a><span class="k">class</span><span class="w"> </span><span class="nc">MainController</span><span class="p">(</span><span class="n">InterfaceController</span><span class="p">):</span>
+<a id="__codelineno-12-23" name="__codelineno-12-23"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-12-24" name="__codelineno-12-24"></a>        <span class="c1">#  we process the request</span>
+<a id="__codelineno-12-25" name="__codelineno-12-25"></a>        <span class="n">type_response1</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-12-26" name="__codelineno-12-26"></a>        <span class="n">logger</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-12-27" name="__codelineno-12-27"></a>        <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-12-28" name="__codelineno-12-28"></a>            <span class="c1">#  path elements are retrieved</span>
+<a id="__codelineno-12-29" name="__codelineno-12-29"></a>            <span class="n">params</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<a id="__codelineno-12-30" name="__codelineno-12-30"></a>
+<a id="__codelineno-12-31" name="__codelineno-12-31"></a>            <span class="c1">#  action is the 1st element</span>
+<a id="__codelineno-12-32" name="__codelineno-12-32"></a>            <span class="n">action</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-12-33" name="__codelineno-12-33"></a>
+<a id="__codelineno-12-34" name="__codelineno-12-34"></a>            <span class="c1">#  logger</span>
+<a id="__codelineno-12-35" name="__codelineno-12-35"></a>            <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;logsFilename&#39;</span><span class="p">])</span>
+<a id="__codelineno-12-36" name="__codelineno-12-36"></a>
+<a id="__codelineno-12-37" name="__codelineno-12-37"></a>            <span class="err">…</span>
+<a id="__codelineno-12-38" name="__codelineno-12-38"></a>
+<a id="__codelineno-12-39" name="__codelineno-12-39"></a>            <span class="c1">#  the /display-view-error-list action is special</span>
+<a id="__codelineno-12-40" name="__codelineno-12-40"></a>            <span class="c1">#  we don&#39;t check anything, otherwise we risk entering an infinite loop of redirects</span>
+<a id="__codelineno-12-41" name="__codelineno-12-41"></a>            <span class="n">erreur</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-12-42" name="__codelineno-12-42"></a>            <span class="k">if</span> <span class="n">action</span> <span class="o">!=</span> <span class="s2">&quot;afficher-vue-liste-erreurs&quot;</span><span class="p">:</span>
+<a id="__codelineno-12-43" name="__codelineno-12-43"></a>                <span class="c1">#  if error, (result] is the result to be sent to the customer</span>
+<a id="__codelineno-12-44" name="__codelineno-12-44"></a>                <span class="p">(</span><span class="n">erreur</span><span class="p">,</span> <span class="n">résultat</span><span class="p">,</span> <span class="n">type_response1</span><span class="p">)</span> <span class="o">=</span> <span class="n">MainController</span><span class="o">.</span><span class="n">check_action</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-12-45" name="__codelineno-12-45"></a>
+<a id="__codelineno-12-46" name="__codelineno-12-46"></a>            <span class="c1">#  if no error - action executed</span>
+<a id="__codelineno-12-47" name="__codelineno-12-47"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-12-48" name="__codelineno-12-48"></a>                <span class="c1">#  execute the controller associated with the action</span>
+<a id="__codelineno-12-49" name="__codelineno-12-49"></a>                <span class="n">controller</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">][</span><span class="s1">&#39;controllers&#39;</span><span class="p">][</span><span class="n">action</span><span class="p">]</span>
+<a id="__codelineno-12-50" name="__codelineno-12-50"></a>                <span class="n">résultat</span><span class="p">,</span> <span class="n">status_code</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span>
+<a id="__codelineno-12-51" name="__codelineno-12-51"></a>
+<a id="__codelineno-12-52" name="__codelineno-12-52"></a>        <span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+<a id="__codelineno-12-53" name="__codelineno-12-53"></a>            <span class="c1">#  (unexpected) exceptions</span>
+<a id="__codelineno-12-54" name="__codelineno-12-54"></a>            <span class="n">résultat</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">131</span><span class="p">,</span> <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exception</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]}</span>
+<a id="__codelineno-12-55" name="__codelineno-12-55"></a>            <span class="n">erreur</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-12-56" name="__codelineno-12-56"></a>
+<a id="__codelineno-12-57" name="__codelineno-12-57"></a>        <span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-12-58" name="__codelineno-12-58"></a>            <span class="k">pass</span>
+<a id="__codelineno-12-59" name="__codelineno-12-59"></a>
+<a id="__codelineno-12-60" name="__codelineno-12-60"></a>        <span class="c1">#  runtime error</span>
+<a id="__codelineno-12-61" name="__codelineno-12-61"></a>        <span class="k">if</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-12-62" name="__codelineno-12-62"></a>            <span class="c1">#  erroneous request</span>
+<a id="__codelineno-12-63" name="__codelineno-12-63"></a>            <span class="n">status_code</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_400_BAD_REQUEST</span>
+<a id="__codelineno-12-64" name="__codelineno-12-64"></a>
+<a id="__codelineno-12-65" name="__codelineno-12-65"></a>        <span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;with_csrftoken&#39;</span><span class="p">]:</span>
+<a id="__codelineno-12-66" name="__codelineno-12-66"></a>            <span class="c1">#  add the csrf_token to the result</span>
+<a id="__codelineno-12-67" name="__codelineno-12-67"></a>            <span class="n">résultat</span><span class="p">[</span><span class="s1">&#39;csrf_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">generate_csrf</span><span class="p">()</span>
+<a id="__codelineno-12-68" name="__codelineno-12-68"></a>
+<a id="__codelineno-12-69" name="__codelineno-12-69"></a>        <span class="err">…</span><span class="o">.</span>
+<a id="__codelineno-12-70" name="__codelineno-12-70"></a>
+<a id="__codelineno-12-71" name="__codelineno-12-71"></a>        <span class="c1">#  we send the HTTP response</span>
+<a id="__codelineno-12-72" name="__codelineno-12-72"></a>        <span class="k">return</span> <span class="n">response</span><span class="p">,</span> <span class="n">status_code</span>
+<a id="__codelineno-12-73" name="__codelineno-12-73"></a>
+<a id="__codelineno-12-74" name="__codelineno-12-74"></a>    <span class="nd">@staticmethod</span>
+<a id="__codelineno-12-75" name="__codelineno-12-75"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">check_action</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-12-76" name="__codelineno-12-76"></a>        <span class="err">…</span>
+<a id="__codelineno-12-77" name="__codelineno-12-77"></a>
+<a id="__codelineno-12-78" name="__codelineno-12-78"></a>        <span class="c1">#  result of the method</span>
+<a id="__codelineno-12-79" name="__codelineno-12-79"></a>        <span class="k">return</span> <span class="n">erreur</span><span class="p">,</span> <span class="n">résultat</span><span class="p">,</span> <span class="n">type_response1</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 39–44 行：对操作进行首次检查。我们稍后会再讨论这一点。静态方法 <b>[</b><b><span style="color: #000000"><mark style="background-color: #fff2cc">MainController.check_action</mark></span></b><b>]</b> 返回一个包含三个元素的元组：
+    <ul>
+      <li><b>[error]</b>：若检测到错误则为 True，否则为 False；
+      </li>
+      <li><b>[result]</b>：若 (error == True) 则为错误结果，否则为 None；
+      </li>
+      <li><b>[response_type1]</b>：会话的类型（json、xml、html 或 None），取自会话对象；
+      </li>
+    </ul>
+  </li>
+  <li>第 39 行：若操作为 ASV 操作 <b>[display-error-list-view]</b>（该操作用于显示错误列表）<b>，</b>则不进行任何检查。事实上，若在此操作过程中发现错误，系统将重定向回 <b>[/display-error-list-view]</b> 操作，从而陷入无限重定向循环；
+  </li>
+  <li>静态方法 <b>[check_action]</b> 如下：
+  </li>
+</ul>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span>
+<span class="normal"><a href="#__codelineno-13-19">19</a></span>
+<span class="normal"><a href="#__codelineno-13-20">20</a></span>
+<span class="normal"><a href="#__codelineno-13-21">21</a></span>
+<span class="normal"><a href="#__codelineno-13-22">22</a></span>
+<span class="normal"><a href="#__codelineno-13-23">23</a></span>
+<span class="normal"><a href="#__codelineno-13-24">24</a></span>
+<span class="normal"><a href="#__codelineno-13-25">25</a></span>
+<span class="normal"><a href="#__codelineno-13-26">26</a></span>
+<span class="normal"><a href="#__codelineno-13-27">27</a></span>
+<span class="normal"><a href="#__codelineno-13-28">28</a></span>
+<span class="normal"><a href="#__codelineno-13-29">29</a></span>
+<span class="normal"><a href="#__codelineno-13-30">30</a></span>
+<span class="normal"><a href="#__codelineno-13-31">31</a></span>
+<span class="normal"><a href="#__codelineno-13-32">32</a></span>
+<span class="normal"><a href="#__codelineno-13-33">33</a></span>
+<span class="normal"><a href="#__codelineno-13-34">34</a></span>
+<span class="normal"><a href="#__codelineno-13-35">35</a></span>
+<span class="normal"><a href="#__codelineno-13-36">36</a></span>
+<span class="normal"><a href="#__codelineno-13-37">37</a></span>
+<span class="normal"><a href="#__codelineno-13-38">38</a></span>
+<span class="normal"><a href="#__codelineno-13-39">39</a></span>
+<span class="normal"><a href="#__codelineno-13-40">40</a></span>
+<span class="normal"><a href="#__codelineno-13-41">41</a></span>
+<span class="normal"><a href="#__codelineno-13-42">42</a></span>
+<span class="normal"><a href="#__codelineno-13-43">43</a></span>
+<span class="normal"><a href="#__codelineno-13-44">44</a></span>
+<span class="normal"><a href="#__codelineno-13-45">45</a></span>
+<span class="normal"><a href="#__codelineno-13-46">46</a></span>
+<span class="normal"><a href="#__codelineno-13-47">47</a></span>
+<span class="normal"><a href="#__codelineno-13-48">48</a></span>
+<span class="normal"><a href="#__codelineno-13-49">49</a></span>
+<span class="normal"><a href="#__codelineno-13-50">50</a></span>
+<span class="normal"><a href="#__codelineno-13-51">51</a></span>
+<span class="normal"><a href="#__codelineno-13-52">52</a></span>
+<span class="normal"><a href="#__codelineno-13-53">53</a></span>
+<span class="normal"><a href="#__codelineno-13-54">54</a></span>
+<span class="normal"><a href="#__codelineno-13-55">55</a></span>
+<span class="normal"><a href="#__codelineno-13-56">56</a></span>
+<span class="normal"><a href="#__codelineno-13-57">57</a></span>
+<span class="normal"><a href="#__codelineno-13-58">58</a></span>
+<span class="normal"><a href="#__codelineno-13-59">59</a></span>
+<span class="normal"><a href="#__codelineno-13-60">60</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a>    <span class="nd">@staticmethod</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">check_action</span><span class="p">(</span><span class="n">params</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a>        <span class="c1">#  retrieve the current action</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a>        <span class="n">action</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5"></a>
+<a id="__codelineno-13-6" name="__codelineno-13-6"></a>        <span class="c1">#  no errors and no results to start with</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7"></a>        <span class="n">erreur</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8"></a>        <span class="n">résultat</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9"></a>
+<a id="__codelineno-13-10" name="__codelineno-13-10"></a>        <span class="c1">#  session type must be known before certain actions ADS</span>
+<a id="__codelineno-13-11" name="__codelineno-13-11"></a>        <span class="n">type_response1</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;typeResponse&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-12" name="__codelineno-13-12"></a>        <span class="k">if</span> <span class="n">type_response1</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">!=</span> <span class="s2">&quot;init-session&quot;</span><span class="p">:</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13"></a>            <span class="c1">#  we note the error</span>
+<a id="__codelineno-13-14" name="__codelineno-13-14"></a>            <span class="n">résultat</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">101</span><span class="p">,</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15"></a>                        <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;pas de session en cours. Commencer par action [init-session]&quot;</span><span class="p">]}</span>
+<a id="__codelineno-13-16" name="__codelineno-13-16"></a>            <span class="n">erreur</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17"></a>
+<a id="__codelineno-13-18" name="__codelineno-13-18"></a>        <span class="c1">#  some ADS actions require authentication</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19"></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20"></a>        <span class="k">if</span> <span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">action</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;init-session&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-21" name="__codelineno-13-21"></a>                                           <span class="s2">&quot;authentifier-utilisateur&quot;</span><span class="p">,</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22"></a>                                           <span class="s2">&quot;afficher-vue-authentification&quot;</span><span class="p">]:</span>
+<a id="__codelineno-13-23" name="__codelineno-13-23"></a>            <span class="c1">#  we note the error</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24"></a>            <span class="n">résultat</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">101</span><span class="p">,</span>
+<a id="__codelineno-13-25" name="__codelineno-13-25"></a>                        <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;action [</span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2">] demandée par utilisateur non authentifié&quot;</span><span class="p">]}</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26"></a>            <span class="n">erreur</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-13-27" name="__codelineno-13-27"></a>
+<a id="__codelineno-13-28" name="__codelineno-13-28"></a>        <span class="c1">#  from a view, only certain actions are possible</span>
+<a id="__codelineno-13-29" name="__codelineno-13-29"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">erreur</span> <span class="ow">and</span> <span class="n">action</span> <span class="o">!=</span> <span class="s2">&quot;init-session&quot;</span><span class="p">:</span>
+<a id="__codelineno-13-30" name="__codelineno-13-30"></a>            <span class="c1">#  for the moment no action possible</span>
+<a id="__codelineno-13-31" name="__codelineno-13-31"></a>            <span class="n">actions_possibles</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-13-32" name="__codelineno-13-32"></a>            <span class="c1">#  retrieve the model of the future session view, if it exists</span>
+<a id="__codelineno-13-33" name="__codelineno-13-33"></a>            <span class="n">modèle</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;modèle&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-34" name="__codelineno-13-34"></a>            <span class="c1">#  if a model has been found, its possible actions are retrieved</span>
+<a id="__codelineno-13-35" name="__codelineno-13-35"></a>            <span class="k">if</span> <span class="n">modèle</span><span class="p">:</span>
+<a id="__codelineno-13-36" name="__codelineno-13-36"></a>                <span class="n">actions_possibles</span> <span class="o">=</span> <span class="n">modèle</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;actions_possibles&#39;</span><span class="p">)</span>
+<a id="__codelineno-13-37" name="__codelineno-13-37"></a>            <span class="c1">#  if you have a list of possible actions, check that the current action is one of them</span>
+<a id="__codelineno-13-38" name="__codelineno-13-38"></a>            <span class="k">if</span> <span class="n">actions_possibles</span> <span class="ow">and</span> <span class="n">action</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">actions_possibles</span><span class="p">:</span>
+<a id="__codelineno-13-39" name="__codelineno-13-39"></a>                <span class="c1">#  we note the error</span>
+<a id="__codelineno-13-40" name="__codelineno-13-40"></a>                <span class="n">résultat</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">151</span><span class="p">,</span>
+<a id="__codelineno-13-41" name="__codelineno-13-41"></a>                            <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;action [</span><span class="si">{</span><span class="n">action</span><span class="si">}</span><span class="s2">] incorrecte dans l&#39;environnement actuel&quot;</span><span class="p">]}</span>
+<a id="__codelineno-13-42" name="__codelineno-13-42"></a>                <span class="n">erreur</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-13-43" name="__codelineno-13-43"></a>
+<a id="__codelineno-13-44" name="__codelineno-13-44"></a>
+<a id="__codelineno-13-45" name="__codelineno-13-45"></a>        <span class="c1">#  mistake?</span>
+<a id="__codelineno-13-46" name="__codelineno-13-46"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">erreur</span> <span class="ow">and</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;with_csrftoken&#39;</span><span class="p">]:</span>
+<a id="__codelineno-13-47" name="__codelineno-13-47"></a>            <span class="c1">#  check the validity of the csrf token</span>
+<a id="__codelineno-13-48" name="__codelineno-13-48"></a>            <span class="c1">#  the csrf_token is the last element of the path</span>
+<a id="__codelineno-13-49" name="__codelineno-13-49"></a>            <span class="n">csrf_token</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+<a id="__codelineno-13-50" name="__codelineno-13-50"></a>            <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-13-51" name="__codelineno-13-51"></a>                <span class="c1">#  an exception will be thrown if csrf_token is invalid</span>
+<a id="__codelineno-13-52" name="__codelineno-13-52"></a>                <span class="n">validate_csrf</span><span class="p">(</span><span class="n">csrf_token</span><span class="p">)</span>
+<a id="__codelineno-13-53" name="__codelineno-13-53"></a>            <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+<a id="__codelineno-13-54" name="__codelineno-13-54"></a>                <span class="c1">#  csrf token invalid</span>
+<a id="__codelineno-13-55" name="__codelineno-13-55"></a>                <span class="n">résultat</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;action&quot;</span><span class="p">:</span> <span class="n">action</span><span class="p">,</span> <span class="s2">&quot;état&quot;</span><span class="p">:</span> <span class="mi">121</span><span class="p">,</span> <span class="s2">&quot;réponse&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">exception</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]}</span>
+<a id="__codelineno-13-56" name="__codelineno-13-56"></a>                <span class="c1">#  we note the error</span>
+<a id="__codelineno-13-57" name="__codelineno-13-57"></a>                <span class="n">erreur</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-13-58" name="__codelineno-13-58"></a>
+<a id="__codelineno-13-59" name="__codelineno-13-59"></a>        <span class="c1">#  result of the method</span>
+<a id="__codelineno-13-60" name="__codelineno-13-60"></a>        <span class="k">return</span> <span class="n">erreur</span><span class="p">,</span> <span class="n">résultat</span><span class="p">,</span> <span class="n">type_response1</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行：<b>[check_action]</b> 方法对当前操作的有效性进行多项检查；
+  </li>
+  <li>第 6–26 行、第 45–57 行：这些检查在之前的版本中已经存在；
+  </li>
+  <li>第 28–42 行：新增了一项检查。我们验证在应用程序当前状态下当前操作是否可行。如果当前操作不可行，我们将生成状态码 151（第 40 行），这确保当前操作会被重定向到意外错误视图；
+  </li>
+</ul>
+<p><a id="toc48549332"></a></p>
+<h3 id="3526-html">35.2.6. <span style="color: #4f81bd"><span style="color: #4f81bd">新的 HTML 响应</span></span></h3>
+<p><img src="images/100000000000018F000000C50A5589CA.png" width="174" height="86" style="width:4.6cm;height:2.27cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018F000000C50A5589CA.png" /></p>
+<p>当前更改仅适用于 HTML 会话。JSON 或 XML 会话不受影响。<strong>[HtmlResponse]</strong> 类更新如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span>
+<span class="normal"><a href="#__codelineno-14-17">17</a></span>
+<span class="normal"><a href="#__codelineno-14-18">18</a></span>
+<span class="normal"><a href="#__codelineno-14-19">19</a></span>
+<span class="normal"><a href="#__codelineno-14-20">20</a></span>
+<span class="normal"><a href="#__codelineno-14-21">21</a></span>
+<span class="normal"><a href="#__codelineno-14-22">22</a></span>
+<span class="normal"><a href="#__codelineno-14-23">23</a></span>
+<span class="normal"><a href="#__codelineno-14-24">24</a></span>
+<span class="normal"><a href="#__codelineno-14-25">25</a></span>
+<span class="normal"><a href="#__codelineno-14-26">26</a></span>
+<span class="normal"><a href="#__codelineno-14-27">27</a></span>
+<span class="normal"><a href="#__codelineno-14-28">28</a></span>
+<span class="normal"><a href="#__codelineno-14-29">29</a></span>
+<span class="normal"><a href="#__codelineno-14-30">30</a></span>
+<span class="normal"><a href="#__codelineno-14-31">31</a></span>
+<span class="normal"><a href="#__codelineno-14-32">32</a></span>
+<span class="normal"><a href="#__codelineno-14-33">33</a></span>
+<span class="normal"><a href="#__codelineno-14-34">34</a></span>
+<span class="normal"><a href="#__codelineno-14-35">35</a></span>
+<span class="normal"><a href="#__codelineno-14-36">36</a></span>
+<span class="normal"><a href="#__codelineno-14-37">37</a></span>
+<span class="normal"><a href="#__codelineno-14-38">38</a></span>
+<span class="normal"><a href="#__codelineno-14-39">39</a></span>
+<span class="normal"><a href="#__codelineno-14-40">40</a></span>
+<span class="normal"><a href="#__codelineno-14-41">41</a></span>
+<span class="normal"><a href="#__codelineno-14-42">42</a></span>
+<span class="normal"><a href="#__codelineno-14-43">43</a></span>
+<span class="normal"><a href="#__codelineno-14-44">44</a></span>
+<span class="normal"><a href="#__codelineno-14-45">45</a></span>
+<span class="normal"><a href="#__codelineno-14-46">46</a></span>
+<span class="normal"><a href="#__codelineno-14-47">47</a></span>
+<span class="normal"><a href="#__codelineno-14-48">48</a></span>
+<span class="normal"><a href="#__codelineno-14-49">49</a></span>
+<span class="normal"><a href="#__codelineno-14-50">50</a></span>
+<span class="normal"><a href="#__codelineno-14-51">51</a></span>
+<span class="normal"><a href="#__codelineno-14-52">52</a></span>
+<span class="normal"><a href="#__codelineno-14-53">53</a></span>
+<span class="normal"><a href="#__codelineno-14-54">54</a></span>
+<span class="normal"><a href="#__codelineno-14-55">55</a></span>
+<span class="normal"><a href="#__codelineno-14-56">56</a></span>
+<span class="normal"><a href="#__codelineno-14-57">57</a></span>
+<span class="normal"><a href="#__codelineno-14-58">58</a></span>
+<span class="normal"><a href="#__codelineno-14-59">59</a></span>
+<span class="normal"><a href="#__codelineno-14-60">60</a></span>
+<span class="normal"><a href="#__codelineno-14-61">61</a></span>
+<span class="normal"><a href="#__codelineno-14-62">62</a></span>
+<span class="normal"><a href="#__codelineno-14-63">63</a></span>
+<span class="normal"><a href="#__codelineno-14-64">64</a></span>
+<span class="normal"><a href="#__codelineno-14-65">65</a></span>
+<span class="normal"><a href="#__codelineno-14-66">66</a></span>
+<span class="normal"><a href="#__codelineno-14-67">67</a></span>
+<span class="normal"><a href="#__codelineno-14-68">68</a></span>
+<span class="normal"><a href="#__codelineno-14-69">69</a></span>
+<span class="normal"><a href="#__codelineno-14-70">70</a></span>
+<span class="normal"><a href="#__codelineno-14-71">71</a></span>
+<span class="normal"><a href="#__codelineno-14-72">72</a></span>
+<span class="normal"><a href="#__codelineno-14-73">73</a></span>
+<span class="normal"><a href="#__codelineno-14-74">74</a></span>
+<span class="normal"><a href="#__codelineno-14-75">75</a></span>
+<span class="normal"><a href="#__codelineno-14-76">76</a></span>
+<span class="normal"><a href="#__codelineno-14-77">77</a></span>
+<span class="normal"><a href="#__codelineno-14-78">78</a></span>
+<span class="normal"><a href="#__codelineno-14-79">79</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="c1">#  dependencies</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_response</span><span class="p">,</span> <span class="n">redirect</span><span class="p">,</span> <span class="n">render_template</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask.wrappers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Response</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_api</span><span class="w"> </span><span class="kn">import</span> <span class="n">status</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_wtf.csrf</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_csrf</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8"></a>
+<a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceResponse</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceResponse</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="k">class</span><span class="w"> </span><span class="nc">HtmlResponse</span><span class="p">(</span><span class="n">InterfaceResponse</span><span class="p">):</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12"></a>
+<a id="__codelineno-14-13" name="__codelineno-14-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">build_http_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">status_code</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14"></a>                            <span class="n">résultat</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">Response</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15"></a>        <span class="c1">#  the HTML response depends on the status code returned by the controller</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16"></a>        <span class="n">état</span> <span class="o">=</span> <span class="n">résultat</span><span class="p">[</span><span class="s2">&quot;état&quot;</span><span class="p">]</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17"></a>
+<a id="__codelineno-14-18" name="__codelineno-14-18"></a>        <span class="c1">#  find out if the state was produced by a ASV action</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19"></a>        <span class="c1">#  in which case a</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20"></a>        <span class="n">asv_configs</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">][</span><span class="s2">&quot;asv&quot;</span><span class="p">]</span>
+<a id="__codelineno-14-21" name="__codelineno-14-21"></a>        <span class="n">trouvé</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22"></a>        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23"></a>        <span class="c1">#  browse the list of views</span>
+<a id="__codelineno-14-24" name="__codelineno-14-24"></a>        <span class="n">nb_views</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">asv_configs</span><span class="p">)</span>
+<a id="__codelineno-14-25" name="__codelineno-14-25"></a>        <span class="k">while</span> <span class="ow">not</span> <span class="n">trouvé</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nb_views</span><span class="p">:</span>
+<a id="__codelineno-14-26" name="__codelineno-14-26"></a>            <span class="c1">#  view n° i</span>
+<a id="__codelineno-14-27" name="__codelineno-14-27"></a>            <span class="n">asv_config</span> <span class="o">=</span> <span class="n">asv_configs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<a id="__codelineno-14-28" name="__codelineno-14-28"></a>            <span class="c1">#  states associated with view n° i</span>
+<a id="__codelineno-14-29" name="__codelineno-14-29"></a>            <span class="n">états</span> <span class="o">=</span> <span class="n">asv_config</span><span class="p">[</span><span class="s2">&quot;états&quot;</span><span class="p">]</span>
+<a id="__codelineno-14-30" name="__codelineno-14-30"></a>            <span class="c1">#  is the state you&#39;re looking for in the states associated with view n° i?</span>
+<a id="__codelineno-14-31" name="__codelineno-14-31"></a>            <span class="k">if</span> <span class="n">état</span> <span class="ow">in</span> <span class="n">états</span><span class="p">:</span>
+<a id="__codelineno-14-32" name="__codelineno-14-32"></a>                <span class="n">trouvé</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-14-33" name="__codelineno-14-33"></a>            <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-14-34" name="__codelineno-14-34"></a>                <span class="c1">#  next view</span>
+<a id="__codelineno-14-35" name="__codelineno-14-35"></a>                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+<a id="__codelineno-14-36" name="__codelineno-14-36"></a>
+<a id="__codelineno-14-37" name="__codelineno-14-37"></a>        <span class="c1">#  found?</span>
+<a id="__codelineno-14-38" name="__codelineno-14-38"></a>        <span class="k">if</span> <span class="n">trouvé</span><span class="p">:</span>
+<a id="__codelineno-14-39" name="__codelineno-14-39"></a>            <span class="c1">#  this is a ASV action - you need to display a view whose model is already in session</span>
+<a id="__codelineno-14-40" name="__codelineno-14-40"></a>            <span class="c1">#  generate the HTML response code</span>
+<a id="__codelineno-14-41" name="__codelineno-14-41"></a>            <span class="n">html</span> <span class="o">=</span> <span class="n">render_template</span><span class="p">(</span><span class="n">asv_config</span><span class="p">[</span><span class="s2">&quot;view_name&quot;</span><span class="p">],</span> <span class="n">modèle</span><span class="o">=</span><span class="n">session</span><span class="p">[</span><span class="s1">&#39;modèle&#39;</span><span class="p">])</span>
+<a id="__codelineno-14-42" name="__codelineno-14-42"></a>            <span class="c1">#  build the HTTP response</span>
+<a id="__codelineno-14-43" name="__codelineno-14-43"></a>            <span class="n">response</span> <span class="o">=</span> <span class="n">make_response</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+<a id="__codelineno-14-44" name="__codelineno-14-44"></a>            <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;text/html; charset=utf-8&#39;</span>
+<a id="__codelineno-14-45" name="__codelineno-14-45"></a>            <span class="c1">#  we return the result</span>
+<a id="__codelineno-14-46" name="__codelineno-14-46"></a>            <span class="k">return</span> <span class="n">response</span><span class="p">,</span> <span class="n">status_code</span>
+<a id="__codelineno-14-47" name="__codelineno-14-47"></a>
+<a id="__codelineno-14-48" name="__codelineno-14-48"></a>        <span class="c1">#  not found - this is an action status code ADS</span>
+<a id="__codelineno-14-49" name="__codelineno-14-49"></a>        <span class="c1">#  this will be followed by a redirection</span>
+<a id="__codelineno-14-50" name="__codelineno-14-50"></a>        <span class="n">redirected</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-14-51" name="__codelineno-14-51"></a>        <span class="k">for</span> <span class="n">ads</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">][</span><span class="s1">&#39;ads&#39;</span><span class="p">]:</span>
+<a id="__codelineno-14-52" name="__codelineno-14-52"></a>            <span class="c1">#  conditions requiring redirection</span>
+<a id="__codelineno-14-53" name="__codelineno-14-53"></a>            <span class="n">états</span> <span class="o">=</span> <span class="n">ads</span><span class="p">[</span><span class="s2">&quot;états&quot;</span><span class="p">]</span>
+<a id="__codelineno-14-54" name="__codelineno-14-54"></a>            <span class="k">if</span> <span class="n">état</span> <span class="ow">in</span> <span class="n">états</span><span class="p">:</span>
+<a id="__codelineno-14-55" name="__codelineno-14-55"></a>                <span class="c1">#  redirection</span>
+<a id="__codelineno-14-56" name="__codelineno-14-56"></a>                <span class="n">redirected</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-14-57" name="__codelineno-14-57"></a>                <span class="k">break</span>
+<a id="__codelineno-14-58" name="__codelineno-14-58"></a>        <span class="c1">#  redirection dictionary for unexpected errors</span>
+<a id="__codelineno-14-59" name="__codelineno-14-59"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">redirected</span><span class="p">:</span>
+<a id="__codelineno-14-60" name="__codelineno-14-60"></a>            <span class="n">ads</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;mvc&#39;</span><span class="p">][</span><span class="s1">&#39;view_erreurs&#39;</span><span class="p">]</span>
+<a id="__codelineno-14-61" name="__codelineno-14-61"></a>
+<a id="__codelineno-14-62" name="__codelineno-14-62"></a>        <span class="c1">#  is it a redirect to a ASD or ASV action?</span>
+<a id="__codelineno-14-63" name="__codelineno-14-63"></a>        <span class="c1">#  if there&#39;s a template, then it&#39;s a redirection to a ASV action</span>
+<a id="__codelineno-14-64" name="__codelineno-14-64"></a>        <span class="c1">#  then calculate the model of view V to be displayed by action ASV</span>
+<a id="__codelineno-14-65" name="__codelineno-14-65"></a>        <span class="n">model_for_view</span> <span class="o">=</span> <span class="n">ads</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;model_for_view&quot;</span><span class="p">)</span>
+<a id="__codelineno-14-66" name="__codelineno-14-66"></a>        <span class="k">if</span> <span class="n">model_for_view</span><span class="p">:</span>
+<a id="__codelineno-14-67" name="__codelineno-14-67"></a>            <span class="c1">#  calculation of the next view model</span>
+<a id="__codelineno-14-68" name="__codelineno-14-68"></a>            <span class="n">modèle</span> <span class="o">=</span> <span class="n">model_for_view</span><span class="o">.</span><span class="n">get_model_for_view</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">session</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">résultat</span><span class="p">)</span>
+<a id="__codelineno-14-69" name="__codelineno-14-69"></a>            <span class="c1">#  the model is sessioned for the following view</span>
+<a id="__codelineno-14-70" name="__codelineno-14-70"></a>            <span class="n">session</span><span class="p">[</span><span class="s1">&#39;modèle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">modèle</span>
+<a id="__codelineno-14-71" name="__codelineno-14-71"></a>
+<a id="__codelineno-14-72" name="__codelineno-14-72"></a>            <span class="c1">#  now it&#39;s time to generate the URL redirection, not forgetting the CSRF token if requested</span>
+<a id="__codelineno-14-73" name="__codelineno-14-73"></a>        <span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;with_csrftoken&#39;</span><span class="p">]:</span>
+<a id="__codelineno-14-74" name="__codelineno-14-74"></a>            <span class="n">csrf_token</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">generate_csrf</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-14-75" name="__codelineno-14-75"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-14-76" name="__codelineno-14-76"></a>            <span class="n">csrf_token</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<a id="__codelineno-14-77" name="__codelineno-14-77"></a>
+<a id="__codelineno-14-78" name="__codelineno-14-78"></a>        <span class="c1">#  redirect response</span>
+<a id="__codelineno-14-79" name="__codelineno-14-79"></a>        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ads</span><span class="p">[</span><span class="s1">&#39;to&#39;</span><span class="p">]</span><span class="si">}{</span><span class="n">csrf_token</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">),</span> <span class="n">status</span><span class="o">.</span><span class="n">HTTP_302_FOUND</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 18–35 行：检查上次执行的操作返回的状态是否为 ASV 操作的状态；
+  </li>
+  <li>第 36–46 行：如果是，则<b>使用会话中</b>与 <b>[‘model’]</b> 键关联的模型，显示与该 ASV 操作关联的 V 视图；
+  </li>
+  <li>第 48–60 行：到达此处时，我们已知最后执行的操作返回的状态码属于 ADS 操作。随后将触发重定向。我们会在配置文件中查找其定义；
+  </li>
+  <li>第 62 行：到达此处时，我们已获取待执行的重定向配置。有两种情况：
+    <ul>
+      <li>重定向至另一个 ADS 操作。在此情况下，无需计算视图模型；
+      </li>
+      <li>重定向至 ASV 操作。此时必须计算视图模型（第 67–68 行）。随后将该模型添加到会话中（第 70 行）；
+      </li>
+    </ul>
+  </li>
+  <li>第 72–76 行：计算重定向 URL；
+  </li>
+  <li>第 78–79 行：将重定向响应发送给客户端；
+  </li>
+</ul>
+<p><a id="toc48549333"></a></p>
+<h2 id="353">35.3. <span style="color: #4f81bd">测试</span></h2>
+<p>使用浏览器执行以下测试：</p>
+<ul>
+  <li>如常使用应用程序。验证浏览器显示的唯一 URL 是否为 ASV URL <b>[/display-view-view_name]</b>；
+  </li>
+  <li>刷新页面（F5），并验证是否再次显示同一页面。不存在任何副作用；
+  </li>
+</ul>
+
+<p>此外，请使用客户端 <strong>[impots/http-clients/09]</strong>。由于所做的更改仅影响 HTML 会话，因此客户端 <strong>[main, main2, main3, Test1HttpClientDaoWithSession, Test2HttpClientDaoWithSession]</strong> 应能继续正常运行。</p>
+<p>现在我们来看一个操作无法执行的情况。显示如下视图：</p>
+<p><img src="images/100000000000054800000309B0820BC0.png" width="590" height="339" style="width:15.619cm;height:8.976cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000054800000309B0820BC0.png" /></p>
+<p>请不要输入 <strong>[1]</strong>，而是输入 URL <strong>[/delete-simulation/1]</strong>。操作 <strong>[/delete-simulation]</strong> 不在视图提供的操作（即操作 1–4）之列，因此将被拒绝。服务器响应如下：</p>
+<p><img src="images/100000000000058D0000021D6D70A545.png" width="621" height="236" style="width:16.422cm;height:6.251cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000058D0000021D6D70A545.png" /></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

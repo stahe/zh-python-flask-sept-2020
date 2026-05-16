@@ -1,0 +1,1900 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/hiianianianen-18-.html">
+      
+      
+        <link rel="prev" href="hiianianii-17-an.html">
+      
+      
+        <link rel="next" href="ieun.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>38. 实践练习：版本 18 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#38-18" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              38. 实践练习：版本 18 
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="hiianianianen-18-.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#381" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        38.1. 实现
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#382" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        38.2. 控制台测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="exercicedapplication14"></a>
+<a id="toc48549351"></a></p>
+<h1 id="38-18">38. <span style="color: #365f91">实践练习：版本 18</span></h1>
+<p><a id="toc48549352"></a></p>
+<h2 id="381">38.1. <span style="color: #4f81bd">实现</span></h2>
+<p><img src="images/1000000000000118000001AD67D1DE88.png" width="122" height="188" style="width:3.24cm;height:4.964cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000118000001AD67D1DE88.png" /></p>
+<p><strong>[impots/http-servers/13]</strong> 文件夹最初是通过复制 <strong>[impots/http-servers/12]</strong> 文件夹创建的，随后进行了部分修改。</p>
+<p>首先，我们在 <strong>[configs/parameters]</strong> 文件中添加一个新参数：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">…        </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # token csrf</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;with_csrftoken&quot;</span>: <span style="color:#0000ff">False</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># bases gérées MySQL (mysql), PostgreSQL (pgres)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;databases&quot;</span>: <span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;mysql&quot;</span><span style="font-weight:bold">, </span><span style="font-weight:bold;color:#a31515">&quot;pgres&quot;</span><span style="font-weight:bold">]</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># préfixe des URL de l&#x27;application</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># mettre la chaîne vide si on ne veut pas de préfixe ou /préfixe sinon</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;prefix_url&quot;</span>: <span style="color:#a31515">&quot;/do&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># url racine du serveur Apache - mettre la chaîne vide pour une exécution en-dehors d&#x27;Apache</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="background-color:#fff2cc;color:#a31515">&quot;application_root&quot;</span><span style="background-color:#fff2cc">: </span><span style="background-color:#fff2cc;color:#a31515">&quot;/impots&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+</code></pre></div>
+
+<p>第 10 行：<strong>[application_root]</strong> 参数将代表 Apache 虚拟服务器的 WSGI 别名。</p>
+<p>借助此参数，我们可以修正导致错误的 <strong>[responses/HtmlResponse]</strong> 指令：</p>
+<p><img src="images/100000000000016C000000C643BF36F2.png" width="159" height="87" style="width:4.21cm;height:2.29cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016C000000C643BF36F2.png" /></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># now it&#x27;s time to generate the URL redirection, not forgetting the CSRF token if requested</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">if</span> config<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;parameters&#x27;</span><span style="font-weight:bold">][</span><span style="font-weight:bold;color:#a31515">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold">]</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            csrf_token = <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;/</span>{generate_csrf()}<span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            csrf_token = <span style="color:#a31515">&quot;&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # redirect response</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> redirect(<span style="background-color:#fff2cc;color:#0000ff">f</span><span style="background-color:#fff2cc;color:#a31515">&quot;</span><span style="background-color:#fff2cc">{config</span><span style="font-weight:bold;background-color:#fff2cc">[</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;parameters&#x27;</span><span style="font-weight:bold;background-color:#fff2cc">][</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;application_root&#x27;</span><span style="font-weight:bold;background-color:#fff2cc">]</span><span style="background-color:#fff2cc">}</span>{config<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;parameters&#x27;</span><span style="font-weight:bold">][</span><span style="font-weight:bold;color:#a31515">&#x27;prefix_url&#x27;</span><span style="font-weight:bold">]</span>}{ads<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;to&#x27;</span><span style="font-weight:bold">]</span>}{csrf_token}<span style="color:#a31515">&quot;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">, status.HTTP_302_FOUND</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 9 行：我们在重定向目标 URL 的开头添加了应用程序根路径；
+  </li>
+</ul>
+
+<p>我们还需要修正所有片段，确保其中包含的 URL 以应用程序根目录（或 WSGI 别名）开头：</p>
+<p><img src="images/10000000000001BB00000148EACBA41E.png" width="193" height="143" style="width:5.112cm;height:3.785cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001BB00000148EACBA41E.png" /></p>
+<p><strong>[v-authentication] 片段</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- form HTML - post its values with the [authenticate-user] action --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;form</span><span style="color:#000000"> </span><span style="color:#ff0000">method</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;post&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">action</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.application_root}}</span><span style="color:#0000ff">{{modèle.prefix_url}}/authentifier-utilisateur{{modèle.csrf_token}}&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- title --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;div</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert alert-primary&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">role</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#800000">&lt;h4&gt;</span><span style="color:#000000">Veuillez vous authentifier</span><span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;/div&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/form&gt;</span></span>
+</code></pre></div>
+
+<p><strong>[v-calcul-impot] 片段</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- form HTML posted --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;form</span><span style="color:#000000"> </span><span style="color:#ff0000">method</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;post&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">action</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.application_root}}</span><span style="color:#0000ff">{{modèle.prefix_url}}/calculer-impot{{modèle.csrf_token}}&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- 12-column message on blue background --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">…</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/form&gt;</span></span>
+</code></pre></div>
+
+<p><strong>[v-liste-simulations] 片段</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{% if modèle.simulations is defined and modèle.simulations|length!=0 %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- simulation table --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;table</span> <span style="color:#ff0000">class</span>=<span style="color:#0000ff">&quot;table table-sm table-hover table-striped&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">…</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;th</span> <span style="color:#ff0000">scope</span>=<span style="color:#0000ff">&quot;row&quot;</span><span style="color:#800000">&gt;</span>{{simulation.id}}<span style="color:#800000">&lt;/th&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.marié}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.enfants}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.salaire}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.impôt}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.surcôte}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.décôte}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.réduction}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.taux}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;&lt;a</span> <span style="color:#ff0000">href</span>=<span style="color:#0000ff">&quot;</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.application_root}}</span><span style="color:#0000ff">{{modèle.prefix_url}}/supprimer-simulation/{{simulation.id}}{{modèle.csrf_token}}&quot;</span><span style="color:#800000">&gt;</span>Supprimer<span style="color:#800000">&lt;/a&gt;&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% endfor %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tbody&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/table&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{% endif %}</span></span>
+</code></pre></div>
+
+<p><strong>[v-menu] 片段</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- bootstrap menu --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;nav</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;nav flex-column&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- display a list of links HTML --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% for optionMenu in modèle.optionsMenu %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;a</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;nav-link&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">href</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.application_root}}</span><span style="color:#0000ff">{{modèle.prefix_url}}{{optionMenu.url}}{{modèle.csrf_token}}&quot;</span><span style="color:#800000">&gt;</span><span style="color:#000000">{{optionMenu.text}}</span><span style="color:#800000">&lt;/a&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% endfor %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/nav&gt;</span></span>
+</code></pre></div>
+
+<p>上述片段均使用了 <strong>[</strong><strong><span style="color: #0000ff"><mark style="background-color: #fff2cc">model.application_root</mark></span></strong><strong>]</strong> 模型。目前，模型类生成的模型中并不存在 <strong>[application_root]</strong> 键。</p>
+<p><img src="images/10000000000001D50000011BCFEDFB3E.png" width="205" height="124" style="width:5.42cm;height:3.27cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D50000011BCFEDFB3E.png" /></p>
+<p>作为所有生成模板的类的父类，<strong>[AbstractBaseModelForView]</strong> 类变为如下形式：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">abstractmethod</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Request</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">flask_wtf.csrf</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_csrf</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">werkzeug.local</span><span class="w"> </span><span class="kn">import</span> <span class="n">LocalProxy</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">InterfaceModelForView</span><span class="w"> </span><span class="kn">import</span> <span class="n">InterfaceModelForView</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="k">class</span><span class="w"> </span><span class="nc">AbstractBaseModelForView</span><span class="p">(</span><span class="n">InterfaceModelForView</span><span class="p">):</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a>    <span class="nd">@abstractmethod</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_model_for_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">LocalProxy</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">résultat</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a>        <span class="k">pass</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">update_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">modèle</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a>        <span class="c1">#  token calculation CSRF</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a>        <span class="k">if</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;parameters&#39;</span><span class="p">][</span><span class="s1">&#39;with_csrftoken&#39;</span><span class="p">]:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>            <span class="n">csrf_token</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/</span><span class="si">{</span><span class="n">generate_csrf</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a>            <span class="n">csrf_token</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a>        <span class="c1">#  update the model passed in parameter</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>        <span class="n">modèle</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>            <span class="c1">#  csrf token</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a>            <span class="s1">&#39;csrf_token&#39;</span><span class="p">:</span> <span class="n">csrf_token</span><span class="p">,</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a>            <span class="c1">#  prefix_url</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a>            <span class="s1">&#39;prefix_url&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">][</span><span class="s2">&quot;prefix_url&quot;</span><span class="p">],</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a>            <span class="c1">#  application_root</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>            <span class="s1">&#39;application_root&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">][</span><span class="s2">&quot;application_root&quot;</span><span class="p">],</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>        <span class="p">})</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 15 行：<b>[update_model]</b> 方法负责在视图模板中添加以下内容：
+    <ul>
+      <li>第 24 行：CSRF 令牌；
+      </li>
+      <li>第 26 行：URL 前缀；
+      </li>
+      <li>第 28 行：应用程序根目录或 WSGI 别名；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>这四个子类通过以下代码调用父类：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># actions possibles à partir de la vue</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        modèle<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;actions_possibles&#x27;</span><span style="font-weight:bold">]</span> = <span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;afficher-vue-authentification&quot;</span><span style="font-weight:bold">, </span><span style="font-weight:bold;color:#a31515">&quot;authentifier-utilisateur&quot;</span><span style="font-weight:bold">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># finition du modèle par la classe parent</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="background-color:#fff2cc">super().update_model(modèle, config)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># on rend le modèle</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> modèle</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 6 行：每个子类都会调用其父类来更新其创建的模型；
+  </li>
+</ul>
+
+<p>第 18 版已准备就绪。我们将沿用第 17 版中的两个 Apache 虚拟主机，并对它们进行修改：</p>
+<p><img src="images/10000000000002D30000012FDB676CCF.png" width="316" height="132" style="width:8.363cm;height:3.505cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D30000012FDB676CCF.png" /></p>
+<p>两个 <strong>[flask-imports-withXX.conf]</strong> 文件仅在以下一处进行了修改：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"># dossier du script .wsgi</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define ROOT </span><span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/impots/http-servers/</span><span style="background-color:#fff2cc;color:#a31515">13</span><span style="color:#a31515">/apache&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># nom du site web configuré par ce fichier</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ici il s&#x27;appellera flask-impots-withmysql</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># les URL seront du type http(s)://flask-impots-withmysql/path</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define SITE </span><span style="color:#a31515">&quot;flask-impots-withmysql&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># mettre l&#x27;adresse IP 127.0.0.1 pour site SITE dans c:/windows/system32/drivers/etc/hosts</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># mettre ici les chemins des bibliothèques Python à utiliser - les séparer par des virgules</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ici les bibliothèques d&#x27;un environnement virtuel Python</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">WSGIPythonPath  </span><span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/venv/lib/site-packages&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># Python Home - nécessaire uniquement s&#x27;il y a plusieurs versions de Python installées</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># WSGIPythonHome &quot;C:/Program Files/Python38&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL HTTP</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:80&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># avec l&#x27;alias / les URL auront la forme /{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># avec l&#x27;alias /impots les URL auront la forme /impots/{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># où <span style="font-weight:bold">[prefixe_url]</span> est défini dans parameters.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    WSGIScriptAlias </span><span style="background-color:#fff2cc;color:#000000">/impots</span><span style="color:#000000"> </span><span style="color:#a31515">&quot;${ROOT}/main_withmysql.wsgi&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    …</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL sécurisées avec HTTPS</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:443&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># avec l&#x27;alias / les URL auront la forme /{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># avec l&#x27;alias /impots les URL auront la forme /impots/{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># où <span style="font-weight:bold">[prefixe_url]</span> est défini dans parameters.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    WSGIScriptAlias </span><span style="background-color:#fff2cc;color:#000000">/impots</span><span style="color:#000000"> </span><span style="color:#a31515">&quot;${ROOT}/main_withmysql.wsgi&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ..</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 12 行：我们现在使用 <b>[taxes/http-servers/13/apache]</b> 目录。
+  </li>
+</ul>
+
+<p>我们已准备好测试在 Apache 上运行的第 18 版。配置如下：</p>
+<ul>
+  <li>两个虚拟服务器配置文件中的 WSGI 别名均为 /impots；
+  </li>
+  <li>在配置文件 <b>[configs/parameters] </b>中，参数设置如下：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># token csrf</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;</span><span style="background-color:#fff2cc;color:#a31515">with_csrftoken</span><span style="color:#a31515">&quot;</span><span style="color:#000000">: </span><span style="color:#0000ff">False</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># préfixe des URL de l&#x27;application</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># mettre la chaîne vide si on ne veut pas de préfixe ou /préfixe sinon</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;</span><span style="background-color:#fff2cc;color:#a31515">prefix_url</span><span style="color:#a31515">&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;/do&quot;</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># url racine du serveur Apache - mettre la chaîne vide pour une exécution en-dehors d&#x27;Apache</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;</span><span style="background-color:#fff2cc;color:#a31515">application_root</span><span style="color:#a31515">&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;/impots&quot;</span></span></span>
+</code></pre></div>
+
+<p>我们启动 Apache 服务器和两个数据库管理系统。我们请求 URL <strong>[https://flask-impots-withmysql/impots/do]</strong>。服务器的响应如下：</p>
+<p><img src="images/10000000000005550000031920FB5EEA.png" width="596" height="347" style="width:15.782cm;height:9.169cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005550000031920FB5EEA.png" /></p>
+<p>我们成功看到了身份验证页面，而在之前的版本中我们无法访问该页面。应用程序的其他部分运行正常。</p>
+<p>现在我们测试另一个虚拟服务器。我们请求 URL <strong>[https://flask-impots-withpgres/impots/do]</strong>。服务器的响应如下：</p>
+<p><img src="images/10000000000005550000034336E21669.png" width="596" height="365" style="width:15.769cm;height:9.647cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005550000034336E21669.png" /></p>
+<p>WSGI 别名和 URL 前缀的概念具有相同的功能。这两个概念中有一个是多余的。因此，要在 Apache 服务器的 URL 前添加字符串 <strong>[/imports/do]</strong>，有三种实现方式：</p>
+<p>1 – <strong>[WGSIAlias /impots]</strong> 且 <strong>[prefix_url=’/do’]</strong>；</p>
+<p>2 – <strong>[WGSIAlias /]</strong> 配合 <strong>[prefix_url=’/impots/do’]</strong>；</p>
+<p>3 – <strong>[WGSIAlias /impots/do]</strong> 配合 <strong>[prefix_url=’’]</strong>；</p>
+<p><a id="toc48549353"></a></p>
+<h2 id="382">38.2. <span style="color: #4f81bd">控制台测试</span></h2>
+<p>我们再次使用客户端控制台测试 <strong>[http-clients/09]</strong>：</p>
+<p><img src="images/100000000000020E00000241F37F82D2.png" width="229" height="252" style="width:6.07cm;height:6.659cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000020E00000241F37F82D2.png" /></p>
+<ul>
+  <li>必须在配置 <b>[1] </b>和 <b>[3] </b>中修改服务器 URL；
+  </li>
+  <li>必须对 <b>[dao]</b> 层进行修改，使其支持 Apache 服务器的 HTTPS 协议；
+  </li>
+</ul>
+
+<p>在 <strong>[config]</strong> 文件中，服务器 URL 变为如下形式：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>&quot;server&quot;<span style="color:#000000">: {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008000"># &quot;urlServer&quot;: &quot;http://127.0.0.1:5000&quot;,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#008000"># &quot;urlServer&quot;: &quot;http://127.0.0.1:5000/do&quot;,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="background-color:#fff2cc">&quot;urlServer&quot;</span><span style="background-color:#fff2cc;color:#000000">: </span><span style="background-color:#fff2cc">&quot;https://flask-impots-withmysql/impots/do&quot;</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span>&quot;user&quot;<span style="color:#000000">: {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span>&quot;login&quot;<span style="color:#000000">: </span>&quot;admin&quot;<span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span>&quot;password&quot;<span style="color:#000000">: </span>&quot;admin&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span>&quot;url_services&quot;<span style="color:#000000">: {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span>…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008000"># mode debug</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>&quot;debug&quot;<span style="color:#000000">: </span><span style="color:#0000ff">True</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#008000"># csrf_token</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="background-color:#fff2cc">&quot;with_csrftoken&quot;</span><span style="background-color:#fff2cc;color:#000000">: </span><span style="background-color:#fff2cc;color:#0000ff">False</span><span style="background-color:#fff2cc;color:#000000">,</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 4 行：新的服务器 URL。本文档中首次出现客户端使用 HTTPS 协议；
+  </li>
+</ul>
+
+<p><strong>[dao]</strong> 层中的 <strong>[ImpôtsDaoWihHttpSession]</strong> 类演变如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="err">…</span>    
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>    <span class="c1"># étape request / response</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">url_service</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data_value</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">json_value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>        <span class="c1">#  [method]: HTTP GET or POST method</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>        <span class="c1">#  [url_service] : URL of service</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a>        <span class="c1">#  [data]: POST parameters in x-www-form-urlencoded</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a>        <span class="c1">#  [json]: POST parameters in json</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="c1">#  [cookies]: cookies to include in the request</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>        <span class="c1">#  you must have a XML or JSON session, otherwise you won&#39;t be able to handle the response</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__session_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;xml&#39;</span><span class="p">]:</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a>            <span class="k">raise</span> <span class="n">ImpôtsError</span><span class="p">(</span><span class="mi">73</span><span class="p">,</span> <span class="s2">&quot;il n&#39;y a pas de session valide en cours&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a>        <span class="c1">#  we add the CSRF token to the URL service token</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__csrf_token</span><span class="p">:</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a>            <span class="n">url_service</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">url_service</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">__csrf_token</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a>        <span class="c1">#  query execution</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a>        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a>                                    <span class="n">url_service</span><span class="p">,</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a>                                    <span class="n">data</span><span class="o">=</span><span class="n">data_value</span><span class="p">,</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a>                                    <span class="n">json</span><span class="o">=</span><span class="n">json_value</span><span class="p">,</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a>                                    <span class="n">cookies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__cookies</span><span class="p">,</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a>                                    <span class="n">allow_redirects</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a>                                    <span class="c1">#  for the https protocol</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a>                                    <span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a>        <span class="c1">#  debug mode?</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__debug</span><span class="p">:</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a>            <span class="c1">#  logger</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span><span class="p">:</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__config</span><span class="p">[</span><span class="s1">&#39;logger&#39;</span><span class="p">]</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a>            <span class="c1">#  log on</span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">__logger</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a>        <span class="err">…</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a>        <span class="c1">#  we return the result</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a>        <span class="k">return</span> <span class="n">résultat</span><span class="p">[</span><span class="s1">&#39;réponse&#39;</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>在第 26 行，我们添加了 <b>[verify=False]</b> 参数，因为 Apache 服务器使用的是 HTTPS 协议。<b>[requests]</b> 模块（第 19 行）原生支持 HTTPS 协议。 默认情况下，它会验证 HTTPS 服务器发送的安全证书的有效性，如果收到的证书无效，则会引发异常。本例中正是如此，因为 Laragon 的 Apache 服务器发送的是自签名证书。为避免异常，我们使用 <b>[verify=False]</b> 参数告知 <b>[requests]</b> 模块不要引发异常。此时<b> [requests]</b> 仅会在控制台显示一条警告。
+  </li>
+</ul>
+
+<p>完成这些修改后，所有控制台测试都应能正常运行。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

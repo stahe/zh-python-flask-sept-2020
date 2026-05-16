@@ -1,0 +1,1971 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/aianaiauaning.html">
+      
+      
+        <link rel="prev" href="ianan.html">
+      
+      
+        <link rel="next" href="python-ihu.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>2. 搭建开发环境 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. 搭建开发环境
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="aianaiauaning.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#21-python-381" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1. Python 3.8.1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-pycharm-community" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2. PyCharm Community 集成开发环境
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2. PyCharm Community 集成开发环境">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.1. 简介
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.2. 虚拟执行环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#223-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2.3. Git
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3. Python 编码规范
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="toc48548915"></a>
+<a id="installationdunenvironnement"></a>
+<a id="refheading382362423505"></a></p>
+<h1 id="2">2. <span style="color: #365f91">搭建开发环境</span></h1>
+<p><a id="toc48548916"></a>
+<a id="python381"></a>
+<a id="refheading382382423505"></a></p>
+<h2 id="21-python-381">2.1. <span style="color: #4f81bd">Python 3.8.1</span></h2>
+<p>本文中的示例已在 Windows 10 系统上，使用可从 |<a href="https://www.python.org/downloads/"><u><span style="color: #0563c1">https://www.python.org/downloads/</span></u></a>|（2020 年 2 月）获取的 Python 3.8.1 解释器进行了测试：</p>
+<p><img src="images/1000000100000299000001B3AECCB8A3.png" width="384" height="251" style="width:10.162cm;height:6.646cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000299000001B3AECCB8A3.png" /></p>
+<p>安装 Python 后，会在文件目录中创建 <strong>[1]</strong> 文件夹，并在“程序”列表中生成 <strong>[2]</strong> 菜单项：</p>
+<p><img src="images/1000000100000274000001F46906140F.png" width="403" height="320" style="width:10.65cm;height:8.479cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000274000001F46906140F.png" /></p>
+<ul>
+  <li><b>[3-4]</b>：两个交互式 Python 解释器；
+  </li>
+  <li><b>[5]</b>：Python 文档；
+  </li>
+  <li><b>[6]</b>：Python 模块文档；
+  </li>
+</ul>
+
+<p>我们不会使用交互式 Python 解释器。但需要知道的是，本文档中的脚本可以使用该解释器运行。虽然它对于测试 Python 功能的工作原理很有用，但对于需要重复使用的脚本来说并不太实用。以下是一个使用上述选项 <strong>[4]</strong> 的示例：</p>
+<p><img src="images/10000001000002EE000000A7D46FABF9.png" width="473" height="105" style="width:12.51cm;height:2.785cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002EE000000A7D46FABF9.png" /></p>
+<p>&gt;&gt;&gt; 提示符允许您输入 Python 语句并立即执行。上面输入的代码含义如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="o">&gt;&gt;&gt;</span> <span class="n">nom</span><span class="o">=</span><span class="s2">&quot;tintin&quot;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;nom=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">nom</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="n">nom</span><span class="o">=</span><span class="n">tintin</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;type=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">type</span><span class="p">(</span><span class="n">nom</span><span class="p">))</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="nb">type</span><span class="o">=&lt;</span><span class="k">class</span><span class="w"> </span><span class="err">&#39;</span><span class="nc">str</span><span class="s1">&#39;&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="o">&gt;&gt;&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>行数</strong>：</p>
+<ul>
+  <li>1: 变量的初始化。在 Python 中，无需声明变量的类型。变量会自动采用其赋值的类型。该类型可能会随时间变化；
+  </li>
+  <li>2: 显示名称。&#x27;name=%s&#x27; 是一种显示格式，其中 %s 是表示字符串的形式参数。<i>name </i>是将代替 %s 显示的实际参数；
+  </li>
+  <li>3: 显示结果；
+  </li>
+  <li>4: 显示变量 <i>name</i> 的类型<i>；</i>
+  </li>
+  <li>5: 此处的变量 name 属于 <i>class</i> 类型。在 Python 2.7 中，其值应为 <i>&lt;type &#x27;str&#x27;&gt;</i>；
+  </li>
+</ul>
+
+<p>现在，让我们打开一个 Windows 命令提示符：</p>
+<p><img src="images/10000001000002D7000000A7880C954D.png" width="472" height="109" style="width:12.501cm;height:2.872cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002D7000000A7880C954D.png" /></p>
+<p>我们在 <strong>[1]</strong> 中能够输入 <strong>[python]</strong> 且可执行文件 <strong>[python.exe]</strong> 被成功找到，这表明它位于 Windows 机器的 PATH 环境变量中。这一点很重要，因为这意味着 Python 开发工具将能够找到 Python 解释器。我们可以按以下方式进行验证：</p>
+<p><img src="images/100000010000035C000001143AD8F4F2.png" width="551" height="177" style="width:14.589cm;height:4.681cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000035C000001143AD8F4F2.png" /></p>
+<ul>
+  <li>在 <b>[2] </b>中，我们退出 Python 解释器；
+  </li>
+  <li>在 <b>[3] </b>中，执行显示 Windows 机器上可执行文件 PATH 的命令；
+  </li>
+  <li>在 <b>[4] </b>中，我们可以看到 Python 3.8 解释器的文件夹已被添加到 PATH 环境变量中；
+  </li>
+</ul>
+<p><a id="toc48548917"></a>
+<a id="lidepycharmcommunity"></a>
+<a id="refheadingtoc2520872924280206"></a></p>
+<h2 id="22-pycharm-community">2.2. <span style="color: #4f81bd">PyCharm Community 集成开发环境</span></h2>
+<p><a id="toc48548918"></a></p>
+<h3 id="221">2.2.1. <span style="color: #4f81bd">简介</span></h3>
+<p>为了构建和运行本文中的脚本，我们使用了 <strong>[PyCharm]</strong> Community Edition 编辑器，该版本（截至 2020 年 2 月）可通过以下网址获取：|https://www.jetbrains.com/fr-fr/pycharm/download/#section=windows|：</p>
+<p><img src="images/100000010000027A0000018C9A192739.png" width="447" height="279" style="width:11.83cm;height:7.389cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000027A0000018C9A192739.png" /></p>
+<p>下载 PyCharm Community IDE <strong>[1-3]</strong> 并进行安装。</p>
+<p>启动 PyCharm IDE 并创建您的第一个 Python 项目：</p>
+<p><img src="images/100000010000020F000001485D7AFCD6.png" width="403" height="251" style="width:10.659cm;height:6.634cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000020F000001485D7AFCD6.png" /></p>
+<p><img src="images/10000001000002DA000001C911AADD0A.png" width="567" height="355" style="width:15.011cm;height:9.396cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002DA000001C911AADD0A.png" /></p>
+<ul>
+  <li>在 <b>[2-4] </b>中，创建一个新项目；
+  </li>
+</ul>
+
+<p>PyCharm IDE 将显示已创建的项目如下：</p>
+<p><img src="images/10000001000004270000010CBF0658ED.png" width="679" height="171" style="width:17.962cm;height:4.53cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000004270000010CBF0658ED.png" /></p>
+<ul>
+  <li>在 <b>[2-3] </b>中，让我们查看 IDE 的属性；
+  </li>
+</ul>
+
+<p><img src="images/100000010000042700000100A569C355.png" width="662" height="159" style="width:17.521cm;height:4.219cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000042700000100A569C355.png" /></p>
+<ul>
+  <li>在 <b>[4] </b>中，将用于该项目的 Python 解释器；
+  </li>
+  <li>在 <b>[5] </b>中，可用的解释器下拉列表；
+  </li>
+  <li>在 <b>[6] </b>中，选择在 <a href="#python381"><u><span style="color: #0563c1">|Python 3.8.</span></u></a>1| 部分下载的解释器；
+  </li>
+</ul>
+
+<p><img src="images/1000000100000395000002910038673B.png" width="584" height="419" style="width:15.46cm;height:11.077cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000395000002910038673B.png" /></p>
+<ul>
+  <li>在 <b>[7] </b>中，显示所选的解释器；
+  </li>
+  <li>在 <b>[8] </b>中，显示该解释器可用的包列表。包包含 Python 脚本可使用的模块。目前有数百个模块可用；
+  </li>
+</ul>
+
+<p>首先，我们创建一个文件夹，用于存放我们的第一个 Python 脚本：</p>
+<p><img src="images/100000010000038D000000BC8604A6B5.png" width="585" height="121" style="width:15.482cm;height:3.201cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000038D000000BC8604A6B5.png" /></p>
+<ul>
+  <li>右键单击项目，然后按<b> [1-2]</b> 创建文件夹；
+  </li>
+  <li>在 <b>[3] </b>中输入文件夹名称：该文件夹将创建在项目文件夹内；
+  </li>
+</ul>
+
+<p>接下来，让我们创建一个 Python 脚本：</p>
+<p><img src="images/10000001000004270000011436FF10C9.png" width="663" height="172" style="width:17.53cm;height:4.553cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000004270000011436FF10C9.png" /></p>
+<ul>
+  <li>右键单击 <b>[bases]</b> 文件夹，然后选择 <b>[1-3]</b>；
+  </li>
+  <li>在 <b>[4-5] </b>中，输入脚本名称；
+  </li>
+</ul>
+
+<p>让我们编写第一个脚本：</p>
+<p><img src="images/10000001000004270000014DD7E62FF3.png" width="662" height="207" style="width:17.521cm;height:5.489cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000004270000014DD7E62FF3.png" /></p>
+<ul>
+  <li>在 <b>[3] </b>中，我们编写以下脚本：
+  </li>
+</ul>
+
+<ol>
+    <ul>
+      <li>第 1 行、第 3 行：注释以 # 符号开头；
+      </li>
+      <li>第 2 行：变量的初始化。Python 不需要声明变量的类型；
+      </li>
+      <li>第 4 行：屏幕输出。此处使用的语法为 <b>[格式 % 数据]</b>，其中：
+        <ul>
+          <li><b>格式</b>：name=%s，其中 %s 表示字符串的占位符。该字符串将出现在表达式的 <b>[data]</b> 部分；
+          </li>
+          <li><b>data</b>：变量 <b>[name] </b>的值将替换格式字符串中的 %s 占位符；
+          </li>
+        </ul>
+      </li>
+    </ul>
+</ol>
+<ul>
+  <li>通过<b>[4-5]</b>，我们根据 Python 管理机构的建议对代码进行了格式调整；
+  </li>
+</ul>
+
+<p>右键单击代码即可执行该脚本 <strong>[6]</strong>：</p>
+<p><img src="images/1000000100000427000001BEEEEA8F56.png" width="662" height="278" style="width:17.521cm;height:7.35cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000427000001BEEEEA8F56.png" /></p>
+<ul>
+  <li>在 <b>[7] </b>中，显示已执行的命令；
+  </li>
+  <li>在 <b>[8] </b>中，显示执行结果；
+  </li>
+</ul>
+
+<p>要在文档中运行该脚本，请从 URL |<a href="https://tahe.developpez.com/tutoriels-cours/python-flask-2020/documents/python-flask-2020.rar"><u><span style="color: #0563c1">https://tahe.developpez.com/tutoriels-cours/python-flask-2020/documents/python-flask-2020.rar</span></u></a>| 下载代码，然后在 PyCharm 中按以下步骤操作：</p>
+<p><img src="images/1000000100000427000002222EDEA730.png" width="663" height="340" style="width:17.53cm;height:9.005cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000427000002222EDEA730.png" /></p>
+<ul>
+  <li>在 <b>[1-2] </b>中，打开现有项目：选择包含已下载代码的文件夹；
+  </li>
+  <li>在 <b>[3] </b>中，项目已打开；
+  </li>
+  <li>在 <b>[4-5] </b>中，运行该项目中的某个脚本；
+  </li>
+</ul>
+
+<p><img src="images/10000001000003240000010A33CB37BF.png" width="523" height="173" style="width:13.839cm;height:4.579cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003240000010A33CB37BF.png" /></p>
+<ul>
+  <li>在 <b>[7-8] </b>中，显示执行结果；
+  </li>
+</ul>
+<p><a id="environnementvirtueldexecution"></a>
+<a id="toc48548919"></a></p>
+<h3 id="222">2.2.2. <span style="color: #4f81bd">虚拟执行环境</span></h3>
+<p>我们的工作环境现已准备就绪。不过，我们将对其进行修改，以便编写本课程所需的脚本。首先，让我们修改 PyCharm 的配置：</p>
+<p><img src="images/1000000100000426000002452F6C4184.png" width="662" height="362" style="width:17.51cm;height:9.58cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000426000002452F6C4184.png" /></p>
+<p>在右侧窗口中：</p>
+<ul>
+  <li>默认情况下，<b>[1]</b> 选项已勾选。取消勾选该选项，这样 PyCharm 就不会默认打开上一个项目，而是让我们自行选择要打开的项目；
+  </li>
+  <li>在 <b>[2]</b> 处，关闭应用程序窗口时不确认退出 PyCharm；
+  </li>
+  <li>在 <b>[3]</b> 处，新项目将在单独的窗口中打开；
+  </li>
+  <li>在 <b>[4]</b> 处，如果在程序运行时关闭 PyCharm，该程序将被停止；
+  </li>
+</ul>
+
+<p>现在让我们关闭 PyCharm，然后重新打开它：</p>
+<p><img src="images/1000000100000427000001E44ED38623.png" width="662" height="302" style="width:17.521cm;height:7.978cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000427000001E44ED38623.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，创建一个新项目；
+  </li>
+  <li>在 <b>[2] </b>中，指定项目文件夹；
+  </li>
+  <li>在 <b>[3] </b>中，选择一个虚拟环境。虚拟环境是专属于您正在创建的项目，不会与其他项目的虚拟环境混用。Python/Flask 项目会使用许多必须安装的外部库。项目 P1 可能使用库 B 的 v1 版本，而项目 P2 可能使用相同的库 B 但为 v2 版本。这两个版本可能或多或少兼容。 然而，当您安装 v2 版本的库时，如果 v1 版本已存在，v1 版本会被 v2 版本覆盖。如果新版本 v2 与 v1 版本不完全兼容，这可能会给原本使用 v1 版本的项目带来问题。为避免此类问题，每个项目都应隔离在独立的虚拟环境中；
+  </li>
+  <li>在 <b>[4] </b>中，指定项目运行期间下载的 Python 库的存储路径。此处我们选择在项目文件夹内创建一个 <b>[venv]</b>（虚拟环境）文件夹。此操作并非强制要求；
+  </li>
+  <li>在 <b>[5] </b>中，选择项目的 Python 解释器。即我们在上一步骤中安装的那个；
+  </li>
+  <li>在 <b>[6] </b>中，创建项目；
+  </li>
+</ul>
+
+<p><img src="images/100000010000017C0000023AE122802B.png" width="290" height="436" style="width:7.682cm;height:11.523cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000017C0000023AE122802B.png" /></p>
+<ul>
+  <li>在 <b>[7-8] </b>中，显示已创建的项目；
+  </li>
+  <li>在 <b>[9] </b>中，项目的运行时环境，即虚拟环境；
+  </li>
+  <li>在 <b>[10] </b>中，<b>[site-packages]</b> 文件夹是后续下载的库文件将存储的位置；
+  </li>
+</ul>
+<p><a id="toc48548920"></a></p>
+<h3 id="223-git">2.2.3. <span style="color: #4f81bd">Git</span></h3>
+<p>接下来，我们将启用版本控制系统。这里我们将使用 Git <strong>[1-4]</strong>：</p>
+<p><img src="images/100000010000042800000143DEC3132E.png" width="679" height="206" style="width:17.962cm;height:5.452cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000042800000143DEC3132E.png" /></p>
+<p>版本控制系统（VCS）允许您跟踪项目的变更。 您可以通过称为<strong>“提交</strong>”（<strong>commit</strong>）的操作，在项目生命周期的不同阶段对其进行快照。如果您在时间点 T 和 T+1 分别进行两次提交，VCS 便能让您查看这两个已提交版本之间的差异。通常，VCS 由开发团队共同使用。开发人员在代码经过彻底测试后进行提交。其他开发人员可以从 VCS 中检出这经过验证的代码并加以使用。</p>
+<p>在此场景中，仅有一名开发者。经验表明，应用程序在时间点 T 可能正常运行，但在时间点 T+1 却可能无法运行。这种情况下，我们希望回退到时间点 T 重新开始。版本控制系统支持这种操作，因此我们将在此使用它。</p>
+<p>我们将向您展示如何使用 Git 实现这一操作。</p>
+<p><img src="images/1000000100000456000002148875885E.png" width="639" height="306" style="width:16.902cm;height:8.102cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000456000002148875885E.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，选择 <b>[Git]</b> 选项卡（左下角）；
+  </li>
+  <li>在 <b>[2] </b>中，您可以看到有 495 个项目文件未被 Git 版本控制。这意味着在提交时，这些文件将不会被包含在项目快照中；
+  </li>
+  <li>在 <b>[3]</b> 处，点击 <b>[提交]</b> 按钮或项目验证按钮。如前所述，Git 随后会为项目生成一个快照，并将其存储在项目根目录下的 <b>[.git]</b> 文件夹中（PyCharm 不会显示该文件夹，但在 Windows 资源管理器中可见）；
+  </li>
+</ul>
+
+<p>让我们将项目当前状态提交<strong>[3]</strong>。</p>
+<ul>
+  <li>在 <b>[4] </b>中，未版本控制的文件列表；
+  </li>
+  <li>在<b>[5]</b>中，所有这些未版本化的文件都属于虚拟环境<b>[venv]</b>；
+  </li>
+  <li>在 <b>[6] </b>中，每次提交都必须附带一条提交信息。在此，开发者会描述待提交版本与上次提交版本相比所引入的变更；
+  </li>
+</ul>
+
+<p>Git 可以忽略某些文件夹或文件。这些文件随后将永远不会被包含在快照中。在上述 <strong>[5]</strong> 中，右键单击 <strong>[venv]</strong> 文件夹。</p>
+<ul>
+  <li>在<b>[1-3]</b>中，我们指定<b>[venv]</b>文件夹不应包含在Git的快照中。Git忽略的文件夹和文件列表存储在一个名为<b>[.gitignore]</b>的文件中<b>[4]</b>；
+  </li>
+</ul>
+
+<p><img src="images/10000001000003E900000154A8B6254D.png" width="621" height="211" style="width:16.431cm;height:5.581cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003E900000154A8B6254D.png" /></p>
+<p><img src="images/10000001000002FB000001A553182FB3.png" width="497" height="274" style="width:13.139cm;height:7.25cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002FB000001A553182FB3.png" /></p>
+<ul>
+  <li>完成上一步操作后，<b>[venv]</b> 文件夹中的所有文件都会从未版本化的文件列表中消失。仅保留刚刚创建的 <b>[.gitignore]</b> 文件；
+  </li>
+  <li>在 <b>[5] </b>中，我们选中该文件以便将其保存；
+  </li>
+  <li>在 <b>[6] </b>中，我们编写提交信息：
+  </li>
+  <li>在 <b>[7] </b>中，我们确认。随后将生成该项目的快照；
+  </li>
+</ul>
+
+<p><img src="images/10000001000001FE000000E30821F753.png" width="393" height="175" style="width:10.41cm;height:4.634cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000001FE000000E30821F753.png" /></p>
+<ul>
+  <li>在 <b>[8-9] </b>中，<b>[.gitignore]</b> 文件的内容：仅有一行，包含 <b>[/venv]</b> 文件夹的名称，这表示在快照中应忽略该文件夹的内容；
+  </li>
+</ul>
+
+<p>现在让我们看看 Git 如何派上用场。首先，我们创建一个 <strong>[git]</strong> 文件夹（您可以使用任何其他名称——演示结束后可以将其删除）：</p>
+<p><img src="images/10000001000003FC0000017BDA1981DD.png" width="662" height="246" style="width:17.51cm;height:6.505cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003FC0000017BDA1981DD.png" /></p>
+<ul>
+  <li>在 <b>[1-5] </b>中，我们创建了一个 <b>[git]</b> 文件夹；
+
+<img src="images/100000010000034B0000011FE08509EA.png" width="596" height="203" style="width:15.76cm;height:5.366cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000034B0000011FE08509EA.png" />
+
+
+  </li>
+</ul>
+
+<ul>
+  <li>在 <b>[6-10] </b>中，我们创建一个 Python 脚本 <b>[git_01]</b>；
+  </li>
+</ul>
+
+<p><img src="images/1000000100000219000000C45A0BDAD2.png" width="415" height="152" style="width:10.993cm;height:4.013cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000219000000C45A0BDAD2.png" /></p>
+<ul>
+  <li>在 <b>[11-12] </b>中，该脚本仅包含一条注释；
+  </li>
+  <li>在 <b>[13-14] </b>中，创建 <b>[git_01] </b>的副本。操作步骤如下：选中 <b>[git_01]</b>，按 Ctrl-C（复制），然后按 Ctrl-V（粘贴），并将文件名输入为<b> [git_02]</b>；
+  </li>
+</ul>
+
+<p><img src="images/10000001000002A70000013DE8FB7512.png" width="432" height="202" style="width:11.432cm;height:5.338cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002A70000013DE8FB7512.png" /></p>
+<p>现在，让我们提交项目。系统将对两个文件 <strong>[git_01] 和 [git_02]</strong> 进行快照；</p>
+<p><img src="images/10000001000003E9000001BCB5F0C707.png" width="662" height="294" style="width:17.521cm;height:7.772cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003E9000001BCB5F0C707.png" /></p>
+<ul>
+  <li>在 <b>[1-3] </b>中，提交项目；
+  </li>
+  <li>在 <b>[4] </b>中，选择要提交的未版本化文件——本例中为所有文件；
+  </li>
+  <li>在 <b>[5]</b> 处，输入提交信息；
+  </li>
+  <li>在 <b>[6]</b> 处，我们确认；
+  </li>
+</ul>
+
+<p><img src="images/10000001000003E80000017A6827943E.png" width="621" height="235" style="width:16.439cm;height:6.214cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003E80000017A6827943E.png" /></p>
+<ul>
+  <li>在 <b>[1-2] </b>中，确认提交；
+  </li>
+  <li>在 <b>[3] </b>中，选择 <b>[日志]</b> 选项卡；
+  </li>
+  <li>在 <b>[4] </b>中，显示项目分支视图。这里只有一个名为 <b>[master] </b>的分支；
+  </li>
+  <li>在 <b>[5-6] </b>中，显示刚刚完成的提交；
+  </li>
+</ul>
+
+<p>现在，让我们以同样的方式创建一个名为 <strong>[git_03]</strong> 的脚本：</p>
+<p><img src="images/1000000100000263000000F075443EDD.png" width="398" height="156" style="width:10.522cm;height:4.133cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000263000000F075443EDD.png" /></p>
+<p>修改 <strong>[git_02]</strong> 脚本并删除 <strong>[git_01]</strong> 脚本：</p>
+<p><img src="images/10000001000001E9000000D84141DF23.png" width="377" height="166" style="width:9.97cm;height:4.404cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000001E9000000D84141DF23.png" /></p>
+<p>然后提交新版本：</p>
+<p><img src="images/10000001000002C6000001D5972841EE.png" width="452" height="298" style="width:11.95cm;height:7.893cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002C6000001D5972841EE.png" /></p>
+<p>现在日志中显示了两个提交：</p>
+<p><img src="images/100000010000020B000001415F885B7C.png" width="401" height="246" style="width:10.612cm;height:6.512cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000020B000001415F885B7C.png" /></p>
+<p>当您选择某个特定提交时，该项目的文件树会显示在其右侧：</p>
+<p><img src="images/10000001000003E8000000B7E62C425B.png" width="663" height="121" style="width:17.53cm;height:3.209cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003E8000000B7E62C425B.png" /></p>
+<p>现在假设最后一次提交导致我们陷入了死胡同，我们希望回退到与之前某次提交对应的状态：</p>
+<p><img src="images/10000001000003940000011BCE7271AA.png" width="584" height="180" style="width:15.452cm;height:4.775cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003940000011BCE7271AA.png" /></p>
+<ul>
+  <li>在 <b>[1-2] </b>中，选择你要回退到的提交；
+  </li>
+  <li>在 <b>[3-5] </b>中，有几种重置模式。我们选择 <b>[hard]</b> 模式，该模式将回退到所选状态，同时丢弃此后所做的更改；
+  </li>
+</ul>
+
+<p><img src="images/10000001000003C9000001119BD9102A.png" width="622" height="175" style="width:16.452cm;height:4.636cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003C9000001119BD9102A.png" /></p>
+<ul>
+  <li>在 <b>[6] </b>中，我们已恢复了此前被删除的<b> [git_01]</b>；
+  </li>
+  <li>在 <b>[7-8] </b>中，我们发现 <b>[git_01]</b> 已恢复到原始状态，不再包含此前所做的修改；
+  </li>
+</ul>
+
+<p>现在，让我们修改 <strong>[git_02]</strong> 并添加 <strong>[git_03] [1-4]</strong>：</p>
+<p><img src="images/10000000000006160000015FBBA841D4.png" width="679" height="153" style="width:17.962cm;height:4.046cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006160000015FBBA841D4.png" /></p>
+<p>现在，让我们重复回滚到初始提交的过程：</p>
+<p><img src="images/10000000000005C50000024052E9D443.png" width="645" height="252" style="width:17.069cm;height:6.657cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005C50000024052E9D443.png" /></p>
+<ul>
+  <li>在 <b>[1-4] </b>中，我们将回退到提交 #1 的快照；
+  </li>
+  <li>在 <b>[5-6] </b>中，我们选择 <b>[保留]</b> 选项而非 <b>[硬回退]</b>。这些选项不易理解，因此我们需要亲自尝试一下：
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000001910000017E89B0F891.png" width="175" height="167" style="display:inline-block; margin:4px;width:4.63cm;height:4.411cm;" class="odt-zoomable" data-zoom-src="images/10000000000001910000017E89B0F891.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/100000000000035600000170968442FB.png" width="373" height="161" style="display:inline-block; margin:4px;width:9.86cm;height:4.249cm;" class="odt-zoomable" data-zoom-src="images/100000000000035600000170968442FB.png" /></td></tr></table>
+
+<ul>
+  <li>在 <b>[1] </b>中，文件 <b>[git_03]</b> 仍然存在；
+  </li>
+  <li>在 <b>[2-3] </b>中，<b>[git_02]</b> 文件保留了其更改；
+  </li>
+</ul>
+
+<p>很难说这个 <strong>[Revert Commit]</strong> 到底做了什么。现在让我们提交当前状态：</p>
+<p><img src="images/100000000000059C00000227B1896679.png" width="627" height="241" style="width:16.589cm;height:6.366cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000059C00000227B1896679.png" /></p>
+<ul>
+  <li>在 <b>[1-6] </b>中，该提交；
+  </li>
+</ul>
+
+<p><img src="images/100000000000047400000277A180AD71.png" width="497" height="275" style="width:13.139cm;height:7.273cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000047400000277A180AD71.png" /></p>
+<ul>
+  <li>在 <b>[9] </b>中，我们可以看到新的提交；
+  </li>
+</ul>
+
+<p>现在，让我们试着像之前那样回到提交 1：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><img src="images/10000000000002AB000002172EBAEC02.png" width="298" height="233" style="display:inline-block; margin:4px;width:7.879cm;height:6.172cm;" class="odt-zoomable" data-zoom-src="images/10000000000002AB000002172EBAEC02.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><a id="hlk43380528"></a></div><img src="images/1000000000000239000001AD423E9C95.png" width="249" height="187" style="display:inline-block; margin:4px;width:6.579cm;height:4.96cm;" class="odt-zoomable" data-zoom-src="images/1000000000000239000001AD423E9C95.png" /></td></tr></table>
+
+<ul>
+  <li>在 <b>[1-6] </b>中，我们以 <b>[Hard]</b> 模式回滚到提交 #1；
+  </li>
+</ul>
+
+<p><img src="images/1000000000000356000001836041012A.png" width="373" height="169" style="width:9.871cm;height:4.473cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000356000001836041012A.png" /></p>
+<ul>
+  <li>在 <b>[7-8] </b>中，这次我们确实丢失了自首次提交以来所做的所有更改；
+  </li>
+</ul>
+
+<p>从这里开始，我们将不再回顾 <strong>[Git]</strong>。读者可以按以下步骤继续：</p>
+<ul>
+  <li>读者可以按照提供的示例操作，既可以手动输入代码，也可以从课程网站下载；
+  </li>
+  <li>每当示例运行成功时，他们可以提交项目；
+  </li>
+  <li>在编写自己的代码时若遇到瓶颈，他们知道可以通过回滚到之前的提交来恢复到稳定状态；
+  </li>
+</ul>
+<p><a id="toc48548921"></a></p>
+<h2 id="23-python">2.3. <span style="color: #4f81bd">Python 编码规范</span></h2>
+<p>即使不遵循编码规范，您编写的 Python 代码依然可以运行。但这可能不会受到 Python 社区的认可，因为该社区已制定了相应的编码规范。这些规范总结在 |<a href="https://stackoverflow.com/questions/159720/what-is-the-naming-convention-in-python-for-variable-and-function-names"><u><span style="color: #0563c1">https://stackoverflow.com/questions/159720/what-is-the-naming-convention-in-python-for-variable-and-function-names</span></u></a>| 上的文章中：</p>
+<p><img src="images/1000000000000515000001427A8507CD.png" width="568" height="141" style="width:15.041cm;height:3.724cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000515000001427A8507CD.png" /></p>
+<ul>
+  <li>模块名称（module_name）遵循一种有时被称为 <b>[snake_case] </b>的约定：全部小写，必要时用下划线分隔单词。这种 <b>[snake_case]</b> 约定适用于方法、包、变量和函数的名称；
+  </li>
+  <li>类的名称（ClassName）遵循一种有时被称为 <b>[PascalCase] </b>的约定：由单词序列组成，每个单词的首字母大写；
+  </li>
+  <li>常量名称遵循 <b>[SNAKE_CASE]</b> 约定：由大写单词组成，单词之间用下划线分隔；
+  </li>
+</ul>
+
+<p>本文档中通常遵循这些约定。然而，对于定义类的模块，我将其命名为与所包含类相同的名称。因此，它遵循 <strong>[PascalCase]</strong> 约定而非 <strong>[snake_case]</strong>。这样做是为了能够快速识别类模块。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

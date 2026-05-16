@@ -1,0 +1,2584 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/aou.html">
+      
+      
+        <link rel="prev" href="ingongiani---anen-1.html">
+      
+      
+        <link rel="next" href="hiianianii-2-an.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>9. 导入 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#9" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              9. 导入
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aianaiauaning.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 搭建开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="python-ihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python 基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="aou.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#91-import_01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. 脚本 [import_01]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#92-import_02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. 脚本 [import_02]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#93-import_03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3. 脚本 [import_03]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#94-import_04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4. 脚本 [import_04]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#95-import_05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5. 脚本 [import_05]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#96-import_06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6. 脚本 [import_06]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#97-import_07" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7. 脚本 [import_07]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9.7. 脚本 [import_07]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#971" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7.1. 安装全局模块
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#972-configpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7.2. [config.py] 脚本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#973-mainpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7.3. [main.py] 脚本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 实践练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 实践练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongongei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 通用类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuiuieoueianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与基于接口的编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i4an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第4版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-mysql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 MySQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-postgresql-huuuuaniiong.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 PostgreSQL 数据库管理系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiehuuuuaniionguuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写数据库管理系统无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sqlalchemy-orm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. 使用 SQLAlchemy ORM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uiananganhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iu-flask-uangiae-web-uu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于 Flask 框架的 Web 服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 练习题：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianiii-7-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 练习题：第 7 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii-8-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第 8 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ongiianao-xml-ianianghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 从字典到 XML 及反向转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-11-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第 11 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-12-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 实践练习：第 12 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 JSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-14-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 实践练习：第 14 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 实践练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiianianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 实践练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="lesimports"></a>
+<a id="toc48548982"></a></p>
+<h1 id="9">9. <span style="color: #365f91">导入</span></h1>
+<p>在应用程序练习的第 1 版中遇到的错误，促使我们更深入地探讨 <strong>[import]</strong> 语句的作用。</p>
+<p><img src="images/10000001000000D10000012D4D95DD64.png" width="73" height="105" style="width:1.923cm;height:2.769cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000000D10000012D4D95DD64.png" /></p>
+<p><a id="toc48548983"></a></p>
+<h2 id="91-import_01">9.1. <span style="color: #4f81bd">脚本 [import_01]</span></h2>
+<p><strong>[imported]</strong>脚本将被各种脚本（也称为模块）导入：</p>
+<p><img src="images/1000000100000165000001099BBA76F1.png" width="124" height="92" style="width:3.29cm;height:2.441cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000165000001099BBA76F1.png" /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">#  imported module</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1">#  this instruction will be executed each time the module is imported</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1">#  variable belonging to the imported module</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">x</span><span class="o">=</span><span class="mi">4</span>
+</code></pre></div></td></tr></table></div>
+<p>模块在被导入时会被<strong>执行</strong>。因此，当 <strong>[被导入的]</strong> 模块被导入时：</p>
+<ul>
+  <li>第 3 行的输出将发生；
+  </li>
+  <li>第 5 行中的变量 x 将被赋值；
+  </li>
+</ul>
+
+<p><strong>[main_01]</strong>脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">#  an imported module is executed</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">imported</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="c1">#  use of the x variable of the imported module</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">imported</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行：导入 <b>[imported]</b> 模块。这将导致其被执行：
+    <ul>
+      <li>将显示值 2；
+      </li>
+      <li>变量 x 被创建，其值为 4；
+      </li>
+    </ul>
+  </li>
+  <li>第 4 行：使用了来自导入模块的变量 x；
+  </li>
+</ul>
+
+<p>在 PyCharm 中，报告了一个错误：</p>
+<p>在 <strong>[1]</strong> 中，PyCharm 提示无法识别 <strong>[imported]</strong> 模块。从技术角度讲，这意味着包含 <strong>[imported]</strong> 模块的文件夹未被添加到 PyCharm 的 Python 路径中。Python 路径是指用于搜索导入模块的文件夹集合。 要解决此问题，只需将包含 <strong>[imported]</strong> 模块的文件夹设置为 <strong>[Root Sources]</strong> 文件夹，本例中即 <strong>[import/01]</strong> 文件夹：</p>
+<p><img src="images/1000000000000383000000F22A24F5ED.png" width="316" height="85" style="width:8.37cm;height:2.252cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000383000000F22A24F5ED.png" /></p>
+<p><img src="images/1000000000000216000002A7BAF59978.png" width="233" height="297" style="width:6.172cm;height:7.848cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000216000002A7BAF59978.png" /></p>
+<p>完成此步骤后，<strong>[import/01]</strong> 文件夹将被添加到 PyCharm 的 Python 路径中，错误提示随之消失：</p>
+<p><img src="images/1000000000000375000000E9BB9A2FCE.png" width="386" height="102" style="width:10.209cm;height:2.688cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000375000000E9BB9A2FCE.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，<b>[01]</b> 文件夹的颜色已发生变化；
+  </li>
+  <li>在 <b>[2-3] </b>中，已不再显示错误；
+  </li>
+</ul>
+
+<p>执行结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">import</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="n">main_01</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="mi">2</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="mi">4</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 2 行是执行导入模块的结果；
+  </li>
+  <li>第 3 行显示了来自导入模块的变量 x 的值；
+  </li>
+</ul>
+
+<p>本示例的核心要点在于：导入的模块（或脚本）会被<strong>执行</strong>，这是一个重要的概念。</p>
+<p><strong>[main_02]</strong>脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">#  import the x variable from the imported module</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">imported</span><span class="w"> </span><span class="kn">import</span> <span class="n">x</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1">#  we display it</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行使用了不同的导入语法 <b>[from 模块 import 对象1, 对象2, …]</b>。这里，我们导入变量 <b>[imported.x]</b>。使用这种语法，变量 x 成为 <b>[main_02]</b> 脚本中的变量。我们不再需要在其前面加上其模块 <b>[imported]</b>；
+  </li>
+  <li>第 4 行：我们打印来自 <b>[main_02] </b>的变量 x；
+  </li>
+</ul>
+
+<p>执行结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">import</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="n">main_02</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="mi">2</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="mi">4</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>[main_03]</strong> 脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">#  import everything visible in the imported module</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">imported</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1">#  use the x variable of the imported module</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>第 2 行中的 <strong>[import *]</strong> 语法表示我们将从被导入的模块中导入所有可见对象（变量、函数）。</p>
+<p>结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">import</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="n">main_03</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="mi">2</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="mi">4</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>[main_04]</strong> 脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1">#  import the x variable from the imported module</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="c1">#  and rename it y</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">imported</span><span class="w"> </span><span class="kn">import</span> <span class="n">x</span> <span class="k">as</span> <span class="n">y</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="c1">#  display variable y</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> 
+</code></pre></div></td></tr></table></div>
+<p>第 3 行表明我们可以从 imported 模块导入一个对象，并为其指定一个别名。在此，变量 <strong>[imported.x]</strong> 变成了变量 <strong>[main_04.y]</strong>。结果与之前相同。</p>
+<p><a id="toc48548984"></a></p>
+<h2 id="92-import_02">9.2. <span style="color: #4f81bd">脚本 [import_02]</span></h2>
+<p><img src="images/10000001000001280000009EB2C9DE0E.png" width="104" height="56" style="width:2.76cm;height:1.473cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000001280000009EB2C9DE0E.png" /></p>
+<p>导入的模块 <strong>[module1.py]</strong> 内容如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1">#  a function</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f1</span><span class="p">():</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>导入的模块定义了一个函数，这是常见的情况。</p>
+<p>脚本 <strong>[main_01]</strong> 如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1">#  import</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">module1</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="c1">#  execution f1</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="n">module1</span><span class="o">.</span><span class="n">f1</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行：导入该模块。它将被执行。此处不会显示任何内容；
+  </li>
+  <li>第 4 行：执行从导入模块中调用的 <b>[f1]</b> 函数；
+  </li>
+</ul>
+
+<p>执行结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">import</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="n">main_01</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="n">f1</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>注意</strong>：为防止 PyCharm 在第 2 行导入时报错，您必须将包含 <strong>[module1]</strong> 的文件夹添加到 PyCharm 的 <strong>[根目录]</strong> 中：</p>
+<p><img src="images/1000000000000130000000FE1D0C40DC.png" width="105" height="88" style="width:2.79cm;height:2.332cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000130000000FE1D0C40DC.png" /></p>
+<p>在 <strong>[1]</strong> 中，放置在 <strong>[源</strong>代码根目录<strong>]</strong> 中的 <strong>[02]</strong> 文件夹会变为蓝色。请注意，此处报告的错误并不影响脚本的正常运行。 实际上，当执行 <strong>[main_0x]</strong> 脚本时，该脚本所在的文件夹会自动添加到 Python 路径中。因此，<strong>[module1]</strong> 会被找到。从现在起，当截图中某个文件夹显示为蓝色时，表示它已被放置在 PyCharm 的 <strong>[源代码根目录] 中</strong>。</p>
+<p><strong>[main_02]</strong> 脚本内容如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1">#  import</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">module1</span><span class="w"> </span><span class="kn">import</span> <span class="n">f1</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1">#  execution f1</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="n">f1</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行从模块 <b>[module1] </b>中导入函数 <b>[f1]</b>；
+  </li>
+  <li>第 4 行调用了函数 f1；
+  </li>
+</ul>
+
+<p>结果与 <strong>[main_01]</strong> 脚本的结果完全相同。</p>
+<p><a id="toc48548985"></a></p>
+<h2 id="93-import_03">9.3. <span style="color: #4f81bd">脚本 [import_03]</span></h2>
+<p><img src="images/1000000000000127000001374B92EB8C.png" width="102" height="108" style="width:2.709cm;height:2.856cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000127000001374B92EB8C.png" /></p>
+<p><strong>注</strong>：<strong>[03]</strong> 位于项目的 <strong>[Root Sources]</strong> 目录下。</p>
+<p>新脚本将导入 <strong>[module2]</strong> 模块，该模块并不位于与它们相同的文件夹中。</p>
+<p><strong>[module2]</strong> 脚本内容如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1">#  a function</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f2</span><span class="p">():</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;f2&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>因此，该脚本定义了一个函数 <strong>[f2]</strong>。</p>
+<p><strong>[main_01]</strong>脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1">#  class2 module import</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dir1.module2</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="c1">#  execution f2</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="n">dir1</span><span class="o">.</span><span class="n">module2</span><span class="o">.</span><span class="n">f2</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行：我们使用一种特殊表示法来指示如何查找 <b>[module2]</b> 模块。<b>[</b><b><span style="color: #6f008a">dir1</span></b><b><span style="color: #000000">.</span></b><b><span style="color: #6f008a">module2</span></b><b>]</b> 应理解为路径 <b>[</b><b><span style="color: #6f008a">dir1/module2</span></b><b>]</b>：要查找 <b>[module2]</b>，请从当前脚本所在的文件夹 <b>[main_01]</b> 开始，然后进入 <b>[dir1]</b>，在那里你会找到 <b>[module2]</b>。 请注意，路径的起点是正在导入的脚本所在的文件夹；
+  </li>
+  <li>第 4 行：执行 <b>[module2]</b> 中的函数 <b>[f2]</b>；
+  </li>
+</ul>
+
+<p>结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">import</span><span class="o">/</span><span class="mi">03</span><span class="o">/</span><span class="n">main_01</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="n">f2</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3"></a>
+<a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p>第 2 行，<strong>[f2]</strong> 函数的结果。</p>
+<p><strong>[main_02]</strong>脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1">#  import module dir1.module2 and rename it</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dir1.module2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">module2</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="c1">#  execution f2</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="n">module2</span><span class="o">.</span><span class="n">f2</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>在第 2 行，我们将模块 <strong>[dir1.module]</strong> 重命名，以简化第 4 行的代码。</p>
+<p><strong>[main_03]</strong>脚本如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1">#  import function f2 from module dir1.module2</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dir1.module2</span><span class="w"> </span><span class="kn">import</span> <span class="n">f2</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="c1">#  execution f2</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="n">f2</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>这次，在第 2 行，我们只导入了 <strong>[f2]</strong> 函数，该函数随后成为 <strong>[main_03]</strong> 脚本中的一个函数（第 4 行）。</p>
+<p>所有这些脚本在 PyCharm 环境中的运行效果与在 Python 控制台中一样好。原因是无论哪种情况，执行脚本所在的目录（此处为 <strong>[03]</strong> 目录）都是 Python 路径的一部分。因此，系统能够找到 <strong>[dir1/module2]</strong> 目录。</p>
+<p><a id="toc48548986"></a></p>
+<h2 id="94-import_04">9.4. <span style="color: #4f81bd">脚本 [import_04]</span></h2>
+<p><img src="images/100000000000016A000001A351983500.png" width="125" height="145" style="width:3.32cm;height:3.844cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016A000001A351983500.png" /></p>
+<p>在此，<strong>[dir1]</strong> 和 <strong>[dir2]</strong> 文件夹已被放置在 PyCharm 项目的 <strong>[Root Sources]</strong> 中。</p>
+<p>首先导入的模块是 <strong>[module3]</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1">#  a function</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">f3</span><span class="p">():</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;f3&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p>导入的第二个模块是 <strong>[module4]</strong>：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">module3</span><span class="w"> </span><span class="kn">import</span> <span class="n">f3</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2"></a>
+<a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="c1">#  a function</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">f4</span><span class="p">():</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5"></a>    <span class="n">f3</span><span class="p">()</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;f4&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 1 行：我们从 <b>[module3]</b> 导入函数 <b>[f3]</b>。这里，<b>[module3] </b>是可见的，因为我们将其目录 <b>[dir1]</b> 放置在了 <b>[Root Sources] </b>中；
+  </li>
+  <li>第 4–6 行：我们定义了一个函数 <b>[f4]</b>，该函数调用来自 <b>[module3] </b>的函数 <b>[f3]</b>；
+  </li>
+</ul>
+
+<p>主脚本 <strong>[main_01]</strong> 如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c1">#  import module4</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">module4</span><span class="w"> </span><span class="kn">import</span> <span class="n">f4</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="c1">#  execution f4</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="n">f4</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2 行：导入 <b>[module4]</b> 模块。这是可见的，因为我们将它的目录 <b>[dir2]</b> 放置在 PyCharm 的 <b>[Root Sources] </b>中；
+  </li>
+  <li>第 4 行：执行来自 <b>[module4] </b>的 <b>[f4]</b> 函数；
+  </li>
+</ul>
+
+<p>在 PyCharm 中运行 <strong>[main_01]</strong> 的结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span>
+<span class="normal"><a href="#__codelineno-20-4">4</a></span>
+<span class="normal"><a href="#__codelineno-20-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">import</span><span class="o">/</span><span class="mi">04</span><span class="o">/</span><span class="n">main_01</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="n">f3</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="n">f4</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4"></a>
+<a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p>现在，让我们在 Python 终端（控制台）中运行 <strong>[main_01]</strong>：</p>
+<p><img src="images/1000000000000147000002CCB9B7E723.png" width="142" height="312" style="width:3.769cm;height:8.253cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000147000002CCB9B7E723.png" /></p>
+<p>结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="p">(</span><span class="n">venv</span><span class="p">)</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">import</span>\<span class="mi">04</span><span class="o">&gt;</span><span class="n">python</span> <span class="n">main_01</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3"></a>  <span class="n">File</span> <span class="s2">&quot;main_01.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">2</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">module4</span><span class="w"> </span><span class="kn">import</span> <span class="n">f4</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="ne">ModuleNotFoundError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="s1">&#39;module4&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p>发生了什么？Python 终端并不了解 PyCharm 的 Python 路径或 <strong>[源代码根目录]</strong>。它拥有自己的 Python 路径。在这个路径中，总是包含正在执行的脚本所在的文件夹，在本例中即 <strong>[main_01]</strong> 脚本。因此，它知道 <strong>[import/04]</strong> 文件夹。在执行的脚本中，它找到了这一行：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">from<span style="color:#000000"> </span><span style="color:#6f008a">module4</span><span style="color:#000000"> </span>import<span style="color:#000000"> f4</span></span></span>
+</code></pre></div>
+
+<p>Python 解释器会在其 Python 路径中的文件夹内查找 <strong>[module4]</strong>。然而，<strong>[module4]</strong> 并不位于 <strong>[import/04]</strong> 文件夹中<strong>（</strong>尽管该文件夹确实在 Python 路径内），而是位于 <strong>[import/04/dir2] 文件夹中，</strong>而该文件夹不在 Python 路径内。因此导致了错误。</p>
+<p>因此，我们遇到了一个曾遇到过的问题：在 PyCharm 中能正常运行的脚本，在 Python 终端中可能会崩溃。这是一个反复出现的问题，我们需要解决它。</p>
+<p><a id="toc48548987"></a></p>
+<h2 id="95-import_05">9.5. <span style="color: #4f81bd">脚本 [import_05]</span></h2>
+<p><img src="images/100000000000018100000231B0B3CD88.png" width="136" height="198" style="width:3.59cm;height:5.232cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018100000231B0B3CD88.png" /></p>
+<p><strong>注意</strong>：<strong>[dir1]</strong> 和 <strong>[dir2]</strong> 文件夹已添加到 Python 路径中。请注意这里已经存在冲突：<strong>[module3]</strong> 和 <strong>[module4]</strong> 在 PyCharm 的 Python 路径中将出现在两个位置：</p>
+<ul>
+  <li>对于 <b>[module3]</b>，分别位于 <b>[import/04/dir1] </b>和 <b>[import/05/dir1] </b>中；
+  </li>
+  <li>位于 <b>[import/04/dir2] </b>和 <b>[import/05/dir2]</b> 中的 <b>[module4]</b>；
+  </li>
+</ul>
+
+<p>然后我们可以将 <strong>[import/04/dir1]</strong> 和 <strong>[import/04/dir2]</strong> 从 PyCharm 项目的 <strong>[根源文件]</strong> 中移除。 事实证明，此处的 <strong>[import/05/dir1]</strong> 是 <strong>[import/04/dir1]</strong> 的副本（<strong>[dir2]</strong> 也是如此），因此不会出现问题。不过值得注意的是，在 PyCharm 内部，必须注意 <strong>[Root Sources]</strong> 中的文件夹列表，以避免冲突。</p>
+<p><strong>[main_01]</strong>脚本内容如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="c1">#  modify sys.path to include folders</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="c1">#  containing the classes to be imported</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;./dir1&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;./dir2&quot;</span><span class="p">)</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="c1">#  import module4</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="kn">from</span><span class="w"> </span><span class="nn">module4</span><span class="w"> </span><span class="kn">import</span> <span class="n">f4</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9"></a><span class="c1">#  execution f4</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="n">f4</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>我们正在尝试解决 Python 路径问题。我们希望找到一种在 PyCharm 中和在 Python 终端中一样好用的方案。为此，我们将自行配置。</p>
+<ul>
+  <li>第 4–6 行：我们将目录 <b>[., ./dir1, ./dir2]</b> 添加到 Python 路径中。要使此操作生效，运行时的当前目录必须是 <b>[import/05]</b> 目录。在 PyCharm 中这通常成立，但在 Python 终端中则未必如此，我们稍后将看到；
+  </li>
+  <li>第 8 行：我们导入 <b>[module4]</b>。根据刚才的操作，它应该位于 <b>[./dir2]</b> 目录中；
+  </li>
+</ul>
+
+<p>在 PyCharm 中执行将得到以下结果：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">import</span><span class="o">/</span><span class="mi">05</span><span class="o">/</span><span class="n">main_01</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="n">f3</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="n">f4</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4"></a>
+<a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p>现在，在 Python 终端中：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\<span style="background-color:#fff2cc">import\05</span>&gt;python main_01.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f3</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f4</span></span>
+</code></pre></div>
+
+<p>第 1 行，执行目录为 <strong>[import/05]</strong>。</p>
+<p>现在让我们从 <strong>[import/05]</strong> 目录向上移动一层：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\import\05&gt;<span style="background-color:#fff2cc">cd ..</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\<span style="background-color:#fff2cc">import</span>&gt;python <span style="background-color:#fff2cc">05/main_01.py</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Traceback (most recent call last):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  File &quot;05/main_01.py&quot;, line 8, in &lt;module&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    from module4 import f4</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">ModuleNotFoundError: No module named &#x27;module4&#x27;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 2 行：当执行<b> [main_01]</b> 时，我们已不在 <b>[import/05]</b> 文件夹中，而是在 <b>[import]</b> 文件夹中。然而，我们写的是：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">sys</span>.path.append(<span style="color:#a31515">&quot;.&quot;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">sys</span>.path.append(<span style="color:#a31515">&quot;./dir1&quot;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">sys</span>.path.append(<span style="color:#a31515">&quot;./dir2&quot;</span>)</span></span>
+</code></pre></div>
+
+<p>这会将文件夹 <strong>[import, import/dir1, import/dir2]</strong> 添加到 Python 路径中，这完全不是我们想要的结果。请注意，将不存在的文件夹（import/dir1、import/dir2）添加到 Python 路径中并不会引发错误。</p>
+<p>我们取得了一些进展，但这还不够。我们需要将绝对路径添加到 Python 路径中，而不是相对路径。</p>
+<p><strong>[main_02]</strong> 脚本是 <strong>[main_01]</strong> 的变体，它使用了一个配置文件 <strong>[config.json]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#2e75b6">&quot;dependencies&quot;</span>: <span style="font-weight:bold">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">    </span><span style="font-weight:bold;color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/import/05/dir1&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">    </span><span style="font-weight:bold;color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/import/05/dir2&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  ]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p><strong>[dependencies]</strong> 键的值是需要添加到 Python 路径中的目录列表。请注意，这里我们使用的是绝对路径，而不是相对路径。</p>
+<p><strong>[main_02]</strong> 脚本使用 <strong>[config.json]</strong> 文件的方式如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-24-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-24-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-24-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-24-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-24-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-24-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-24-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-24-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-24-10">10</a></span>
+<span class="normal"><a href="#__codelineno-24-11">11</a></span>
+<span class="normal"><a href="#__codelineno-24-12">12</a></span>
+<span class="normal"><a href="#__codelineno-24-13">13</a></span>
+<span class="normal"><a href="#__codelineno-24-14">14</a></span>
+<span class="normal"><a href="#__codelineno-24-15">15</a></span>
+<span class="normal"><a href="#__codelineno-24-16">16</a></span>
+<span class="normal"><a href="#__codelineno-24-17">17</a></span>
+<span class="normal"><a href="#__codelineno-24-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">codecs</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4"></a>
+<a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="c1">#  configuration file</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6"></a><span class="n">config_filename</span><span class="o">=</span><span class="s2">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/import/05/config.json&quot;</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7"></a><span class="c1">#  reading the json configuration file</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8"></a><span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config_filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10"></a>
+<a id="__codelineno-24-11" name="__codelineno-24-11"></a><span class="c1">#  modification of sys.path</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12"></a><span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;dependencies&#39;</span><span class="p">]:</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13"></a>    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14"></a>
+<a id="__codelineno-24-15" name="__codelineno-24-15"></a><span class="c1">#  import module4</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16"></a><span class="kn">from</span><span class="w"> </span><span class="nn">module4</span><span class="w"> </span><span class="kn">import</span> <span class="n">f4</span>
+<a id="__codelineno-24-17" name="__codelineno-24-17"></a><span class="c1">#  execution f4</span>
+<a id="__codelineno-24-18" name="__codelineno-24-18"></a><span class="n">f4</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 6 行：请注意，我们使用了配置文件的绝对路径；
+  </li>
+  <li>第 8–9 行：读取配置文件。根据其内容构建一个字典 <b>[config]</b>（第 9 行）；
+  </li>
+  <li>第 11–13 行：数组 <b>[</b><b><span style="color: #000000">config[</span></b><b><span style="color: #a31515">&#x27;dependencies&#x27;</span></b><b>]</b>] 的元素被添加到 Python 路径中。请注意，由于我们在 <b>[config.json] </b>中使用了绝对文件夹名称，因此我们向 Python 路径中添加的也是绝对路径；
+  </li>
+  <li>第 16 行：导入<b> [module4]</b>。由于 <b>[dir2]</b> 现已加入 Python 路径，因此应能找到该模块；
+  </li>
+</ul>
+
+<p>执行结果与 <strong>[main_02]</strong> 相同，唯一区别在于即使执行目录不再是 <strong>[import/05]，</strong>脚本仍会继续运行：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\<span style="background-color:#fff2cc">import</span>&gt;python <span style="background-color:#fff2cc">05/main_02.py</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f3</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f4</span></span>
+</code></pre></div>
+
+<p>第 1 行，执行目录为 <strong>[import]</strong>。</p>
+<p>我们取得了进展。我们已经看到：</p>
+<ul>
+  <li>我们必须自己构建 Python 路径；
+  </li>
+  <li>我们必须包含应用程序所导入模块所在的所有文件夹的绝对路径；
+  </li>
+</ul>
+
+<p>然而，在脚本中写入绝对路径并不是解决办法。一旦项目被移至其他位置，它便无法正常运行。我们需要另寻他法。</p>
+<p><a id="toc48548988"></a></p>
+<h2 id="96-import_06">9.6. <span style="color: #4f81bd">脚本 [import_06]</span></h2>
+<p><img src="images/100000000000016F0000013E247ECD7F.png" width="130" height="112" style="width:3.433cm;height:2.976cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016F0000013E247ECD7F.png" /></p>
+<p><strong>注意</strong>：文件夹 <strong>[06, dir1, dir2]</strong> 已放置在 PyCharm 项目的 <strong>[Root Sources]</strong> 目录下。文件夹 <strong>[dir1, dir2]</strong> 与前面的示例中的完全相同。</p>
+<p><strong>[config.json]</strong> 文件内容如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#2e75b6">&quot;rootDir&quot;</span>: <span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/v-02/imports/06&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#2e75b6">&quot;relativeDependencies&quot;</span>: <span style="font-weight:bold">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">    </span><span style="font-weight:bold;color:#a31515">&quot;dir1&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">    </span><span style="font-weight:bold;color:#a31515">&quot;dir2&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">  ]</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#2e75b6">&quot;absoluteDependencies&quot;</span>: <span style="font-weight:bold">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">   ]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
+</code></pre></div>
+
+<p>我们将引入两种类型的路径：</p>
+<ul>
+  <li>绝对路径，第 7–8 行；
+  </li>
+  <li>相对路径，第3–6行。这些路径相对于第2行的根目录。因此，当项目移动到新位置时，只需修改这一行；
+  </li>
+</ul>
+
+<p><strong>[utils.py]</strong> 脚本使用 <strong>[config.json]</strong> 文件并构建 Python 路径：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-25-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-25-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-25-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-25-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-25-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-25-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-25-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-25-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-25-10">10</a></span>
+<span class="normal"><a href="#__codelineno-25-11">11</a></span>
+<span class="normal"><a href="#__codelineno-25-12">12</a></span>
+<span class="normal"><a href="#__codelineno-25-13">13</a></span>
+<span class="normal"><a href="#__codelineno-25-14">14</a></span>
+<span class="normal"><a href="#__codelineno-25-15">15</a></span>
+<span class="normal"><a href="#__codelineno-25-16">16</a></span>
+<span class="normal"><a href="#__codelineno-25-17">17</a></span>
+<span class="normal"><a href="#__codelineno-25-18">18</a></span>
+<span class="normal"><a href="#__codelineno-25-19">19</a></span>
+<span class="normal"><a href="#__codelineno-25-20">20</a></span>
+<span class="normal"><a href="#__codelineno-25-21">21</a></span>
+<span class="normal"><a href="#__codelineno-25-22">22</a></span>
+<span class="normal"><a href="#__codelineno-25-23">23</a></span>
+<span class="normal"><a href="#__codelineno-25-24">24</a></span>
+<span class="normal"><a href="#__codelineno-25-25">25</a></span>
+<span class="normal"><a href="#__codelineno-25-26">26</a></span>
+<span class="normal"><a href="#__codelineno-25-27">27</a></span>
+<span class="normal"><a href="#__codelineno-25-28">28</a></span>
+<span class="normal"><a href="#__codelineno-25-29">29</a></span>
+<span class="normal"><a href="#__codelineno-25-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">codecs</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6"></a>
+<a id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="c1">#  application configuration</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="k">def</span><span class="w"> </span><span class="nf">config_app</span><span class="p">(</span><span class="n">config_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9"></a>    <span class="c1">#  config_filename: name of configuration file</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10"></a>    <span class="c1">#  we let the exceptions rise</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11"></a>
+<a id="__codelineno-25-12" name="__codelineno-25-12"></a>    <span class="c1">#  using the configuration file</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13"></a>    <span class="k">with</span> <span class="n">codecs</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">config_filename</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14"></a>        <span class="n">config</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+<a id="__codelineno-25-15" name="__codelineno-25-15"></a>    <span class="c1">#  add dependencies to sys.path</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16"></a>    <span class="n">rootDir</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;rootDir&#39;</span><span class="p">]</span>
+<a id="__codelineno-25-17" name="__codelineno-25-17"></a>    <span class="c1">#  add the project&#39;s relative dependencies to the syspath</span>
+<a id="__codelineno-25-18" name="__codelineno-25-18"></a>    <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;relativeDependencies&#39;</span><span class="p">]:</span>
+<a id="__codelineno-25-19" name="__codelineno-25-19"></a>        <span class="c1">#  add the dependency at the beginning of the syspath</span>
+<a id="__codelineno-25-20" name="__codelineno-25-20"></a>        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rootDir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-25-21" name="__codelineno-25-21"></a>    <span class="c1">#  we add the project&#39;s absolute dependencies to the syspath</span>
+<a id="__codelineno-25-22" name="__codelineno-25-22"></a>    <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;absoluteDependencies&#39;</span><span class="p">]:</span>
+<a id="__codelineno-25-23" name="__codelineno-25-23"></a>        <span class="c1">#  add the dependency at the beginning of the syspath</span>
+<a id="__codelineno-25-24" name="__codelineno-25-24"></a>        <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+<a id="__codelineno-25-25" name="__codelineno-25-25"></a>    <span class="c1">#  return the configuration dictionary</span>
+<a id="__codelineno-25-26" name="__codelineno-25-26"></a>    <span class="k">return</span> <span class="n">config</span>
+<a id="__codelineno-25-27" name="__codelineno-25-27"></a>
+<a id="__codelineno-25-28" name="__codelineno-25-28"></a><span class="c1">#  executed script file</span>
+<a id="__codelineno-25-29" name="__codelineno-25-29"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_scriptdir</span><span class="p">():</span>
+<a id="__codelineno-25-30" name="__codelineno-25-30"></a>    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 8 行：<b>[config_app]</b> 函数将配置文件的名称作为参数接收；
+  </li>
+  <li>第 12–14 行：使用配置文件创建 <b>[config]</b> 字典；
+  </li>
+  <li>第 20 行：<b>[sys.path] </b>是 Python 路径中的目录列表；
+  </li>
+  <li>第 17–20 行：将配置文件中的相关依赖项添加到 Python 路径中。这些依赖项被添加到 <b>[sys.path]</b> 列表的开头（第 20 行）。这是因为当 Python 搜索模块时，会按顺序遍历 <b>[sys.path]</b> 中的目录。 然而，在本文档中，同名的模块将位于 <b>[sys.path] 内的</b>不同目录中。通过将应用程序的依赖项放置在 <b>[sys.path]</b> 数组的首位，我们确保在搜索 <b>[sys.path] 中</b>其他可能包含同名模块的目录之前，先搜索这些依赖项；
+  </li>
+  <li>第 21–24 行：将配置文件的绝对依赖项添加到 Python 路径中；
+  </li>
+  <li>第 26 行：返回应用程序配置；
+  </li>
+  <li>第 29–30 行：<b>[get_scriptdir]</b> 函数返回包含当前正在运行的脚本（即包含该函数调用的脚本）的目录的绝对路径；
+  </li>
+</ul>
+
+<p>主脚本 <strong>[main]</strong> 如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-26-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-26-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-26-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-26-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-26-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-26-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-26-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-26-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-26-10">10</a></span>
+<span class="normal"><a href="#__codelineno-26-11">11</a></span>
+<span class="normal"><a href="#__codelineno-26-12">12</a></span>
+<span class="normal"><a href="#__codelineno-26-13">13</a></span>
+<span class="normal"><a href="#__codelineno-26-14">14</a></span>
+<span class="normal"><a href="#__codelineno-26-15">15</a></span>
+<span class="normal"><a href="#__codelineno-26-16">16</a></span>
+<span class="normal"><a href="#__codelineno-26-17">17</a></span>
+<span class="normal"><a href="#__codelineno-26-18">18</a></span>
+<span class="normal"><a href="#__codelineno-26-19">19</a></span>
+<span class="normal"><a href="#__codelineno-26-20">20</a></span>
+<span class="normal"><a href="#__codelineno-26-21">21</a></span>
+<span class="normal"><a href="#__codelineno-26-22">22</a></span>
+<span class="normal"><a href="#__codelineno-26-23">23</a></span>
+<span class="normal"><a href="#__codelineno-26-24">24</a></span>
+<span class="normal"><a href="#__codelineno-26-25">25</a></span>
+<span class="normal"><a href="#__codelineno-26-26">26</a></span>
+<span class="normal"><a href="#__codelineno-26-27">27</a></span>
+<span class="normal"><a href="#__codelineno-26-28">28</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3"></a>
+<a id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_app</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5"></a>
+<a id="__codelineno-26-6" name="__codelineno-26-6"></a>
+<a id="__codelineno-26-7" name="__codelineno-26-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">affiche_path</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8"></a>    <span class="c1">#  message</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">------------------------------&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10"></a>    <span class="c1">#  sys.path</span>
+<a id="__codelineno-26-11" name="__codelineno-26-11"></a>    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+<a id="__codelineno-26-12" name="__codelineno-26-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<a id="__codelineno-26-13" name="__codelineno-26-13"></a>
+<a id="__codelineno-26-14" name="__codelineno-26-14"></a>
+<a id="__codelineno-26-15" name="__codelineno-26-15"></a><span class="c1">#  hand -------------</span>
+<a id="__codelineno-26-16" name="__codelineno-26-16"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-26-17" name="__codelineno-26-17"></a>    <span class="c1">#  the sys.path is configured</span>
+<a id="__codelineno-26-18" name="__codelineno-26-18"></a>    <span class="n">affiche_path</span><span class="p">(</span><span class="s2">&quot;avant....&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-19" name="__codelineno-26-19"></a>    <span class="n">config</span> <span class="o">=</span> <span class="n">config_app</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">get_scriptdir</span><span class="p">()</span><span class="si">}</span><span class="s2">/config.json&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-20" name="__codelineno-26-20"></a>    <span class="n">affiche_path</span><span class="p">(</span><span class="s2">&quot;après....&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-21" name="__codelineno-26-21"></a>    <span class="c1">#  import module4</span>
+<a id="__codelineno-26-22" name="__codelineno-26-22"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">module4</span><span class="w"> </span><span class="kn">import</span> <span class="n">f4</span>
+<a id="__codelineno-26-23" name="__codelineno-26-23"></a>    <span class="c1">#  execution f4</span>
+<a id="__codelineno-26-24" name="__codelineno-26-24"></a>    <span class="n">f4</span><span class="p">()</span>
+<a id="__codelineno-26-25" name="__codelineno-26-25"></a><span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-26-26" name="__codelineno-26-26"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;L&#39;erreur suivante s&#39;est produite : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-26-27" name="__codelineno-26-27"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-26-28" name="__codelineno-26-28"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 4 行：导入了 <b>[config_app]</b> 函数。请注意，由于 <b>[utils] </b>和 <b>[main]</b> 位于同一目录下，因此此 <b>[import]</b> 语句始终有效。这是因为主脚本所在的目录会被自动添加到 Python 路径中；
+  </li>
+  <li>第 7–12 行：<b>[display_path]</b> 函数显示 Python 路径中的文件夹列表；
+  </li>
+  <li>第 19 行：配置应用程序。请注意，配置文件的绝对路径被传递给了 <b>[config_app]</b> 函数。执行此语句后，Python 路径已被重建；
+  </li>
+  <li>第 22 行：我们导入 <b>[module4]</b>。得益于 Python 路径的重建，该模块将被成功找到；
+  </li>
+  <li>第 24 行：执行 <b>[f4]</b> 函数；
+  </li>
+</ul>
+
+<p>在 PyCharm 环境中，执行结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/<span style="background-color:#fff2cc">import/06/main.py</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">avant....------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\import\06</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\fonctions\shared</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\impots\v01\shared</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\python38.zip</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\DLLs</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\lib</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\lib\site-packages</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">après....------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:/Data/st-2020/dev/python/cours-2020/v-02/imports/06/dir2</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:/Data/st-2020/dev/python/cours-2020/v-02/imports/06/dir1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\import\06</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\fonctions\shared</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\impots\v01\shared</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">….</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\python38.zip</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\DLLs</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\lib</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\lib\site-packages</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f3</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f4</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">done</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+  <li>第 2–13 行：PyCharm 的 Python 路径。它包含放置在项目 <b>[Root Sources]</b> 中的所有文件夹；
+  </li>
+  <li>第 14–29 行：由 <b>[config_app]</b> 函数构建的 Python 路径。第 15–16 行包含我们添加的两个依赖项；
+  </li>
+  <li>第 22–27 行：执行该脚本的 Python 解释器的系统目录；
+  </li>
+  <li>第 28–29 行：执行正常进行；
+  </li>
+</ul>
+
+<p>现在，让我们回到之前引发运行时错误的上下文：</p>
+<ul>
+  <li>打开一个 Python 终端；
+  </li>
+  <li>切换到不包含该脚本的目录；
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\<span style="background-color:#fff2cc">import</span>&gt;python <span style="background-color:#fff2cc">06/main.py</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">avant....------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\import\06</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\python38.zip</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\DLLs</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\lib</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\lib\site-packages</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">après....------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:/Data/st-2020/dev/python/cours-2020/v-02/imports/06/<span style="background-color:#fff2cc">dir2</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:/Data/st-2020/dev/python/cours-2020/v-02/imports/06/<span style="background-color:#fff2cc">dir1</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\import\06</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\python38.zip</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\DLLs</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38\lib</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Program Files\Python38</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\lib\site-packages</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f3</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">f4</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">done</span></span>
+</code></pre></div>
+
+<p>这次运行成功了（第20–21行）。请注意，<strong>[sys.path]</strong> 包含的目录与在 PyCharm 中运行时并不相同。 </p>
+<p><a id="toc48548989"></a></p>
+<h2 id="97-import_07">9.7. <span style="color: #4f81bd">脚本 [import_07]</span></h2>
+<p>我们通过以下两种方式改进了之前的解决方案：</p>
+<ul>
+  <li>我们将配置文件 <b>[config.json]</b> 替换为脚本 <b>[config.py]</b>。事实上，JSON 文件存在一个显著问题：无法添加注释。<b>[config.json]</b> 字典可以替换为 Python 字典，后者具有可添加注释的优势；
+  </li>
+  <li>我们使用一个对机器上所有 Python 项目都可见的模块；
+  </li>
+</ul>
+<p><a id="installationdunmodule"></a>
+<a id="toc48548990"></a></p>
+<h3 id="971">9.7.1. <span style="color: #4f81bd">安装全局模块</span></h3>
+<p><img src="images/1000000100000128000000D56ECC7998.png" width="105" height="75" style="width:2.769cm;height:1.993cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000128000000D56ECC7998.png" /></p>
+<p>在上文中，我们在 PyCharm 项目中创建了一个<strong>名为 [packages/myutils]</strong> 的文件夹（名称不重要）。</p>
+<p><strong>[myutils.py]</strong> 脚本内容如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-27-10">10</a></span>
+<span class="normal"><a href="#__codelineno-27-11">11</a></span>
+<span class="normal"><a href="#__codelineno-27-12">12</a></span>
+<span class="normal"><a href="#__codelineno-27-13">13</a></span>
+<span class="normal"><a href="#__codelineno-27-14">14</a></span>
+<span class="normal"><a href="#__codelineno-27-15">15</a></span>
+<span class="normal"><a href="#__codelineno-27-16">16</a></span>
+<span class="normal"><a href="#__codelineno-27-17">17</a></span>
+<span class="normal"><a href="#__codelineno-27-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="c1">#  imports</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4"></a>
+<a id="__codelineno-27-5" name="__codelineno-27-5"></a>
+<a id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">set_syspath</span><span class="p">(</span><span class="n">absolute_dependencies</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7"></a>    <span class="c1">#  absolute_dependencies: a list of absolute folder names</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8"></a>
+<a id="__codelineno-27-9" name="__codelineno-27-9"></a>    <span class="c1">#  add the project&#39;s absolute dependencies to the syspath</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10"></a>    <span class="k">for</span> <span class="n">directory</span> <span class="ow">in</span> <span class="n">absolute_dependencies</span><span class="p">:</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11"></a>        <span class="c1">#  we check the existence of the file</span>
+<a id="__codelineno-27-12" name="__codelineno-27-12"></a>        <span class="n">existe</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">directory</span><span class="p">)</span>
+<a id="__codelineno-27-13" name="__codelineno-27-13"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">existe</span><span class="p">:</span>
+<a id="__codelineno-27-14" name="__codelineno-27-14"></a>            <span class="c1">#  an exception is lifted</span>
+<a id="__codelineno-27-15" name="__codelineno-27-15"></a>            <span class="k">raise</span> <span class="ne">BaseException</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[set_syspath] le dossier du Python Path [</span><span class="si">{</span><span class="n">directory</span><span class="si">}</span><span class="s2">] n&#39;existe pas&quot;</span><span class="p">)</span>
+<a id="__codelineno-27-16" name="__codelineno-27-16"></a>        <span class="k">else</span><span class="p">:</span>
+<a id="__codelineno-27-17" name="__codelineno-27-17"></a>            <span class="c1">#  add the folder at the beginning of the syspath</span>
+<a id="__codelineno-27-18" name="__codelineno-27-18"></a>            <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">directory</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 6–18 行：<b>[set_syspath]</b> 函数使用作为参数传递的目录列表创建一个 Python 路径；
+  </li>
+  <li>第 12–15 行：我们检查要添加到 Python 路径中的目录是否存在；
+  </li>
+</ul>
+
+<p><strong>[__init.py__]</strong> 脚本（名称前后各有一个下划线；这是必需的）如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> .<span style="color:#6f008a">myutils</span> <span style="color:#0000ff">import</span> set_syspath</span></span>
+</code></pre></div>
+
+<p>我们从 <strong>[myutils]</strong> 脚本中导入 <strong>[set_syspath]</strong> 函数。表示法 <strong>[.myutils]</strong> 指代路径 <strong>[./myutils]</strong>，这意味着 <strong>[myutils]</strong> 脚本位于与 <strong>[__init.py]</strong> 相同的目录下。 我们本可以使用 <strong>[myutils]</strong> 这种写法。但是，我们将创建一个全局 <strong>[myutils]</strong> 模块。因此，<strong>[from myutils import set_syspath]</strong> 这种写法会变得模棱两可。它是指从当前目录导入 <strong>[myutils]</strong> 脚本，还是指导入全局 <strong>[myutils]</strong> 脚本？<strong>[.myutils]</strong> 这种写法解决了这种歧义。</p>
+<p><strong>[setup.py]</strong> 脚本（此处的名称也是固定的）如下所示：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> setuptools <span style="color:#0000ff">import</span> setup</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">setup(name=<span style="color:#a31515">&#x27;myutils&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      version=<span style="color:#a31515">&#x27;0.1&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      description=<span style="color:#a31515">&#x27;Utilitaire fixant le Python Path&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      url=<span style="color:#a31515">&#x27;#&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      author=<span style="color:#a31515">&#x27;st&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      author_email=<span style="color:#a31515">&#x27;st@gmail.com&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      license=<span style="color:#a31515">&#x27;MIT&#x27;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      packages=<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;myutils&#x27;</span><span style="font-weight:bold">]</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      zip_safe=<span style="color:#0000ff">False</span>)</span></span>
+</code></pre></div>
+
+<p>在此脚本中，我们描述了即将创建的模块。这里我们将本地创建该模块。不过，创建官方发布的模块（参见 |pypi|）也采用相同的流程。此处的关键要点如下：</p>
+<ul>
+  <li>第 3 行：正在创建的模块名称；
+  </li>
+  <li>第 4 行：模块的版本号；
+  </li>
+  <li>第 5 行：模块的描述；
+  </li>
+  <li>第 7–8 行：模块的作者；
+  </li>
+</ul>
+
+<p>若要以全机范围安装此模块，请按以下步骤操作：</p>
+<p><img src="images/100000010000024B0000027B01C4A14B.png" width="263" height="285" style="width:6.96cm;height:7.528cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000024B0000027B01C4A14B.png" /></p>
+<p>然后，在 Python 终端中输入以下命令 <strong>[pip install .]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\packages&gt;<span style="background-color:#fff2cc">pip install .</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Processing c:\data\st-2020\dev\python\cours-2020\python3-flask-2020\packages</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Using legacy setup.py install for myutils, since package &#x27;wheel&#x27; is not installed.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Installing collected packages: myutils</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  Attempting uninstall: myutils</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    Found existing installation: myutils 0.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    Uninstalling myutils-0.1:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      Successfully uninstalled myutils-0.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    Running setup.py install for myutils ... done</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Successfully installed myutils-0.1</span></span>
+</code></pre></div>
+
+<p>从现在起，该机器上的任何脚本都可以导入 <strong>[myutils]</strong> 模块，而无需将其包含在项目代码中。</p>
+<p><a id="toc48548991"></a></p>
+<h3 id="972-configpy">9.7.2. <span style="color: #4f81bd">[config.py] 脚本</span></h3>
+<p><img src="images/100000010000010D000000D33929E6BE.png" width="135" height="106" style="width:3.56cm;height:2.792cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000010D000000D33929E6BE.png" /></p>
+<p><strong>[config.py]</strong> 脚本负责处理应用程序的配置：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-28-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-28-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-28-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-28-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-28-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-28-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-28-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-28-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-28-10">10</a></span>
+<span class="normal"><a href="#__codelineno-28-11">11</a></span>
+<span class="normal"><a href="#__codelineno-28-12">12</a></span>
+<span class="normal"><a href="#__codelineno-28-13">13</a></span>
+<span class="normal"><a href="#__codelineno-28-14">14</a></span>
+<span class="normal"><a href="#__codelineno-28-15">15</a></span>
+<span class="normal"><a href="#__codelineno-28-16">16</a></span>
+<span class="normal"><a href="#__codelineno-28-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">configure</span><span class="p">():</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2"></a>    <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4"></a>    <span class="c1">#  absolute name of the configuration script folder</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5"></a>    <span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6"></a>    <span class="c1">#  absolute paths of folders to put in the syspath</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7"></a>    <span class="n">absolute_dependencies</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8"></a>        <span class="c1">#  local files</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9"></a>        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">script_dir</span><span class="si">}</span><span class="s2">/dir1&quot;</span><span class="p">,</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10"></a>        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">script_dir</span><span class="si">}</span><span class="s2">/dir2&quot;</span><span class="p">,</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11"></a>    <span class="p">]</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12"></a>    <span class="c1">#  update syspath</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13"></a>    <span class="kn">from</span><span class="w"> </span><span class="nn">myutils</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_syspath</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14"></a>    <span class="n">set_syspath</span><span class="p">(</span><span class="n">absolute_dependencies</span><span class="p">)</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15"></a>
+<a id="__codelineno-28-16" name="__codelineno-28-16"></a>    <span class="c1">#  return the config</span>
+<a id="__codelineno-28-17" name="__codelineno-28-17"></a>    <span class="k">return</span> <span class="p">{}</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 1 行：<b>[configure]</b> 函数负责处理应用程序配置；
+  </li>
+  <li>第 7–10 行：之前在 <b>[config.json]</b> 中的字典；
+  </li>
+  <li>第 9–10 行：由于我们处于脚本中，可以直接访问绝对文件夹名称 <b>[dir1, dir2]</b>；
+  </li>
+  <li>第 12–14 行：我们使用刚刚创建的 <b>[myutils]</b> 模块中的 <b>[set_syspath]</b> 函数来设置配置的 Python 路径；
+  </li>
+  <li>第 20 行：返回应用程序配置字典。此处，该字典为空；
+  </li>
+</ul>
+<p><a id="toc48548992"></a></p>
+<h3 id="973-mainpy">9.7.3. <span style="color: #4f81bd">[main.py] 脚本</span></h3>
+<p>主脚本 <strong>[main]</strong> 如下所示：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-29-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-29-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-29-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-29-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-29-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-29-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-29-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-29-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-29-10">10</a></span>
+<span class="normal"><a href="#__codelineno-29-11">11</a></span>
+<span class="normal"><a href="#__codelineno-29-12">12</a></span>
+<span class="normal"><a href="#__codelineno-29-13">13</a></span>
+<span class="normal"><a href="#__codelineno-29-14">14</a></span>
+<span class="normal"><a href="#__codelineno-29-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="c1">#  configure the application</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">config</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3"></a>
+<a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="n">config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">configure</span><span class="p">()</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5"></a>
+<a id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="c1">#  syspath is configured - imports can be made</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7"></a><span class="kn">from</span><span class="w"> </span><span class="nn">module4</span><span class="w"> </span><span class="kn">import</span> <span class="n">f4</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8"></a>
+<a id="__codelineno-29-9" name="__codelineno-29-9"></a><span class="c1">#  hand -------------</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11"></a>    <span class="n">f4</span><span class="p">()</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12"></a><span class="k">except</span> <span class="ne">BaseException</span> <span class="k">as</span> <span class="n">erreur</span><span class="p">:</span>
+<a id="__codelineno-29-13" name="__codelineno-29-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;L&#39;erreur suivante s&#39;est produite : </span><span class="si">{</span><span class="n">erreur</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-29-14" name="__codelineno-29-14"></a><span class="k">finally</span><span class="p">:</span>
+<a id="__codelineno-29-15" name="__codelineno-29-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 2–4 行：我们使用 <b>[config.py]</b> 模块配置应用程序。由于该模块与主脚本位于同一目录下，因此可以访问它。然而，主脚本所在的目录始终是 Python 路径的一部分；
+  </li>
+  <li>当执行到第 6 行时，Python 路径已构建完成，并包含了 <b>[module4]</b> 模块所在的文件夹。因此，我们可以在第 7 行导入该模块；
+  </li>
+  <li>第 10–15 行：剩下的就是调用 <b>[f4]</b> 函数；
+  </li>
+</ul>
+
+<p>在 PyCharm 中的执行结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span>
+<span class="normal"><a href="#__codelineno-30-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">venv</span>\<span class="n">Scripts</span>\<span class="n">python</span><span class="o">.</span><span class="n">exe</span> <span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">import</span><span class="o">/</span><span class="mi">07</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="n">f3</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="n">f4</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="n">done</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5"></a>
+<a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="n">Process</span> <span class="n">finished</span> <span class="k">with</span> <span class="n">exit</span> <span class="n">code</span> <span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p>在主脚本目录外的 Python 终端中，结果如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span>
+<span class="normal"><a href="#__codelineno-31-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="p">(</span><span class="n">venv</span><span class="p">)</span> <span class="n">C</span><span class="p">:</span>\<span class="n">Data</span>\<span class="n">st</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">dev</span>\<span class="n">python</span>\<span class="n">cours</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span>\<span class="n">import</span><span class="o">&gt;</span><span class="n">python</span> <span class="mi">07</span><span class="o">/</span><span class="n">main</span><span class="o">.</span><span class="n">py</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="n">f3</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="n">f4</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="n">done</span>
+</code></pre></div></td></tr></table></div>
+<p>从现在起，我们将始终按照相同的步骤来配置应用程序：</p>
+<ul>
+  <li>在主脚本所在的目录中放置一个 <b>[config.py]</b> 脚本。该脚本包含一个 <b>[configure]</b> 函数，其作用有两点：
+    <ul>
+      <li>构建应用程序的 Python 路径。为此，<b>[config.py]</b> 会列出所有包含应用程序所用模块的文件夹，并使用这些模块的绝对路径来构建 Python 路径；
+      </li>
+      <li>构建应用程序配置的 <b>[config]</b> 字典；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>我们将这种方法应用到练习题的第二个版本中。您可能还记得，第一个版本在 PyCharm 环境中可以运行，但在 Python 终端中却无法运行。问题出在 Python 路径上。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
