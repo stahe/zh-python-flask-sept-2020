@@ -1,0 +1,2542 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/ingongianii-17-an.html">
+      
+      
+        <link rel="prev" href="ingongianii-16-an.html">
+      
+      
+        <link rel="next" href="ingongianianen-18-.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>37. 应用练习：第 17 版 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#37-17" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              37. 应用练习：第 17 版
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="onguouaningeaian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 工作环境的搭建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pythonihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 应用练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 应用练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aningei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 泛型类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuieouianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与接口编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i-4-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第 4 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 SGBD MySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-postgresql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 SGBD PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianieu-sgbd-uuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写与 SGBD 无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orm-ehiong-sqlalchemy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. ORM 的使用 SQLALCHEMY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uianangongeng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuflaskuangiaewebuu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于Flask框架的Web服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 应用练习：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii7an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 应用练习：第7版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii8an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第8版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aiiianu-xml-hiianininghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 在字典与 XML 之间进行转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii11an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第11版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii12an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 应用练习：第12版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 jSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii14an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 应用练习：第14版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 应用练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ingongianii-17-an.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 应用练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#371" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37.1. 应用程序依赖项的迁移
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#372" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37.2. 测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#373-python-flask-apache-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37.3. 将 Python / Flask 应用程序移植到 Apache / Windows 服务器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="37.3. 将 Python / Flask 应用程序移植到 Apache / Windows 服务器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3731" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37.3.1. 参考
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3732-python-mod_wsgi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37.3.2. 安装 Python 模块 mod_wsgi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3733-laragon-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37.3.3. 配置 Laragon 的 Apache 服务器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#374-apache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37.4. 创建第一个 Apache 虚拟服务器
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#375-apache-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        37.5. 将税款计算应用程序移植到 Apache / Windows 环境
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 应用练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="exercicedapplication13" name="exercicedapplication13" class="odt-bookmark-anchor"></span>
+<span id="toc48549342" name="toc48549342" class="odt-bookmark-anchor"></span></p>
+<h1 id="37-17">37. <span style="color: #365f91">应用练习：第 17 版</span></h1>
+<p><img src="images/1000000000000114000001AD0792667B.png" width="121" height="188" style="width:3.193cm;height:4.962cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000114000001AD0792667B.png" /></p>
+<p>此新版本带来了以下更新：</p>
+<ul>
+  <li>它将移植到 Apache / Windows 服务器上；
+  </li>
+  <li>为实现此移植，第17版在其<b>[impots / http-servers/ 12]文件</b>夹中包含了所需的所有依赖项。需要提醒的是，之前的版本会从整个<b>[python-flask-2020]项目</b>中的不同文件夹中获取其依赖项；
+  </li>
+</ul>
+
+<p><span id="toc48549343" name="toc48549343" class="odt-bookmark-anchor"></span></p>
+<h2 id="371">37.1. <span style="color: #4f81bd">应用程序依赖项的迁移</span></h2>
+<p><img src="images/1000000000000109000000D06F1F6856.png" width="116" height="91" style="width:3.069cm;height:2.409cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000109000000D06F1F6856.png" /></p>
+<p>需要提醒的是，应用程序依赖项的管理是在脚本 <strong>[syspath]</strong> 中进行的。在上一版本中，该脚本如下所示：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> configure(config: dict) -&gt; dict:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">import</span> os</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 该文件的目录</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    script_dir = os.path.dirname(os.path.abspath(__file__))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 根路径</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    root_dir = <span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 依赖项</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    absolute_dependencies = <span style="font-weight:bold">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 项目文件夹</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># BaseEntity, MyException</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/classes/02/entities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># InterfaceImpôtsDao, InterfaceImpôtsMétier, InterfaceImpôtsUi</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v04/interfaces&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># AbstractImpôtsdao, ImpôtsConsole, ImpôtsMétier</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v04/services&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># ImpotsDaoWithAdminDataInDatabase</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v05/services&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># AdminData, ImpôtsError, TaxPayer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v04/entities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 常量、区间</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v05/entities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 记录器，SendAdminMail</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/http-servers/02/utilities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 主脚本文件夹</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        script_dir,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 配置[database, layers, parameters, controllers, views]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../configs&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 控制器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../controllers&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 答案HTTP</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../responses&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 视图模板</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../models_for_views&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 设置 syspath</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">from</span> myutils <span style="color:#0000ff">import</span> set_syspath</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    set_syspath(absolute_dependencies)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 生成配置</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">return</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;root_dir&quot;</span>: root_dir,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;script_dir&quot;</span>: script_dir</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+</code></pre></div>
+
+<p>必须重定位所有绝对路径依赖于第 8 行变量 <strong>[root_dir]</strong> 的依赖项，即第 13-26 行。</p>
+<p>新版本中的脚本 <strong>[syspath]</strong> 将如下所示：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> configure(config: dict) -&gt; dict:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">import</span> os</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 此文件的目录</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    script_dir = os.path.dirname(os.path.abspath(__file__))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 依赖项</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    absolute_dependencies = <span style="font-weight:bold">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 应用程序实体</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{script_dir}</span><span style="font-weight:bold;color:#a31515">/../entities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 层 [dao]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../layers/dao&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 层 [métier]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../layers/métier&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 实用程序</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../utilities&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 主脚本文件夹</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        script_dir,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 配置[database, layers, parameters, controllers, views]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../configs&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 控制器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../controllers&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 答案HTTP</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../responses&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 视图模板</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../models_for_views&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 设置 syspath</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">import</span> sys</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 为其添加项目的绝对依赖项</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">for</span> directory <span style="color:#0000ff">in</span> absolute_dependencies:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 检查文件夹是否存在</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        existe = os.path.exists(directory) <span style="color:#0000ff">and</span> os.path.isdir(directory)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">if</span> <span style="color:#0000ff">not</span> existe:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#008000"># 向开发人员发出警告</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">raise</span> BaseException(<span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="font-weight:bold;color:#a31515">[set_syspath]</span><span style="color:#a31515"> le dossier du Python Path </span><span style="font-weight:bold;color:#a31515">[</span><span style="font-weight:bold">{directory}</span><span style="font-weight:bold;color:#a31515">]</span><span style="color:#a31515"> n&#x27;existe pas&quot;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#008000"># 将文件夹插入 syspath 的开头</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            sys.path.insert(<span style="color:#098658">0</span>, directory)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 生成配置</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">return</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;script_dir&quot;</span>: script_dir,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 8-27 行：所有依赖项现均相对于第 5 行的变量 <b>[script_dir]</b>；
+  </li>
+  <li>第 42-45 行：变量 <b>[root_dir]</b> 已从 syspath 配置中移除；
+  </li>
+  <li>第 10 行：应用程序的实体位于 <b>[entities] [1]</b> 文件夹中；
+  </li>
+  <li>第12行：<b>[dao]</b>层位于<b>[layers/dao]</b>和[2]文件夹中；
+  </li>
+  <li>第 14 行：图层 <b>[métier]</b> 位于文件夹 <b>[layers/métier] [2] </b>中；
+  </li>
+  <li>第 16 行：<b>[Logger, SendMail]</b> 实用程序位于文件夹 <b>[utilities] [3] </b>中；
+  </li>
+  <li>第29-40行：计算应用程序的Python路径，且不导入<b>模块[myutils]</b>；
+  </li>
+</ul>
+
+<p><img src="images/100000000000061A000001BCF1041F6F.png" width="680" height="193" style="width:18cm;height:5.117cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000061A000001BCF1041F6F.png" /></p>
+<p><span id="toc48549344" name="toc48549344" class="odt-bookmark-anchor"></span></p>
+<h2 id="372">37.2. <span style="color: #4f81bd">测试</span></h2>
+<p>至此，版本 17 应该可以运行。请进行验证。</p>
+<p><span id="toc48549345" name="toc48549345" class="odt-bookmark-anchor"></span></p>
+<h2 id="373-python-flask-apache-windows">37.3. <span style="color: #4f81bd">将 Python / Flask 应用程序移植到 Apache / Windows 服务器</span></h2>
+<p><span id="sources" name="sources" class="odt-bookmark-anchor"></span>
+<span id="toc48549346" name="toc48549346" class="odt-bookmark-anchor"></span></p>
+<h3 id="3731">37.3.1. <span style="color: #4f81bd">参考</span></h3>
+<p>为了将 Flask 应用移植到 Apache / Windows 环境，我不得不上网搜索。以下链接帮助我入门：[https://medium.com/@madumalt/flask-app-deployment-in-windows-apache-server-mod-wsgi-82e1cfeeb2ed]；</p>
+<p>我参考了该链接中的信息，但Apache服务器的配置除外。对于Apache服务器的配置，我采用了Laragon提供的示例配置。</p>
+<p><span id="toc48549347" name="toc48549347" class="odt-bookmark-anchor"></span></p>
+<h3 id="3732-python-mod_wsgi">37.3.2. <span style="color: #4f81bd">安装 Python 模块 mod_wsgi</span></h3>
+<p>我们开发的 Python / Flask 应用程序使用了随 Flask 一起提供的 WSGI（Web Server Gateway Interface）<strong>[werkzeug]</strong> 服务器。 该服务器的<a href="https://werkzeug.palletsprojects.com/en/1.0.x/serving/"><u><span style="color: #0563c1">介绍</span></u></a>请见|此处|。链接[https://www.fullstackpython.com/wsgi-servers.html]介绍了WSGI服务器的运行原理。 存在多种 |WSGI|<a href="https://wsgi.readthedocs.io/en/latest/servers.html"><u><span style="color: #0563c1"> 服务器</span></u></a>。其中之一是运行在 WSGI 模式下的 Apache 服务器。本文采用此方案，是因为我们安装的 Laragon 自带 Apache 服务器。</p>
+<p>为了让 Apache 服务器能够托管 Python 应用程序，我们需要安装 Python 模块 <strong>[mod_wsgi]</strong>。 该模块的安装较为复杂，因为安装过程中会进行 C++ 编译。要成功安装，需要 Microsoft C++ 编译器。一个简单的解决方案是安装最新版本的 Visual Studio Community [https://visualstudio.microsoft.com/fr/vs/community/]。</p>
+<p>如果除了 <strong>[mod_wsgi]</strong> 之外不需要使用 Visual Studio，可以将安装范围限定在 C++ 环境：</p>
+<p><img src="images/100000000000053100000327B3B2CAA6.png" width="579" height="352" style="width:15.332cm;height:9.31cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000053100000327B3B2CAA6.png" /></p>
+<p>安装好 C++ 编译器后，可在终端中安装 <strong>[mod_wsgi]</strong> 模块：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\impots\http-servers\11&gt;<span style="background-color:#fff2cc">SET MOD_WSGI_APACHE_ROOTDIR=C:\MyPrograms\laragon\bin\apache\httpd-2.4.35-win64-VC15</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\impots\http-servers\11&gt;<span style="background-color:#fff2cc">pip install mod_wsgi</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Collecting mod_wsgi</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  Using cached mod_wsgi-4.7.1.tar.gz (498 kB)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Using legacy setup.py install for mod-wsgi, since package &#x27;wheel&#x27; is not installed.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Installing collected packages: mod-wsgi</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    Running setup.py install for mod-wsgi ... done</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Successfully installed mod-wsgi-4.7.1</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 1 行：设置环境变量 <b>[MOD_WSGI_APACHE_ROOTDIR]</b> 的值。该值即文件系统中 Apache 服务器的路径。此处路径为 [&lt;laragon&gt;\bin\apache\httpd-2.4.35-win64-VC15]，其中 &lt;laragon&gt; 是 Laragon 的安装目录。 您可以通过多种方式获取该路径。以下是通过 Laragon 其中一个选项获取的示例：
+  </li>
+</ul>
+
+<p><img src="images/100000000000031D000001D48D3C5E42.png" width="348" height="204" style="width:9.209cm;height:5.408cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000031D000001D48D3C5E42.png" /></p>
+<p>在 <strong>[1-3]</strong> 中，文件 <strong>[httpd.conf]</strong> 是 Apache 服务器的主配置文件。随后，该文件将在文本编辑器（下文为 Notepad++）中打开：</p>
+<p><img src="images/1000000000000472000001006BDF5600.png" width="496" height="112" style="width:13.13cm;height:2.955cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000472000001006BDF5600.png" /></p>
+<p>在 <strong>[2]</strong> 中，Apache 的安装目录位于字符串 <strong>[conf\httpd.conf]</strong> 之前。</p>
+<p>让我们回到<strong>[mod_wsgi]</strong>模块的安装：</p>
+<ul>
+  <li>第3-9行：安装[mod_wsgi]模块；
+  </li>
+</ul>
+
+<p><span id="toc48549348" name="toc48549348" class="odt-bookmark-anchor"></span></p>
+<h3 id="3733-laragon-apache">37.3.3. <span style="color: #4f81bd">配置 Laragon 的 Apache 服务器</span></h3>
+<p>我们将配置 Laragon 的 Apache 服务器。首先从其主配置文件 <strong>[httpd.conf]</strong> 开始：</p>
+<p><img src="images/100000000000031D000001D48D3C5E42.png" width="348" height="204" style="width:9.209cm;height:5.408cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000031D000001D48D3C5E42.png" /></p>
+<p>我们将光标移至文件末尾 <strong>[httpd.conf]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">IncludeOptional &quot;C:/MyPrograms/laragon/etc/apache2/alias/*.conf&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">IncludeOptional &quot;C:/MyPrograms/laragon/etc/apache2/sites-enabled/*.conf&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Include &quot;C:/MyPrograms/laragon/etc/apache2/httpd-ssl.conf&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Include &quot;C:/MyPrograms/laragon/etc/apache2/mod_php.conf&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># python mod_wsgi</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">LoadModule wsgi_module</span> &quot;c:/data/st-2020/dev/python/cours-2020/python3-flask-2020/venv/lib/site-packages/mod_wsgi/server/mod_wsgi.cp38-win_amd64.pyd&quot;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 8 行已添加到文件 <b>[httpd.conf] </b>的末尾。它告诉 Apache 服务器，我们刚刚安装的 <b>[mod_wsgi]</b> 模块中的某个元素位于何处；
+  </li>
+</ul>
+
+<p>获取第8行路径的简便方法是在终端中执行以下命令：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\impots\http-servers\11&gt;<span style="background-color:#fff2cc">mod_wsgi-express module-config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">LoadModule wsgi_module</span> &quot;c:/data/st-2020/dev/python/cours-2020/python3-flask-2020/venv/lib/site-packages/mod_wsgi/server/mod_wsgi.cp38-win_amd64.pyd&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">WSGIPythonHome</span> &quot;c:/data/st-2020/dev/python/cours-2020/python3-flask-2020/venv&quot;</span></span>
+</code></pre></div>
+
+<p>某些文档指出需将第 2 行和第 3 行添加到 <strong>[httpd.conf]</strong> 文件末尾。但在我的情况下，上述第 3 行会导致错误（缺少 <strong>[encodings]</strong> 模块）。 因此，该行未被放入文件 <strong>[httpd.conf]</strong> 中。仅将第 2 行放入其中。Apache 配置文件中可用的 <strong>[mod_wsgi]</strong> 模块各项参数的含义，请参阅 |此处|。</p>
+<p>接下来，我们将启用 Apache 服务器的 HTTPS 协议：</p>
+<p><img src="images/100000000000055600000275CC678078.png" width="596" height="274" style="width:15.769cm;height:7.262cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000055600000275CC678078.png" /></p>
+<ul>
+  <li>在 <b>[1-4] </b>中，启用 Apache 服务器的 HTTPS 协议；
+  </li>
+</ul>
+
+<p>现在，我们可以使用 URL 和 <strong>[https://serveur/chemin]</strong>；</p>
+<p>要配置 Apache 以托管 Flask 应用程序<a href="#sources"><u><span style="color: #0563c1">，上</span></u></a>文提到的链接使用了虚拟主机。Laragon 同样支持管理虚拟主机：</p>
+<p><img src="images/1000000000000619000002D28424DFC7.png" width="680" height="315" style="width:18cm;height:8.326cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000619000002D28424DFC7.png" /></p>
+<ul>
+  <li>在 <b>[1-3] </b>中，我们要求 Laragon 自动创建虚拟主机；
+  </li>
+</ul>
+
+<p>下一步是使用 Laragon 创建一个 Web 项目：</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000615000001BB97C79F61.png" width="680" height="194" style="display:inline-block; margin:4px;width:18cm;height:5.121cm;" class="odt-zoomable" data-zoom-src="images/1000000000000615000001BB97C79F61.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/1000000000000396000001B233858FE2.png" width="401" height="189" style="display:inline-block; margin:4px;width:10.599cm;height:5.011cm;" class="odt-zoomable" data-zoom-src="images/1000000000000396000001B233858FE2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000017B000000EF66868113.png" width="166" height="104" style="display:inline-block; margin:4px;width:4.382cm;height:2.762cm;" class="odt-zoomable" data-zoom-src="images/100000000000017B000000EF66868113.png" /></td></tr></table>
+
+<ul>
+  <li>在 <b>[1-3] </b>中，创建一个空的 PHP 项目；
+  </li>
+  <li>在 <b>[4-8] </b>中， Laragon 创建了一个名为 <b>[auto.projet-test.test]</b> 的虚拟站点，该站点由文件 <b>[auto.projet-test.test.conf]、[8]</b> 配置，位于文件夹 <b>[sites-enabled]、[7] </b>中。 该文件夹位于 <b>[&lt;laragon&gt;\etc\apache2\sites-enabled]</b> 路径下，其中 <b>[laragon] </b>是 Laragon 的安装目录；
+  </li>
+</ul>
+
+<p>虽然这与当前的工作无关，但您可能出于好奇想看看我们刚刚创建的 <strong>[projet-test]</strong> 网站：</p>
+<p><img src="images/100000000000061700000298A930E748.png" width="680" height="290" style="width:18cm;height:7.666cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000061700000298A930E748.png" /></p>
+<ul>
+  <li>在 <b>[1-5] </b>中，已创建了一个空项目。这是一个位于 <b>[&lt;laragon&gt;/www]</b> 文件夹中的 PHP 项目，其中 <b>[laragon] </b>是 Laragon 的安装文件夹；
+  </li>
+</ul>
+
+<p>现在让我们查看 Laragon 在 <strong>[&lt;laragon&gt;\etc\apache2\sites-enabled]</strong> 文件夹中生成的 <strong>[auto.projet-test.test.conf]</strong> 文件：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define ROOT </span>&quot;C:/MyPrograms/laragon/www/projet-test/&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define SITE </span>&quot;projet-test.test&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:80&gt; </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    DocumentRoot </span>&quot;${ROOT}&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerName ${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerAlias *.${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    &lt;Directory </span>&quot;${ROOT}&quot;<span style="color:#000000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        AllowOverride All</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Require all granted</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &lt;/Directory&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:443&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    DocumentRoot </span>&quot;${ROOT}&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerName ${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerAlias *.${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    &lt;Directory </span>&quot;${ROOT}&quot;<span style="color:#000000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        AllowOverride All</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Require all granted</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &lt;/Directory&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLEngine on</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLCertificateFile      C:/MyPrograms/laragon/etc/ssl/laragon.crt</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLCertificateKeyFile   C:/MyPrograms/laragon/etc/ssl/laragon.key</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 1 行：所创建项目在文件系统中的根目录；
+  </li>
+  <li>第 2 行：虚拟服务器的名称。该服务器的 URL 文件将采用 <b>[http(s)://projet-test.test/chemin]</b> 的格式；
+  </li>
+  <li>第 4-12 行：虚拟站点的配置，端口为 80（第 4 行），协议为 HTTP；
+  </li>
+  <li>第14-27行：配置虚拟站点的443端口（第14行）和HTTPS协议；
+  </li>
+</ul>
+
+<p>让我们来看看虚拟服务器是如何工作的。首先启动 Apache 服务器和 PHP：</p>
+<p>随后使用浏览器访问 URL [http://projet-test.test/]：</p>
+<p><img src="images/100000000000026C000000D3F181C390.png" width="271" height="92" style="width:7.17cm;height:2.439cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000026C000000D3F181C390.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，即请求的 URL；
+  </li>
+  <li>在 <b>[2] </b>中，使用了协议 HTTP；
+  </li>
+  <li>在 <b>[3] </b>中，由于项目 <b>[projet-test] </b>为空，因此获取到其文件夹索引（内容列表），索引为空；
+  </li>
+</ul>
+
+<p>现在请求受保护的 URL 文件 [https://projet-test.test/]：</p>
+<p><img src="images/10000000000002980000010E1AEDFA71.png" width="290" height="118" style="width:7.661cm;height:3.115cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002980000010E1AEDFA71.png" /></p>
+<ul>
+  <li>在 <b>[1-2] </b>中，我们得到与之前相同的响应，但协议为 HTTPS <b>[1]</b>；
+  </li>
+</ul>
+
+<p>创建虚拟服务器 <strong>[projet-test.test]</strong> 后，在文件 <strong>[&lt;windows&gt;/system32/drivers/etc/hosts]</strong> 中生成了一条新条目：</p>
+<p><img src="images/100000000000035500000233AB323C45.png" width="372" height="246" style="width:9.85cm;height:6.502cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000035500000233AB323C45.png" /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="gh"># 版权所有 (c) 1993-2009 微软公司。</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="gh">#</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="gh"># 这是 Microsoft HOSTS 文件，用于 Windows 版的 TCP/IP。</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="gh">#</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="gh"># 此文件包含 IP 地址到主机名的映射。每个</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="gh"># 条目应独占一行。IP 地址应</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="gh"># 位于第一列，后跟相应的主机名。</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="gh"># IP 地址与主机名之间应至少留有一个</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="gh"># 空格分隔。</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="gh">#</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="gh"># 此外，可以在单行中插入注释（如这些），</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="gh"># 行中，或在机器名后以“#”符号开头插入。</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="gh">#</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="gh"># 例如：</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="gh">#</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="gh">#       102.54.9    4.97 rhino.         acme.com # 源服务器</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="gh">#        38.25.    63.10 x             .acme.com # x 客户端主机</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="gh"># localhost 的域名解析由 DNS 自身处理。</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="gh">#     127.0.0.1       本地主机</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="gh">#     ::1             本地主机</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a>127.0.0.1      projet-test.test     <span class="ni">#laragon</span> 真神奇！   
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 23 行：名称为 <b>[projet-test.test]</b> 的地址 IP 为 127.0.0.1，即 <b>[localhost]</b>（第 20 行）的地址，即本地机器。 因此，当在浏览器中输入 URL <b>[http://projet-test.test/chemin]</b> 时，请求会被发送到 127.0.0.1 的 80 端口。此时，本地机器（localhost）上的 Apache 服务器会进行响应。
+  </li>
+</ul>
+
+<p>有人可能会问，为什么当输入请求 [http://projet-test.test/] 时，Apache 服务器会使用文件 <strong>[&lt;laragon&gt;\etc\apache2\sites-enabled\auto.projet-test.test.conf]</strong> 中的配置：</p>
+<p><img src="images/10000000000002D500000132A4D6508A.png" width="316" height="133" style="width:8.363cm;height:3.53cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D500000132A4D6508A.png" /></p>
+<p>要理解这一点，我们需要查看浏览器在发出此请求时向 Apache 服务器发送的内容。让我们使用 Postman 进行测试：</p>
+<p><img src="images/1000000000000472000003064AF73E99.png" width="497" height="338" style="width:13.139cm;height:8.938cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000472000003064AF73E99.png" /></p>
+<ul>
+  <li>在 <b>[1-3] </b>中，我们发送的请求为 HTTPS <b>[1]</b>；
+  </li>
+  <li>当请求为 <b>[4]</b> 时，Postman 提示未识别安全证书。 HTTPS协议在Web客户端（此处为Postman）与Apache服务器之间建立加密连接。该加密连接通过客户端与服务器之间交换的证书实现。由服务器发起建立加密连接的对话，向客户端发送安全证书。 要使该证书被客户端接受，它必须经过签名，即从有权签发安全证书的公司购买。当我们启用 Laragon 的 HTTPS 协议时，Laragon 会自行生成安全证书。这种证书被称为自签名证书。 大多数Web客户端在收到自签名证书时会发出警告。<b>Postman在[4]中</b>就是如此。此时，大多数Web客户端会建议禁用对服务器发送的安全证书的验证。Postman在<b>[5]</b>中也提供了这一选项；
+  </li>
+</ul>
+
+<p>我们点击链接 <strong>[5]</strong> 以禁用安全套接层 (SSL) 验证 SSL。 SSL / TSL（传输层安全协议）是一种安全协议，可在互联网上的两台机器之间建立安全的通信通道。这是 Apache 在此处使用的协议。响应如下：</p>
+<p><img src="images/10000000000002D4000001E194E1D0AF.png" width="316" height="210" style="width:8.37cm;height:5.562cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D4000001E194E1D0AF.png" /></p>
+<p>我们收到的页面与使用传统浏览器时完全相同。现在让我们在 Postman 控制台（Ctrl-Alt-C）中查看客户端与服务器的对话：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">GET</span> <span class="o">/</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="p">:</span> <span class="n">PostmanRuntime</span><span class="o">/</span><span class="mf">7.26.2</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">Accept</span><span class="p">:</span> <span class="o">*/*</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="n">Cache</span><span class="o">-</span><span class="n">Control</span><span class="p">:</span> <span class="n">no</span><span class="o">-</span><span class="n">cache</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="n">Postman</span><span class="o">-</span><span class="n">Token</span><span class="p">:</span> <span class="n">d153f711</span><span class="o">-</span><span class="n">ad99</span><span class="o">-</span><span class="mf">4e1</span><span class="n">d</span><span class="o">-</span><span class="mi">93</span><span class="n">c3</span><span class="o">-</span><span class="mi">61</span><span class="n">c25374d1be</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="n">Host</span><span class="p">:</span> <span class="n">projet</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">test</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">Accept</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">gzip</span><span class="p">,</span> <span class="n">deflate</span><span class="p">,</span> <span class="n">br</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="n">OK</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="n">Date</span><span class="p">:</span> <span class="n">Fri</span><span class="p">,</span> <span class="mi">14</span> <span class="n">Aug</span> <span class="mi">2020</span> <span class="mi">09</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">24</span> <span class="n">GMT</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="n">Server</span><span class="p">:</span> <span class="n">Apache</span><span class="o">/</span><span class="mf">2.4.35</span> <span class="p">(</span><span class="n">Win64</span><span class="p">)</span> <span class="n">OpenSSL</span><span class="o">/</span><span class="mf">1.1.1</span><span class="n">b</span> <span class="n">PHP</span><span class="o">/</span><span class="mf">7.2.19</span> <span class="n">mod_wsgi</span><span class="o">/</span><span class="mf">4.7.1</span> <span class="n">Python</span><span class="o">/</span><span class="mf">3.8</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="n">Content</span><span class="o">-</span><span class="n">Length</span><span class="p">:</span> <span class="mi">161</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span><span class="p">:</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">100</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="n">Connection</span><span class="p">:</span> <span class="n">Keep</span><span class="o">-</span><span class="n">Alive</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="n">Content</span><span class="o">-</span><span class="n">Type</span><span class="p">:</span> <span class="n">text</span><span class="o">/</span><span class="n">html</span><span class="p">;</span><span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="o">-</span><span class="mi">8</span>
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>第 6 行：HTTP <b>[Host]</b> 头部指定了 Web 客户端所访问的目标服务器名称。这就是虚拟服务器的原理。 在同一地址（此处为 127.0.0.1）下，一台 Web 服务器可以托管多个名称不同的网站。 HTTP <b>[Host]</b> 头部使客户端能够指定其要连接的服务器（此处为 127.0.0.1）；
+  </li>
+</ul>
+
+<p>那么 Apache 会做什么呢？</p>
+<p>启动时，Apache会读取<strong>[[&lt;laragon&gt;\etc\apache2\sites-enabled]</strong>：</p>
+<p><img src="images/10000000000002D500000132A4D6508A.png" width="316" height="133" style="width:8.363cm;height:3.53cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D500000132A4D6508A.png" /></p>
+<p>每个配置文件都定义了一个虚拟服务器。例如在文件 <strong>[auto.projet-test.test.conf]</strong> 中，有以下这一行：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define ROOT </span>&quot;C:/MyPrograms/laragon/www/projet-test/&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#000000">define SITE </span><span style="background-color:#fff2cc">&quot;projet-test.test&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+</code></pre></div>
+
+<p>第 2 行定义了虚拟服务器 <strong>[projet-test.test]</strong>。文件 <strong>[auto.projet-test.test.conf]</strong> 即为该虚拟服务器的配置文件。 由于 Apache 服务器在启动时会读取 <strong>[&lt;laragon&gt;\etc\apache2\sites-enabled]</strong> 文件夹中的所有配置文件，因此它知道存在一个名为 <strong>[projet-test.test]</strong> 的虚拟服务器。因此，当它从 Postman 客户端收到 HTTPS 的请求时：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">GET</span> <span class="o">/</span> <span class="n">HTTP</span><span class="o">/</span><span class="mf">1.1</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">User</span><span class="o">-</span><span class="n">Agent</span><span class="p">:</span> <span class="n">PostmanRuntime</span><span class="o">/</span><span class="mf">7.26.2</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">Accept</span><span class="p">:</span> <span class="o">*/*</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">Cache</span><span class="o">-</span><span class="n">Control</span><span class="p">:</span> <span class="n">no</span><span class="o">-</span><span class="n">cache</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">Postman</span><span class="o">-</span><span class="n">Token</span><span class="p">:</span> <span class="n">d153f711</span><span class="o">-</span><span class="n">ad99</span><span class="o">-</span><span class="mf">4e1</span><span class="n">d</span><span class="o">-</span><span class="mi">93</span><span class="n">c3</span><span class="o">-</span><span class="mi">61</span><span class="n">c25374d1be</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">Host</span><span class="p">:</span> <span class="n">projet</span><span class="o">-</span><span class="n">test</span><span class="o">.</span><span class="n">test</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">Accept</span><span class="o">-</span><span class="n">Encoding</span><span class="p">:</span> <span class="n">gzip</span><span class="p">,</span> <span class="n">deflate</span><span class="p">,</span> <span class="n">br</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">Connection</span><span class="p">:</span> <span class="n">keep</span><span class="o">-</span><span class="n">alive</span>
+</code></pre></div></td></tr></table></div>
+<p>它会识别出该请求是发往虚拟服务器 <strong>[projet-test.test]</strong>（第 6 行），且该服务器确实存在。随后，它将使用虚拟服务器 <strong>[projet-test.test]</strong> 的配置来响应 Postman 客户端。</p>
+<p><span id="toc48549349" name="toc48549349" class="odt-bookmark-anchor"></span></p>
+<h2 id="374-apache">37.4. <span style="color: #4f81bd"><strong><span style="color: #4f81bd">创建第一个 Apache 虚拟服务器</span></strong></span></h2>
+<p>既然我们已经了解了虚拟服务器的用途以及如何配置它们，接下来我们将创建一个。它将用于运行一个<strong>安装在[Apache]文件夹中的Python</strong> Flask应用程序，该文件夹属于正在Apache服务器上部署的17版本：</p>
+<p><span id="hlk48316329" name="hlk48316329" class="odt-bookmark-anchor"></span>我们已将第 |链接| 段中开发的应用程序——一个日期/时间网络服务——放入文件夹 <strong>[http-servers/12/apache/exemple]</strong> 中：</p>
+<p><img src="images/100000000000016D000001854BC86A09.png" width="159" height="170" style="width:4.219cm;height:4.496cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000016D000001854BC86A09.png" /></p>
+<p>服务器 <strong>[date_time_server.py]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import<span style="color:#000000"> os</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import<span style="color:#000000"> sys</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import<span style="color:#000000"> time</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 我们需要将模块文件夹添加到 Python 路径中</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 以便移植到 Windows 版 Apache</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">sys.path.insert(</span><span style="color:#098658">0</span><span style="color:#000000">, </span>&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/venv/lib/site-packages&quot;<span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> flask <span style="color:#0000ff">import</span> Flask, make_response, render_template</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># Flask 应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">script_dir = os.path.dirname(os.path.abspath(__file__))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">application</span> = Flask(__name__, template_folder=<span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">&quot;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 首页 URL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">@application.route(<span style="color:#a31515">&#x27;/&#x27;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> index():</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 向客户端发送时间</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># time.localtime：自 1970 年 1 月 1 日以来的毫秒数</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># time.strftime 用于格式化时间和日期</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 日期和时间显示格式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># d：2位数的日期</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># m：2位数的月份</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># y：2位数的年份</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># H：小时 0,23</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># M：分钟</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># S：秒</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 当前日期/时间</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    time_of_day = time.strftime(<span style="color:#a31515">&#x27;%d/%m/%y %H:%M:%S&#x27;</span>, time.localtime())</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 生成要发送给客户的文档</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    page = {<span style="color:#a31515">&quot;date_heure&quot;</span>: time_of_day}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    document = render_template(<span style="color:#a31515">&quot;</span><span style="background-color:#fff2cc;color:#a31515">date_time_server.html</span><span style="color:#a31515">&quot;</span>, page=page)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(<span style="color:#a31515">&quot;document&quot;</span>, type(document), document)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 向客户发送响应 HTTP</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    response = make_response(document)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(<span style="color:#a31515">&quot;response&quot;</span>, type(response), response)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">return</span> response</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 仅主线程</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span> __name__ == <span style="color:#a31515">&#x27;__main__&#x27;</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="background-color:#fff2cc">application</span>.config.update(ENV=<span style="color:#a31515">&quot;development&quot;</span>, DEBUG=<span style="color:#0000ff">True</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="background-color:#fff2cc">application</span>.run()</span></span>
+</code></pre></div>
+
+<p>Flask 应用程序通过标识符 <strong>[application]</strong> 进行引用（第 14、43、44 行）。该名称是<strong><mark style="background-color: #fff2cc">必填的</mark></strong>。 如果使用其他标识符引用该 Flask 应用程序，应用程序将无法运行，并显示一条错误消息，指出无法找到所请求的 URL。该错误消息并未提供任何关于错误来源的提示。因此，必须对此点保持警惕。</p>
+<p>第34行引用的HTML文件内容如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!DOCTYPE<span style="color:#000000"> </span><span style="color:#ff0000">html</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;html<span style="color:#000000"> </span><span style="color:#ff0000">lang</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;fr&quot;</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;head&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;meta<span style="color:#000000"> </span><span style="color:#ff0000">charset</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;UTF-8&quot;</span>&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;title&gt;<span style="color:#000000">Date et heure du moment</span>&lt;/title&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/head&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;body&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;b&gt;<span style="color:#000000">Date et heure du moment : {{page.date_heure}}</span>&lt;/b&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/body&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/html&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>[date-time-server]将是托管该应用程序的虚拟主机。它将由<b>文件[&lt;laragon&gt;\etc\apache2\sites-enabled\date-time-server.conf]</b>进行配置（需注意该名称可自定义——Apache会<b>读取[sites-enabled]目录下的</b>所有文件以识别所托管的虚拟站点）；
+  </li>
+</ul>
+
+<p>我们首先通过复制文件 <strong>[auto.projet-test.test.conf]</strong> 来获取该文件，然后对其进行修改。</p>
+<p><img src="images/100000000000033C0000017DAC6AA1DA.png" width="361" height="166" style="width:9.55cm;height:4.394cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000033C0000017DAC6AA1DA.png" /></p>
+<p>修改后的 <strong>[date-time-server.conf]</strong> 文件内容如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 应用程序的 Python-Flask 脚本文件夹</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#000000">define ROOT </span><span style="background-color:#fff2cc;color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/impots/http-servers/12/apache/exemple&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 该文件配置的网站名称</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 此处将命名为 date-time-server</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL 将采用 http(s)://date-time-server/路径 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#000000">define SITE </span><span style="background-color:#fff2cc;color:#a31515">&quot;date-time-server&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 将 IP 的地址 127.0.0.1 添加到 c:/windows/system32/drivers/etc/hosts 文件中，用于 SITE 网站</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL HTTP</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:80&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 / URL 将采用 http(s)://日期-时间-服务器/路径/... 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="background-color:#fff2cc;color:#000000">WSGIScriptAlias / </span><span style="background-color:#fff2cc;color:#a31515">&quot;${ROOT}/date_time_server.py&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    DocumentRoot </span><span style="color:#a31515">&quot;${ROOT}&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerName ${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerAlias *.${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    &lt;Directory </span><span style="color:#a31515">&quot;${ROOT}&quot;</span><span style="color:#000000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        AllowOverride All</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Require all granted</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &lt;/Directory&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL 通过 HTTPS 进行加密</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:443&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 / URL 将采用 http(s)://日期-时间-服务器/路径/... 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="background-color:#fff2cc;color:#000000">WSGIScriptAlias / </span><span style="background-color:#fff2cc;color:#a31515">&quot;${ROOT}/date_time_server.py&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    DocumentRoot </span><span style="color:#a31515">&quot;${ROOT}&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerName ${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerAlias *.${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    &lt;Directory </span><span style="color:#a31515">&quot;${ROOT}&quot;</span><span style="color:#000000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        AllowOverride All</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Require all granted</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &lt;/Directory&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLEngine on</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLCertificateFile      C:/MyPrograms/laragon/etc/ssl/laragon.crt</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLCertificateKeyFile   C:/myprograms/laragon/etc/ssl/laragon.key</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 7 行：为该文件配置的虚拟服务器命名；
+  </li>
+  <li>第 2 行：为第 14 行和第 27 行中使用的变量 <b>[ROOT]</b> 赋值；
+  </li>
+  <li>第 14 行和第 27 行：指定当虚拟服务器收到请求时需执行的 Python 脚本路径。此处指定针对服务器 <b>[date-time-server]</b> 的请求由 Python 脚本 <b>[date_time_server.py]</b> 处理。 与文件 <b>[auto.projet-test.test.conf]</b> 的区别在于：前者配置的是 PHP 服务器，而<b>后者</b>配置的是 Python 服务器；
+  </li>
+  <li>第 14 行和第 27 行：此处的 <b>[WSGIScriptAlias /] 属性表明，[date-time-server]</b> 服务器的根目录将是 <b>[/]</b>。 因此，该应用程序中的 URL 将呈现为 <b>[http(s)://date-time-server/chemin]</b> 的形式；
+  </li>
+  <li>第 14 行和第 27 行，我们可以为应用程序指定另一个根目录，例如 <b>[WSGIScriptAlias /show]</b><mark style="background-color: #fff2cc">。</mark>那么应用程序中的 URL 将变为 <b>[http(s)://show/date-time-server/chemin]</b>；
+  </li>
+</ul>
+
+<p>我们还需要在文件 <strong>[&lt;windows&gt;/system32/drivers/etc/hosts]</strong> 中添加一行：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="gh"># 版权所有 (c) 1993-2009 微软公司。</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="gh">#</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="gh"># 这是 Microsoft HOSTS 文件，由 Windows 版的 Microsoft TCP/IP 使用。</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="gh">#</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="gh"># 此文件包含 IP 地址到主机名的映射。每个</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="gh"># 条目应单独占一行。IP 地址应</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="gh"># 应置于第一列，后跟相应的主机名。</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="gh"># IP 地址与主机名之间应至少留有一个</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="gh"># 空格分隔。</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="gh">#</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="gh"># 此外，可以在单行中插入注释（如这些），</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="gh"># 行中，或紧跟在以“#”符号标示的机器名之后。</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="gh">#</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="gh"># 例如：</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="gh">#</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="gh">#       102.54.9    4.97 rhino.         acme.com # 源服务器</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="gh">#        38.25.    63.10 x             .acme.com # x 客户端主机</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="gh"># localhost 的域名解析由 DNS 自身处理。</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a><span class="gh">#     127.0.0.1       本地主机</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a><span class="gh">#     ::1             本地主机</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>127.0.0.1    flask-impots-withmysql        # Python 课程——使用 MySQL 开发税务应用
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>127.0.0.1    flask-impots-withpgres        # Python课程 - 使用PostgreSQL开发的税务应用
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a>127.0.0.1    date-time-server            # Python课程 - 当前时间与日期
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a>127.0.0.1           projet-test.test                <span class="ni">#Laragon</span> 真神奇！
+</code></pre></div></td></tr></table></div>
+<p>在第 25 行添加该内容，将地址 IP <strong>[127.0.0.1]</strong> 分配给虚拟服务器 <strong>[date-time-server]</strong>。</p>
+<p>让我们验证一下。启动 Apache 服务器：</p>
+<p><img src="images/1000000000000615000002C02F914C45.png" width="680" height="308" style="width:18cm;height:8.139cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000615000002C02F914C45.png" /></p>
+<p>随后，我们使用浏览器访问 URL <strong>[https://date-time-server]</strong>：</p>
+<p><img src="images/1000000000000378000000FB0FCC6365.png" width="387" height="109" style="width:10.239cm;height:2.895cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000378000000FB0FCC6365.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，显示请求的 URL；
+  </li>
+  <li>在 <b>[3] </b>中，显示的是服务器的响应；
+  </li>
+  <li>在 <b>[2] </b>中，浏览器提示 HTTPS 连接不安全，因为它检测到 Apache 服务器发送的证书是自签名的；
+  </li>
+</ul>
+
+<p>现在在文件 <strong>[date-time-server.conf]</strong> 中，我们在第 14 行和第 27 行添加别名：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">    WSGIScriptAlias <span style="background-color:#fff2cc">/show-date-time</span> <span style="color:#a31515">&quot;${ROOT}/date_time_server.py&quot;</span></span></span>
+</code></pre></div>
+
+<p>Apache 服务器不会立即应用此修改。需要重新加载服务器：</p>
+<p><img src="images/1000000000000476000000FF7F089CCB.png" width="498" height="111" style="width:13.169cm;height:2.94cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000476000000FF7F089CCB.png" /></p>
+<p>随后请求 URL <strong>[https://date-time-server/show-date-time]</strong>。此时服务器的响应如下：</p>
+<p><img src="images/10000000000003E3000000E4A993A263.png" width="434" height="100" style="width:11.492cm;height:2.633cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003E3000000E4A993A263.png" /></p>
+<p><span id="toc48549350" name="toc48549350" class="odt-bookmark-anchor"></span></p>
+<h2 id="375-apache-windows">37.5. <span style="color: #4f81bd">将税款计算应用程序移植到 Apache / Windows 环境</span></h2>
+<p>文件 <strong>[apache]</strong> 和 <strong>[2]</strong> 最初是通过复制文件 <strong>[main]</strong> 生成的。 为了确保从 <strong>[1]</strong> 复制到 <strong>[2]</strong> 的脚本 <strong>[syspath.py]</strong> 的路径仍然有效，这两个文件必须位于同一层级。 为避免干扰正在运行的 <strong>[impots / http-servers/ 12]</strong> 应用程序，我们将由 Apache 服务器执行的配置放入 <strong>[apache]</strong> 中；</p>
+<p><img src="images/100000000000015B0000027383EFF121.png" width="152" height="274" style="width:4.009cm;height:7.244cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015B0000027383EFF121.png" /></p>
+<ul>
+  <li><b>[2]中的[config]</b>与<b>[1]中的</b>[config]相同；
+  </li>
+  <li><b>[2]</b> 中的 <b>[syspath]</b> 与 <b>[1]</b> 中的 <b>[syspath]</b> 相同；
+  </li>
+  <li>[2]生成的[main_withmysql]文件，是<b>[1]</b>生成的[main]文件，并进行了以下修改：
+  </li>
+</ul>
+
+<p>主脚本 <strong>[main]</strong> 接收一个<strong>名为 [mysql / pgres] 的</strong>参数，该参数指定应使用哪个 SGBD。 脚本 <strong>[main_withmysql]</strong> 使用 SGBD 和 MySQL：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 需要一个 mysql 或 pgres 参数</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> os</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> sys</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 正在使用 MySQL 配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#000000">config = config.configure({</span><span style="background-color:#fff2cc;color:#a31515">&#x27;sgbd&#x27;</span><span style="background-color:#fff2cc;color:#000000">: </span><span style="background-color:#fff2cc;color:#a31515">&quot;mysql&quot;</span><span style="background-color:#fff2cc;color:#000000">})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 依赖项</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> SendAdminMail </span><span style="color:#0000ff">import</span><span style="color:#000000"> SendAdminMail</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> Logger </span><span style="color:#0000ff">import</span><span style="color:#000000"> Logger</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> ImpôtsError </span><span style="color:#0000ff">import</span><span style="color:#000000"> ImpôtsError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+</code></pre></div>
+
+<p>第7行，将SGBD设置为MySQL。</p>
+<ul>
+  <li><b>[main_withpgres]</b> 文件由 <b>[2]</b> 生成，其对应文件为 <b>[main]</b>（由 <b>[1]</b> 生成），并进行了以下修改： 它使用了 SGBD 和 PostgreSQL：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 需要指定 mysql 或 pgres 参数</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> os</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> sys</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 正在使用 MySQL 配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#000000">config = config.configure({</span><span style="background-color:#fff2cc;color:#a31515">&#x27;sgbd&#x27;</span><span style="background-color:#fff2cc;color:#000000">: </span><span style="background-color:#fff2cc;color:#a31515">&quot;pgres&quot;</span><span style="background-color:#fff2cc;color:#000000">})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 依赖项</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> SendAdminMail </span><span style="color:#0000ff">import</span><span style="color:#000000"> SendAdminMail</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> Logger </span><span style="color:#0000ff">import</span><span style="color:#000000"> Logger</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> ImpôtsError </span><span style="color:#0000ff">import</span><span style="color:#000000"> ImpôtsError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+</code></pre></div>
+
+<p>第 7 行，将 SGBD 修改为 PostgreSQL。</p>
+<p>完成上述操作后，创建如下脚本 <strong>[main_withmysql.wsgi]</strong>（后缀不重要）：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># 该文件的目录</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="c1"># 将其添加到 syspath 中，以便后续能够进行导入</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">script_dir</span><span class="p">)</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="c1"># 导入 Flask 应用程序 [app]，并将其命名为 [application]</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="kn">from</span><span class="w"> </span><span class="nn">main_withmysql</span><span class="w"> </span><span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">application</span>
+</code></pre></div></td></tr></table></div>
+<p>脚本 <strong>[main_withmysql.wsgi]</strong> 将作为目标，由 Apache 服务器在 WSGI 模式下执行：</p>
+<ul>
+  <li>Apache服务器的目标本可以是脚本[main_withmysql.py]，就像之前对<b>脚本[date_time_server.py]</b>所做的那样。但需要对其进行一些修改：
+    <ul>
+      <li>与使用控制台脚本的执行模式不同，在 Apache 环境中，包含目标 <b>[main_withmysql.py]</b> 的文件夹并不属于 Python Path。因此，脚本 <b>[main_withmysql.py]</b> 的第 6 行会引发错误；
+      </li>
+      <li>需要进行的第二项修改是：在 <b>[main_withmysql]</b> 中，Flask 应用程序应通过标识符 <b>[app]</b> 进行引用。 已知对于 Apache / WSGI，它也必须通过标识符 <b>[application]</b> 进行引用；
+      </li>
+    </ul>
+  </li>
+  <li>与其修改 <b>[main_withmysql.py]</b>，不如更改 Apache 的目标。今后将使用上述的 <b>[main_withmysql.wsgi]</b> 脚本：
+    <ul>
+      <li>第1-7行：将脚本所在的文件夹添加到Python路径中。因此<b>，[main_withmysql.py]中的</b>第6行不再引发错误；
+      </li>
+      <li>第 9-10 行：导入 <b>[main_withmysql.py]</b> 会触发其执行。 此外，通过标识符 <b>[application]</b> 引用 <b>[main_withmysql.py]</b> 中找到的 Flask 应用程序 [app]，该标识符是 Apache 在 WSGI 模式下所需的；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>对脚本 <strong>[main_withpgres.wsgi]</strong> 也采用同样的处理方式：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 该文件的目录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import os</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">script_dir = os.path.dirname(os.path.abspath(__file__))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 将其添加到 syspath 中，以便后续能够进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">import sys</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">sys.path.insert(0, script_dir)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入 Flask 应用程序 [app]，并将其命名为 [application]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">from <span style="background-color:#fff2cc">main_withpgres</span> import app as application</span></span>
+</code></pre></div>
+
+<p>现在我们已经有了Apache服务器的可执行目标。接下来需要创建两个虚拟服务器，每个目标对应一个。</p>
+<p>在 <strong>[&lt;laragon&gt;\etc\apache2\sites-enabled]</strong> 中，我们创建文件 <strong>[flask-impots-withmysql.conf]</strong>（文件名不限）：</p>
+<p><img src="images/10000000000002D50000013F509BBA03.png" width="316" height="139" style="width:8.37cm;height:3.683cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002D50000013F509BBA03.png" /></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"># .wsgi 脚本文件夹</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#000000">define ROOT</span><span style="color:#000000"> </span><span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/impots/http-servers/12/apache&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 由该文件配置的网站名称</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 此处将命名为 flask-impots-withmysql</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL 将采用 http(s)://flask-impots-withmysql/路径 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define SITE </span><span style="color:#a31515">&quot;</span><span style="background-color:#fff2cc;color:#a31515">flask-impots-withmysql</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 将 IP 的地址 127.0.0.1 添加到 c:/windows/system32/drivers/etc/hosts 文件中，用于 SITE 网站</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 在此处填写要使用的 Python 库路径——用逗号分隔</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 此处填写 Python 虚拟环境的库</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#000000">WSGIPythonPath</span><span style="color:#000000">  </span><span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/venv/lib/site-packages&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># Python 安装目录 - 仅当安装了多个 Python 版本时才需要</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># WSGIPythonHome &quot;C:/Program Files/Python38&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL HTTP</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:80&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 /，URL 将呈现为 /{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 /impots 时，URL 将采用 /impots/{prefixe_url}/action/... 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 其中 [prefixe_url] 在 parameters.py 中定义</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="background-color:#fff2cc;color:#000000">WSGIScriptAlias / </span><span style="background-color:#fff2cc;color:#a31515">&quot;${ROOT}/main_withmysql.wsgi&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    DocumentRoot </span><span style="color:#a31515">&quot;${ROOT}&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerName ${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerAlias *.${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    &lt;Directory </span><span style="color:#a31515">&quot;${ROOT}&quot;</span><span style="color:#000000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        AllowOverride All</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Require all granted</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &lt;/Directory&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL 通过 HTTPS 进行安全保护</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:443&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 /，URL 将采用 /{prefixe_url}/action/... 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 别名为 /impots，URL 的格式为 /impots/{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 其中 [prefixe_url] 在 parameters.py 中定义</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="background-color:#fff2cc;color:#000000">WSGIScriptAlias / </span><span style="background-color:#fff2cc;color:#a31515">&quot;${ROOT}/main_withmysql.wsgi&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    DocumentRoot </span><span style="color:#a31515">&quot;${ROOT}&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerName ${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerAlias *.${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    &lt;Directory </span><span style="color:#a31515">&quot;${ROOT}&quot;</span><span style="color:#000000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        AllowOverride All</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Require all granted</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &lt;/Directory&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLEngine on</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLCertificateFile      C:/MyPrograms/laragon/etc/ssl/laragon.crt</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLCertificateKeyFile   C:/myprograms/laragon/etc/ssl/laragon.key</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 2 行：应用程序根目录，即我们创建的 <b>[apache]</b> 文件夹；
+  </li>
+  <li>第 23、38 行：我们创建的目标 <b>[main_witmysql.wsgi]</b>：
+  </li>
+  <li>第 7 行：虚拟服务器将命名为 <b>[flask-impots-withmysql]</b>；
+  </li>
+  <li>第 13 行：<b>[WSGIPythonPath]</b> 指令用于将文件夹添加到 Python 路径中。在此，Apache 并不知道我们使用了虚拟环境来开发应用程序，也不知道应用程序使用的所有模块都位于该虚拟环境中。因此，在第 13 行，我们添加了包含所用虚拟环境中所有模块的文件夹。 一种方法是将该文件夹复制到文件系统的其他位置，并引用该位置。另一种方法是直接在目标 <b>[main_witmysql.wsgi]</b> 中将该文件夹添加到 Python Path 中（这可能是更好的解决方案）；
+  </li>
+  <li>第 16 行：可向 Apache 指定文件系统中 Python 的安装目录。 通常，该路径位于机器的 PATH 中，因此此行通常是多余的（本例中即如此）。但机器上可能存在多个 Python 安装，且所需的 Python 版本未包含在机器的 PATH 中。此时，此行代码即可解决问题；
+  </li>
+</ul>
+
+<p>同样地，创建一个<strong>名为 [flask-impots-withpgres.conf] 的</strong>文件：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content"># .wsgi脚本文件夹</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define ROOT </span><span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/impots/http-servers/12/apache&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 由该文件配置的网站名称</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 此处将命名为 flask-impots-withmysql</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL 将采用 http(s)://flask-impots-withmysql/路径 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define SITE </span><span style="color:#a31515">&quot;</span><span style="background-color:#fff2cc;color:#a31515">flask-impots-withpgres</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 将 IP 的地址 127.0.0.1 添加到 c:/windows/system32/drivers/etc/hosts 文件中，用于 SITE 网站</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 在此处填写要使用的 Python 库路径——用逗号分隔</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 此处填写 Python 虚拟环境的库</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">WSGIPythonPath  </span><span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/venv/lib/site-packages&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># Python Home - 仅当安装了多个 Python 版本时才需要</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># WSGIPythonHome &quot;C:/Program Files/Python38&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL HTTP</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:80&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 /，URL 将呈现为 /{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 /impots 时，URL 将采用 /impots/{prefixe_url}/action/... 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 其中 [prefixe_url] 在 parameters.py 中定义</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    WSGIScriptAlias / </span><span style="color:#a31515">&quot;${ROOT}/</span><span style="background-color:#fff2cc;color:#a31515">main_withpgres.wsgi</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    DocumentRoot </span><span style="color:#a31515">&quot;${ROOT}&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerName ${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerAlias *.${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    &lt;Directory </span><span style="color:#a31515">&quot;${ROOT}&quot;</span><span style="color:#000000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        AllowOverride All</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Require all granted</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &lt;/Directory&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL 通过 HTTPS 进行安全保护</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:443&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 /，URL 将采用 /{prefixe_url}/action/... 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 别名为 /impots，URL 的格式为 /impots/{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 其中 [prefixe_url] 在 parameters.py 中定义</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    WSGIScriptAlias / </span><span style="color:#a31515">&quot;${ROOT}/</span><span style="background-color:#fff2cc;color:#a31515">main_withpgres.wsgi</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    DocumentRoot </span><span style="color:#a31515">&quot;${ROOT}&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerName ${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ServerAlias *.${SITE}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    &lt;Directory </span><span style="color:#a31515">&quot;${ROOT}&quot;</span><span style="color:#000000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        AllowOverride All</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        Require all granted</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    &lt;/Directory&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLEngine on</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLCertificateFile      C:/MyPrograms/laragon/etc/ssl/laragon.crt</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    SSLCertificateKeyFile   C:/myprograms/laragon/etc/ssl/laragon.key</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+</code></pre></div>
+
+<p>保存所有这些文件后，启动 Apache 服务器以及 SGBD、MySQL 和 PostgreSQL。 应用程序配置为使用 URL、<strong>[/do]</strong> 和 <strong>[with_csrftoken=False]</strong> （无令牌 CSRF）配置在 <strong>[configs/parameters.py]</strong> 中。我们请求 URL <strong>[https://flask-impots-withmysql/do]</strong>。服务器的响应如下：</p>
+<p><img src="images/100000000000057D00000361B0EE302C.png" width="613" height="378" style="width:16.23cm;height:9.992cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000057D00000361B0EE302C.png" /></p>
+<p>现在我们请求 URL 和 <strong>[https://flask-impots-pgres/do]</strong>。响应如下：</p>
+<p><img src="images/10000000000005590000033B0EA43231.png" width="597" height="361" style="width:15.79cm;height:9.539cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005590000033B0EA43231.png" /></p>
+<p>这两个应用程序均运行正常。</p>
+<p>现在将参数 <strong>[WSGIScriptAlias]</strong> 修改为 <strong>[flask-impots-withmysql.conf]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># .wsgi脚本文件夹</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">define ROOT </span><span style="color:#a31515">&quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/impots/http-servers/12/apache&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL HTTP</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:80&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 / 时，URL 将呈现为 /{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 使用别名 /impots 时，URL 将采用 /impots/{prefixe_url}/action/... 的形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 其中 [prefixe_url] 在 parameters.py 中定义</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    WSGIScriptAlias </span><span style="background-color:#fff2cc;color:#000000">/impots</span><span style="color:#000000"> </span><span style="color:#a31515">&quot;${ROOT}/main_withmysql.wsgi&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    …</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># URL 通过 HTTPS 进行安全保护</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;VirtualHost *:443&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 的别名为 /，而 URL 的格式为 /{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 别名为 /impots，URL 的形式将为 /impots/{prefixe_url}/action/...</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 其中 [prefixe_url] 在 parameters.py 中定义</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    WSGIScriptAlias </span><span style="background-color:#fff2cc;color:#000000">/impots</span><span style="color:#000000"> </span><span style="color:#a31515">&quot;${ROOT}/main_withmysql.wsgi&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    …</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/VirtualHost&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第11行和第20行，别名 WSI 现改为 <b>[/impots]</b>；
+  </li>
+</ul>
+
+<p>我们停止/重启 Apache 服务器，然后请求 URL <strong>[https://flask-impots-withmysql/impots/do]</strong>。服务器的响应如下：</p>
+<p><img src="images/10000000000004710000011268577D28.png" width="497" height="120" style="width:13.152cm;height:3.17cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004710000011268577D28.png" /></p>
+<p>系统发生崩溃。URL <strong>[1]</strong> 指出了原因。它本应是 <strong>[https://flask-impots-withmysql/impots/do/afficher-vue-authentification]</strong>。 缺少别名 WSGI。这是我们应用程序的错误。它能够处理 URL 这种前缀（/do 确实存在）。 人们可能会认为，给应用程序添加前缀 <strong>[/impots/do]</strong> 就能解决上述问题。但事实并非如此。这样反而会引发其他类型的问题。别名 WSGI 并未表现为 URL 的前缀。</p>
+<p>让我们试着弄清楚发生了什么。我们请求了 URL 和 <strong>[https://flask-impots-withmysql/impots/do]</strong>。 我们原本期望看到身份验证页面。在 <strong>[1]</strong> 中，上文可见应用程序请求了该页面的显示，但使用的并非正确的 URL。让我们来分析 <strong>[https://flask-impots-withmysql/impots/do]</strong> 请求的处理路径。</p>
+<p>首先执行了以下路由（configs/routes.py）：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># Flask 应用程序的路由</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 应用程序根目录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    app.add_url_rule(</span><span style="background-color:#fff2cc;color:#0000ff">f</span><span style="background-color:#fff2cc;color:#a31515">&#x27;</span><span style="background-color:#fff2cc;color:#000000">{prefix_url}</span><span style="background-color:#fff2cc;color:#a31515">/</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                     view_func=routes.index)</span></span>
+</code></pre></div>
+
+<p>在本例中，第 3 行中的路由为 <strong>[https://flask-impots-withmysql/impots/do]</strong>。 可以看到，该路由去除了 <strong>[https://flask-impots-withmysql/impots]</strong> 部分，简化为 <strong>[/do]</strong>。对于 <strong>[https://flask-impots-withmysql]</strong> 部分，这是正常的，因为服务器名称并未包含在路由中。 但可以看到，它也没有包含别名 WSGI <strong>[/impots]</strong>。这一点很重要。即使存在别名 WSGI，我们的初始路由仍然有效。</p>
+<p>现在我们来看看第 4 行（configs/[index]）中的 <strong>[index]</strong> 函数的作用：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 应用程序根目录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> index() -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 重定向至 /init-session/html</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> redirect(url_for(</span><span style="color:#a31515">&quot;init_session&quot;</span><span style="color:#000000">, type_response=</span><span style="color:#a31515">&quot;html&quot;</span><span style="color:#000000">), status.HTTP_302_FOUND)</span></span></span>
+</code></pre></div>
+
+<p>第 4 行，我们被重定向到 <strong>[init_session]</strong> 函数中的 URL。在 <strong>[configs/routes.py]</strong> 中，该函数已被关联到路径 <strong>[/do/init-session/html]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># init-session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    app.add_url_rule(</span><span style="color:#0000ff">f</span><span style="color:#a31515">&#x27;</span><span style="background-color:#fff2cc;color:#000000">{prefix_url}</span><span style="background-color:#fff2cc;color:#a31515">/init-session/&lt;string:type_response&gt;</span><span style="background-color:#fff2cc;color:#000000">{csrftoken_param}</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                     view_func=routes.init_session)</span></span>
+</code></pre></div>
+
+<p>第2行，在我们的测试中<strong>，[csrftoken_param]</strong>是空字符串。该应用程序在此处不支持CSRF令牌。</p>
+<p>函数 <strong>[init_session]</strong> 的定义如下（configs/routes_without_csrftoken）：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># init-session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> init_session(type_response: str) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+</code></pre></div>
+
+<p>第 4 行，开始处理 <strong>[init-session]</strong> 操作的字符串。该字符串在 <strong>[responses/HtmlResponse]</strong> 中以如下方式结束：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 现在需要生成重定向的URL，如果需要，别忘了CSRF令牌</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;parameters&#x27;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            csrf_token = </span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;/</span><span style="color:#000000">{generate_csrf()}</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            csrf_token = </span><span style="color:#a31515">&quot;&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 重定向响应</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> redirect(</span><span style="background-color:#fff2cc;color:#0000ff">f</span><span style="background-color:#fff2cc;color:#a31515">&quot;</span><span style="background-color:#fff2cc;color:#000000">{config</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">[</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;parameters&#x27;</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">][</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;prefix_url&#x27;</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">]</span><span style="background-color:#fff2cc;color:#000000">}{ads</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">[</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;to&#x27;</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">]</span><span style="background-color:#fff2cc;color:#000000">}{csrf_token}</span><span style="background-color:#fff2cc;color:#a31515">&quot;</span><span style="background-color:#fff2cc;color:#000000">)</span><span style="color:#000000">, status.HTTP_302_FOUND</span></span></span>
+</code></pre></div>
+
+<p>操作 <strong>[init-session]</strong> 是一个 ADS 操作（Do Something 操作），该操作以重定向到视图结束（第 9 行）。问题就出在这里。 第9行的<strong>[redirect]</strong>函数并未自动将别名WSGI添加到重定向对象URL中。 上图的屏幕截图展示了这一点。重定向对象 URL 中缺少别名 /impots。</p>
+<p>下一个版本将解决 WSGI 别名的问题。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

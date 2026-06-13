@@ -1,0 +1,2383 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/ingongianii14an.html">
+      
+      
+        <link rel="prev" href="ingongianii13an.html">
+      
+      
+        <link rel="next" href="ingongianii15an.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>34. 应用练习：第14版 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#34-14" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              34. 应用练习：第14版
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="onguouaningeaian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 工作环境的搭建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pythonihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 应用练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 应用练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aningei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 泛型类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuieouianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与接口编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i-4-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第 4 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 SGBD MySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-postgresql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 SGBD PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianieu-sgbd-uuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写与 SGBD 无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orm-ehiong-sqlalchemy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. ORM 的使用 SQLALCHEMY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uianangongeng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuflaskuangiaewebuu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于Flask框架的Web服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 应用练习：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii7an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 应用练习：第7版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii8an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第8版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aiiianu-xml-hiianininghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 在字典与 XML 之间进行转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii11an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第11版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii12an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 应用练习：第12版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 jSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 应用练习：第14版
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ingongianii14an.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 应用练习：第14版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#341" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.1. 简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#342" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.2. 配置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#343-csrf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3. CSRF 实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="34.3. CSRF 实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3431-flask_wtf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.1. 模块 [flask_wtf]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3432" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.2. 视图模板
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3433" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.3. 视图
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3434" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.4. 路线
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3435-maincontroller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.3.5. 控制器 [MainController]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#344" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.4. 浏览器测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#345" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        34.5. 控制台客户端
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 应用练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 应用练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="exercicedapplication10" name="exercicedapplication10" class="odt-bookmark-anchor"></span>
+<span id="toc48549313" name="toc48549313" class="odt-bookmark-anchor"></span></p>
+<h1 id="34-14">34. <span style="color: #365f91">应用练习：第14版</span></h1>
+<p><img src="images/10000000000001140000012E59BB28CB.png" width="121" height="132" style="width:3.193cm;height:3.493cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001140000012E59BB28CB.png" /></p>
+<p>版本 14 的文件夹 <strong>[http-servers/09]</strong> 是通过复制版本 13 的文件夹 <strong>[http-servers/08]</strong> 获得的。</p>
+<p><span id="toc48549314" name="toc48549314" class="odt-bookmark-anchor"></span></p>
+<h2 id="341">34.1. <span style="color: #4f81bd">简介</span></h2>
+<p>CSRF（跨站请求伪造）是一种会话劫持技术。维基百科（<a href="https://fr.wikipedia.org/wiki/Cross-site_request_forgery"><u><span style="color: #0563c1">https://fr.wikipedia.org/wiki/Cross-site_request_forgery</span></u></a>）对此解释如下：</p>
+<div style="margin:0 0 0.75em 0; background-color:#fff2cc; padding:0.35em 0.6em">假设爱丽丝是某论坛的管理员，并通过会话系统登录该论坛。玛洛莉是该论坛的成员，她想删除论坛中的一条帖子。由于她的账户没有相应的权限，她利用CSRF类型的攻击，借用了爱丽丝的账户。</div>
+
+<ol>
+  <li><div style="margin:0; background-color:#fff2cc; padding:0.35em 0.6em">Malorie 设法获取了用于删除该帖子的链接。</div>
+  </li>
+  <li><div style="margin:0; background-color:#fff2cc; padding:0.35em 0.6em">Malorie向Alice发送了一条包含待显示伪图片（实际上是一个脚本）的消息。该图片中的URL链接指向了用于删除目标帖子的脚本。</div>
+  </li>
+  <li><div style="margin:0; background-color:#fff2cc; padding:0.35em 0.6em">爱丽丝的浏览器中必须已打开马洛里所针对的网站会话。这是攻击能够悄无声息地成功执行的必要条件，否则会触发身份验证请求，从而引起爱丽丝的警觉。该会话必须具备执行马洛里破坏性请求所需的权限。 浏览器无需打开目标网站的标签页，甚至无需启动浏览器。只需该会话处于活动状态即可。</div>
+  </li>
+  <li><div style="margin:0; background-color:#fff2cc; padding:0.35em 0.6em">爱丽丝正在阅读玛洛丽发来的消息，她的浏览器使用了爱丽丝已打开的会话，因此无需进行交互式身份验证。浏览器试图获取图片的内容。在此过程中，浏览器触发了链接并删除了该消息，随后将一个纯文本网页作为图片内容加载。 由于无法识别关联的图像类型，浏览器未显示图片，爱丽丝因此并不知晓玛洛丽刚刚迫使她删除了这条消息。</div>
+  </li>
+</ol>
+
+<p>即便如此解释，CSRF这一技术仍难以理解。让我们画个示意图：</p>
+<p><img src="images/10000000000003E50000024D46F14920.png" width="435" height="257" style="width:11.501cm;height:6.795cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003E50000024D46F14920.png" /></p>
+<ul>
+  <li>在 <b>[1-2]</b> 阶段，爱丽丝与论坛（网站 A）进行通信。该论坛为每位用户维护一个会话。爱丽丝的浏览器会本地存储这个会话 Cookie，并在每次向网站 A 发出新请求时将其发送回去；
+  </li>
+  <li>在 <b>[3]</b> 阶段，Malorie 向 Alice 发送了一条消息。Alice 通过浏览器阅读了该消息。所读消息的格式为 HTML，其中包含指向网站 B 上一张图片的链接。实际上，该链接指向一个 JavaScript 脚本，该脚本会在到达 Alice 的浏览器后执行；
+  </li>
+  <li>该JavaScript脚本随后向网站A发起请求。爱丽丝的浏览器会自动发送该请求，并附带本地存储的会话cookie。攻击就在此时发生：玛洛丽成功利用爱丽丝的权限（会话）向网站A发起了查询。此后无论发生什么，攻击都已得逞；
+  </li>
+</ul>
+
+<p>为防范此类攻击，网站A可采取以下措施：</p>
+<ul>
+  <li>在每次与爱丽丝进行 <b>[1-2]</b> 数据交换时，网站 A 会发送一个密钥（下文称为令牌 token）CSRF，爱丽丝必须在下次请求时将其发回。因此，爱丽丝在每次请求中必须发送两项信息：
+    <ul>
+      <li>会话cookie；
+      </li>
+      <li>在对网站A的上次请求响应中收到的令牌CSRF；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>安全机制就在于此：虽然浏览器会自动将会话cookie发回网站A，但不会自动发送令牌CSRF。因此，攻击脚本执行的第6-7步交换将被拒绝，因为第6次请求中未发送令牌CSRF；</p>
+<p>网站 A 可以通过多种方式向 Alice 发送令牌 CSRF，用于应用程序 HTML：</p>
+<ul>
+  <li>它可以在每次请求中发送一个包含所有链接的页面 HTML，其中所有链接都带有令牌 CSRF，例如 <b>[http://siteA/chemin/csrf_token]</b>。 在后续请求中，当爱丽丝点击其中一个链接时，网站 A 只需从请求的 URL 中提取令牌 CSRF，并验证其是否正确。这里将采用这种做法；
+  </li>
+  <li>对于包含表单的页面，网站A可以将表单连同包含令牌CSRF的隐藏<b>字段[input type=’hidden’]一并</b>发送。当爱丽丝提交页面时，该令牌将随表单自动发送。 网站 A 将从请求主体（body）中获取令牌 CSRF；
+  </li>
+  <li>其他技术方案也是可行的；
+  </li>
+</ul>
+
+<p><span id="toc48549315" name="toc48549315" class="odt-bookmark-anchor"></span></p>
+<h2 id="342">34.2. <span style="color: #4f81bd">配置</span></h2>
+<p><img src="images/1000000000000127000000E642E6C9B2.png" width="129" height="100" style="width:3.41cm;height:2.658cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000127000000E642E6C9B2.png" /></p>
+<p>我们在应用程序的 <strong>[parameters]</strong> 配置中引入了两个布尔值：</p>
+<ul>
+  <li><b>[with_redissession]</b>：设为 True 时，应用程序使用 Redis 会话；设为 False 时，应用程序使用常规 Flask 会话；
+  </li>
+  <li><b>[with_csrftoken]</b>：设为 True 时，应用程序的 URL 字段将包含一个 CSRF 令牌；
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 线程暂停时长（秒）</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;sleep_time&quot;</span><span style="color:#000000">: </span><span style="color:#098658">0</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># Redis 服务器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;with_redissession&quot;</span><span style="color:#000000">: </span><span style="color:#0000ff">True</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;redis&quot;</span><span style="color:#000000">: {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">&quot;host&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;127.0.0.1&quot;</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">&quot;port&quot;</span><span style="color:#000000">: </span><span style="color:#098658">6379</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># CSRF令牌</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;with_csrftoken&quot;</span><span style="color:#000000">: </span><span style="color:#0000ff">False</span><span style="color:#000000">,</span></span></span>
+</code></pre></div>
+
+<p><span id="toc48549316" name="toc48549316" class="odt-bookmark-anchor"></span></p>
+<h2 id="343-csrf">34.3. <span style="color: #4f81bd">CSRF 实现</span></h2>
+<p>我们将确保当：</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">&#x27;parameters&#x27;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+</code></pre></div>
+
+<p>等于 <strong>[True]</strong> 时，应用程序向客户端浏览器发送网页，其链接中将包含令牌 CSRF。</p>
+<p><span id="toc48549317" name="toc48549317" class="odt-bookmark-anchor"></span></p>
+<h3 id="3431-flask_wtf">34.3.1. <span style="color: #4f81bd"><strong>模块</strong> [flask_wtf]</span></h3>
+<p>CSRF令牌的实现将通过<strong>[flask_wtf]模块</strong>完成，该模块将安装在PyCharm终端中：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">(venv) C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\packages&gt;<span style="background-color:#fff2cc">pip install flask_wtf</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Collecting flask_wtf</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+</code></pre></div>
+
+<p><span id="toc48549318" name="toc48549318" class="odt-bookmark-anchor"></span></p>
+<h3 id="3432">34.3.2. <span style="color: #4f81bd">视图模板</span></h3>
+<p>我们在模型中引入了一个新类：</p>
+<p><img src="images/10000000000001D4000001CE1812B1F9.png" width="205" height="202" style="width:5.412cm;height:5.343cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D4000001CE1812B1F9.png" /></p>
+<p><strong>[AbstractBaseModelForView]</strong> 类定义如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> abc <span style="color:#0000ff">import</span> abstractmethod</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> flask <span style="color:#0000ff">import</span> Request</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> flask_wtf.csrf <span style="color:#0000ff">import</span> generate_csrf</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> werkzeug.local <span style="color:#0000ff">import</span> LocalProxy</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> InterfaceModelForView <span style="color:#0000ff">import</span> InterfaceModelForView</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span> AbstractBaseModelForView(<span style="background-color:#fff2cc">InterfaceModelForView</span>):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    @abstractmethod</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> <span style="background-color:#fff2cc">get_model_for_view</span>(self, request: Request, session: LocalProxy, config: dict, résultat: dict) -&gt; dict:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">pass</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> <span style="background-color:#fff2cc">get_csrftoken</span>(self, config: dict):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># csrf_token</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">if</span> config<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;parameters&#x27;</span><span style="font-weight:bold">][</span><span style="font-weight:bold;color:#a31515">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold">]</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">return</span> <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;/</span>{generate_csrf()}<span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">return</span> <span style="color:#a31515">&quot;&quot;</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 9 行：类 <b>[AbstractBaseModelForView]</b> 实现了由视图模型类所实现的接口 <b>[InterfaceModelForView]</b>；
+  </li>
+  <li>第 11-13 行：方法 <b>[get_model_for_view]</b> 未被实现；
+  </li>
+  <li>第15-20行：如果应用程序已配置为使用令牌，则<b>方法</b>[get_csrftoken]会生成令牌CSRF。根据具体情况，该函数会返回一个以符号/开头的令牌，否则返回一个空字符串。 函数 <b>[generate_csrf]</b> 的特点是针对给定的客户端请求始终生成相同的值。处理请求涉及执行多个函数。在这些函数中使用 <b>[generate_csrf]</b> 始终会生成相同的值。 然而，在后续请求中，将生成一个新的令牌 CSRF；
+  </li>
+</ul>
+
+<p>所有视图 V 的 M 模板都将以如下方式包含令牌 CSRF：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span> ModelForAuthentificationView(<span style="background-color:#fff2cc">AbstractBaseModelForView</span>):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> get_model_for_view(self, request: Request, session: LocalProxy, config: dict, résultat: dict) -&gt; dict:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 将页面数据封装到模板中</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        modèle = {}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000">…</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># CSRF 令牌</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        modèle<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;csrf_token&#x27;</span><span style="font-weight:bold">]</span> = super().get_csrftoken(config)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 渲染模板</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> modèle</span></span>
+</code></pre></div>
+
+<ul>
+  <li>每个视图模板类都继承自基类 <b>[AbstractBaseModelForView]</b>；
+  </li>
+  <li>第 8 行：向父类请求令牌 CSRF。结果要么是空字符串，要么是类似 <b>[/Ijk4NjQ2ZDdjZjI0ZDJiYTVjZTZjYmFhZGNjMjE3Y2U5M2I3ODI0NzYi.Xy5Okg.n-kSR_nslkndfT7AFVy2UDtdb8c]</b> 的字符串；
+  </li>
+</ul>
+
+<p><span id="toc48549319" name="toc48549319" class="odt-bookmark-anchor"></span></p>
+<h3 id="3433">34.3.3. <span style="color: #4f81bd">视图</span></h3>
+<p>从刚才的内容可以看出，所有视图 V 的模型 M 中都将包含令牌 CSRF。因此，它们可以在其中的链接中使用该令牌。下面看几个例子：</p>
+<p><u><strong>身份验证片段</strong> </u><strong>[v_authentification.html]</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- 表单 HTML - 通过操作提交其值 [authentifier-utilisateur] --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;form</span><span style="color:#000000"> </span><span style="color:#ff0000">method</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;post&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">action</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;/authentifier-utilisateur</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.csrf_token}}</span><span style="color:#0000ff">&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- 标题 --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;div</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert alert-primary&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">role</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#800000">&lt;h4&gt;</span><span style="color:#000000">Veuillez vous authentifier</span><span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;/div&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/form&gt;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 2 行：根据刚才的分析<b>，[action]</b> 属性的 <b>URL </b>将为：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;color:#0000ff">/authentifier-utilisateur</span><span style="font-weight:bold;color:#ff0000">/</span><span style="font-weight:bold">Ijk4NjQ2ZDdjZjI0ZDJiYTVjZTZjYmFhZGNjMjE3Y2U5M2I3ODI0NzYi.Xy5Okg.n-kSR_nslkndfT7AFVy2UDtdb8c]</span></span></span>
+</code></pre></div>
+
+<p>或</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>[/authentifier-utilisateur]
+</code></pre></div>
+<p>这取决于应用程序是否配置为使用 CSRF 令牌；</p>
+<p><u><strong>税款计算片段</strong> </u><strong>[v-calcul-impot.html]</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- 已发布的 HTML 表单 --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;form</span><span style="color:#000000"> </span><span style="color:#ff0000">method</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;post&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">action</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;/calculer-impot</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.csrf_token}}</span><span style="color:#0000ff">&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- 蓝色背景下的12列消息 --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;div</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;col-md-12&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#800000">&lt;div</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert alert-primary&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">role</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#800000">&lt;h4&gt;</span><span style="color:#000000">Remplissez le formulaire ci-dessous puis validez-le</span><span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#800000">&lt;/div&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;/div&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/form&gt;</span></span>
+</code></pre></div>
+
+<p><u><strong>模拟片段</strong> </u><strong>[v-liste-simulations.html]</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">{% if modèle.simulations is undefined or modèle.simulations|length==0 %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- 蓝色背景上的消息 --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;div</span> <span style="color:#ff0000">class</span>=<span style="color:#0000ff">&quot;alert alert-primary&quot;</span> <span style="color:#ff0000">role</span>=<span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;h4&gt;</span>Votre liste de simulations est vide<span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/div&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{% endif %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{% if modèle.simulations is defined and modèle.simulations|length!=0 %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- 蓝色背景上的消息 --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;div</span> <span style="color:#ff0000">class</span>=<span style="color:#0000ff">&quot;alert alert-primary&quot;</span> <span style="color:#ff0000">role</span>=<span style="color:#0000ff">&quot;alert&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;h4&gt;</span>Liste de vos simulations<span style="color:#800000">&lt;/h4&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/div&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- 模拟表格 --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;table</span> <span style="color:#ff0000">class</span>=<span style="color:#0000ff">&quot;table table-sm table-hover table-striped&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">…</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 表格主体（显示的数据） --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;tbody&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 通过遍历模拟表来显示每项模拟 --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% for simulation in modèle.simulations %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 显示包含 6 列的表格中的一行 - &lt;tr&gt; 标签 --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第1列：行标题（模拟编号） - 标签 &lt;th scope=&#x27;row&#x27; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第2列：参数值 [marié] - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第3列：参数值 [enfants] - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第 4 列：参数值 [salaire] - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第5列：参数值 [impôt]（税款） - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第6列：参数值 [surcôte] - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第 7 列：参数值 [décôte] - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第8列：参数值 [réduction] - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第 9 列：参数值 [taux]（税款） - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000">&lt;!-- 第10列：模拟删除链接 - 标签 &lt;td&gt; --&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;th</span> <span style="color:#ff0000">scope</span>=<span style="color:#0000ff">&quot;row&quot;</span><span style="color:#800000">&gt;</span>{{simulation.id}}<span style="color:#800000">&lt;/th&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.marié}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.enfants}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.salaire}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.impôt}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.surcôte}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.décôte}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.réduction}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;</span>{{simulation.taux}}<span style="color:#800000">&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#800000">&lt;td&gt;&lt;a</span> <span style="color:#ff0000">href</span>=<span style="color:#0000ff">&quot;/supprimer-simulation/{{simulation.id}}</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.csrf_token}}</span><span style="color:#0000ff">&quot;</span><span style="color:#800000">&gt;</span>Supprimer<span style="color:#800000">&lt;/a&gt;&lt;/td&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% endfor %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tr&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#800000">&lt;/tbody&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/table&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{% endif %}</span></span>
+</code></pre></div>
+
+<p><u><strong>菜单片段</strong> </u><strong>[v-menu.html]</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-html">
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;!-- Bootstrap 菜单 --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#800000">&lt;nav</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;nav flex-column&quot;</span><span style="color:#800000">&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>&lt;!-- 显示链接列表HTML --&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% for optionMenu in modèle.optionsMenu %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#800000">&lt;a</span><span style="color:#000000"> </span><span style="color:#ff0000">class</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;nav-link&quot;</span><span style="color:#000000"> </span><span style="color:#ff0000">href</span><span style="color:#000000">=</span><span style="color:#0000ff">&quot;{{optionMenu.url}}</span><span style="background-color:#fff2cc;color:#0000ff">{{modèle.csrf_token}}</span><span style="color:#0000ff">&quot;</span><span style="color:#800000">&gt;</span><span style="color:#000000">{{optionMenu.text}}</span><span style="color:#800000">&lt;/a&gt;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    {% endfor %}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;/nav&gt;</span></span>
+</code></pre></div>
+
+<p><span id="toc48549320" name="toc48549320" class="odt-bookmark-anchor"></span></p>
+<h3 id="3434">34.3.4. <span style="color: #4f81bd">路线</span></h3>
+<p>现在有两种类型的路线，取决于它们是否使用令牌：</p>
+<p><img src="images/100000000000018F00000106A63E3323.png" width="174" height="114" style="width:4.613cm;height:3.029cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018F00000106A63E3323.png" /></p>
+<ul>
+  <li><b>[routes_without_csrftoken]</b> 指不使用令牌的路线CSRF。这些是上一版本的路线；
+  </li>
+  <li><b>[routes_with_csrftoken]</b> 表示使用 CSRF 令牌的路由。
+  </li>
+</ul>
+
+<p>在 <strong>[routes_with_csrftoken]</strong> 中，路由现在多了一个参数，即令牌 CSRF：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 前端控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> front_controller() -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 将请求转发至主控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    main_controller = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;mvc&#x27;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&#x27;controllers&#x27;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&#x27;main-controller&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> main_controller.execute(request, session, config)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> index() -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 重定向至 /init-session/html</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> redirect(url_for(</span><span style="color:#a31515">&quot;init_session&quot;</span><span style="color:#000000">, type_response=</span><span style="color:#a31515">&quot;html&quot;</span><span style="color:#000000">, </span><span style="background-color:#fff2cc;color:#000000">csrf_token=generate_csrf()</span><span style="color:#000000">), status.HTTP_302_FOUND)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># init-session</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/init-session/&lt;string:type_response</span><span style="background-color:#fff2cc;color:#a31515">&gt;/&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> init_session(type_response: str, </span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 用户认证</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/authentifier-utilisateur</span><span style="background-color:#fff2cc;color:#a31515">/&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;POST&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> authentifier_utilisateur(</span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 计算税款</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/calculer-impot</span><span style="background-color:#fff2cc;color:#a31515">/&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;POST&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> calculer_impot(</span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 批量计算税款</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/calculer-impots/</span><span style="background-color:#fff2cc;color:#a31515">&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;POST&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> calculer_impots(</span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 列出模拟</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/lister-simulations</span><span style="background-color:#fff2cc;color:#a31515">/&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> lister_simulations(</span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 删除模拟</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/supprimer-simulation/&lt;int:numero</span><span style="background-color:#fff2cc;color:#a31515">&gt;/&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> supprimer_simulation(numero: int, </span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 结束会话</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/fin-session</span><span style="background-color:#fff2cc;color:#a31515">/&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> fin_session(</span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 显示-计算-税款</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/afficher-calcul-impot</span><span style="background-color:#fff2cc;color:#a31515">/&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> afficher_calcul_impot(</span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 正在执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 获取管理员数据</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/get-admindata</span><span style="background-color:#fff2cc;color:#a31515">/&lt;string:csrf_token&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> get_admindata(</span><span style="background-color:#fff2cc;color:#000000">csrf_token: str</span><span style="color:#000000">) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 正在执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+</code></pre></div>
+
+<p>现在所有路由的参数中都包含 CSRF 令牌，甚至包括 <strong>[/init-session]</strong> 路由。 这意味着用户无法通过直接输入 URL <strong>[/init-session/html]</strong> 来启动应用程序，因为其中缺少 CSRF 令牌。 现在必须通过第 7-10 行中的 URL <strong>[/]</strong> 进行调用。</p>
+<p>路径选择在主脚本 <strong>[main]</strong> 中完成：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 主线程不再需要日志器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">logger.close()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 如果发生错误则停止</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    sys.exit(</span><span style="color:#098658">2</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入Web应用程序的路由</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;parameters&#x27;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">import</span><span style="color:#000000"> routes_with_csrftoken </span><span style="color:#0000ff">as</span><span style="color:#000000"> routes</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">import</span><span style="color:#000000"> routes_without_csrftoken </span><span style="color:#0000ff">as</span><span style="color:#000000"> routes</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 配置路由</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">routes.config = config</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 启动 Flask 应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">routes.execute(__name__)</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第9-13行：根据应用程序是否使用令牌来选择路由；
+  </li>
+</ul>
+
+<p><span id="toc48549321" name="toc48549321" class="odt-bookmark-anchor"></span></p>
+<h3 id="3435-maincontroller">34.3.5. <span style="color: #4f81bd"><strong>控制器</strong> [MainController]</span></h3>
+<p>每次请求时，服务器都必须检查是否存在令牌 CSRF。我们将通过主控制器 <strong>[MainController]</strong> 来实现这一功能，该控制器会处理所有请求：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc;color:#0000ff">from</span><span style="background-color:#fff2cc"> flask_wtf.csrf </span><span style="background-color:#fff2cc;color:#0000ff">import</span><span style="background-color:#fff2cc"> generate_csrf, validate_csrf</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">       # 处理请求</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">try</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            # 日志记录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            logger = Logger(config<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;parameters&#x27;</span><span style="font-weight:bold">][</span><span style="font-weight:bold;color:#a31515">&#x27;logsFilename&#x27;</span><span style="font-weight:bold">]</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            …</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            # 获取路径中的元素</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            params = request.path.split(<span style="color:#a31515">&#x27;/&#x27;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            # 操作是第一个元素</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            action = params<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#098658">1</span><span style="font-weight:bold">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            …</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="background-color:#fff2cc;color:#000000">config</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">[</span><span style="font-weight:bold;background-color:#fff2cc">&#x27;parameters&#x27;</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">][</span><span style="font-weight:bold;background-color:#fff2cc">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">]</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span># csrf_token 是路径的最后一个元素</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                csrf_token = params.pop()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span># 验证令牌的有效性</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span># 如果 csrf_token 不是预期的令牌，将抛出异常</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="background-color:#fff2cc">validate_csrf</span>(csrf_token)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            …</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">except</span> <span style="background-color:#fff2cc">ValidationError</span> <span style="color:#0000ff">as</span> exception:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            # CSRF令牌无效</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            résultat = {<span style="color:#a31515">&quot;action&quot;</span>: action, <span style="color:#a31515">&quot;état&quot;</span>: <span style="color:#098658">121</span>, <span style="color:#a31515">&quot;réponse&quot;</span>: <span style="font-weight:bold">[</span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{exception}</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">]</span>}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            status_code = status.HTTP_400_BAD_REQUEST</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">except</span> BaseException <span style="color:#0000ff">as</span> exception:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            # 其他（意外）异常</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            résultat = {<span style="color:#a31515">&quot;action&quot;</span>: action, <span style="color:#a31515">&quot;état&quot;</span>: <span style="color:#098658">131</span>, <span style="color:#a31515">&quot;réponse&quot;</span>: <span style="font-weight:bold">[</span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{exception}</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">]</span>}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            status_code = status.HTTP_400_BAD_REQUEST</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">finally</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">pass</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 将 csrf_token 添加到结果中</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="background-color:#fff2cc">résultat</span><span style="font-weight:bold;background-color:#fff2cc">[</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;csrf_token&#x27;</span><span style="font-weight:bold;background-color:#fff2cc">]</span><span style="background-color:#fff2cc"> = generate_csrf()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 将发送给客户端的结果记录到日志中</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        log = <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="font-weight:bold;color:#a31515">[MainController]</span><span style="color:#a31515"> </span>{résultat}\n<span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        logger.write(log)</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 20 行：从类型为 <b>[http://machine :port/chemin/action/param1/param2/…/csrf_token]</b> 的请求中，获取 URL 中的令牌 CSRF。 会话令牌始终是 URL 的最后一个元素；
+  </li>
+  <li>第 23 行：验证从 URL 中提取的令牌 CSRF 与会话令牌 CSRF 的有效性。 如果无效，函数 <b>[validate_csrf] </b>将抛出类型为 <b>[ValidationError]</b> 的异常（第 27 行）；
+  </li>
+  <li>第 41 行：将令牌 CSRF 放入发送给客户端的结果中。 客户端 jSON 和 XML 需要该令牌。因为这些客户端收到的 HTML 页面中，其页面内含的链接中并不包含 CSRF 令牌。 因此，他们将通过服务器发送的 jSON 或 XML 结果获取该令牌；
+  </li>
+</ul>
+
+<p><strong>注</strong>：第23行的[validate_csrf]函数并不检查严格匹配。令牌CSRF会以<strong>密钥[csrf_token]</strong>的形式存储在会话中。 测试结果似乎表明，如果令牌 CSRF 是该会话期间生成的，则其有效。因此，如果手动将浏览器中显示的 URL（例如 /lister-simulations/xyz） 将令牌 <strong>[xyz]</strong> CSRF 替换为之前操作中已接收的另一个<strong>令牌</strong> [abc]，则操作 <strong>[/lister-simulations]</strong> 将成功；</p>
+<p><span id="toc48549322" name="toc48549322" class="odt-bookmark-anchor"></span></p>
+<h2 id="344">34.4. <span style="color: #4f81bd">浏览器测试</span></h2>
+<p>操作：</p>
+<ul>
+  <li>使用参数 <b>[with_csrftoken]</b> 启动服务器，并将该参数设置为 <b>[True]</b>；
+  </li>
+  <li>使用浏览器请求 URL <b>[http://localhost:5000]</b>；
+  </li>
+</ul>
+
+<p><img src="images/10000000000004710000029076ACA4C7.png" width="497" height="287" style="width:13.139cm;height:7.581cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004710000029076ACA4C7.png" /></p>
+<ul>
+  <li>在 <b>[1] </b>中，令牌 CSRF；
+  </li>
+</ul>
+
+<p>进行操作直至获得模拟列表：</p>
+<p><img src="images/100000000000058E00000254BCAB1B42.png" width="621" height="260" style="width:16.431cm;height:6.886cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000058E00000254BCAB1B42.png" /></p>
+<p>现在，我们手动输入 URL <strong>[http://localhost:5000/supprimer-simulation/1/x]</strong> 以删除 id=1 的模拟。我们故意输入一个错误的令牌 CSRF 来观察会发生什么。服务器的响应如下：</p>
+<p><img src="images/100000000000058E0000021B39C49A61.png" width="620" height="235" style="width:16.409cm;height:6.219cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000058E0000021B39C49A61.png" /></p>
+<p><strong>注1</strong>：目前尚不确定此处采用的方法是否始终足以抵御CSRF攻击。让我们回顾一下攻击流程：</p>
+<p><img src="images/10000000000003E50000024D46F14920.png" width="435" height="257" style="width:11.501cm;height:6.795cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003E50000024D46F14920.png" /></p>
+<p>如果通过 <strong>[5]</strong> 下载的 JavaScript 脚本能够读取爱丽丝所用浏览器的历史记录， 它就能获取浏览器执行过的 URL，以及类似 <strong>[/cible/csrf_token]</strong> 的 URL。 随后，它将能够获取会话令牌 <strong>[csrf_token]</strong>，并发起攻击 <strong>[6-7]</strong>。然而，浏览器仅允许利用执行脚本的浏览器窗口中的历史记录。 因此，如果爱丽丝没有使用同一个窗口来访问网站 A<strong>（[1-2]）</strong>并阅读玛洛丽的消息（<strong>[3]）</strong>，那么攻击（CSRF）将无法实现。</p>
+<p><span id="toc48549323" name="toc48549323" class="odt-bookmark-anchor"></span></p>
+<h2 id="345">34.5. <span style="color: #4f81bd">控制台客户端</span></h2>
+<p>测试该应用程序第 14 版另一种方法是沿用第 12 版的测试方案，并将其适配到新服务器上。</p>
+<p><img src="images/10000000000000E4000000E6E2289AB8.png" width="99" height="100" style="width:2.632cm;height:2.655cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000000E4000000E6E2289AB8.png" /></p>
+<p>文件 <strong>[impots/http-clients/09]</strong> 最初是通过复制文件 <strong>[impots/http-clients/07]</strong> 获得的。随后对其进行了修改。</p>
+<p>让我们回到初始化会话的路由：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 应用程序根目录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> index() -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 重定向至 /init-session/html</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> redirect(url_for(</span><span style="color:#a31515">&quot;init_session&quot;</span><span style="color:#000000">, type_response=</span><span style="color:#a31515">&quot;html&quot;</span><span style="color:#000000">, csrf_token=generate_csrf()), status.HTTP_302_FOUND)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># init-session-with-csrf-token</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/init-session/&lt;string:type_response&gt;/&lt;string:csrf_token&gt;&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> init_session(type_response: str, csrf_token: str) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 执行与该操作关联的控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> front_controller()</span></span></span>
+</code></pre></div>
+
+<p>这些路由均不适用于初始化 jSON 或 XML 会话：</p>
+<ul>
+  <li>第 2-5 行：路由 <b>[/]</b> 初始化会话 HTML；
+  </li>
+  <li>第8-11行：路由[/init-session]需要一个我们不知道的令牌CSRF；
+  </li>
+</ul>
+
+<p>我们决定在服务器上添加一条新路由：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 不使用CSRF令牌初始化会话</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;</span><span style="background-color:#fff2cc;color:#a31515">/init-session-without-csrftoken/&lt;string:type_response&gt;</span><span style="color:#a31515">&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> init_session_without_csrftoken(type_response: str) -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 重定向至 /init-session/type_response</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="background-color:#fff2cc;color:#000000">redirect</span><span style="color:#000000">(url_for(</span><span style="color:#a31515">&quot;init_session&quot;</span><span style="color:#000000">, type_response=type_response, </span><span style="background-color:#fff2cc;color:#000000">csrf_token=generate_csrf()</span><span style="color:#000000">), status.HTTP_302_FOUND)</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>第2行：新路由。它不要求CSRF令牌。因此我们回到了上一版本的<b>[/init-session]</b>路由；
+  </li>
+  <li>第4-5行：将客户端（jSON、XML、 HTML）重定向至路由 [/init-session]，该路由的参数中包含令牌 CSRF；
+  </li>
+</ul>
+
+<p>我们可以使用浏览器测试这条新路由：</p>
+<p><img src="images/10000000000003CF000000A47ACF6ACC.png" width="426" height="72" style="width:11.269cm;height:1.896cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003CF000000A47ACF6ACC.png" /></p>
+<p>服务器（配置为 <strong>[with_csrftoken=True]</strong>）的响应如下：</p>
+<p><img src="images/100000000000063C000000A5FABB0D6C.png" width="697" height="72" style="width:18.433cm;height:1.907cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000063C000000A5FABB0D6C.png" /></p>
+<ul>
+  <li>在 <b>[1]</b> 路径下，服务器被重定向至 <b>[/init-session]</b> 路径，且 CSRF 令牌位于 URL 中；
+  </li>
+  <li>在 <b>[2] </b>中，令牌 CSRF 位于服务器发送的字典 jSON 中，该字典与密钥 <b>[csrf_token]</b> 相关联；
+  </li>
+</ul>
+
+<p>让我们回到客户端代码：</p>
+<p><img src="images/1000000000000119000001395F3D944C.png" width="122" height="136" style="width:3.24cm;height:3.609cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000119000001395F3D944C.png" /></p>
+<p>我们将 <strong>[config]</strong> 的配置修改如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">   config.update({</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 纳税人文件</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;taxpayersFilename&quot;</span>: <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../data/input/taxpayersdata.txt&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 结果文件</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;resultsFilename&quot;</span>: <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../data/output/résultats.json&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 错误文件</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;errorsFilename&quot;</span>: <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../data/output/errors.txt&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 日志文件</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;logsFilename&quot;</span>: <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{script_dir}<span style="color:#a31515">/../data/logs/logs.txt&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 税款计算服务器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;server&quot;</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#a31515">&quot;urlServer&quot;</span>: <span style="color:#a31515">&quot;http://127.0.0.1:5000&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#a31515">&quot;user&quot;</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;login&quot;</span>: <span style="color:#a31515">&quot;admin&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;password&quot;</span>: <span style="color:#a31515">&quot;admin&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#a31515">&quot;url_services&quot;</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;calculate-tax&quot;</span>: <span style="color:#a31515">&quot;/calculer-impot&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;get-admindata&quot;</span>: <span style="color:#a31515">&quot;/get-admindata&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;calculate-tax-in-bulk-mode&quot;</span>: <span style="color:#a31515">&quot;/calculer-impots&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;init-session&quot;</span>: <span style="color:#a31515">&quot;/init-session-without-csrftoken&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;end-session&quot;</span>: <span style="color:#a31515">&quot;/fin-session&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;authenticate-user&quot;</span>: <span style="color:#a31515">&quot;/authentifier-utilisateur&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;get-simulations&quot;</span>: <span style="color:#a31515">&quot;/lister-simulations&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#a31515">&quot;delete-simulation&quot;</span>: <span style="color:#a31515">&quot;/supprimer-simulation&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 调试模式</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;debug&quot;</span>: <span style="color:#0000ff">True</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># csrf_token</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="background-color:#fff2cc;color:#a31515">&quot;with_csrftoken&quot;</span><span style="background-color:#fff2cc">: </span><span style="background-color:#fff2cc;color:#0000ff">True</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    )</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 初始化会话路由</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    url_services = config<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;server&#x27;</span><span style="font-weight:bold">][</span><span style="font-weight:bold;color:#a31515">&#x27;url_services&#x27;</span><span style="font-weight:bold">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        url_services</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">&#x27;init-session&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = </span>&#x27;/init-session-without-csrftoken&#x27;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        url_services</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">&#x27;init-session&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = </span>&#x27;/init-session&#x27;</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 31 行：一个布尔值将告知客户端，其所连接的服务器是否使用 CSRF 令牌；
+  </li>
+  <li>第 37-40 行：为操作 [init-session] 设置服务 <b>URL</b>：
+    <ul>
+      <li>如果服务器使用 CSRF 令牌，则服务 URL 为 <b>[/init-session-without-csrftoken]</b>；
+      </li>
+      <li>否则，服务令牌 URL 即为 <b>[/init-session]</b>；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>已提出 <strong>[/init-session-without-csrftoken]</strong> 路径。它允许 jSON / XML 客户端在未持有 CSRF 令牌的情况下与服务器建立会话。 该客户端将在服务器的响应中获取该令牌。</p>
+<p>接下来，我们修改实现客户端 <strong>[dao]</strong> 层的 <strong>[ImpôtsDaoWithHttpSession]</strong> 类：</p>
+<p><img src="images/100000000000023A0000012AE88F5267.png" width="248" height="130" style="width:6.57cm;height:3.434cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000023A0000012AE88F5267.png" /></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> json</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> requests</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> xmltodict</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> flask_api </span><span style="color:#0000ff">import</span><span style="color:#000000"> status</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> AbstractImpôtsDao </span><span style="color:#0000ff">import</span><span style="color:#000000"> AbstractImpôtsDao</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> AdminData </span><span style="color:#0000ff">import</span><span style="color:#000000"> AdminData</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> ImpôtsError </span><span style="color:#0000ff">import</span><span style="color:#000000"> ImpôtsError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> InterfaceImpôtsDaoWithHttpSession </span><span style="color:#0000ff">import</span><span style="color:#000000"> InterfaceImpôtsDaoWithHttpSession</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> TaxPayer </span><span style="color:#0000ff">import</span><span style="color:#000000"> TaxPayer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> ImpôtsDaoWithHttpSession(InterfaceImpôtsDaoWithHttpSession):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 构造函数</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __init__(self, config: dict):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 父级初始化</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        AbstractImpôtsDao.__init__(</span><span style="color:#0000ff">self</span><span style="color:#000000">, config)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 配置项存储</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 通用配置</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__config = config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 服务器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__config_server = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;server&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 服务</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__config_services = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;server&quot;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&#x27;url_services&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 调试模式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__debug = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;debug&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 日志记录器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__logger = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># Cookie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__cookies = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 会话类型（json、xml）</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__session_type = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 令牌CSRF</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="background-color:#fff2cc;color:#0000ff">self</span><span style="background-color:#fff2cc;color:#000000">.__csrf_token = </span><span style="background-color:#fff2cc;color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 请求/响应阶段</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> get_response(self, method: str, url_service: str, data_value: dict = </span><span style="color:#0000ff">None</span><span style="color:#000000">, json_value=</span><span style="color:#0000ff">None</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># [method]：方法 HTTP GET 或 POST</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># [url_service]：服务 URL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># [data]：POST的x-www-form-urlencoded参数</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># [json]：POST的参数（JSON格式）</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># [cookies]：请求中需包含的cookie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 必须拥有 XML 或 JSON 会话，否则无法处理响应</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">self</span><span style="color:#000000">.__session_type </span><span style="color:#0000ff">not</span><span style="color:#000000"> </span><span style="color:#0000ff">in</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;json&#x27;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&#x27;xml&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> ImpôtsError(</span><span style="color:#098658">73</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;il n&#x27;y a pas de session valide en cours&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 将令牌 CSRF 添加到服务端 URL 中</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="background-color:#fff2cc;color:#0000ff">if</span><span style="background-color:#fff2cc;color:#000000"> </span><span style="background-color:#fff2cc;color:#0000ff">self</span><span style="background-color:#fff2cc;color:#000000">.__csrf_token</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            url_service = </span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="color:#000000">{url_service}</span><span style="color:#a31515">/</span><span style="color:#000000">{</span><span style="color:#0000ff">self</span><span style="color:#000000">.__csrf_token}</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 执行请求</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        response = </span><span style="background-color:#fff2cc;color:#000000">requests.request</span><span style="color:#000000">(method,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                                    url_service,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                                    data=data_value,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                                    json=json_value,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                                    cookies=</span><span style="color:#0000ff">self</span><span style="color:#000000">.__cookies,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                                    </span><span style="background-color:#fff2cc;color:#000000">allow_redirects=</span><span style="background-color:#fff2cc;color:#0000ff">True</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 调试模式？</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">self</span><span style="color:#000000">.__debug:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span># 日志记录器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">not</span><span style="color:#000000"> </span><span style="color:#0000ff">self</span><span style="color:#000000">.__logger:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#0000ff">self</span><span style="color:#000000">.__logger = </span><span style="color:#0000ff">self</span><span style="color:#000000">.__config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;logger&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span># 正在记录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">self</span><span style="color:#000000">.__logger.write(</span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="color:#000000">{response.text}\n</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 结果</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">self</span><span style="color:#000000">.__session_type == </span><span style="color:#a31515">&quot;json&quot;</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            résultat = json.loads(response.text)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        else:  # XML</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            résultat = xmltodict.parse(response.text</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#098658">39</span><span style="font-weight:bold;color:#000000">:]</span><span style="color:#000000">)</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;root&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 如果响应中包含Cookie，则获取Cookie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> response.cookies:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">self</span><span style="color:#000000">.__cookies = response.cookies</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 获取令牌 CSRF</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="background-color:#fff2cc;color:#0000ff">if</span><span style="background-color:#fff2cc;color:#000000"> </span><span style="background-color:#fff2cc;color:#0000ff">self</span><span style="background-color:#fff2cc;color:#000000">.__config</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">[</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;with_csrftoken&#x27;</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">]</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">self</span><span style="color:#000000">.__csrf_token = résultat.get(</span><span style="color:#a31515">&#x27;csrf_token&#x27;</span><span style="color:#000000">, </span><span style="color:#0000ff">None</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 状态码</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        status_code = response.status_code</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 若状态码不为 200，则返回 OK</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> status_code != status.HTTP_200_OK:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> ImpôtsError(</span><span style="color:#098658">35</span><span style="color:#000000">, résultat</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;réponse&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 返回结果</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> résultat</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;réponse&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> init_session(self, session_type: str):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 记录会话类型</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__session_type = session_type</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 删除先前调用的令牌 CSRF</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="background-color:#fff2cc;color:#0000ff">self</span><span style="background-color:#fff2cc;color:#000000">.__csrf_token</span><span style="color:#000000"> = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 请求 init-session 操作的 URL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        url_service = </span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="color:#000000">{</span><span style="color:#0000ff">self</span><span style="color:#000000">.__config_server</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;urlServer&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">}{</span><span style="color:#0000ff">self</span><span style="color:#000000">.__config_services</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;init-session&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">}</span><span style="color:#a31515">/</span><span style="color:#000000">{session_type}</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 执行请求</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.get_response(</span><span style="color:#a31515">&quot;GET&quot;</span><span style="color:#000000">, url_service)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 38-92 行：令牌 CSRF 的处理主要在方法 <b>[get_response]</b> 中进行；
+  </li>
+  <li>第 60 行：关键点在于参数 <b>[allow_redirects=True]</b>。这是其默认值，但我们特意将其突出显示；
+  </li>
+</ul>
+
+<p>当处于 <strong>[with_csrftoken=True]</strong> 模式时：</p>
+<ul>
+  <li>客户端通过调用路由 <b>[/init-session_without_csftoken/type_response]</b> 开始与服务器的交互；
+  </li>
+  <li>服务器通过重定向至路由 <b>[/init-session/type_response/csrf_token]</b> 来响应此请求；
+  </li>
+  <li><b>由于</b>参数 [allow_redirects=True]，客户端 <b>[requests]</b> 将执行此重定向；
+  </li>
+  <li>在第72行和第74行的检索结果中，将找到与<b>密钥[csrf_token]</b>关联的令牌CSRF；
+  </li>
+</ul>
+
+<p>当处于 <strong>[with_csrftoken=False]</strong> 模式时：</p>
+<ul>
+  <li>（续）
+    <ul>
+      <li>客户端通过调用路由 <b>[/init-session /type_response]</b> 开始与服务器的对话；
+      </li>
+      <li>服务器对此请求的响应是重定向至路由 <b>[/init-session/type_response]</b>；
+      </li>
+      <li>由于参数 <b>[allow_redirects=True]</b> 的存在，客户端将随后访问 <b>[requests]</b> 路由；
+      </li>
+      <li>第 81-82 行中没有可获取的 CSRF 令牌。因此，<b>[self.__csrf_token]</b> 属性始终保持为 None（第 36 行）；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ul>
+  <li>第51-52行：对于后续所有请求，若存在令牌CSRF，则将其添加到初始路由中；
+  </li>
+  <li>第81-82行：服务器在处理客户端每次新请求时生成的令牌会被本地存储，以便在第52行将其发回给后续请求；
+  </li>
+</ul>
+
+<p>此外<strong>，[init_session]方法</strong>稍作调整：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> init_session(self, session_type: str):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 记录会话类型</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">self</span>.__session_type = session_type</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 删除先前调用生成的令牌 CSRF</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="background-color:#fff2cc;color:#0000ff">self</span><span style="background-color:#fff2cc">.__csrf_token = </span><span style="background-color:#fff2cc;color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 请求 init-session 操作的 URL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        url_service = <span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span>{<span style="color:#0000ff">self</span>.__config_server<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&#x27;urlServer&#x27;</span><span style="font-weight:bold">]</span>}{<span style="background-color:#fff2cc;color:#0000ff">self</span><span style="background-color:#fff2cc">.__config_services</span><span style="font-weight:bold;background-color:#fff2cc">[</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;init-session&#x27;</span><span style="font-weight:bold;background-color:#fff2cc">]</span><span style="background-color:#fff2cc">}</span><span style="color:#a31515">/</span>{session_type}<span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 执行请求</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">self</span>.get_response(<span style="color:#a31515">&quot;GET&quot;</span>, url_service)</span></span>
+</code></pre></div>
+
+<p>这里需要记住，我们创建了路由 <strong>[/init-session-without-csrftoken/&lt;type-response&gt;]</strong>，用于在不使用令牌 CSRF 的情况下初始化客户端/服务器对话。 然而我们已看到，代码第 12 行调用的 <strong>[get_response]</strong> 方法会系统地将存储在 <strong>[self.__csrf_token]</strong> 中的令牌 CSRF 添加到服务端 URL 的末尾。 因此，代码第6行会删除该令牌CSRF（如果存在的话）。</p>
+<p>就这样。为了测试，我们将执行：</p>
+<ul>
+  <li>控制台客户端 <b>[main, main2, main3]</b>；
+  </li>
+  <li>测试类 <b>[Test1HttpClientDaoWithSession] </b>和 <b>[Test2HttpClientDaoWithSession]</b>；
+  </li>
+</ul>
+
+<p>并将配置参数 <strong>[with_csrftoken]</strong> 依次设置为 True 然后 False。</p>
+<p><img src="images/1000000000000239000002062A0C2A4E.png" width="248" height="226" style="width:6.57cm;height:5.981cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000239000002062A0C2A4E.png" /></p>
+<p>以下是客户端 <strong>[main json]</strong> 与 <strong>[with_csrftoken=True]</strong> 配合运行时生成的日志示例：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, MainThread : début du calcul de l&#x27;impôt des contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, Thread-1 : début du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, Thread-2 : début du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, Thread-3 : début du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.317903, Thread-4 : début du calcul de l&#x27;impôt des 1 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.379221, Thread-2 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">init-session</span>&quot;, &quot;état&quot;: 700, &quot;réponse&quot;: <span style="font-weight:bold">[&quot;session démarrée avec le type de réponse json&quot;]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImFiZmZkYjZmMzFkZDc2YWRjNWYwOGM0NTBmMGM4ODJjYzViOWI4NGEi.Xy63sw.H5L0--yWsvfaWvggrGw78z5VnN0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.381073, Thread-4 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">init-session</span>&quot;, &quot;état&quot;: 700, &quot;réponse&quot;: <span style="font-weight:bold">[&quot;session démarrée avec le type de réponse json&quot;]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImY5YzQyMjlkYzcyYmM4YmZiMGI0NWY5MjE4MzIzNDExZjc0MGQ3MWQi.Xy63sw.q6olg7IP_g2ro_RBFRCX1BX90g8&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.386982, Thread-3 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">init-session</span>&quot;, &quot;état&quot;: 700, &quot;réponse&quot;: <span style="font-weight:bold">[&quot;session démarrée avec le type de réponse json&quot;]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjkxZGNlN2YyMmUxMjQ0M2Y0MTdjNDQ4ZmQ1MDMxZjkwNjBhNzAzZjMi.Xy63sw.-6buL11No3UJBlElpW4tX4B-lp0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.390269, Thread-1 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">init-session</span>&quot;, &quot;état&quot;: 700, &quot;réponse&quot;: <span style="font-weight:bold">[&quot;session démarrée avec le type de réponse json&quot;]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjIxNmU4MDQyZDFmZmIyZDlmZjE4MzNlNDUzYzFjMGYxMWYxYzEwNGYi.Xy63sw.fgs6Cm2owsJf4NjTm7gKrVESabI&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.413206, Thread-2 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">authentifier-utilisateur</span>&quot;, &quot;état&quot;: 200, &quot;réponse&quot;: &quot;Authentification réussie&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImFiZmZkYjZmMzFkZDc2YWRjNWYwOGM0NTBmMGM4ODJjYzViOWI4NGEi.Xy63sw.H5L0--yWsvfaWvggrGw78z5VnN0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.422877, Thread-2 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">calculer-impots</span>&quot;, &quot;état&quot;: 1500, &quot;réponse&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 16782, &quot;surcôte&quot;: 7176, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 1}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 9200, &quot;surcôte&quot;: 2180, &quot;taux&quot;: 0.3, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 2}]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImFiZmZkYjZmMzFkZDc2YWRjNWYwOGM0NTBmMGM4ODJjYzViOWI4NGEi.Xy63sw.H5L0--yWsvfaWvggrGw78z5VnN0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.428622, Thread-4 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">authentifier-utilisateur</span>&quot;, &quot;état&quot;: 200, &quot;réponse&quot;: &quot;Authentification réussie&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImY5YzQyMjlkYzcyYmM4YmZiMGI0NWY5MjE4MzIzNDExZjc0MGQ3MWQi.Xy63sw.q6olg7IP_g2ro_RBFRCX1BX90g8&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.429127, Thread-3 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">authentifier-utilisateur</span>&quot;, &quot;état&quot;: 200, &quot;réponse&quot;: &quot;Authentification réussie&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjkxZGNlN2YyMmUxMjQ0M2Y0MTdjNDQ4ZmQ1MDMxZjkwNjBhNzAzZjMi.Xy63sw.-6buL11No3UJBlElpW4tX4B-lp0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.429127, Thread-1 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">authentifier-utilisateur</span>&quot;, &quot;état&quot;: 200, &quot;réponse&quot;: &quot;Authentification réussie&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjIxNmU4MDQyZDFmZmIyZDlmZjE4MzNlNDUzYzFjMGYxMWYxYzEwNGYi.Xy63sw.fgs6Cm2owsJf4NjTm7gKrVESabI&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.429127, Thread-2 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">fin-session</span>&quot;, &quot;état&quot;: 400, &quot;réponse&quot;: &quot;session réinitialisée&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjU1YjlmZDA0OWRhNTJlODFmYjgyYjlhM2ExYWNhZmUzNTk2NjA5NGIi.Xy63sw.nyNSvkcG6iG0oIMBjtYPo8ySgdw&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.438519, Thread-2 : fin du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.443033, Thread-4 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">calculer-impots</span>&quot;, &quot;état&quot;: 1500, &quot;réponse&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 42842, &quot;surcôte&quot;: 17283, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 1}]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImY5YzQyMjlkYzcyYmM4YmZiMGI0NWY5MjE4MzIzNDExZjc0MGQ3MWQi.Xy63sw.q6olg7IP_g2ro_RBFRCX1BX90g8&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.446510, Thread-3 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">calculer-impots</span>&quot;, &quot;état&quot;: 1500, &quot;réponse&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 5, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 4230, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 1}, {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 22986, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 2}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 30000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.0, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 3}, {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 64210, &quot;surcôte&quot;: 7498, &quot;taux&quot;: 0.45, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 4}]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjkxZGNlN2YyMmUxMjQ0M2Y0MTdjNDQ4ZmQ1MDMxZjkwNjBhNzAzZjMi.Xy63sw.-6buL11No3UJBlElpW4tX4B-lp0&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.453477, Thread-1 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">calculer-impots</span>&quot;, &quot;état&quot;: 1500, &quot;réponse&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 55555, &quot;impôt&quot;: 2814, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 1}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 1384, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 384, &quot;réduction&quot;: 347, &quot;id&quot;: 2}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 720, &quot;réduction&quot;: 0, &quot;id&quot;: 3}, {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 19884, &quot;surcôte&quot;: 4480, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0, &quot;id&quot;: 4}]</span>, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjIxNmU4MDQyZDFmZmIyZDlmZjE4MzNlNDUzYzFjMGYxMWYxYzEwNGYi.Xy63sw.fgs6Cm2owsJf4NjTm7gKrVESabI&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.457912, Thread-4 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">fin-session</span>&quot;, &quot;état&quot;: 400, &quot;réponse&quot;: &quot;session réinitialisée&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;IjQ0ZDQxODgzN2M5NjRiYWI0NjA2MTk5YWFkNGFhMzY1M2IxNWMyNDIi.Xy63sw.mOa5MKXvJ-EXf_qEok-OqC5j_mg&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.458442, Thread-4 : fin du calcul de l&#x27;impôt des 1 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.459045, Thread-3 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">fin-session</span>&quot;, &quot;état&quot;: 400, &quot;réponse&quot;: &quot;session réinitialisée&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;ImQ0NDZlYmViYjY1ZDUxYzJhMTNmM2JiZTRkMjBjZGJkYzE0OGVkYzMi.Xy63sw.fviTJz4zFDqVLlVlkrosT_JRPww&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.459700, Thread-3 : fin du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.460492, Thread-1 : {&quot;action&quot;: &quot;<span style="background-color:#fff2cc">fin-session</span>&quot;, &quot;état&quot;: 400, &quot;réponse&quot;: &quot;session réinitialisée&quot;, &quot;<span style="background-color:#fff2cc">csrf_token</span>&quot;: &quot;Ijg3MjQ1NGUyYTUyOGEyNTdmZmNmYWZkMmU2OTgyMzUwNjI1YTlhZjIi.Xy63sw.I0xBl9Q8DzsuXPSgOdeARc_VKBA&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.460492, Thread-1 : fin du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-08-08 16:33:23.460492, MainThread : fin du calcul de l&#x27;impôt des contribuables</span></span>
+</code></pre></div>
+
+<p>如果观察依次接收到的 CSRF 令牌，可以看到它们各不相同。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

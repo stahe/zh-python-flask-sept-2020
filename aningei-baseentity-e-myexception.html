@@ -1,0 +1,2596 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/aningei-baseentity-e-myexception.html">
+      
+      
+        <link rel="prev" href="eiuuiiang.html">
+      
+      
+        <link rel="next" href="enengiaouuieouianheng.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>13. 泛型类 [BaseEntity] 和 [MyException] - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#13-baseentity-myexception" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              13. 泛型类 [BaseEntity] 和 [MyException]
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="onguouaningeaian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 工作环境的搭建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pythonihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 应用练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 应用练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 泛型类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="aningei-baseentity-e-myexception.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 泛型类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#131-myexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.1. 类 MyException
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132-baseentity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2. [BaseEntity] 类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.2. [BaseEntity] 类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1321-baseentityfromdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1. [BaseEntity.fromdict]方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.2.1. [BaseEntity.fromdict]方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13211-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.1. Définition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13212-exemples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2. Exemples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.2.1.2. Exemples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#132121-utils" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2.1. 类 [Utils]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132122-personne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2.2. 类 [Personne]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132123-enseignant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2.3. 类 [Enseignant]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132124-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2.4. 配置 [config]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132125-fromdict_01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2.5. 脚本 [fromdict_01]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132126-fromdict_02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2.6. 脚本 [fromdict_02]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132127-fromdict_03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2.7. 脚本 [fromdict_03]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132128-fromdict_04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.1.2.8. 脚本 [fromdict_04]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1322-baseentityasdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.2. 方法 [BaseEntity.asdict]
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.2.2. 方法 [BaseEntity.asdict]">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13221-definition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.2.1. Définition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13222-exemples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.2.2. Exemples
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1323-baseentityasjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.3. 方法 [BaseEntity.asjson]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1324-baseentityfromjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.4. 方法 [BaseEntity.fromjson]
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1325-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.2.5. 脚本 [main]
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuieouianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与接口编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i-4-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第 4 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 SGBD MySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-postgresql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 SGBD PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianieu-sgbd-uuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写与 SGBD 无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orm-ehiong-sqlalchemy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. ORM 的使用 SQLALCHEMY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uianangongeng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuflaskuangiaewebuu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于Flask框架的Web服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 应用练习：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii7an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 应用练习：第7版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii8an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第8版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aiiianu-xml-hiianininghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 在字典与 XML 之间进行转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii11an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第11版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii12an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 应用练习：第12版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 jSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii14an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 应用练习：第14版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 应用练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 应用练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="lesclassesgeneriques" name="lesclassesgeneriques" class="odt-bookmark-anchor"></span>
+<span id="toc48549013" name="toc48549013" class="odt-bookmark-anchor"></span></p>
+<h1 id="13-baseentity-myexception">13. <span style="color: #365f91"><strong>泛型类</strong> [BaseEntity] <strong>和</strong> [MyException]</span></h1>
+<p>现在，我们将定义两个类，后续将经常使用它们。</p>
+<p><img src="images/100000000000015F000001ED11B0338D.png" width="153" height="215" style="width:4.052cm;height:5.69cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015F000001ED11B0338D.png" /></p>
+<p><span id="toc48549014" name="toc48549014" class="odt-bookmark-anchor"></span>
+<span id="lentitemyexception" name="lentitemyexception" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc5509889600925" name="refheadingtoc5509889600925" class="odt-bookmark-anchor"></span></p>
+<h2 id="131-myexception">13.1. <span style="color: #4f81bd">类 MyException</span></h2>
+<p>类 <strong>[MyException]</strong> (MyException.py) 提供了一个专有异常类：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"># 一个从 [BaseException] 派生的专有异常类</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(</span><span style="color:#2b91af">BaseException</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 构造函数</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __init__(</span><span style="color:#808080">self</span><span style="color:#000000">: </span><span style="color:#2b91af">object</span><span style="color:#000000">, </span><span style="color:#808080">code</span><span style="color:#000000">: </span><span style="color:#2b91af">int</span><span style="color:#000000">, </span><span style="color:#808080">message</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 父类</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#2b91af">BaseException</span><span style="color:#000000">.__init__(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">message</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 错误代码</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#808080">self</span><span style="color:#000000">.code = </span><span style="color:#808080">code</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># toString</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __str__(</span><span style="color:#808080">self</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#a31515">f&quot;MyException</span><span style="font-weight:bold;color:#a31515">[{self.code}, {super().__str__()}]</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 获取器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> code(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">int</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__code</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#808080">code</span><span style="color:#000000">.setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="color:#808080">code</span><span style="color:#000000">(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">code</span><span style="color:#000000">: </span><span style="color:#2b91af">int</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 错误代码必须为正整数</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> isinstance(</span><span style="color:#808080">code</span><span style="color:#000000">, </span><span style="color:#2b91af">int</span><span style="color:#000000">) </span><span style="color:#0000ff">and</span><span style="color:#000000"> </span><span style="color:#808080">code</span><span style="color:#000000"> &gt; 0:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">self</span><span style="color:#000000">.__code = </span><span style="color:#808080">code</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 异常</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">BaseException</span><span style="color:#000000">(</span><span style="color:#a31515">f&quot;code erreur {code} incorrect&quot;</span><span style="color:#000000">)</span></span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第 2 行：类 <strong>[MyException]</strong> 继承自预定义类 <strong>[BaseException]</strong>；</li>
+<li>第4行：该函数接受两个参数：<ul>
+<li><strong>[code]</strong>：一个整数错误代码；</li>
+<li><strong>[message]</strong>：一条错误消息；</li>
+</ul>
+</li>
+<li>第 6 行：将错误消息传递给父类；</li>
+<li>第14-27行：通过getter/setter操作<strong>[code]</strong>属性；</li>
+<li>第 23-24 行：验证属性 <strong>[code]</strong> 的有效性：必须为大于 0 的整数；</li>
+</ul>
+<p><span id="laclassebaseentity" name="laclassebaseentity" class="odt-bookmark-anchor"></span>
+<span id="toc48549015" name="toc48549015" class="odt-bookmark-anchor"></span></p>
+<h2 id="132-baseentity">13.2. <span style="color: #4f81bd">[BaseEntity] <strong>类</strong></span></h2>
+<p><strong>[BaseEntity]</strong> 类将成为我们为封装对象信息而创建的大多数类的父类。接下来，我们将主要使用两种类型的类：</p>
+<ul>
+<li>仅用于将同一对象的信息封装在同一位置的类。这些类除了 getter/setter 以及一个显示函数（__str__）外，不会包含其他行为（方法）。 如果需要管理 N 个对象，这些类将被实例化 N 次。<strong>[BaseEntity]</strong> 将作为此类类的父类；</li>
+<li>其主要作用是封装方法及极少量信息的类。此类仅实例化一次（<strong>单例</strong>）。其作用是实现应用程序的算法；</li>
+</ul>
+<p><strong>[BaseEntity]</strong> 类如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">json</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">re</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">MyException</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> </span><span style="color:#2b91af">BaseEntity</span><span style="color:#000000">(</span><span style="color:#2b91af">object</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 从类状态中排除的属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    excluded_keys = </span><span style="font-weight:bold;color:#000000">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 类的属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">staticmethod</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> get_allowed_keys() -&gt; </span><span style="color:#2b91af">list</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># id：对象标识符</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;id&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># toString</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __str__(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.asjson()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 获取器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> id(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">int</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__id</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">#  设置器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#808080">id</span><span style="color:#000000">.setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="color:#808080">id</span><span style="color:#000000">(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">id</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># id 必须是 &gt;=0 的整数</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">id</span><span style="color:#000000"> = </span><span style="color:#2b91af">int</span><span style="color:#000000">(</span><span style="color:#808080">id</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            erreur = </span><span style="color:#808080">id</span><span style="color:#000000"> &lt; 0</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">except</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            erreur = </span><span style="color:#0000ff">True</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 错误？</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(1, </span><span style="color:#a31515">f&quot;L&#x27;identifiant d&#x27;une entité {self.__class__} doit être un entier &gt;=0&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">self</span><span style="color:#000000">.__id = </span><span style="color:#808080">id</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> fromdict(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">state</span><span style="color:#000000">: </span><span style="color:#2b91af">dict</span><span style="color:#000000">, </span><span style="color:#808080">silent</span><span style="color:#000000">=</span><span style="color:#0000ff">False</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> set_value(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">key</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">, </span><span style="color:#808080">value</span><span style="color:#000000">, </span><span style="color:#808080">new_attributes</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">dict</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> asdict(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">included_keys</span><span style="color:#000000">: </span><span style="color:#2b91af">list</span><span style="color:#000000"> = </span><span style="color:#0000ff">None</span><span style="color:#000000">, </span><span style="color:#808080">excluded_keys</span><span style="color:#000000">: </span><span style="color:#2b91af">list</span><span style="color:#000000"> = </span><span style="font-weight:bold;color:#000000">[]</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">dict</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> asjson(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">excluded_keys</span><span style="color:#000000">: </span><span style="color:#2b91af">list</span><span style="color:#000000"> = </span><span style="font-weight:bold;color:#000000">[]</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> fromjson(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">json_state</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>…</span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li><strong>[BaseEntity]</strong> 类的目的是简化对象与字典之间的转换，以及对象与 jSON 之间的转换。因此，我们提供了以下方法：<ul>
+<li><strong>[asdict]</strong>：返回对象的属性字典；</li>
+<li><strong>[fromdict]</strong>：根据字典构建对象；</li>
+<li><strong>[asjson]</strong>：返回对象的 jSON 字符串，其作用与函数 <strong>[__str__]</strong> 相同；</li>
+<li><strong>[fromjson]</strong>：根据其字符串 jSON 构建对象；</li>
+</ul>
+</li>
+<li>类 <strong>[BaseEntity]</strong> 旨在被派生，而非直接使用；</li>
+<li>第 22-25 行：类 <strong>[BaseEntity]</strong> 仅有一个属性，即整数 <strong>[id]</strong>。该属性是对象的标识符。在实际应用中，能够区分同一类的不同实例通常非常有用。 我们将利用该属性（每个实例唯一）来实现这一点。此外，对象通常来自数据库，在数据库中它们通过主键（通常为整数）进行标识。在这种情况下，[id]将作为主键；</li>
+<li>第27-40行：<strong>属性[id]的</strong>setter方法。此处验证该值是否为大于等于0的整数。若不满足条件，则抛出类型<strong>为[MyException]的</strong>异常（第39行）；</li>
+<li>第 10 行：<strong>[excluded_keys]</strong> 是类属性而非实例属性。因此应写为 <strong>[BaseEntity.excluded_keys]</strong>。 该类属性是一个列表，包含不参与对象/字典及对象/jSON转换的类属性；</li>
+<li>第 12-16 行：<strong>[get_allowed_keys]</strong> 返回该类的属性列表。在字典 -&gt; 对象或 jSON -&gt; 对象的转换中，仅接受该列表中存在的键。 每个继承自类 <strong>[BaseEntity]</strong> 的子类都必须重新定义该列表；</li>
+</ul>
+<p>需注意<strong>的是，[BaseEntity]类的</strong>属性与函数对<strong>[BaseEntity]的</strong>派生类是可访问的。这是需要重点理解的关键点。</p>
+<p>接下来我们将详细解析 <strong>[BaseEntity]</strong> 类的代码。该类代码较为复杂。初学者只需阅读各函数的作用说明，无需过多关注具体代码。</p>
+<p><span id="toc48549016" name="toc48549016" class="odt-bookmark-anchor"></span></p>
+<h3 id="1321-baseentityfromdict">13.2.1. <span style="color: #4f81bd">[BaseEntity.fromdict]<strong>方法</strong></span></h3>
+<h4 id="13211-definition">13.2.1.1. <span style="color: #4f81bd">Définition</span></h4>
+<p>方法 <strong>[fromdict]</strong> 允许通过字典初始化 <strong>[BaseEntity]</strong> 对象或其派生对象：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> fromdict(<span style="color:#808080">self</span>, <span style="color:#808080">state</span>: <span style="color:#2b91af">dict</span>, <span style="color:#808080">silent</span>=<span style="color:#0000ff">False</span>):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 正在更新对象</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 授权密钥</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        allowed_keys = <span style="color:#808080">self</span>.<span style="color:#2b91af">__class__</span>.get_allowed_keys()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 遍历状态键</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">for</span> key, value <span style="color:#0000ff">in</span> <span style="color:#808080">state</span>.items():</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            # 该键是否被授权？</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">if</span> key <span style="color:#0000ff">not</span> <span style="color:#0000ff">in</span> allowed_keys:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#0000ff">if</span> <span style="color:#0000ff">not</span> <span style="color:#808080">silent</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                    <span style="color:#0000ff">raise</span> <span style="color:#2b91af">MyException</span>(2, <span style="color:#a31515">f&quot;la clé {key} n&#x27;est pas autorisée&quot;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                # 尝试将值赋给键</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                # 允许可能的异常向上抛出</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                setattr(<span style="color:#808080">self</span>, key, value)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 返回对象</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> <span style="color:#808080">self</span></span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第 1 行：该函数接收字典 <strong>[state]</strong> 作为参数，当前对象将基于该字典进行初始化；</li>
+<li>第4行：调用<strong>调用</strong>[fromdict]函数的类中的静态<strong>函数[get_allowed_keys]</strong>。 如果处理的是从 <strong>[BaseEntity]</strong> 派生的类，且该派生类重定义了静态函数 <strong>[get_allowed_keys]</strong>，则调用的是函数 <strong>[get_allowed_keys]</strong>。 每个派生类都会重定义该静态函数，并在其中声明其属性；</li>
+<li>第 6 行：遍历字典 <strong>[state]</strong> 的键和值；</li>
+<li>第 8 行：如果键 <strong>[key]</strong> 不属于该类的属性，则：<ul>
+<li>忽略该键；</li>
+<li>则抛出异常（第 10 行）。 开发者通过传递正确的参数 <strong>[silent]</strong>（第 1 行）来指定其需求。<strong>[silent]</strong> 的默认值会导致在尝试用对象不具备的属性初始化该对象时抛出异常；</li>
+</ul>
+</li>
+<li>第 14 行：如果键属于对象的属性，则使用预定义函数 <strong>[setattr]</strong> 将其赋值给对象 <strong>[self]</strong>；</li>
+<li>第 16 行：该函数返回已初始化的对象；</li>
+</ul>
+<h4 id="13212-exemples">13.2.1.2. <span style="color: #4f81bd">Exemples</span></h4>
+<p><img src="images/10000000000001160000018995EC20FD.png" width="122" height="172" style="width:3.223cm;height:4.554cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001160000018995EC20FD.png" /></p>
+<h5 id="132121-utils">13.2.1.2.1. <span style="color: #243f60"><strong>类</strong> [Utils]</span></h5>
+<p>类 <strong>[Utils]</strong>（Utils.py）如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">class<span style="color:#000000"> </span><span style="color:#2b91af">Utils</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 静态方法</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">staticmethod</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>def<span style="color:#000000"> is_string_ok(</span><span style="color:#808080">string</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">bool</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># string 是否为字符串</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        erreur = </span>not<span style="color:#000000"> isinstance(</span><span style="color:#808080">string</span><span style="color:#000000">, </span><span style="color:#2b91af">str</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>if<span style="color:#000000"> </span>not<span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 字符串是否为空？</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            erreur = </span><span style="color:#808080">string</span><span style="color:#000000">.strip() == </span><span style="color:#a31515">&#x27;&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 结果</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>return<span style="color:#000000"> </span>not<span style="color:#000000"> erreur</span></span></span>
+</code></pre></div>
+
+<p>它在第3至11行定义了一个静态方法，如果其参数<strong>[str]</strong>是一个非空字符串，则返回布尔值true；</p>
+<h5 id="132122-personne">13.2.1.2.2. <span style="color: #243f60"><strong>类</strong> [Personne]</span></h5>
+<p>类 <strong>[Personne]</strong> (Personne.py) 继承自类 <strong>[BaseEntity]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">BaseEntity</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">BaseEntity</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">MyException</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">Utils</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">Utils</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># Personne 类</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> </span><span style="color:#2b91af">Personne</span><span style="color:#000000">(</span><span style="color:#2b91af">BaseEntity</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 类状态中排除的属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    excluded_keys = </span><span style="font-weight:bold;color:#000000">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 类属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># id：人员标识符</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 名字：人员的名字</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 姓氏：个人姓氏</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 年龄：人员的年龄</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">staticmethod</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> get_allowed_keys() -&gt; </span><span style="color:#2b91af">list</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># id：对象标识符</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#2b91af">BaseEntity</span><span style="color:#000000">.get_allowed_keys() + </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;nom&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;prénom&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;âge&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 获取器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> prénom(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__prénom</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> nom(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__nom</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> âge(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">int</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__âge</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 设置器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#808080">prénom</span><span style="color:#000000">.setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="color:#808080">prénom</span><span style="color:#000000">(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">prénom</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 名字字段不能为空</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#2b91af">Utils</span><span style="color:#000000">.is_string_ok(</span><span style="color:#808080">prénom</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">self</span><span style="color:#000000">.__prénom = </span><span style="color:#808080">prénom</span><span style="color:#000000">.strip()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(11, </span><span style="color:#a31515">&quot;Le prénom doit être une chaîne de caractères non vide&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#808080">nom</span><span style="color:#000000">.setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="color:#808080">nom</span><span style="color:#000000">(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">nom</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 名字不能为空</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#2b91af">Utils</span><span style="color:#000000">.is_string_ok(</span><span style="color:#808080">nom</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">self</span><span style="color:#000000">.__nom = </span><span style="color:#808080">nom</span><span style="color:#000000">.strip()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(12, </span><span style="color:#a31515">&quot;Le nom doit être une chaîne de caractères non vide&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#808080">âge</span><span style="color:#000000">.setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="color:#808080">âge</span><span style="color:#000000">(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">âge</span><span style="color:#000000">: </span><span style="color:#2b91af">int</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 年龄必须是大于等于0的整数</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        erreur = </span><span style="color:#0000ff">False</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> isinstance(</span><span style="color:#808080">âge</span><span style="color:#000000">, </span><span style="color:#2b91af">int</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#808080">âge</span><span style="color:#000000"> &gt;= 0:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#808080">self</span><span style="color:#000000">.__âge = </span><span style="color:#808080">âge</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                erreur = </span><span style="color:#0000ff">True</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            erreur = </span><span style="color:#0000ff">True</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 错误？</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(13, </span><span style="color:#a31515">&quot;L&#x27;âge doit être un entier &gt;=0&quot;</span><span style="color:#000000">)</span></span></span>
+</code></pre></div>
+
+<ul>
+<li>第 8 行：类 <strong>[Personne]</strong> 派生自类 <strong>[BaseEntity]</strong>；</li>
+<li>第 8-65 行：保留了之前已出现的 <strong>[Personne]</strong> 类的核心内容。差异如下：<ul>
+<li>该类不再具有构造函数；</li>
+<li>该类使用了 <strong>[MyException]</strong> 异常，例如第 65 行；</li>
+<li>它有一个静态方法 <strong>[get_allowed_keys]</strong>（第 17-20 行），用于定义其属性列表。类 <strong>[Personne]</strong> 的专属属性被添加到父类 <strong>[BaseEntity]</strong> 的属性中；</li>
+<li>它有一个静态列表 [excluded_keys]，我们稍后将再次讨论；</li>
+</ul>
+</li>
+</ul>
+<h5 id="132123-enseignant">13.2.1.2.3. <span style="color: #243f60"><strong>类</strong> [Enseignant]</span></h5>
+<p>类 <strong>[Enseignant]</strong> (Enseignant.py) 继承自类 <strong>[Personne]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">MyException</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">Personne</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">Personne</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">Utils</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">Utils</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 教师类</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> </span><span style="color:#2b91af">Enseignant</span><span style="color:#000000">(</span><span style="color:#2b91af">Personne</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 类状态中排除的属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    excluded_keys = </span><span style="font-weight:bold;color:#000000">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 类属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># id：人员标识符</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 名字：个人名字</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 姓氏：该人的姓氏</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 年龄：该人的年龄</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 学科：所授学科</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">staticmethod</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> get_allowed_keys() -&gt; </span><span style="color:#2b91af">list</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># ID：对象标识符</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#2b91af">Personne</span><span style="color:#000000">.get_allowed_keys() + </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;discipline&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> discipline(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__discipline</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#808080">discipline</span><span style="color:#000000">.setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="color:#808080">discipline</span><span style="color:#000000">(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">discipline</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 学科必须为非空字符串</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#2b91af">Utils</span><span style="color:#000000">.is_string_ok(</span><span style="color:#808080">discipline</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">self</span><span style="color:#000000">.__discipline = </span><span style="color:#808080">discipline</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(21, </span><span style="color:#a31515">&quot;La discipline doit être une chaîne de caractères non vide&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># show方法</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> show(</span><span style="color:#808080">self</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        print(</span><span style="color:#a31515">f&quot;Enseignant</span><span style="font-weight:bold;color:#a31515">[{self.id}, {self.prénom}, {self.nom}, {self.âge}]</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+</code></pre></div>
+
+<ul>
+<li>第 8 行：类 <strong>[Enseignant]</strong> 扩展（或派生）自类 <strong>[Personne]</strong>；</li>
+<li>第 18-21 行：定义了该类的属性列表；</li>
+<li>第37-38行：方法[show]显示教师的身份；</li>
+</ul>
+<h5 id="132124-config">13.2.1.2.4. <span style="color: #243f60"><strong>配置</strong> [config]</span></h5>
+<p>示例脚本使用以下 <strong>[config]</strong> 配置：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> configure():</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">import</span> os</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 配置文件所在的目录</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    script_dir = os.path.dirname(os.path.abspath(__file__))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 要放入 syspath 的文件夹的绝对路径</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    absolute_dependencies = <span style="font-weight:bold">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># BaseEntity 类</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{script_dir}</span><span style="font-weight:bold;color:#a31515">/entities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 更新 syspath</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">from</span> myutils <span style="color:#0000ff">import</span> set_syspath</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    set_syspath(absolute_dependencies)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 配置</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">return</span> {}</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 8-10 行：包含项目依赖项的文件夹；</li>
+<li>第 14-15 行：构建 Python 路径；</li>
+<li>第 18 行：返回一个空字典（除了 syspath 之外没有其他配置）；</li>
+</ul>
+<h5 id="132125-fromdict_01">13.2.1.2.5. <span style="color: #243f60"><strong>脚本</strong> [fromdict_01]</span></h5>
+<p>脚本 <strong>[fromdict_01]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 正在配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">config</span><span style="color:#000000"> = </span><span style="color:#6f008a">config</span><span style="color:#000000">.configure()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 系统路径已配置 - 可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">Enseignant</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">Enseignant</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">enseignant1 = </span><span style="color:#2b91af">Enseignant</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;id&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;nom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;lourou&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;prénom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;paul&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;âge&quot;</span><span style="color:#000000">: 56})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant1.show()</span></span>
+</code></pre></div>
+
+<ul>
+<li>第10行：基于一个字典创建<strong>一个[Enseignant]对象</strong>。为此，我们使用该类的默认构造函数创建一个<strong>[Enseignant]</strong>对象，并对其调用<strong>[fromdict]方法</strong>。 需要注意的是，此处执行的 <strong>[fromdict]</strong> 方法实际上是父类 <strong>[BaseEntity]</strong> 中的方法。具体来说：<ul>
+<li>系统首先会在类 <strong>[Enseignant]</strong> 中查找方法 <strong>[fromdict]</strong>。<strong>该方法不存在</strong>；</li>
+<li>随后在父类 <strong>[Personne]</strong> 中查找该方法。<strong>该方法不存在</strong>；</li>
+<li>接着在父类 <strong>[BaseEntity]</strong> 中查找。<strong>该方法存在</strong>；</li>
+</ul>
+</li>
+<li>第 11 行：显示对象 <strong>[Enseignant]</strong>；</li>
+</ul>
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/fromdict_01.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Enseignant<span style="font-weight:bold">[1, paul, lourou, 56]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<h5 id="132126-fromdict_02">13.2.1.2.6. <span style="color: #243f60"><strong>脚本</strong> [fromdict_02]</span></h5>
+<p>脚本 <strong>[fromdict_02]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 正在配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">config</span><span style="color:#000000"> = </span><span style="color:#6f008a">config</span><span style="color:#000000">.configure()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 系统路径已配置 - 可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">Enseignant</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">Enseignant</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">enseignant1 = </span><span style="color:#2b91af">Enseignant</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;id&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;nom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;lourou&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;prénom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;âge&quot;</span><span style="color:#000000">: 56})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant1.show()</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 10 行：创建了一个名字为空的教师。这应该会引发异常，因为类 <strong>[Personne]</strong> 不接受空名字。此示例展示了字典与对象之间的区别。对象可以验证其属性的有效性，而字典则不能；</li>
+</ul>
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/fromdict_02.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Traceback (most recent call last):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  File &quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/fromdict_02.py&quot;, line 10, in &lt;module&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    enseignant1 = Enseignant().fromdict({&quot;id&quot;: 1, &quot;nom&quot;: &quot;lourou&quot;, &quot;prénom&quot;: &quot;&quot;, &quot;âge&quot;: 56})</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  File &quot;C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\classes\02/entities\BaseEntity.py&quot;, line 55, in fromdict</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    setattr(self, key, value)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  File &quot;C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\classes\02/entities\Personne.py&quot;, line 42, in prénom</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    raise MyException(11, &quot;Le prénom doit être une chaîne de caractères non vide&quot;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">MyException.MyException: MyException</span><span style="font-weight:bold">[11, Le prénom doit être une chaîne de caractères non vide]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 1</span></span>
+</code></pre></div>
+
+<h5 id="132127-fromdict_03">13.2.1.2.7. <span style="color: #243f60"><strong>脚本</strong> [fromdict_03]</span></h5>
+<p>脚本 <strong>[fromdict_03]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">config</span><span style="color:#000000"> = </span><span style="color:#6f008a">config</span><span style="color:#000000">.configure()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 系统路径已配置 - 可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">Enseignant</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">Enseignant</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">enseignant1 = </span><span style="color:#2b91af">Enseignant</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;id&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;nom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;lourou&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;prénom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;albert&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;âge&quot;</span><span style="color:#000000">: 56, </span><span style="color:#a31515">&quot;sexe&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;M&quot;</span><span style="color:#000000">})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant1.show()</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 10 行：尝试从包含一个不属于 <strong>[Enseignant]</strong> 类的键（性别）的字典中创建一名教师。此时应抛出异常；</li>
+</ul>
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/fromdict_03.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Traceback (most recent call last):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  File &quot;C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/fromdict_03.py&quot;, line 10, in &lt;module&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    enseignant1 = Enseignant().fromdict({&quot;id&quot;: 1, &quot;nom&quot;: &quot;lourou&quot;, &quot;prénom&quot;: &quot;albert&quot;, &quot;âge&quot;: 56, &quot;sexe&quot;: &quot;M&quot;})</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  File &quot;C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\classes\02/entities\BaseEntity.py&quot;, line 51, in fromdict</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    raise MyException(2, f&quot;la clé <span style="font-weight:bold">[{key}]</span> n&#x27;est pas autorisée&quot;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">MyException.MyException: MyException</span><span style="font-weight:bold">[2, la clé [sexe]</span><span style="background-color:#fff2cc"> n&#x27;est pas autorisée]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 1</span></span>
+</code></pre></div>
+
+<h5 id="132128-fromdict_04">13.2.1.2.8. <span style="color: #243f60"><strong>脚本</strong> [fromdict_04]</span></h5>
+<p>脚本 <strong>[fromdict_04]</strong> 是 <strong>[fromdict_03]</strong> 的副本，仅有一处细微差别：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 正在配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">config</span><span style="color:#000000"> = </span><span style="color:#6f008a">config</span><span style="color:#000000">.configure()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 系统路径已配置 - 可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">Enseignant</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">Enseignant</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">enseignant1 = </span><span style="color:#2b91af">Enseignant</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;id&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;nom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;lourou&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;prénom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;albert&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;âge&quot;</span><span style="color:#000000">: 56, </span><span style="color:#a31515">&quot;sexe&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;M&quot;</span><span style="color:#000000">}, </span><span style="background-color:#fff2cc;color:#000000">silent=</span><span style="background-color:#fff2cc;color:#0000ff">True</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant1.show()</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 10 行：我们使用了参数 <strong>[silent=True]</strong> 来指定，如果字典中的某个键不是类 <strong>[Enseignant]</strong> 的属性，则应直接忽略该键。在这种情况下，不会抛出任何异常；</li>
+</ul>
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/fromdict_04.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Enseignant<span style="font-weight:bold">[1, albert, lourou, 56]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><span id="lamethodebaseentityasdict" name="lamethodebaseentityasdict" class="odt-bookmark-anchor"></span>
+<span id="toc48549017" name="toc48549017" class="odt-bookmark-anchor"></span></p>
+<h3 id="1322-baseentityasdict">13.2.2. <span style="color: #4f81bd"><strong>方法</strong> [BaseEntity.asdict]</span></h3>
+<h4 id="13221-definition">13.2.2.1. <span style="color: #4f81bd">Définition</span></h4>
+<p>方法 <strong>[BaseEntity.asdict]</strong> 返回一个字典，其键为对象的属性：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> asdict(</span>self<span style="color:#000000">, </span>included_keys<span style="color:#000000">: </span><span style="color:#2b91af">list</span><span style="color:#000000"> = </span><span style="color:#0000ff">None</span><span style="color:#000000">, </span>excluded_keys<span style="color:#000000">: </span><span style="color:#2b91af">list</span><span style="color:#000000"> =</span><span style="font-weight:bold;color:#000000">[]</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">dict</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 对象属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        attributes = </span>self<span style="color:#000000">.__dict__</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 新属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        new_attributes = {}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 遍历属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">for</span><span style="color:#000000"> key, value </span><span style="color:#0000ff">in</span><span style="color:#000000"> attributes.items():</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 如果显式要求键</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span>included_keys<span style="color:#000000"> </span><span style="color:#0000ff">and</span><span style="color:#000000"> key </span><span style="color:#0000ff">in</span><span style="color:#000000"> </span>included_keys<span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span>self<span style="color:#000000">.set_value(key, value, new_attributes)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 否则，如果未排除该键</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">elif</span><span style="color:#000000"> </span><span style="color:#0000ff">not</span><span style="color:#000000"> </span>included_keys<span style="color:#000000"> </span><span style="color:#0000ff">and</span><span style="color:#000000"> key </span><span style="color:#0000ff">not</span><span style="color:#000000"> </span><span style="color:#0000ff">in</span><span style="color:#000000"> </span>self<span style="color:#000000">.</span><span style="color:#2b91af">__class__</span><span style="color:#000000">.excluded_keys </span><span style="color:#0000ff">and</span><span style="color:#000000"> key </span><span style="color:#0000ff">not</span><span style="color:#000000"> </span><span style="color:#0000ff">in</span><span style="color:#000000"> </span>excluded_keys<span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span>self<span style="color:#000000">.set_value(key, value, new_attributes)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 返回属性字典</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> new_attributes</span></span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第 1 行：函数 <strong>[asdict]</strong> 返回对象属性的字典；</li>
+<li>第 1 行：<strong>[included_keys]</strong>：要包含在字典中的键列表；</li>
+<li>第 1 行：<strong>[excluded_keys]</strong>：要从字典中排除的键列表；</li>
+<li>第 3 行：属性 <strong>[self.__dict__]</strong> 返回对象的属性字典。 属性名称是字典的键，其值是字典的值。一个对象可能包含对其他对象的引用。此时，属性名称会加上其所属类的名称作为前缀。这是我们不希望看到的。我们希望属性不带前缀；</li>
+<li>第 3 行：需注意，若函数 <strong>[asdict]</strong> 在 <strong>[BaseEntity]</strong> 的派生类中执行，则属性 <strong>[self.__dict__]</strong> 将返回<strong>该派生对象的</strong>属性字典；</li>
+<li>第 5 行：即将构建的字典；</li>
+<li>第 7 行：以 (键, 值) 的形式遍历 <strong>[self.__dict__]</strong> 的值；</li>
+<li>第9行：如果当前密钥属于待包含密钥列表，则通过我们稍后将要描述的<strong>函数[set_value]</strong>将其添加到<strong>字典[new_attributes]中</strong>；</li>
+<li>第 12 行：如果未提供参数 [included_keys]，则使用参数 <strong>[excluded_keys]</strong>。如果该属性不在应排除的属性列表中，则将其添加到字典 <strong>[new_attributes]</strong> 中；</li>
+<li>第 12 行：将属性从字典中排除有多种方式：<ul>
+<li>该属性已在类属性 <strong>[excluded_keys]</strong> 级别定义；</li>
+<li>该属性已在传递给函数 <strong>[asdict]</strong> 的列表 <strong>[excluded_keys]</strong> 中定义；</li>
+<li>存在参数 <strong>[included_keys]</strong> 且该参数不包含该属性；</li>
+</ul>
+</li>
+<li>第 15 行：返回字典 <strong>[new_attributes]</strong></li>
+</ul>
+<p>第 10 行和第 13 行中的 <strong>[set_value]</strong> 函数如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content">    @staticmethod</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> set_value(key: str, value, new_attributes: dict):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 键可以是 __Class__key 这种形式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        match = re.match(<span style="color:#a31515">&quot;^.*?__(.*?)$&quot;</span>, key)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">if</span> match:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span># 记录新密钥</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            newkey = match.groups()<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#098658">0</span><span style="font-weight:bold">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span># 密钥保持不变</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            newkey = key</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 将新密钥插入字典中 [new_attributes]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 如有必要，将关联值转换为以下类型之一</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 字典、列表、简单类型</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        new_attributes<span style="font-weight:bold">[newkey]</span> = BaseEntity.check_value(value)</span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第 4 行：检查键是否为 __Class_key 形式。若该键属于主对象中的子对象，则呈现此形式。在此情况下，仅保留字符串 <strong>[key]</strong>；</li>
+<li>第7行：仅保留字符串中最后两个下划线字符之后的字符串；</li>
+<li>第8-10行：如果键不是__Class_key这种形式，则保留其原样； </li>
+<li>第11-14行：<strong>与键[newkey]</strong>关联的值由静态方法<strong>[BaseEntity.check_value]</strong>计算得出；</li>
+</ul>
+<p>静态方法 <strong>[BaseEntity.check_value]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">    @staticmethod</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> check_value(value):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 该值可以是 BaseEntity、list、dict 或简单类型</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># value 是否是 BaseEntity 的实例？</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">if</span> isinstance(value, BaseEntity):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            value2 = value.asdict()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># value 是否为 list 类型</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">elif</span> isinstance(value, list):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            value2 = BaseEntity.list2list(value)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># value 是否为字典类型？</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">elif</span> isinstance(value, dict):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            value2 = BaseEntity.dict2dict(value)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># value 是一个简单类型</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            value2 = value</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 返回结果</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> value2</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 1 行：方法 <strong>[check_value]</strong> 是静态的（类方法而非实例方法）。它接收一个参数，该参数是需与字典键关联的值： <ul>
+<li>第 17 行：如果该值是简单类型，则保持不变；</li>
+<li>第 5-6 行：如果该值是 BaseEntity 类型，则该值将被其字典替换。此时会发生递归调用；</li>
+<li>第8-9行：如果该值是一个列表，则将其替换为值 <strong>[BaseEntity.list2list]</strong>；</li>
+<li>第11-12行：如果该值是一个字典，则将其替换为值 <strong>[BaseEntity.dict2dict]</strong>；</li>
+</ul>
+</li>
+</ul>
+<p>静态方法 <strong>[BaseEntity.list2list]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">    @staticmethod</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> list2list(liste: list) -&gt; list:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 检查列表中的元素</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        newlist = <span style="font-weight:bold">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">for</span> value <span style="color:#0000ff">in</span> liste:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            newlist.append(BaseEntity.check_value(value))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 返回新列表</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> newlist</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 2 行：该方法接收一个列表并返回一个列表；</li>
+<li>第 5-6 行：将作为参数接收的列表中的每个值替换为静态方法 <strong>[BaseEntity.check_value]</strong> 返回的值。 因此这里存在递归调用。静态方法 <strong>[BaseEntity.check_value]</strong> 会被调用，直到其参数 <strong>[value]</strong> 成为简单类型（而非 BaseEntity、列表或字典类型）；</li>
+</ul>
+<p>静态方法 <strong>[BaseEntity.dict2dict]</strong> 如下所示：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">    @staticmethod</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> dict2dict(dictionary: dict) -&gt; dict:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 检查字典中的元素</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        newdict = {}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">for</span> key, value <span style="color:#0000ff">in</span> dictionary.items():</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            newdict<span style="font-weight:bold">[key]</span> = BaseEntity.check_value(value)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#008000"># 返回新字典</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> newdict</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 2 行：该方法接收一个字典并返回一个字典；</li>
+<li>第 5-6 行：将作为参数接收的字典中的每个值替换为静态方法 <strong>[BaseEntity.check_value]</strong> 返回的值。 因此这里存在递归调用。静态方法 <strong>[BaseEntity.check_value]</strong> 会被调用，直到其参数 <strong>[value]</strong> 成为简单类型（而非 BaseEntity、列表或字典类型）；</li>
+</ul>
+<h4 id="13222-exemples">13.2.2.2. <span style="color: #4f81bd">Exemples</span></h4>
+<p>脚本 <strong>[asdict_01]</strong> 展示了 <strong>[asdict]</strong> 方法的多种用法：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span> config</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">config = config.configure()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 系统路径已配置 - 可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> Enseignant <span style="color:#0000ff">import</span> Enseignant</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> BaseEntity <span style="color:#0000ff">import</span> BaseEntity</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant1 = Enseignant().fromdict({<span style="color:#a31515">&quot;id&quot;</span>: <span style="color:#098658">1</span>, <span style="color:#a31515">&quot;nom&quot;</span>: <span style="color:#a31515">&quot;lourou&quot;</span>, <span style="color:#a31515">&quot;prénom&quot;</span>: <span style="color:#a31515">&quot;paul&quot;</span>, <span style="color:#a31515">&quot;âge&quot;</span>: <span style="color:#098658">56</span>})</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">dict1 = enseignant1.asdict()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(type(dict1))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant1.__dict__)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(dict1)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant1.asdict(excluded_keys=<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;_Personne__âge&quot;</span><span style="font-weight:bold">]</span>))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Enseignant.excluded_keys = <span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;_Personne__prénom&quot;</span><span style="font-weight:bold">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant1)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 另一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant2 = Enseignant().fromdict({<span style="color:#a31515">&quot;id&quot;</span>: <span style="color:#098658">2</span>, <span style="color:#a31515">&quot;nom&quot;</span>: <span style="color:#a31515">&quot;abélard&quot;</span>, <span style="color:#a31515">&quot;prénom&quot;</span>: <span style="color:#a31515">&quot;béatrice&quot;</span>, <span style="color:#a31515">&quot;âge&quot;</span>: <span style="color:#098658">57</span>})</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant2.asdict())</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant2.asdict(included_keys=<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;_Personne__nom&quot;</span><span style="font-weight:bold">]</span>))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 实体内的实体列表</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Enseignant.excluded_keys = <span style="font-weight:bold">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">entity1 = BaseEntity()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignants = <span style="font-weight:bold">[enseignant1, enseignant2]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">setattr(entity1, <span style="color:#a31515">&quot;enseignants&quot;</span>, enseignants)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(entity1.asdict())</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 实体内的实体字典</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">matières = {<span style="color:#a31515">&quot;maths&quot;</span>: enseignant1, <span style="color:#a31515">&quot;français&quot;</span>: enseignant2}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">setattr(entity1, <span style="color:#a31515">&quot;matières&quot;</span>, matières)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(entity1.asdict())</span></span>
+</code></pre></div>
+
+<p>执行结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/asdict_01.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;class &#x27;dict&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;_BaseEntity__id&#x27;: 1, &#x27;_Personne__nom&#x27;: &#x27;lourou&#x27;, &#x27;_Personne__prénom&#x27;: &#x27;paul&#x27;, &#x27;_Personne__âge&#x27;: 56}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;id&#x27;: 1, &#x27;nom&#x27;: &#x27;lourou&#x27;, &#x27;prénom&#x27;: &#x27;paul&#x27;, &#x27;âge&#x27;: 56}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;id&#x27;: 1, &#x27;nom&#x27;: &#x27;lourou&#x27;, &#x27;prénom&#x27;: &#x27;paul&#x27;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;id&quot;: 1, &quot;nom&quot;: &quot;lourou&quot;, &quot;âge&quot;: 56}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;id&#x27;: 2, &#x27;nom&#x27;: &#x27;abélard&#x27;, &#x27;âge&#x27;: 57}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;nom&#x27;: &#x27;abélard&#x27;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;enseignants&#x27;: <span style="font-weight:bold">[{&#x27;id&#x27;: 1, &#x27;nom&#x27;: &#x27;lourou&#x27;, &#x27;prénom&#x27;: &#x27;paul&#x27;, &#x27;âge&#x27;: 56}, {&#x27;id&#x27;: 2, &#x27;nom&#x27;: &#x27;abélard&#x27;, &#x27;prénom&#x27;: &#x27;béatrice&#x27;, &#x27;âge&#x27;: 57}]</span>}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;enseignants&#x27;: <span style="font-weight:bold">[{&#x27;id&#x27;: 1, &#x27;nom&#x27;: &#x27;lourou&#x27;, &#x27;prénom&#x27;: &#x27;paul&#x27;, &#x27;âge&#x27;: 56}, {&#x27;id&#x27;: 2, &#x27;nom&#x27;: &#x27;abélard&#x27;, &#x27;prénom&#x27;: &#x27;béatrice&#x27;, &#x27;âge&#x27;: 57}]</span>, &#x27;matières&#x27;: {&#x27;maths&#x27;: {&#x27;id&#x27;: 1, &#x27;nom&#x27;: &#x27;lourou&#x27;, &#x27;prénom&#x27;: &#x27;paul&#x27;, &#x27;âge&#x27;: 56}, &#x27;français&#x27;: {&#x27;id&#x27;: 2, &#x27;nom&#x27;: &#x27;abélard&#x27;, &#x27;prénom&#x27;: &#x27;béatrice&#x27;, &#x27;âge&#x27;: 57}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 4 行展示了 <strong>[asdict]</strong> 方法相较于使用 <strong>[__dict__]</strong> 属性的优势。属性已去除了其类的前缀，这更适合显示；</li>
+<li>使用方法 <strong>[asdict]</strong> 有多种方式：<ul>
+<li>若需获取所有属性：使用无参数的 <strong>[asdict]</strong> 方法；</li>
+<li>若仅需获取部分属性：<ul>
+<li>需要包含的属性比需要排除的更多：只需使用参数 <strong>[excluded_keys]</strong>；</li>
+<li>需要包含的属性少于需要排除的属性：仅使用参数 <strong>[included_keys]</strong>；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><span id="toc48549018" name="toc48549018" class="odt-bookmark-anchor"></span></p>
+<h3 id="1323-baseentityasjson">13.2.3. <span style="color: #4f81bd"><strong>方法</strong> [BaseEntity.asjson]</span></h3>
+<p>该方法用于从 <strong>[BaseEntity]</strong> 对象或其派生对象中获取字符串 jSON。它显示由方法 <strong>[asdict]</strong> 返回的字典中的字符串 jSON。 其代码如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> asjson(<span style="color:#808080">self</span>, <span style="color:#808080">included_keys</span>: <span style="color:#2b91af">list</span> = <span style="color:#0000ff">None</span>, <span style="color:#808080">excluded_keys</span>: <span style="color:#2b91af">list</span> = <span style="font-weight:bold">[]</span>) -&gt; <span style="color:#2b91af">str</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # JSON字符串</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> <span style="color:#6f008a">json</span>.dumps(<span style="color:#808080">self</span>.asdict(included_keys=<span style="color:#808080">included_keys</span>, excluded_keys=<span style="color:#808080">excluded_keys</span>), ensure_ascii=<span style="color:#0000ff">False</span>)</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 1 行：方法 <strong>[asjson]</strong> 的参数与方法 <strong>[asdict]</strong> 的参数相同；</li>
+</ul>
+<p>以下是一个使用该方法的示例（asjson_01）：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span> config</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">config = config.configure()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 已配置 syspath - 可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> Enseignant <span style="color:#0000ff">import</span> Enseignant</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> BaseEntity <span style="color:#0000ff">import</span> BaseEntity</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant1 = Enseignant().fromdict({<span style="color:#a31515">&quot;id&quot;</span>: <span style="color:#098658">1</span>, <span style="color:#a31515">&quot;nom&quot;</span>: <span style="color:#a31515">&quot;lourou&quot;</span>, <span style="color:#a31515">&quot;prénom&quot;</span>: <span style="color:#a31515">&quot;paul&quot;</span>, <span style="color:#a31515">&quot;âge&quot;</span>: <span style="color:#098658">56</span>})</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(type(enseignant1.asjson()))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant1.asjson(excluded_keys=<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;_Personne__âge&quot;</span><span style="font-weight:bold">]</span>))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Enseignant.excluded_keys = <span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;_Personne__prénom&quot;</span><span style="font-weight:bold">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant1.asjson())</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 另一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant2 = Enseignant().fromdict({<span style="color:#a31515">&quot;id&quot;</span>: <span style="color:#098658">2</span>, <span style="color:#a31515">&quot;nom&quot;</span>: <span style="color:#a31515">&quot;abélard&quot;</span>, <span style="color:#a31515">&quot;prénom&quot;</span>: <span style="color:#a31515">&quot;béatrice&quot;</span>, <span style="color:#a31515">&quot;âge&quot;</span>: <span style="color:#098658">57</span>})</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant2.asjson())</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(enseignant2.asjson(included_keys=<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;_Personne__nom&quot;</span><span style="font-weight:bold">]</span>))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 实体内的实体列表</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Enseignant.excluded_keys = <span style="font-weight:bold">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">entity1 = BaseEntity()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignants = <span style="font-weight:bold">[enseignant1, enseignant2]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">setattr(entity1, <span style="color:#a31515">&quot;enseignants&quot;</span>, enseignants)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(entity1.asjson())</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 某个实体中的实体字典</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">matières = {<span style="color:#a31515">&quot;maths&quot;</span>: enseignant1, <span style="color:#a31515">&quot;français&quot;</span>: enseignant2}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">setattr(entity1, <span style="color:#a31515">&quot;matières&quot;</span>, matières)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(entity1.asjson())</span></span>
+</code></pre></div>
+
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/asjson_01.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;class &#x27;str&#x27;&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;id&quot;: 1, &quot;nom&quot;: &quot;lourou&quot;, &quot;prénom&quot;: &quot;paul&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;id&quot;: 1, &quot;nom&quot;: &quot;lourou&quot;, &quot;âge&quot;: 56}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;id&quot;: 2, &quot;nom&quot;: &quot;abélard&quot;, &quot;âge&quot;: 57}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;nom&quot;: &quot;abélard&quot;}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;enseignants&quot;: <span style="font-weight:bold">[{&quot;id&quot;: 1, &quot;nom&quot;: &quot;lourou&quot;, &quot;prénom&quot;: &quot;paul&quot;, &quot;âge&quot;: 56}, {&quot;id&quot;: 2, &quot;nom&quot;: &quot;abélard&quot;, &quot;prénom&quot;: &quot;béatrice&quot;, &quot;âge&quot;: 57}]</span>}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;enseignants&quot;: <span style="font-weight:bold">[{&quot;id&quot;: 1, &quot;nom&quot;: &quot;lourou&quot;, &quot;prénom&quot;: &quot;paul&quot;, &quot;âge&quot;: 56}, {&quot;id&quot;: 2, &quot;nom&quot;: &quot;abélard&quot;, &quot;prénom&quot;: &quot;béatrice&quot;, &quot;âge&quot;: 57}]</span>, &quot;matières&quot;: {&quot;maths&quot;: {&quot;id&quot;: 1, &quot;nom&quot;: &quot;lourou&quot;, &quot;prénom&quot;: &quot;paul&quot;, &quot;âge&quot;: 56}, &quot;français&quot;: {&quot;id&quot;: 2, &quot;nom&quot;: &quot;abélard&quot;, &quot;prénom&quot;: &quot;béatrice&quot;, &quot;âge&quot;: 57}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p>方法 <strong>[BaseEntity.__str__]</strong> 使用方法 <strong>[asjson]</strong> 来显示对象 <strong>[BaseEntity]</strong> 或其派生对象的标识：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"># toString</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __str__(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">str</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.asjson()</span></span></span>
+</code></pre></div>
+
+<p><span id="toc48549019" name="toc48549019" class="odt-bookmark-anchor"></span></p>
+<h3 id="1324-baseentityfromjson">13.2.4. <span style="color: #4f81bd"><strong>方法</strong> [BaseEntity.fromjson]</span></h3>
+<p>方法 <strong>[BaseEntity.fromjson]</strong> 允许从字典 jSON 初始化类型为 <strong>[BaseEntity]</strong> 或其派生对象。其代码如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> fromjson(<span style="color:#808080">self</span>, <span style="color:#808080">json_state</span>: <span style="color:#2b91af">str</span>, <span style="color:#808080">silent</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">False</span>):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 根据字符串更新对象状态 jSON</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> <span style="color:#808080">self</span>.fromdict(<span style="color:#6f008a">json</span>.loads(<span style="color:#808080">json_state</span>), silent=<span style="color:#808080">silent</span>)</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 1 行：该方法接受两个参数：<ul>
+<li><strong>[json_state]</strong>：用于初始化 <strong>[BaseEntity]</strong> 对象的 jSON 字典；</li>
+<li><strong>[silent]</strong>： 用于指定当字典 jSON 中存在无法作为对象 <strong>[BaseEntity]</strong> 属性的键时，是触发异常（silent=False）还是直接忽略（silent=True）；</li>
+</ul>
+</li>
+<li>第 3 行：首先构建 Python 字典（作为 jSON 字典的映射），然后使用 <strong>[fromdict]</strong> 方法基于该 Python 字典初始化 <strong>[BaseEntity]</strong> 对象；</li>
+</ul>
+<p>以下是一个示例（fromjson_01）：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">config</span><span style="color:#000000"> = </span><span style="color:#6f008a">config</span><span style="color:#000000">.configure()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 系统路径已配置——可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">Enseignant</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">Enseignant</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">json</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 一位教师</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">json1 = </span><span style="color:#6f008a">json</span><span style="color:#000000">.dumps({</span><span style="color:#a31515">&quot;id&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;nom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;lourou&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;prénom&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;paul&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;âge&quot;</span><span style="color:#000000">: 56})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">enseignant1 = </span><span style="color:#2b91af">Enseignant</span><span style="color:#000000">().fromjson(json1)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">enseignant1.show()</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 11 行：创建字符串 jSON 并将其存储在字典中；</li>
+<li>第 12 行：使用该字符串初始化 <strong>[Enseignant]</strong> 对象；</li>
+<li>第 13 行：显示教师信息；</li>
+</ul>
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/fromjson_01.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Enseignant<span style="font-weight:bold">[1, paul, lourou, 56]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><span id="toc48549020" name="toc48549020" class="odt-bookmark-anchor"></span></p>
+<h3 id="1325-main">13.2.5. <span style="color: #4f81bd"><strong>脚本</strong> [main]</span></h3>
+<p>脚本 <strong>[main]</strong> 总结了遇到的各种方法：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 正在配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#6f008a">config</span><span style="color:#000000"> = </span><span style="color:#6f008a">config</span><span style="color:#000000">.configure()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 系统路径已配置 - 可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">BaseEntity</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">BaseEntity</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">MyException</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 一个班级</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> </span><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">(</span><span style="color:#2b91af">BaseEntity</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 从类状态中排除的属性</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    excluded_keys = </span><span style="font-weight:bold;color:#000000">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">staticmethod</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> get_allowed_keys():</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;att1&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;att2&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;att3&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;att4&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    @</span><span style="color:#2b91af">property</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> att1(</span><span style="color:#808080">self</span><span style="color:#000000">) -&gt; </span><span style="color:#2b91af">int</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="color:#808080">self</span><span style="color:#000000">.__att1</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    @att1.setter</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> att1(</span><span style="color:#808080">self</span><span style="color:#000000">, </span><span style="color:#808080">value</span><span style="color:#000000">: </span><span style="color:#2b91af">int</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> 10 &gt;= </span><span style="color:#808080">value</span><span style="color:#000000"> &gt;= 1:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#808080">self</span><span style="color:#000000">.__att1 = </span><span style="color:#808080">value</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000">(1, </span><span style="color:#a31515">f&quot;L&#x27;attribut </span><span style="font-weight:bold;color:#a31515">[att1]</span><span style="color:#a31515"> attend une valeur dans l&#x27;intervalle </span><span style="font-weight:bold;color:#a31515">[1,10]</span><span style="color:#a31515"> ({value})&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 配置 ChildEntity</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">.excluded_keys = </span><span style="font-weight:bold;color:#000000">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 实例 ChildEntity</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">child = </span><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;att1&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;att2&quot;</span><span style="color:#000000">: 2})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 注意属性名称</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 这些名称在 [excluded_keys] 和 [included_keys] 中被使用</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(child.__dict__)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 属性未以所属类为前缀</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(child)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 实例 ChildEntity</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    child = </span><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;att1&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;att5&quot;</span><span style="color:#000000">: 5})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(child)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000"> </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(erreur)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 实例 ChildEntity</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">child = </span><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;att1&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;att2&quot;</span><span style="color:#000000">: 2, </span><span style="color:#a31515">&quot;att3&quot;</span><span style="color:#000000">: 3, </span><span style="color:#a31515">&quot;att4&quot;</span><span style="color:#000000">: 4})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(child)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 从实例状态中排除某些键</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">.excluded_keys = </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;att3&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(child)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 显式将某键从显示中排除</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 该键被添加到类级别全局排除的键中</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(child.asdict(excluded_keys=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;_ChildEntity__att1&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(child.asjson(excluded_keys=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;att2&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 类与字典之间的关联</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 可验证其内容的有效性</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    child = </span><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;att1&quot;</span><span style="color:#000000">: 20})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> </span><span style="color:#2b91af">MyException</span><span style="color:#000000"> </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(erreur)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 实例 ChildEntity</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">child1 = </span><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;att1&quot;</span><span style="color:#000000">: 1, </span><span style="color:#a31515">&quot;att2&quot;</span><span style="color:#000000">: 2, </span><span style="color:#a31515">&quot;att3&quot;</span><span style="color:#000000">: 3, </span><span style="color:#a31515">&quot;att4&quot;</span><span style="color:#000000">: 4})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 实例 ChildEntity 包含另一个实例 ChildEntity</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">child2 = </span><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">().fromdict({</span><span style="color:#a31515">&quot;att1&quot;</span><span style="color:#000000">: 10, </span><span style="color:#a31515">&quot;att2&quot;</span><span style="color:#000000">: 20, </span><span style="color:#a31515">&quot;att3&quot;</span><span style="color:#000000">: 30, </span><span style="color:#a31515">&quot;att4&quot;</span><span style="color:#000000">: child1})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">print(child2)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># included_keys 优先于 excluded_keys，后者因此被忽略</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#2b91af">ChildEntity</span><span style="color:#000000">.excluded_keys = </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;_ChildEntity__att1&#x27;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&#x27;att2&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(child.asdict(included_keys=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;_ChildEntity__att1&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;att3&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">, excluded_keys=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;att3&quot;</span><span style="font-weight:bold;color:#000000">, </span><span style="font-weight:bold;color:#a31515">&quot;att4&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">))</span></span></span>
+</code></pre></div>
+
+<p>执行结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/classes/02/main.py</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;_ChildEntity__att1&#x27;: 1, &#x27;att2&#x27;: 2}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;att1&quot;: 1, &quot;att2&quot;: 2}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">MyException<span style="font-weight:bold">[2, la clé [att5]</span> n&#x27;est pas autorisée]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;att1&quot;: 1, &quot;att2&quot;: 2, &quot;att3&quot;: 3, &quot;att4&quot;: 4}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;att1&quot;: 1, &quot;att2&quot;: 2, &quot;att4&quot;: 4}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;att2&#x27;: 2, &#x27;att4&#x27;: 4}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;att1&quot;: 1, &quot;att4&quot;: 4}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">MyException<span style="font-weight:bold">[1, L&#x27;attribut [att1]</span> attend une valeur dans l&#x27;intervalle <span style="font-weight:bold">[1,10]</span> (20)]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;att1&quot;: 10, &quot;att2&quot;: 20, &quot;att4&quot;: {&quot;att1&quot;: 1, &quot;att2&quot;: 2, &quot;att4&quot;: 4}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&#x27;att1&#x27;: 1, &#x27;att3&#x27;: 3}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p>请注意结果中的第 2 行：正是属性 <strong>[ChildEntity.__dict__]</strong>（代码第 38 行）让我们得以知晓应放入列表 <strong>[included_keys]</strong> 和 <strong>[excluded_keys]</strong> 中的属性名称。 同样在结果的第2行，需要注意的是：根据属性是在类内部通过getter/setter定义，还是像创建字典键那样创建的，其名称前是否带有类名<strong>[ChildEntity]</strong>。</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

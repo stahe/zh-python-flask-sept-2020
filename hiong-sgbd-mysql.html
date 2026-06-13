@@ -1,0 +1,2607 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/hiong-sgbd-mysql.html">
+      
+      
+        <link rel="prev" href="ingongiani---i-4-an.html">
+      
+      
+        <link rel="next" href="hiong-sgbd-postgresql.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>16. 使用 SGBD MySQL - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#16-sgbd-mysql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              16. 使用 SGBD MySQL
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="onguouaningeaian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 工作环境的搭建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pythonihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 应用练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 应用练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aningei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 泛型类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuieouianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与接口编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i-4-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第 4 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 SGBD MySQL
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="hiong-sgbd-mysql.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 SGBD MySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#161-sgbd-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.1. 安装 SGBD MySQL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1. 安装 SGBD MySQL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1611-laragon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.1.1. 安装 Laragon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1612" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.1.2. 创建数据库
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#162-mysql-connector-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.2. 安装 [mysql-connector-python] 软件包
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#163-mysql_01-mysql-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.3. 脚本 [mysql_01]：连接 MySQL 数据库 - 1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#164-mysql_02-mysql-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.4. 脚本 [mysql_02]：连接到数据库 MySQL - 2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#165-mysql_03-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.5. 脚本 [mysql_03]：创建表 MySQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#166-mysql_04-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.6. 脚本 [mysql_04]：执行命令文件 SQL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#167-mysql_05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.7. 脚本 [mysql_05]：使用带参数的查询
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-postgresql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 SGBD PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianieu-sgbd-uuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写与 SGBD 无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orm-ehiong-sqlalchemy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. ORM 的使用 SQLALCHEMY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uianangongeng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuflaskuangiaewebuu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于Flask框架的Web服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 应用练习：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii7an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 应用练习：第7版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii8an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第8版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aiiianu-xml-hiianininghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 在字典与 XML 之间进行转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii11an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第11版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii12an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 应用练习：第12版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 jSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii14an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 应用练习：第14版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 应用练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 应用练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="toc48549048" name="toc48549048" class="odt-bookmark-anchor"></span>
+<span id="utilisationdusgbd" name="utilisationdusgbd" class="odt-bookmark-anchor"></span>
+<span id="refheading382942423505" name="refheading382942423505" class="odt-bookmark-anchor"></span></p>
+<h1 id="16-sgbd-mysql">16. <span style="color: #365f91">使用 SGBD MySQL</span></h1>
+<p><img src="images/1000000000000168000001EB3E9DBFEB.png" width="141" height="192" style="width:3.731cm;height:5.089cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000168000001EB3E9DBFEB.png" /></p>
+<p><span id="toc48549049" name="toc48549049" class="odt-bookmark-anchor"></span>
+<span id="intallationdusgbd" name="intallationdusgbd" class="odt-bookmark-anchor"></span>
+<span id="refheading382982423505" name="refheading382982423505" class="odt-bookmark-anchor"></span></p>
+<h2 id="161-sgbd-mysql">16.1. <span style="color: #4f81bd">安装 SGBD MySQL</span></h2>
+<p>为了获取 SGBD MySQL，我们将安装 Laragon 软件。</p>
+<p><span id="toc48549050" name="toc48549050" class="odt-bookmark-anchor"></span>
+<span id="installationdelaragon" name="installationdelaragon" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc45843531951845" name="refheadingtoc45843531951845" class="odt-bookmark-anchor"></span></p>
+<h3 id="1611-laragon">16.1.1. <span style="color: #4f81bd"><strong><span style="color: #4f81bd">安装 Laragon</span></strong></span></h3>
+<p>Laragon 是一个集成了多款软件的软件包：</p>
+<ul>
+<li>Apache Web 服务器。我们将使用它来编写 Python Web 脚本；</li>
+<li>SGBD MySQL；</li>
+<li>PHP脚本语言（我们不会使用）；</li>
+<li>一个为 Web 应用程序实现缓存的 Redis 服务器。我们将使用；</li>
+</ul>
+<p>Laragon 可于 2020 年 2 月从以下地址下载：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://laragon.org/download/
+</code></pre></div>
+<p><img src="images/1000000100000433000001A17C78C80C.png" width="616" height="239" style="width:16.302cm;height:6.324cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000433000001A17C78C80C.png" /></p>
+<p><img src="images/1000000100000433000001A1AFB7CE15.png" width="621" height="241" style="width:16.439cm;height:6.376cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000433000001A1AFB7CE15.png" /></p>
+<ul>
+<li>安装 <strong>[1-5]</strong> 后将生成以下目录结构：</li>
+</ul>
+<p><img src="images/100000000000083D000003996FDD348B.png" width="527" height="230" style="width:13.951cm;height:6.092cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000083D000003996FDD348B.png" /></p>
+<ul>
+<li>在 <strong>[6]</strong> 中，PHP 的安装文件夹（本文档中未使用）；</li>
+</ul>
+<p>运行 <strong>[Laragon]</strong> 后将显示以下窗口：</p>
+<p><img src="images/10000001000002C3000001D698C38564.png" width="452" height="300" style="width:11.95cm;height:7.945cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002C3000001D698C38564.png" /></p>
+<ul>
+<li><strong>[1]</strong>：Laragon的主菜单；</li>
+<li><strong>[2]</strong>：<strong>[Start All]</strong> 按钮启动 Apache Web 服务器，以及 SGBD 和 MySQL；</li>
+<li><strong>[3]</strong>：<strong>[WEB]</strong>按钮显示网页[http://localhost]；</li>
+<li><strong>[4]</strong>：<strong>[Database]</strong>按钮可通过<strong>[phpMyAdmin]工具</strong>管理SGBD和MySQL。 使用前需先安装该工具；</li>
+<li><strong>[5]</strong>：<strong>[Terminal]</strong> 按钮将打开一个命令终端；</li>
+<li><strong>[6]</strong>：<strong>[Root]按钮</strong>将打开Windows资源管理器，并定位<strong>到[&lt;laragon&gt;/www]文件夹</strong>，该文件夹<strong>是[http://localhost]网站的</strong>根目录。 Laragon 的 Apache 服务器管理的静态 Web 应用程序应放置在此处；</li>
+</ul>
+<p><span id="toc48549051" name="toc48549051" class="odt-bookmark-anchor"></span>
+<span id="creationdunebase" name="creationdunebase" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc837491549297239" name="refheadingtoc837491549297239" class="odt-bookmark-anchor"></span></p>
+<h3 id="1612">16.1.2. <span style="color: #4f81bd"><strong><span style="color: #4f81bd">创建数据库</span></strong></span></h3>
+<p>接下来我们将演示如何使用 Laragon 工具创建数据库以及用户 MySQL。</p>
+<p><img src="images/10000001000002F50000027CED1AB67B.png" width="426" height="358" style="width:11.282cm;height:9.479cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002F50000027CED1AB67B.png" /></p>
+<ul>
+<li>启动后，可通过<strong>菜单</strong>管理 Laragon <strong>[1]</strong>；</li>
+<li>在 <strong>[3-5]</strong> 中，若尚未安装，请安装 <strong>[phpMyAdmin]</strong> 管理工具；</li>
+</ul>
+<p><img src="images/100000010000039B000000B34A0A8E1F.png" width="526" height="102" style="width:13.929cm;height:2.701cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000039B000000B34A0A8E1F.png" /></p>
+<ul>
+<li>在 <strong>[6]</strong> 中，启动 Apache Web 服务器以及 SGBD 和 MySQL；</li>
+<li>在 <strong>[7]</strong> 中，启动 Apache 服务器；</li>
+<li>在 <strong>[8]</strong> 中，启动 SGBD 和 MySQL；</li>
+</ul>
+<p><img src="images/100000010000043300000199EC2124FB.png" width="639" height="243" style="width:16.91cm;height:6.435cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000043300000199EC2124FB.png" /></p>
+<ul>
+<li>在 <strong>[8-10]</strong> 中，创建一个名为 <strong>[dbpersonnes] [11]</strong> 的数据库。我们将构建一个人员数据库；</li>
+</ul>
+<p><img src="images/10000001000001EF00000068835EF45C.png" width="288" height="61" style="width:7.622cm;height:1.602cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000001EF00000068835EF45C.png" /></p>
+<ul>
+<li>在 <strong>[11]</strong> 中，我们将管理刚刚创建的数据库；</li>
+</ul>
+<p><img src="images/10000001000002D5000001F1A4321982.png" width="426" height="292" style="width:11.282cm;height:7.733cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002D5000001F1A4321982.png" /></p>
+<ul>
+<li>进程 <strong>[Bases de données]</strong> 向 URL、<strong>[http://localhost/phpmyadmin] 和 [12]</strong> 发送了一个 Web 请求。Laragon 的 Apache Web 服务器对此作出了响应。 URL <strong>[http://localhost/phpmyadmin]</strong> 是 URL 工具的 [phpMyAdmin]，该工具是我们之前安装的 <strong>[5]</strong>。 该工具用于管理 MySQL 数据库；</li>
+<li>默认情况下，数据库管理员的登录凭据为：<strong>root</strong> [13]，无密码 <strong>[14]</strong>；</li>
+</ul>
+<p><img src="images/100000010000025100000145211E51A5.png" width="344" height="189" style="width:9.11cm;height:4.994cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000025100000145211E51A5.png" /></p>
+<ul>
+<li>在 <strong>[16]</strong> 中，即我们之前创建的数据库；</li>
+</ul>
+<p><img src="images/10000001000002C7000000F1D28D2A00.png" width="406" height="138" style="width:10.749cm;height:3.644cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000002C7000000F1D28D2A00.png" /></p>
+<ul>
+<li>目前我们有一个<strong>名为 [dbpersonnes]</strong> 的数据库<strong>，[17]</strong> 数据库为空<strong>，[18]</strong>；</li>
+</ul>
+<p>创建用户 <strong>[admpersonnes]</strong>，密码为 <strong>[nobody]</strong>，该用户将拥有数据库 <strong>[dbpersonnes]</strong> 的所有权限：</p>
+<p><img src="images/100000010000035900000152EEFCA436.png" width="497" height="196" style="width:13.16cm;height:5.191cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000035900000152EEFCA436.png" /></p>
+<ul>
+<li>在 <strong>[19]</strong> 中，当前定位于数据库 <strong>[dbpersonnes]</strong>；</li>
+<li>在 <strong>[20]</strong> 中，选择 <strong>[Privileges]</strong> 选项卡；</li>
+<li>在 <strong>[21-22]</strong> 中，可以看到用户 <strong>[root]</strong> 对数据库 <strong>[dbpersonnes]</strong> 拥有所有权限；</li>
+<li>在 <strong>[23]</strong> 中，创建一个新用户；</li>
+</ul>
+<p><img src="images/1000000100000433000002BD3879D5DA.png" width="639" height="417" style="width:16.902cm;height:11.021cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000433000002BD3879D5DA.png" /></p>
+<ul>
+<li>在 <strong>[25-26]</strong> 中，该用户的用户名将设置为 <strong>[admdbpersonnes]</strong>；</li>
+<li>在 <strong>[27-29]</strong> 中，其密码将为 <strong>[nobody]</strong>；</li>
+<li>在 <strong>[30]</strong> 中，phpMyAdmin 提示该密码强度极低（易被破解）。在生产环境中，建议使用 <strong>[31]</strong> 生成强密码；</li>
+<li>在 <strong>[32]</strong> 中，指定用户 <strong>[admdbpersonnes]</strong> 应拥有数据库 <strong>[dbpersonnes]</strong> 的全部权限；</li>
+<li>在 <strong>[33]</strong> 中，验证所提供的信息；</li>
+</ul>
+<p><img src="images/1000000100000421000000AC1D3F2A7B.png" width="596" height="97" style="width:15.769cm;height:2.566cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000100000421000000AC1D3F2A7B.png" /></p>
+<ul>
+<li>在 <strong>[35]</strong> 中，phpMyAdmin 表示用户已创建；</li>
+<li>在 <strong>[36]</strong> 中，基于该数据库生成的 SQL 命令；</li>
+<li>在 <strong>[37]</strong> 中，用户 <strong>[admpersonnes]</strong> 对数据库 <strong>[dbpersonnes]</strong> 拥有所有权限；</li>
+</ul>
+<p>现在我们有：</p>
+<ul>
+<li>一个名为 MySQL <strong>的</strong>数据库；</li>
+<li>用户 <strong>[admpersonnes/nobody]</strong> 对该数据库拥有所有权限；</li>
+</ul>
+<p><span id="toc48549052" name="toc48549052" class="odt-bookmark-anchor"></span>
+<span id="refheading382962423505" name="refheading382962423505" class="odt-bookmark-anchor"></span></p>
+<h2 id="162-mysql-connector-python">16.2. <span style="color: #4f81bd"><strong>安装</strong> [mysql-connector-python] <strong>软件包</strong></span></h2>
+<p>我们将编写 Python 脚本以利用之前创建的数据库，架构如下：</p>
+<p><img src="images/100000010000030B000000835DDD29BD.png" width="447" height="75" style="width:11.839cm;height:1.991cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000030B000000835DDD29BD.png" /></p>
+<p>连接器用于将Python代码与所使用的SGBD设备隔离。针对不同的SGBD设备存在相应的连接器，且这些连接器遵循相同的接口规范。 因此，当上文中的 SGBD MySQL 被替换为 SGBD PostgreSQL 时，架构将变为如下所示：</p>
+<p><img src="images/10000001000003050000007C8CC0D4B2.png" width="448" height="72" style="width:11.852cm;height:1.901cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000001000003050000007C8CC0D4B2.png" /></p>
+<p>由于所有 SGBD 连接器均遵循相同的<strong>接口，因此通常无需修改</strong> Python 脚本。实际上，大多数 SGBD 都有一个专有的 SQL：</p>
+<ul>
+<li>它们遵循 SQL 标准（结构化查询语言）；</li>
+<li>但因该标准功能有限，它们会通过专有语言扩展对其进行扩展；</li>
+</ul>
+<p>因此，在更换SGBD时，脚本中通常需要对SQL进行相应修改。</p>
+<p>Python本身不支持管理MySQL数据库。为此需要下载一个包。目前有多种选择。这里我们将<strong>使用[mysql-connector-python]包</strong>，这是Oracle（MySQL的所有者）提供的官方连接器。</p>
+<p>该包的安装将在 PyCharm 的 <strong>[Terminal]</strong> 窗口中进行：</p>
+<p><img src="images/100000010000032C000000C62409F945.png" width="471" height="115" style="width:12.45cm;height:3.036cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000010000032C000000C62409F945.png" /></p>
+<ul>
+<li><strong>[2]</strong> 文件夹对后续操作无关紧要；</li>
+</ul>
+<p>在终端中输入命令 <strong>[pip search MySQL]</strong>：</p>
+<ul>
+<li><strong>[pip]</strong>（Python 包安装程序）是用于安装 Python 包的工具。工具 <strong>[pip]</strong> 用于连接包含 Python 包的仓库；</li>
+<li><strong>[search MySQL]</strong>：查询名称中包含 <strong>[MySQL]</strong>（区分大小写）的包列表；</li>
+</ul>
+<p>该命令的执行结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">mysql (0.0.2)                                                   - Virtual package for MySQL-python</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">jx-mysql (3.49.20042)                                           - jx-mysql - JSON Expressions for MySQL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">weibo-mysql (0.1)                                               - insert mysql</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bits-mysql (1.0.3)                                              - BITS MySQL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">MySQL-python (1.2.5)                                            - Python interface to MySQL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">deployfish-mysql (0.2.13)                                       - Deployfish MySQL plugin</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">mtstat-mysql (0.7.3.3)                                          - MySQL Plugins for mtstat</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">bottle-mysql (0.3.1)                                            - MySQL integration for Bottle.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">WintxDriver-MySQL (2.0.0-1)                                     - MySQL support for Wintx</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">py-mysql (1.0)                                                  - Operating Mysql for Python.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">mysql-utilities (1.4.3)                                         - MySQL Utilities 1.4.3 (part of MySQL Workbench Distribution 6.0.0)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">….                                        - Tool to move slices of data from one MySQL store to another</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">mysql-tracer (2.0.2)                                            - A MySQL client to run queries, write execution reports and export results</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">mysql-utils (0.0.2)                                             - A simple MySQL library including a set of utility APIs for Python database programming</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">mysql-connector-repackaged (0.3.1)                              - MySQL driver written in Python</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">dffml-source-mysql (0.0.5)                                      - DFFML Source for MySQL Protocol</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">mysql-connector-python (8.0.19)</span><span style="background-color:#ffff00"> </span>                                - MySQL driver written in Python</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  INSTALLED: 8.0.19 (latest)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">prometheus-mysql-exporter (0.2.0)                               - MySQL query Prometheus exporter</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">backwork-backup-mysql (0.3.0)                                   - Backwork plug-in for MySQL backups.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">django-mysql-manager (0.1.4)                                    - django-mysql-manager is a Django based management interface for MySQL users and databases.</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">….                                              - mysql operate</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\v-01&gt;</span></span>
+</code></pre></div>
+
+<p>列出了所有名称或描述中包含关键词 <em>MySQL</em> 的模块。 我们将使用（2020年2月）的是第17行的 <strong>[mysql-connector-python]</strong>。要安装它，请在终端中输入命令 <strong>[pip install -U mysql-connector-python]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-java">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\v-01&gt;<span style="background-color:#fff2cc">pip install -U mysql-connector-python</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Collecting mysql-connector-python</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  Using cached mysql_connector_python-8.0.19-py2.py3-none-any.whl (355 kB)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Requirement already satisfied, skipping upgrade: protobuf==3.6.1 in c:\myprograms\python38\lib\site-packages (from mysql-connector-python) (3.6.1)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Requirement already satisfied, skipping upgrade: dnspython==1.16.0 in c:\myprograms\python38\lib\site-packages (from mysql-connector-python) (1.16.0)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Requirement already satisfied, skipping upgrade: six&gt;=1.9 in c:\users\serge\appdata\roaming\python\python38\site-packages (from protobuf==3.6.1-&gt;mysql-connector-python) (1.14.0)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Requirement already satisfied, skipping upgrade: setuptools in c:\myprograms\python38\lib\site-packages (from protobuf==3.6.1-&gt;mysql-connector-python) (41.2.0)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Installing collected packages: mysql-connector-python</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Successfully installed mysql-connector-python-8.0.19</span></span>
+</code></pre></div>
+
+<ul>
+<li>第1行：选项 <strong>[install -U]</strong> (U=upgrade) 会自动更新与 <strong>[mysql-connector-python]</strong> 包相关的所有依赖包至最新版本；</li>
+</ul>
+<p>要查看本机 Python 环境中已安装的软件包，请输入命令 <strong>[pip list]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\v-01&gt;<span style="background-color:#fff2cc">pip list</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Package                Version</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">---------------------- ----------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">asgiref                3.2.3</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">astroid                2.3.3</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">atomicwrites           1.3.0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">attrs                  19.3.0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">certifi                2019.11.28</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">MarkupSafe             1.1.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">mccabe                 0.6.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">more-itertools         8.1.0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">mysql-connector-python 8.0.19</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">mysqlclient            1.4.6</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">packaging              20.0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">pip                    20.0.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">pipenv                 2018.11.26</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+</code></pre></div>
+
+<ul>
+<li>第 13 行：确实存在 <strong>[mysql-connector-python]</strong> 包；</li>
+</ul>
+<p>若要了解如何使用 <strong>[mysql-connector-python]</strong> 包来管理 MySQL 数据库，请访问该包的网站 |<a href="https://dev.mysql.com/doc/connector-python/en/"><u><span style="color: #0563c1">https://dev.mysql.com/doc/connector-python/en/</span></u></a>|。下文将展示一系列示例。</p>
+<p><span id="refheading383002423505" name="refheading383002423505" class="odt-bookmark-anchor"></span>
+<span id="toc48549053" name="toc48549053" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql01" name="scriptmysql01" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql-01" name="scriptmysql-01" class="odt-bookmark-anchor"></span></p>
+<h2 id="163-mysql_01-mysql-1">16.3. <span style="color: #4f81bd"><strong>脚本</strong> [mysql_01]<strong>：连接 MySQL 数据库 - 1</strong></span></h2>
+<p>脚本 <strong>[mysql_01]</strong> 展示了使用数据库的第一步。它将帮助我们验证能否连接到之前创建的 <strong>[dbpersonnes]</strong> 数据库。</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入模块 mysql.connector</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">mysql</span><span style="color:#000000">.</span><span style="color:#6f008a">connector</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> connect, DatabaseError, InterfaceError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 连接数据库 MySql [dbpersonnes]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 用户身份为 (admpersonnes,nobody)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">USER = </span><span style="color:#a31515">&quot;admpersonnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">PWD = </span><span style="color:#a31515">&quot;nobody&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">HOST = </span><span style="color:#a31515">&quot;localhost&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">DATABASE = </span><span style="color:#a31515">&quot;dbpersonnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 开始</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">connexion = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">&quot;Connexion au SGBD MySQL en cours...&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 登录</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    connexion = connect(host=HOST, user=USER, password=PWD, database=DATABASE)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 跟踪</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">f&quot;Connexion MySQL réussie à la base database={DATABASE}, host={HOST} sous l&#x27;identité user={USER}, passwd={PWD}&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> (InterfaceError, DatabaseError) </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 显示错误</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">f&quot;L&#x27;erreur suivante s&#x27;est produite : {erreur}&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">finally</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 若已建立连接则关闭</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> connexion:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        connexion.close()</span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第 2 行：导入 <strong>[mysql.connector]</strong> 模块中的某些函数和类；</li>
+<li>第 6-7 行：将要连接的用户凭据；</li>
+<li>第8行：托管数据库的服务器。实际上，MySQL连接器支持与远程数据库进行交互；</li>
+<li>第 9 行：要连接的数据库名称；</li>
+<li>第11-26行：脚本将（第16行）使用<strong>用户</strong>[admpersonnes / nobody]连接<strong>数据库[dbpersonnes]</strong>；</li>
+<li>第 20-26 行：连接可能失败，因此使用 try / except / finally 语句进行处理；</li>
+<li>第16行：模块[mysq.connector]中的方法connect支持以下命名参数：<ul>
+<li><em>user</em>：连接所有者用户 <strong>[admpersonnes]</strong>；</li>
+<li><em>password</em>：用户 <strong>[nobody]</strong> 的密码；</li>
+<li><em>host</em>：SGBD、MySQL、<strong>[localhost]</strong> 的机器；</li>
+<li><em>database</em>：要连接的数据库。可选。</li>
+</ul>
+</li>
+<li>第20行：若抛出异常，其类型<strong>为</strong>[DatabaseError]或[InterfaceError]；</li>
+<li>第23-26行：在<strong>[finally]</strong>子句中，关闭连接；</li>
+</ul>
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/databases/mysql/mysql_01.py
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>Connexion au SGBD MySQL en cours...
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>Connexion MySQL réussie à la base database=dbpersonnes, host=localhost sous l&#39;identité user=admpersonnes, passwd=nobody
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>Process finished with exit code 0
+</code></pre></div></td></tr></table></div>
+<p><span id="refheading383022423505" name="refheading383022423505" class="odt-bookmark-anchor"></span>
+<span id="toc48549054" name="toc48549054" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql02" name="scriptmysql02" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql-02" name="scriptmysql-02" class="odt-bookmark-anchor"></span></p>
+<h2 id="164-mysql_02-mysql-2">16.4. <span style="color: #4f81bd"><strong>脚本</strong> [mysql_02]<strong>：连接到数据库 MySQL - 2</strong></span></h2>
+<p>在此新脚本中，数据库连接被封装在函数中：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入模块 mysql.connector</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">mysql</span><span style="color:#000000">.</span><span style="color:#6f008a">connector</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> DatabaseError, InterfaceError, connect</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> connexion(</span><span style="color:#808080">host</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">, </span><span style="color:#808080">database</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">, </span><span style="color:#808080">login</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">, </span><span style="color:#808080">pwd</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 连接并断开（用户名、密码）服务器 [host] 上的数据库 [database]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 若出现问题，则抛出异常 DatabaseError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    connexion = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 连接</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        connexion = connect(host=</span><span style="color:#808080">host</span><span style="color:#000000">, user=</span><span style="color:#808080">login</span><span style="color:#000000">, password=</span><span style="color:#808080">pwd</span><span style="color:#000000">, database=</span><span style="color:#808080">database</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        print(</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">f&quot;Connexion réussie à la base database={database}, host={host} sous l&#x27;identité user={login}, passwd={pwd}&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">finally</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 若连接已建立，则关闭该连接</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> connexion:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            connexion.close()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            print(</span><span style="color:#a31515">&quot;Déconnexion réussie\n&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------- main</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 登录凭据</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">USER = </span><span style="color:#a31515">&quot;admpersonnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">PASSWD = </span><span style="color:#a31515">&quot;nobody&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">HOST = </span><span style="color:#a31515">&quot;localhost&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">DATABASE = </span><span style="color:#a31515">&quot;dbpersonnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 现有用户登录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    connexion(host=HOST, login=USER, pwd=PASSWD, database=DATABASE)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> (InterfaceError, DatabaseError) </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 显示错误</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(erreur)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 登录不存在的用户</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    connexion(host=HOST, login=</span><span style="color:#a31515">&quot;xx&quot;</span><span style="color:#000000">, pwd=</span><span style="color:#a31515">&quot;xx&quot;</span><span style="color:#000000">, database=DATABASE)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> (InterfaceError, DatabaseError) </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 显示错误</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(erreur)</span></span>
+</code></pre></div>
+
+<p><strong>注</strong>：</p>
+<ul>
+<li>第 6-19 行：函数 <strong>[connexion]</strong> 尝试将用户连接到数据库 <strong>[dbpersonnes]</strong>，然后断开连接。显示结果；</li>
+<li>第29-41行：主程序——两次调用<em>方法</em>connexion，并显示可能出现的异常；</li>
+</ul>
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">C</span><span class="p">:</span><span class="err">\</span><span class="n">Data</span><span class="err">\</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="err">\</span><span class="n">dev</span><span class="err">\</span><span class="n">python</span><span class="err">\</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="err">\</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="err">\</span><span class="n">venv</span><span class="err">\</span><span class="n">Scripts</span><span class="err">\</span><span class="n">python</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql_02</span><span class="p">.</span><span class="n">py</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">Connexion</span><span class="w"> </span><span class="n">MySQL</span><span class="w"> </span><span class="n">réussie</span><span class="w"> </span><span class="n">à</span><span class="w"> </span><span class="n">la</span><span class="w"> </span><span class="k">base</span><span class="w"> </span><span class="n">database</span><span class="o">=</span><span class="n">dbpersonnes</span><span class="p">,</span><span class="w"> </span><span class="n">host</span><span class="o">=</span><span class="n">localhost</span><span class="w"> </span><span class="n">sous</span><span class="w"> </span><span class="n">l</span><span class="err">&#39;</span><span class="n">identité</span><span class="w"> </span><span class="n">user</span><span class="o">=</span><span class="n">admpersonnes</span><span class="p">,</span><span class="w"> </span><span class="n">passwd</span><span class="o">=</span><span class="n">nobody</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">Déconnexion</span><span class="w"> </span><span class="n">MySQL</span><span class="w"> </span><span class="n">réussie</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="mi">1045</span><span class="w"> </span><span class="p">(</span><span class="mi">28000</span><span class="p">):</span><span class="w"> </span><span class="n">Access</span><span class="w"> </span><span class="n">denied</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="err">&#39;</span><span class="n">xx</span><span class="sc">&#39;@&#39;</span><span class="n">localhost</span><span class="err">&#39;</span><span class="w"> </span><span class="p">(</span><span class="k">using</span><span class="w"> </span><span class="nn">password</span><span class="p">:</span><span class="w"> </span><span class="n">YES</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">Process</span><span class="w"> </span><span class="n">finished</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p><span id="refheading383042423505" name="refheading383042423505" class="odt-bookmark-anchor"></span>
+<span id="toc48549055" name="toc48549055" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql03" name="scriptmysql03" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql-03" name="scriptmysql-03" class="odt-bookmark-anchor"></span></p>
+<h2 id="165-mysql_03-mysql">16.5. <span style="color: #4f81bd"><strong>脚本</strong> [mysql_03]<strong>：创建表 MySQL</strong></span></h2>
+<p>既然已经知道如何建立与 SGBD MySQL 的连接，我们就开始通过该连接发出 SQL 命令。 为此，我们将连接到已创建的数据库 <strong>[dbpersonnes]</strong>，并利用该连接在数据库中创建一个表。</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">sys</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">mysql</span><span style="color:#000000">.</span><span style="color:#6f008a">connector</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> DatabaseError, InterfaceError, connect</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">mysql</span><span style="color:#000000">.</span><span style="color:#6f008a">connector</span><span style="color:#000000">.</span><span style="color:#6f008a">connection</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> MySQLConnection</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> execute_sql(</span><span style="color:#808080">connexion</span><span style="color:#000000">: MySQLConnection, </span><span style="color:#808080">update</span><span style="color:#000000">: </span><span style="color:#2b91af">str</span><span style="color:#000000">):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 对连接执行更新请求</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    curseur = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 请求游标</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        curseur = </span><span style="color:#808080">connexion</span><span style="color:#000000">.cursor()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 在连接上执行更新查询</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        curseur.execute(</span><span style="color:#808080">update</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">finally</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 若已获取游标，则关闭游标</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> curseur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            curseur.close()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------- 主程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 连接凭据</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 用户身份</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">ID = </span><span style="color:#a31515">&quot;admpersonnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">PWD = </span><span style="color:#a31515">&quot;nobody&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 数据库管理系统的主机</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">HOST = </span><span style="color:#a31515">&quot;localhost&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 数据库名称</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">DATABASE = </span><span style="color:#a31515">&quot;dbpersonnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 让我们一步一步来</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 连接</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    connexion = connect(host=HOST, user=ID, password=PWD, database=DATABASE)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 模式 AUTOCOMMIT</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    connexion.autocommit = </span><span style="color:#0000ff">True</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> (InterfaceError, DatabaseError) </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 显示错误</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">f&quot;L&#x27;erreur suivante s&#x27;est produite : {erreur}&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 退出</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#6f008a">sys</span><span style="color:#000000">.exit()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 如果存在“person”表，则将其删除</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 若不存在则会发生错误——忽略该错误</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">requête = </span><span style="color:#a31515">&quot;drop table personnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    execute_sql(connexion, requête)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> (InterfaceError, DatabaseError):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">pass</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 创建“personnes”表</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">requête = </span><span style="color:#a31515">&quot;create table personnes (id int PRIMARY KEY, prenom varchar(30) NOT NULL, nom varchar(30) NOT NULL, age integer NOT NULL, &quot;</span><span style="color:#000000"> \</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">          </span><span style="color:#a31515">&quot;unique(nom,prenom)) &quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 执行查询</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    execute_sql(connexion, requête)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 显示</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">f&quot;{requête} : requête réussie&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> (InterfaceError, DatabaseError) </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 显示错误</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">f&quot;L&#x27;erreur suivante s&#x27;est produite : {erreur}&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">finally</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 断开连接</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    connexion.close()</span></span>
+</code></pre></div>
+
+<p><strong>注</strong>：</p>
+<ul>
+<li>第 9 行：函数 <em>execute_sql</em> 在已打开的连接上执行查询 SQL；</li>
+<li>第 14 行：连接上的 SQL 操作是通过一个名为<em>游标的</em>特定对象进行的<em>；</em></li>
+<li>第 14 行：获取游标；</li>
+<li>第 16 行：执行查询 SQL；</li>
+<li>第17-20行：无论是否发生错误，光标都会被关闭。这将释放与其关联的资源。如果发生异常，则此处不进行处理，异常将上报给调用代码；</li>
+<li>第 33-43 行：建立与数据库的连接；</li>
+<li>第 38 行：连接模式 AUTOCOMMIT=True 表示每次执行查询都会在自动事务中进行。默认模式为 AUTOCOMMIT=False，此时由开发人员负责管理事务。 事务是一种涵盖多个查询（1 到 n）执行的机制。要么所有查询都成功，要么全部失败。因此，如果查询 1 到 i 成功，但查询 i+1 失败，那么查询 1 到 i 将被“回滚”，以便数据库恢复到执行查询 1 之前的状态；</li>
+<li>此处有两个查询 SQL（第 49、58 行）。它们将分别在各自的事务中执行。第二个查询的失败对第一个查询没有任何影响；</li>
+<li>第45-51行：执行命令SQL <strong>[drop table personnes]</strong>。该命令将删除<strong>名为[personnes]</strong>的表。 如果该表不存在，可能会报错。此错误被忽略（第51行）；</li>
+<li>第53-55行：创建<strong>表[personnes]的</strong>语句。表可视为由行和列组成的集合。创建语句中指定了列名：<ul>
+<li><strong>[id]</strong>：一个整数标识符。该标识符对每个人都是唯一的。 该字段将作为主键（PRIMARY KEY）。这意味着在表中，该列不会出现重复值，且可用于识别个人；</li>
+<li><strong>[nom]</strong>：长度不超过 30 个字符的字符串；</li>
+<li><strong>[prenom]</strong>：长度不超过30个字符的字符串；</li>
+<li><strong>[age]</strong>：一个整数；</li>
+<li>对于上述每一列，属性 <strong>[NOT NULL]</strong> 表示：在表的每一行中，这三列均不得为空；</li>
+<li>参数 <strong>[unique(nom,prenom)]</strong> 称为<strong>约束</strong>。此处的行级约束要求该行的 (姓, 名) 元组在表中必须唯一。这意味着，只要知道某人的姓和名，就能在表中唯一地识别出该人；</li>
+</ul>
+</li>
+<li>第 56-60 行：执行命令 SQL；</li>
+<li>第61-63行：处理可能出现的异常；</li>
+<li>第 64-66 行：从数据库断开连接；</li>
+</ul>
+<p><strong>结果</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">C</span><span class="p">:</span><span class="err">\</span><span class="k">Data</span><span class="err">\</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="err">\</span><span class="n">dev</span><span class="err">\</span><span class="n">python</span><span class="err">\</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="err">\</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="err">\</span><span class="n">venv</span><span class="err">\</span><span class="n">Scripts</span><span class="err">\</span><span class="n">python</span><span class="p">.</span><span class="n">exe</span><span class="w"> </span><span class="k">C</span><span class="p">:</span><span class="o">/</span><span class="k">Data</span><span class="o">/</span><span class="n">st</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">python</span><span class="o">/</span><span class="n">cours</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">python3</span><span class="o">-</span><span class="n">flask</span><span class="o">-</span><span class="mi">2020</span><span class="o">/</span><span class="n">databases</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql_03</span><span class="p">.</span><span class="n">py</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">personnes</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w"> </span><span class="n">prenom</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">unique</span><span class="p">(</span><span class="n">nom</span><span class="p">,</span><span class="n">prenom</span><span class="p">))</span><span class="w">  </span><span class="p">:</span><span class="w"> </span><span class="n">requête</span><span class="w"> </span><span class="n">réussie</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="n">Process</span><span class="w"> </span><span class="n">finished</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">exit</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="mi">0</span>
+</code></pre></div></td></tr></table></div>
+<p>使用 <strong>[phpMyAdmin]</strong> 进行验证：</p>
+<p><img src="images/100000000000057200000365E1BC6EAD.png" width="609" height="379" style="width:16.103cm;height:10.038cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000057200000365E1BC6EAD.png" /></p>
+<ul>
+<li>数据库 <strong>[dbpersonnes] [1]</strong> 包含表 <strong>[personnes]</strong> [2]，该表具有结构 [3-4]， 主键为 [5]，唯一性约束为 <strong>[6]</strong>；</li>
+</ul>
+<p><span id="refheading383062423505" name="refheading383062423505" class="odt-bookmark-anchor"></span>
+<span id="toc48549056" name="toc48549056" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql04" name="scriptmysql04" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql-04" name="scriptmysql-04" class="odt-bookmark-anchor"></span></p>
+<h2 id="166-mysql_04-sql">16.6. <span style="color: #4f81bd"><strong>脚本</strong> [mysql_04]<strong>：执行命令文件 SQL</strong></span></h2>
+<p>在之前创建了表 <strong>[personnes]</strong> 之后，现在我们将填充该表，然后使用命令 SQL 对其进行操作。</p>
+<p>我们希望从一个文本文件中执行 SQL 命令：</p>
+<p><img src="images/1000000000000174000001EA2C3FF061.png" width="162" height="214" style="width:4.292cm;height:5.652cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000174000001EA2C3FF061.png" /></p>
+<p>文件 <strong>[commandes.sql]</strong> 的内容如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content"># 删除表 [personnes]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">drop</span> <span style="color:#0000ff">table</span> personnes</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 创建人员表</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">create<span style="color:#000000"> </span>table<span style="color:#000000"> </span><span style="color:#2b91af">personnes</span><span style="color:#000000"> (prenom </span>varchar<span style="color:#000000">(30) </span>not null<span style="color:#000000">, nom </span>varchar<span style="color:#000000">(30) </span>not null<span style="color:#000000">, age </span>integer<span style="color:#000000"> </span>not null<span style="color:#000000">, </span>primary key<span style="color:#000000"> (nom,prenom))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 插入两名人员</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">insert into</span> personnes(prenom, nom, age) <span style="color:#0000ff">values</span>(<span style="color:#a31515">&#x27;Paul&#x27;</span>,<span style="color:#a31515">&#x27;Langevin&#x27;</span>,48)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">insert into</span> personnes(prenom, nom, age) <span style="color:#0000ff">values</span> (<span style="color:#a31515">&#x27;Sylvie&#x27;</span>,<span style="color:#a31515">&#x27;Lefur&#x27;</span>,70)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 显示表</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">select</span> prenom, nom, age <span style="color:#0000ff">from</span> personnes</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 故意引发错误</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">xx</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 插入三条人员记录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">insert into</span> personnes(prenom, nom, age) <span style="color:#0000ff">values</span> (<span style="color:#a31515">&#x27;Pierre&#x27;</span>,<span style="color:#a31515">&#x27;Nicazou&#x27;</span>,35)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">insert into</span> personnes(prenom, nom, age) <span style="color:#0000ff">values</span> (<span style="color:#a31515">&#x27;Geraldine&#x27;</span>,<span style="color:#a31515">&#x27;Colou&#x27;</span>,26)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">insert into</span> personnes(prenom, nom, age) <span style="color:#0000ff">values</span> (<span style="color:#a31515">&#x27;Paulette&#x27;</span>,<span style="color:#a31515">&#x27;Girond&#x27;</span>,56)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 显示表</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">select</span> prenom, nom, age <span style="color:#0000ff">from</span> personnes</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 按姓氏字母顺序排列人员列表，同姓者按名字字母顺序排列</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">select</span> nom,prenom <span style="color:#0000ff">from</span> personnes <span style="color:#0000ff">order by</span> nom <span style="color:#0000ff">asc</span>, prenom <span style="color:#0000ff">desc</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 按年龄降序排列，年龄在 [20,40] 区间内的人员列表</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 随后按姓氏字母顺序排列（同姓者按名字字母顺序排列）</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">select</span> nom,prenom,age <span style="color:#0000ff">from</span> personnes <span style="color:#0000ff">where</span> age between 20 <span style="color:#0000ff">and</span> 40 <span style="color:#0000ff">order by</span> age <span style="color:#0000ff">desc</span>, nom <span style="color:#0000ff">asc</span>, prenom <span style="color:#0000ff">asc</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 添加布鲁诺夫人</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">insert into</span> personnes(prenom, nom, age) <span style="color:#0000ff">values</span>(<span style="color:#a31515">&#x27;Josette&#x27;</span>,<span style="color:#a31515">&#x27;Bruneau&#x27;</span>,46)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 更新其年龄</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">update</span> personnes <span style="color:#0000ff">set</span> age=47 <span style="color:#0000ff">where</span> nom=<span style="color:#a31515">&#x27;Bruneau&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 姓布鲁诺的人员名单</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">select</span> nom,prenom,age <span style="color:#0000ff">from</span> personnes <span style="color:#0000ff">where</span> nom=<span style="color:#a31515">&#x27;Bruneau&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 删除布鲁诺夫人</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">delete</span> <span style="color:#0000ff">from</span> personnes <span style="color:#0000ff">where</span> nom=<span style="color:#a31515">&#x27;Bruneau&#x27;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 姓Bruneau的人员名单</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">select</span> nom,prenom,age <span style="color:#0000ff">from</span> personnes <span style="color:#0000ff">where</span> nom=<span style="color:#a31515">&#x27;Bruneau&#x27;</span></span></span>
+</code></pre></div>
+
+<p>首先，我们定义一些函数并将其安装到模块中以便重复使用：</p>
+<p><img src="images/1000000000000174000001EAB3648863.png" width="162" height="214" style="width:4.292cm;height:5.652cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000174000001EAB3648863.png" /></p>
+<p>脚本 <strong>[mysql_module]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> <span style="color:#6f008a">mysql</span>.<span style="color:#6f008a">connector</span> <span style="color:#0000ff">import</span> DatabaseError, InterfaceError</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span>mysql<span style="color:#000000">.</span>connector<span style="color:#000000">.</span>connection<span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> MySQLConnection</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span>mysql<span style="color:#000000">.</span>connector<span style="color:#000000">.</span>cursor<span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> MySQLCursor</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> afficher_infos(<span style="color:#808080">curseur</span>: MySQLCursor):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">     # 显示 SQL 命令的结果</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> execute_list_of_commands(<span style="color:#808080">connexion</span>: MySQLConnection, <span style="color:#808080">sql_commands</span>: <span style="color:#2b91af">list</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                             <span style="color:#808080">suivi</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">False</span>, <span style="color:#808080">arrêt</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>, <span style="color:#808080">with_transaction</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 使用已打开的连接 [connexion]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 在此连接上执行列表 [sql_commands] 中包含的命令 SQL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 该文件是一个命令文件，其中每行包含一个待执行的 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果跟踪=True，则每次执行 SQL 命令时，都会显示其成功或失败的状态</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果停止=True，则函数在遇到第一个错误时停止；否则执行所有SQL命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果 with_transaction=True，则任何错误都会取消之前执行的所有 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果 with_transaction=False，则错误不会影响之前执行的 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 该函数返回一个列表 [erreur1, erreur2, ...]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>….</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> execute_file_of_commands(<span style="color:#808080">connexion</span>: MySQLConnection, <span style="color:#808080">sql_filename</span>: <span style="color:#2b91af">str</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                             <span style="color:#808080">suivi</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">False</span>, <span style="color:#808080">arrêt</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>, <span style="color:#808080">with_transaction</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 使用已打开的连接 [connexion]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 在此连接上执行文本文件 sql_filename 中包含的命令 SQL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 该文件是一个命令文件，其中每行包含一个待执行的 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果跟踪=True，则每次执行 SQL 命令时，都会显示其成功或失败的状态</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果停止=True，则函数在遇到第一个错误时停止；否则执行所有SQL命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果 with_transaction=True，则任何错误都会取消之前执行的所有 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果 with_transaction=False，则错误不会影响之前执行的 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 该函数返回一个列表 [erreur1, erreur2, ...]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 处理文件 SQL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">try</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 以读取模式打开文件</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        file = open(<span style="color:#808080">sql_filename</span>, <span style="color:#a31515">&quot;r&quot;</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 处理</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> execute_list_of_commands(<span style="color:#808080">connexion</span>, file.readlines(), <span style="color:#808080">suivi</span>, <span style="color:#808080">arrêt</span>, <span style="color:#808080">with_transaction</span>)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">except</span> <span style="color:#2b91af">BaseException</span> <span style="color:#0000ff">as</span> erreur:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 返回错误数组</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold">f&quot;Le fichier {sql_filename} n&#x27;a pu être être exploité : {erreur}&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+</code></pre></div>
+
+<p><strong>注</strong>：</p>
+<ul>
+<li>第 29 行：函数 <strong>[execute_file_of_commands]</strong> 执行名为 <strong>[sql_filename]</strong> 的文本文件中包含的 SQL 命令：</li>
+<li>请参阅第 31-38 行的注释以了解参数的含义；</li>
+<li>第40-48行：处理文本文件<strong>[sql_filename]</strong>；</li>
+<li>第 43 行：打开文件；</li>
+<li>第34行：<strong>执行函数</strong>[execute_list_of_commands]，该函数会执行作为列表参数传递给它的SQL命令。此处该列表由<strong>文本文件[file.readlines()]中的</strong>所有行组成（第45行）；</li>
+</ul>
+<p>函数 <strong>[execute_list_of_commands]</strong> 如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> execute_list_of_commands(<span style="color:#808080">connexion</span>: MySQLConnection, <span style="color:#808080">sql_commands</span>: <span style="color:#2b91af">list</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                             <span style="color:#808080">suivi</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">False</span>, <span style="color:#808080">arrêt</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>, <span style="color:#808080">with_transaction</span>: <span style="color:#2b91af">bool</span> = <span style="color:#0000ff">True</span>):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 使用已打开的连接 [connexion]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 通过此连接执行列表 [sql_commands] 中包含的命令 SQL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 该文件是一个命令文件，其中每行包含一个待执行的 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果跟踪=True，则每次执行 SQL 命令时，都会显示其成功或失败的状态</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果停止=True，则函数在遇到第一个错误时停止；否则执行所有SQL命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果 with_transaction=True，则任何错误都会取消之前执行的所有 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 如果 with_transaction=False，则错误不会影响之前执行的 SQL 命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 该函数返回一个列表 [erreur1, erreur2, ...]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 初始化</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    curseur = <span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>connexion<span style="color:#000000">.autocommit = </span><span style="color:#0000ff">not</span><span style="color:#000000"> </span>with_transaction</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    erreurs = <span style="font-weight:bold">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">try</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 需要一个滑块</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        curseur = <span style="color:#808080">connexion</span>.cursor()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 执行 sql_commands 中包含的 SQL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 依次执行</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">for</span> command <span style="color:#0000ff">in</span> <span style="color:#808080">sql_commands</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 删除当前命令首尾的空格</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            command = command.strip()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 是否为空命令或注释？如果是，则跳转到下一条命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">if</span> command == <span style="color:#a31515">&#x27;&#x27;</span> <span style="color:#0000ff">or</span> command<span style="font-weight:bold">[0]</span> == <span style="color:#a31515">&quot;#&quot;</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#0000ff">continue</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 执行当前命令</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            error = <span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">try</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                curseur.execute(command)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">except</span> (InterfaceError, DatabaseError) <span style="color:#0000ff">as</span> erreur:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                error = erreur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 是否发生错误？</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">if</span> error:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#000000"># 又一个错误</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                msg = </span>f&quot;{command} : Erreur ({error})&quot;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                erreurs.append(msg)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#000000"># 是否显示屏幕？</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#0000ff">if</span> <span style="color:#808080">suivi</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                    print(msg)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                # 是否停止？</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#0000ff">if</span> <span style="color:#808080">with_transaction</span> <span style="color:#0000ff">or</span> <span style="color:#808080">arrêt</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                    <span style="color:#000000"># 是否返回错误列表</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                    <span style="color:#0000ff">return</span> erreurs</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                # 无错误</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#0000ff">if</span> <span style="color:#808080">suivi</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                    print(</span>f&quot;<span style="font-weight:bold">[{command}]</span> : Exécution réussie&quot;<span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#000000"># 显示命令结果</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                afficher_infos(curseur)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 返回错误表</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">return</span> erreurs</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span>finally<span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 关闭游标</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">if</span> curseur:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            curseur.close()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 若存在事务，则提交/回滚</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span>with_transaction<span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">if</span> erreurs:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                # 撤销</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#808080">connexion</span>.rollback()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#0000ff">else</span>:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                # 确认</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                <span style="color:#808080">connexion</span>.commit()</span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第2行：<strong>函数</strong>[execute_list_of_commands]执行<strong>列表[sql_commands]中</strong>包含的命令SQL：</li>
+<li>请参阅第 4-11 行的注释以了解参数的含义；</li>
+<li>第2行：接收到的连接是一个已打开的数据库连接；</li>
+<li>第15行：若希望<strong>列表[sql_commands]中的</strong>所有命令在事务内执行，则需在AUTOCOMMIT=False模式下运行。 否则，将以 AUTOCOMMIT=True 模式运行，此时列表 <strong>[sqlCommands]</strong> 中的每个命令都将在自动事务中执行，且不会有全局事务；</li>
+<li>第 19 行：请求一个游标以执行 SQL 中的各项命令；</li>
+<li>第 22-51 行：逐条执行命令；</li>
+<li>第 26-27 行：允许在 SQL 命令列表中出现空行和注释。遇到此类情况，系统将直接忽略该命令；</li>
+<li>第 30-33 行：执行当前查询；</li>
+<li>第35-45行：处理当前查询可能出现的执行错误；</li>
+<li>第 37-38 行：将错误添加到错误数组中；</li>
+<li>第 40-41 行：如果请求了跟踪，则显示错误消息；</li>
+<li>第43-45行：如果调用方代码要求在首次错误后终止，或者要求使用事务，则必须终止。返回错误数组；</li>
+<li>第46-51行：当前查询执行未发生错误的情况；</li>
+<li>第48-49行：若请求了跟踪，则显示已执行的查询并标注“成功”；</li>
+<li>第50-51行：显示已执行查询的结果。稍后我们将再次讨论<strong>函数[afficher_infos]</strong>；</li>
+<li>第 54-65 行：无论是否发生异常，都会执行 <strong>[finally]</strong> 子句；</li>
+<li>第 56-57 行：关闭游标。这将释放分配给该游标的资源；</li>
+<li>第 59-65 行：处理调用方要求在事务中执行 SQL 命令的情况；</li>
+<li>第 60 行：检查列表 <strong>[erreurs]</strong> 是否为空，这表示未发生任何异常。在此情况下，事务被提交（第 65 行），否则事务被回滚（第 62 行）；</li>
+</ul>
+<p>函数 <strong>[afficher_infos]</strong> 显示查询结果：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> afficher_infos(</span><span style="color:#808080">curseur</span><span style="color:#000000">: MySQLCursor):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#2b91af">type</span><span style="color:#000000">(</span><span style="color:#808080">curseur</span><span style="color:#000000">))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 显示 SQL 命令的结果</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 是否为 SELECT 语句？</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#808080">curseur</span><span style="color:#000000">.description:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 游标有描述——因此它执行了SELECT语句</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># description[i] 是 SELECT 语句中第 i 列的描述</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># descriptionQZXW2HTMLBW2ldZQXQZXW2HTMLBWzBdZQX 是 SELECT 语句中第 i 列的名称</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 显示字段名称</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        titre = </span><span style="color:#a31515">&quot;&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">for</span><span style="color:#000000"> i </span><span style="color:#0000ff">in</span><span style="color:#000000"> </span><span style="color:#2b91af">range</span><span style="color:#000000">(len(</span><span style="color:#808080">curseur</span><span style="color:#000000">.description)):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            titre += </span><span style="color:#808080">curseur</span><span style="color:#000000">.description</span><span style="font-weight:bold;color:#000000">[i][0]</span><span style="color:#000000"> + </span><span style="color:#a31515">&quot;, &quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 显示字段列表，不包含结尾逗号</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        print(titre</span><span style="font-weight:bold;color:#000000">[0:len(titre) - 1]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 分隔行</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        print(</span><span style="color:#a31515">&quot;*&quot;</span><span style="color:#000000"> * (len(titre) - 1))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 显示选择框中的当前行</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        ligne = </span><span style="color:#808080">curseur</span><span style="color:#000000">.fetchone()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">while</span><span style="color:#000000"> ligne:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 显示</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            print(ligne)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            <span style="color:#000000"># 下拉列表的下一行</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            ligne = </span><span style="color:#808080">curseur</span><span style="color:#000000">.fetchone()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 分隔行</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        print(</span><span style="color:#a31515">&quot;*&quot;</span><span style="color:#000000"> * (len(titre) - 1))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 光标没有字段 [description] - 因此它执行了一条命令 SQL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000"># 更新命令（插入、删除、更新）</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        print(</span><span style="color:#a31515">f&quot;nombre de lignes modifiées : {curseur.rowcount}&quot;</span><span style="color:#000000">)</span></span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第 1 行：该函数的参数是刚刚执行了 SQL 命令的游标。 根据该命令是 SELECT 还是更新命令 INSERT、UPDATE、DELETE，游标的内容并不相同；</li>
+<li>第6行：如果游标包含<strong>字段</strong>[description]，则表示其已执行SELECT，而[description]描述了SELECT中请求的字段：<ul>
+<li><strong>description[i]</strong> 描述了 SELECT 所请求的第 i 个字段。这是一个列表；</li>
+<li><strong>description[i][0]</strong> 是第 i 个字段的名称；</li>
+</ul>
+</li>
+<li>第 11-17 行：显示 SELECT 所请求的字段名称；</li>
+<li>第 18-24 行：处理 SELECT 的结果；</li>
+<li>第 20、24 行：SELECT 的结果按顺序进行处理。该结果是一组行。当前行由 <strong>[curseur.fetchone()]</strong>（第 19 行）获取。由此得到一个元组；</li>
+<li>第27-30行：  如果游标不包含字段 [description]，则说明它已执行了更新命令 INSERT、UPDATE、DELETE。 这样就可以知道该命令的执行修改了表中的多少行；</li>
+<li>第 30 行：<strong>[curseur.rowcount]</strong> 即为该数值；</li>
+</ul>
+<p>主脚本 <strong>[mysql-04]</strong> 调用了我们刚刚描述的模块 <strong>[mysql_module]</strong>：</p>
+<p><img src="images/10000000000001400000019646564AE6.png" width="140" height="177" style="width:3.701cm;height:4.695cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001400000019646564AE6.png" /></p>
+<p>文件 <strong>[config_04]</strong> 配置了脚本 <strong>[mysql_04]</strong> 的执行环境：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> configure():</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">import</span> <span style="color:#6f008a">os</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    # 配置文件所在文件夹的绝对路径</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    script_dir = <span style="color:#6f008a">os</span>.<span style="color:#6f008a">path</span>.dirname(<span style="color:#6f008a">os</span>.<span style="color:#6f008a">path</span>.abspath(__file__))</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    # syspath 文件夹配置</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    absolute_dependencies = <span style="font-weight:bold">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-weight:bold"># 本地文件夹</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#a31515">f&quot;{script_dir}/shared&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    # 设置 syspath</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">from</span> <span style="color:#6f008a">myutils</span> <span style="color:#0000ff">import</span> set_syspath</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    set_syspath(absolute_dependencies)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    # 生成配置</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">return</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 命令文件SQL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;commands_filename&quot;</span>: <span style="color:#a31515">f&quot;{script_dir}/data/commandes.sql&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        # 数据库连接凭据</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;host&quot;</span>: <span style="color:#a31515">&quot;localhost&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;database&quot;</span>: <span style="color:#a31515">&quot;dbpersonnes&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;user&quot;</span>: <span style="color:#a31515">&quot;admpersonnes&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;password&quot;</span>: <span style="color:#a31515">&quot;nobody&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+</code></pre></div>
+
+<p>脚本 <strong>[mysql_04]</strong> 如下所示：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 获取应用程序配置</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">config_04</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">config = </span><span style="color:#6f008a">config_04</span><span style="color:#000000">.configure()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 已配置 syspath - 可以进行导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> </span><span style="color:#6f008a">sys</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">mysql_module</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> execute_file_of_commands</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">mysql</span><span style="color:#000000">.</span><span style="color:#6f008a">connector</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> connect, DatabaseError, InterfaceError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># ---------------------------------------------- 主函数</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 验证调用语法</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># argv[0] true / false</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">args = </span><span style="color:#6f008a">sys</span><span style="color:#000000">.argv</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">erreur = len(args) != 2</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">not</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    with_transaction = args</span><span style="font-weight:bold;color:#000000">[1]</span><span style="color:#000000">.lower()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    erreur = with_transaction != </span><span style="color:#a31515">&quot;true&quot;</span><span style="color:#000000"> </span><span style="color:#0000ff">and</span><span style="color:#000000"> with_transaction != </span><span style="color:#a31515">&quot;false&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 错误？</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">f&quot;syntaxe : {args</span><span style="font-weight:bold;color:#a31515">[0]</span><span style="color:#a31515">} true / false&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#6f008a">sys</span><span style="color:#000000">.exit()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 文本计算</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">with_transaction = with_transaction == </span><span style="color:#a31515">&quot;true&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> with_transaction:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    texte = </span><span style="color:#a31515">&quot;avec transaction&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    texte = </span><span style="color:#a31515">&quot;sans transaction&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 屏幕日志</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(</span><span style="color:#a31515">&quot;--------------------------------------------------------------------&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(</span><span style="color:#a31515">f&quot;Exécution du fichier SQL {config</span><span style="font-weight:bold;color:#a31515">[&#x27;commands_filename&#x27;]</span><span style="color:#a31515">} {texte}&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(</span><span style="color:#a31515">&quot;--------------------------------------------------------------------&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 执行文件中的命令 SQL</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">connexion = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 连接数据库</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    connexion = connect(host=config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;host&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">, user=config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;user&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">, password=config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;password&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                        database=config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;database&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 执行命令文件 SQL</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    erreurs = execute_file_of_commands(connexion, config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;commands_filename&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">, suivi=</span><span style="color:#0000ff">True</span><span style="color:#000000">, arrêt=</span><span style="color:#0000ff">False</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                                       with_transaction=with_transaction)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> (InterfaceError, DatabaseError) </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">     # 显示错误</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">f&quot;L&#x27;erreur fatale suivante s&#x27;est produite : {erreur}&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 程序结束</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#6f008a">sys</span><span style="color:#000000">.exit()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">finally</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 若连接已建立，则关闭连接</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> connexion:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        connexion.close()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 显示错误数量</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(</span><span style="color:#a31515">&quot;--------------------------------------------------------------------&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(</span><span style="color:#a31515">f&quot;Exécution terminée&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(</span><span style="color:#a31515">&quot;--------------------------------------------------------------------&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">print(</span><span style="color:#a31515">f&quot;Il y a eu {len(erreurs)} erreur(s)&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 显示错误</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">for</span><span style="color:#000000"> erreur </span><span style="color:#0000ff">in</span><span style="color:#000000"> erreurs:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    print(erreur)</span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第 1-4 行：脚本配置；</li>
+<li>第 8 行：导入前文所述的 <strong>[mysql_module]</strong> 模块：</li>
+<li>第 12-22 行：脚本 <strong>[mysql-04]</strong> 等待一个参数，该参数必须取值 <strong>[true / false]</strong> 中的任意一个。 该参数用于指定是否应在事务中执行命令文件 SQL（true）或不在事务中执行（false）；</li>
+<li>第 14 行：用户传递给脚本的参数可在列表 <strong>[sys.argv]</strong> 中找到；</li>
+<li>第 15 行：需要两个参数，例如 <strong>[mysql-04 true]</strong>。脚本名称也算作一个参数；</li>
+<li>第17-18行：如果确实有两个参数，则第二个参数必须是值为&#x27;true&#x27;或&#x27;false&#x27;的字符串；</li>
+<li>第24-29行：计算第33行显示的文本；</li>
+<li>第 39-44 行：执行文件 <strong>[./data/commandes.sql]</strong> 中的命令；</li>
+<li>第45-49行：若连接时发生错误（第40行）<strong>或[execute_file_of_commands]脚本</strong>未处理该错误，则显示错误并终止所有操作；</li>
+<li>第55-62行：若执行成功，则显示在执行SQL命令时遇到的错误数量；</li>
+</ul>
+<p><u><strong>执行 1</strong></u></p>
+<p>首先进行一次非事务性执行。为此，我们将按照<a href="enengiaouuieouianheng.html#lescriptprincipal2"><u><span style="color: #0563c1">“执行上下文</span></u></a>配置”一节中的方法创建一个执行配置：</p>
+<p><img src="images/10000000000005780000022925712BDD.png" width="612" height="242" style="width:16.18cm;height:6.391cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005780000022925712BDD.png" /></p>
+<ul>
+<li>在 <strong>[1-4]</strong> 中，创建一个 Python 执行配置；</li>
+</ul>
+<p><img src="images/10000000000006370000028EDA2645CB.png" width="626" height="257" style="width:16.572cm;height:6.812cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006370000028EDA2645CB.png" /></p>
+<ul>
+<li><strong>[5]</strong>：执行配置的名称；</li>
+<li><strong>[6]</strong>：待执行脚本的路径；</li>
+<li><strong>[7]</strong>：脚本参数；</li>
+<li><strong>[8]</strong>：执行目录；</li>
+</ul>
+<p>因此，此配置对应于通过事务执行文件 SQL。使用按钮 <strong>[Apply]</strong> 确认配置。</p>
+<p>我们以同样的方式创建执行配置 <strong>[mysql mysql-04 without_transaction]</strong>：</p>
+<p><img src="images/1000000000000558000001E178FC5470.png" width="597" height="210" style="width:15.79cm;height:5.553cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000558000001E178FC5470.png" /></p>
+<p>因此，此配置对应于在不使用事务的情况下执行文件 SQL。使用按钮 <strong>[Apply]</strong> 确认配置。</p>
+<p>首先执行无事务版本：</p>
+<p><img src="images/1000000000000413000000A167B8ACCE.png" width="456" height="70" style="width:12.06cm;height:1.863cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000413000000A167B8ACCE.png" /></p>
+<p>结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/databases/mysql/mysql_04.py false</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Exécution du fichier SQL C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\databases\mysql/data/commandes.sql sans transaction</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">drop table personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">create table personnes</span><span style="font-weight:bold"> (id int primary key, prenom varchar(30) not null, nom varchar(30) not null, age integer not null, unique (nom,prenom))]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes</span><span style="font-weight:bold">(id, prenom, nom, age) values(1, &#x27;Paul&#x27;,&#x27;Langevin&#x27;,48)]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes</span><span style="font-weight:bold">(id, prenom, nom, age) values (2, &#x27;Sylvie&#x27;,&#x27;Lefur&#x27;,70)]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select prenom, nom, age from personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">prenom, nom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Paul&#x27;, &#x27;Langevin&#x27;, 48)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Sylvie&#x27;, &#x27;Lefur&#x27;, 70)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">xx</span> : Erreur (1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;xx&#x27; at line 1)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes</span><span style="font-weight:bold">(id, prenom, nom, age) values (3, &#x27;Pierre&#x27;,&#x27;Nicazou&#x27;,35)]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes</span><span style="font-weight:bold">(id, prenom, nom, age) values (4, &#x27;Geraldine&#x27;,&#x27;Colou&#x27;,26)]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes</span><span style="font-weight:bold">(id, prenom, nom, age) values (5, &#x27;Paulette&#x27;,&#x27;Girond&#x27;,56)]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select prenom, nom, age from personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">prenom, nom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Paul&#x27;, &#x27;Langevin&#x27;, 48)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Sylvie&#x27;, &#x27;Lefur&#x27;, 70)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Pierre&#x27;, &#x27;Nicazou&#x27;, 35)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Geraldine&#x27;, &#x27;Colou&#x27;, 26)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Paulette&#x27;, &#x27;Girond&#x27;, 56)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select nom,prenom from personnes order by nom asc, prenom desc</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nom, prenom,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Colou&#x27;, &#x27;Geraldine&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Girond&#x27;, &#x27;Paulette&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Langevin&#x27;, &#x27;Paul&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Lefur&#x27;, &#x27;Sylvie&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Nicazou&#x27;, &#x27;Pierre&#x27;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select nom,prenom,age from personnes where age between 20 and 40 order by age desc, nom asc, prenom asc</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nom, prenom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Nicazou&#x27;, &#x27;Pierre&#x27;, 35)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Colou&#x27;, &#x27;Geraldine&#x27;, 26)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes(id, prenom, nom, age) values(6, &#x27;Josette&#x27;,&#x27;Bruneau&#x27;,46)</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">update personnes set age=47 where nom=&#x27;Bruneau&#x27;</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select nom,prenom,age from personnes where nom=&#x27;Bruneau&#x27;</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nom, prenom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Bruneau&#x27;, &#x27;Josette&#x27;, 47)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">delete from personnes where nom=&#x27;Bruneau&#x27;</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select nom,prenom,age from personnes where nom=&#x27;Bruneau&#x27;</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nom, prenom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Exécution terminée</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Il y a eu 1 erreur(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">xx : Erreur (1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;xx&#x27; at line 1)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><strong>注</strong>：</p>
+<ul>
+<li>第 19 行：可以看到，在发生错误后，SQL 命令的执行仍在继续，这是因为执行是在无事务环境下进行的，并且使用了参数 <strong>[arrêt=False]</strong>。 因此，所有 SQL 命令均已执行。因此，应存在一个反映此执行情况的 <strong>[personnes]</strong> 表；</li>
+</ul>
+<p>使用 phpMyAdmin 进行验证：</p>
+<p><img src="images/10000000000002BE00000254275E18A9.png" width="306" height="260" style="width:8.089cm;height:6.869cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002BE00000254275E18A9.png" /></p>
+<p><u><strong>执行 2</strong></u></p>
+<p>现在我们执行配置 <strong>[mysql mysql-04 with_transaction]</strong>。结果如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span class="odt-code-line-content">C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\venv\Scripts\python.exe C:/Data/st-2020/dev/python/cours-2020/python3-flask-2020/databases/mysql/mysql_04.py true</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Exécution du fichier SQL C:\Data\st-2020\dev\python\cours-2020\python3-flask-2020\databases\mysql/data/commandes.sql avec transaction</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">drop table personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">create table personnes</span><span style="font-weight:bold"> (id int primary key, prenom varchar(30) not null, nom varchar(30) not null, age integer not null, unique (nom,prenom))]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 0</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes</span><span style="font-weight:bold">(id, prenom, nom, age) values(1, &#x27;Paul&#x27;,&#x27;Langevin&#x27;,48)]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">insert into personnes</span><span style="font-weight:bold">(id, prenom, nom, age) values (2, &#x27;Sylvie&#x27;,&#x27;Lefur&#x27;,70)]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">nombre de lignes modifiées : 1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[</span><span style="font-weight:bold;background-color:#fff2cc">select prenom, nom, age from personnes</span><span style="font-weight:bold">]</span> : Exécution réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">prenom, nom, age,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Paul&#x27;, &#x27;Langevin&#x27;, 48)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">(&#x27;Sylvie&#x27;, &#x27;Lefur&#x27;, 70)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">*****************</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="background-color:#fff2cc">xx</span> : Erreur (1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;xx&#x27; at line 1)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Exécution terminée</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">--------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Il y a eu 1 erreur(s)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">xx : Erreur (1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;xx&#x27; at line 1)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Process finished with exit code 0</span></span>
+</code></pre></div>
+
+<p><strong>注</strong>：</p>
+<ul>
+<li>第 19 行： 可以看到，在出现错误后，SQL命令不再执行，这是因为执行是在事务中进行的，而在遇到第一个错误时，我们回滚了事务并停止了SQL命令的执行。 这意味着第9、11、13行的命令结果已被撤销。因此<strong>，[personnes]</strong>表应为空；</li>
+</ul>
+<p>通过phpMyAdmin进行验证：</p>
+<p><img src="images/10000000000003F4000001B87E159F8E.png" width="442" height="192" style="width:11.689cm;height:5.082cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003F4000001B87E159F8E.png" /></p>
+<ul>
+<li>在 <strong>[5]</strong> 中，可以看到表 <strong>[personnes]</strong> 和 <strong>[2]</strong> 为空；</li>
+</ul>
+<p><span id="refheading383082423505" name="refheading383082423505" class="odt-bookmark-anchor"></span>
+<span id="toc48549057" name="toc48549057" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql05" name="scriptmysql05" class="odt-bookmark-anchor"></span>
+<span id="scriptmysql-05" name="scriptmysql-05" class="odt-bookmark-anchor"></span></p>
+<h2 id="167-mysql_05">16.7. <span style="color: #4f81bd"><strong>脚本</strong> [mysql_05]<strong>：使用带参数的查询</strong></span></h2>
+<p>脚本 <strong>[mysql_05]</strong> 引入了参数化查询的概念：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> </span><span style="color:#6f008a">mysql</span><span style="color:#000000">.</span><span style="color:#6f008a">connector</span><span style="color:#000000"> </span><span style="color:#0000ff">import</span><span style="color:#000000"> connect, DatabaseError, InterfaceError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 用户身份</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">ID = </span><span style="color:#a31515">&quot;admpersonnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">PWD = </span><span style="color:#a31515">&quot;nobody&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 数据库管理系统的主机</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">HOST = </span><span style="color:#a31515">&quot;localhost&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 数据库名称</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">BASE = </span><span style="color:#a31515">&quot;dbpersonnes&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 人员列表（姓、名、年龄）</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">personnes = </span><span style="font-weight:bold;color:#000000">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">for</span><span style="color:#000000"> i </span><span style="color:#0000ff">in</span><span style="color:#000000"> </span><span style="color:#2b91af">range</span><span style="color:#000000">(5):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    personnes.append((i, </span><span style="color:#a31515">f&quot;n0{i}&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">f&quot;p0{i}&quot;</span><span style="color:#000000">, i + 10))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">personnes.append((40, </span><span style="color:#a31515">&quot;d&#x27;Aboot&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;Y&#x27;éna&quot;</span><span style="color:#000000">, 18))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 其他人员列表</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">autresPersonnes = </span><span style="font-weight:bold;color:#000000">[]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">for</span><span style="color:#000000"> i </span><span style="color:#0000ff">in</span><span style="color:#000000"> </span><span style="color:#2b91af">range</span><span style="color:#000000">(5):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    autresPersonnes.append((i + 100, </span><span style="color:#a31515">f&quot;n1{i}&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">f&quot;p1{i}&quot;</span><span style="color:#000000">, i + 20))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">autresPersonnes.append((200, </span><span style="color:#a31515">&quot;d&#x27;Aboot&quot;</span><span style="color:#000000">, </span><span style="color:#a31515">&quot;F&#x27;ilhem&quot;</span><span style="color:#000000">, 34))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 访问 SGBD</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">connexion = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 登录</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    connexion = connect(host=HOST, user=ID, password=PWD, database=BASE)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 光标</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    curseur = connexion.cursor()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 删除现有记录</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    curseur.execute(</span><span style="color:#a31515">&quot;delete from personnes&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 使用预编译查询逐条插入</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">for</span><span style="color:#000000"> personne </span><span style="color:#0000ff">in</span><span style="color:#000000"> personnes:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        curseur.execute(</span><span style="color:#a31515">&quot;insert into personnes(id,nom,prenom,age) values(%s,%s,%s,%s)&quot;</span><span style="color:#000000">, personne)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 批量插入人员列表</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    curseur.executemany(</span><span style="color:#a31515">&quot;insert into personnes(id,nom,prenom,age) values(%s, %s,%s,%s)&quot;</span><span style="color:#000000">, autresPersonnes)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 事务提交</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    connexion.commit()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> (DatabaseError, InterfaceError) </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 显示错误</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">f&quot;L&#x27;erreur suivante s&#x27;est produite : {erreur}&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 撤销交易</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> connexion:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        connexion.rollback()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">finally</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000"># 关闭连接</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> connexion:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        connexion.close()</span></span>
+</code></pre></div>
+
+<p><strong>注释</strong></p>
+<ul>
+<li>第 12-21 行：创建两个人员列表，用于导入 <strong>[dbpersonnes]</strong> 数据库；</li>
+<li>第 27 行：连接数据库；</li>
+<li>第 31 行：清空 <strong>[personnes]</strong> 表中的内容；</li>
+<li>第33-34行：使用带参数的查询插入人员。 第34行，第一个参数是要执行的SQL命令。该命令是不完整的。它<strong>包含[%s]参数</strong>，这些参数将被第二个参数列表中的值按顺序逐个替换；</li>
+<li>第36行：插入人员，此次仅使用一条<strong>指令[curseur.executemany]</strong>。此时<strong>[executemany]的</strong>第二个参数是一个列表的列表；</li>
+</ul>
+<p>参数化查询的优势体现在两方面：</p>
+<ul>
+<li>它们的执行速度比“硬编码”查询更快，后者每次执行都需要进行解析。参数化查询 <strong>[executemany]</strong> 仅需解析一次。之后，它可被执行 n 次而无需再次解析；</li>
+<li>注入到参数化查询中的参数会经过验证。如果它们包含保留字符（例如单引号），这些字符会被“屏蔽”，以确保它们不会干扰 SQL 命令的执行。 正是为了验证这一点，我们在列表中加入了包含单引号的姓名（第16行和第21行）；</li>
+</ul>
+<p>在 phpMyAdmin 中获得的结果如下：</p>
+<p><img src="images/1000000000000357000003570770DB41.png" width="373" height="373" style="width:9.86cm;height:9.86cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000357000003570770DB41.png" /></p>
+<ul>
+<li>请注意，包含撇号（在 SQL 中为保留字符）的字符串已被正确插入。带参数的查询已对其进行了“保护”。若不使用带参数的查询，则需手动处理此问题；</li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2241 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="通过示例了解 Python 3 和 Flask Web 框架">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/zh-python-flask-sept-2020/ingongianii11an.html">
+      
+      
+        <link rel="prev" href="ingongianii-10-an.html">
+      
+      
+        <link rel="next" href="ingongianii12an.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>29. 应用练习：第11版 - 通过示例了解 Python 3 和 Flask Web 框架</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "通过示例了解 Python 3 和 Flask Web 框架";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#29-11" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-header__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            通过示例了解 Python 3 和 Flask Web 框架
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              29. 应用练习：第11版
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="通过示例了解 Python 3 和 Flask Web 框架" class="md-nav__button md-logo" aria-label="通过示例了解 Python 3 和 Flask Web 框架" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    通过示例了解 Python 3 和 Flask Web 框架
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/zh-python-flask-sept-2020" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    欢迎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. 前言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="onguouaningeaian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. 工作环境的搭建
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pythonihu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Python基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuhuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. 字符串
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iaiinguang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. 例外情况
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. 函数
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enenenian.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. 文本文件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---anen-1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. 应用练习 – 版本 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aou.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. 导入
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-2-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. 应用练习：第 2 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-3-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. 应用练习：第 3 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eiuuiiang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. 类与对象
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aningei-baseentity-e-myexception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. 泛型类 [BaseEntity] 和 [MyException]
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="enengiaouuieouianheng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. 分层架构与接口编程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongiani---i-4-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. 应用练习 - 第 4 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-mysql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. 使用 SGBD MySQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="hiong-sgbd-postgresql.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. 使用 SGBD PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ianieu-sgbd-uuaneaia.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. 编写与 SGBD 无关的代码
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="orm-ehiong-sqlalchemy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. ORM 的使用 SQLALCHEMY
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-5-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. 应用练习：第 5 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="uianangongeng.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. 互联网功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="iuflaskuangiaewebuu.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. 基于Flask框架的Web服务
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii6an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. 应用练习：第6版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii7an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. 应用练习：第7版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-ingongianii8an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    25.  应用练习：第8版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="aiiianu-xml-hiianininghuanuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    26. 在字典与 XML 之间进行转换
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-9-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    27. 应用练习：第 9 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-10-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    28. 应用练习：第 10 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第11版
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="ingongianii11an.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    29. 应用练习：第11版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#291" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.1. 简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#292-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.2. Web 服务器
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#293" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.3. 配置
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#294-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.4. 主脚本 [main]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#295" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.5. 控制器
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#296-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.6. Postman 测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#297-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.7. Web客户端
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="29.7. Web客户端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2971" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.7.1. 客户端层的配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2972-dao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.7.2. 实现 [dao] 层
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#298-main-main2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.8. 脚本 [main, main2]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#299" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        29.9. 客户端测试
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii12an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    30. 应用练习：第12版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-an-json-e-xml-uue-web-euuan.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    31. 第 12 版 jSON 和 XML 服务的 Web 客户端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="i-12-ane-html-ohi.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    32. 第 12 版的 HTML 模式
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii13an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    33. 应用练习：第13版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii14an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    34. 应用练习：第14版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii15an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    35. 应用练习：第15版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-16-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    36. 应用练习：第 16 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianii-17-an.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    37. 应用练习：第 17 版
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ingongianianen-18-.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    38. 应用练习：版本 18 
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ieun.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    39. 结论
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><span id="exercicedapplication7" name="exercicedapplication7" class="odt-bookmark-anchor"></span>
+<span id="toc48549226" name="toc48549226" class="odt-bookmark-anchor"></span></p>
+<h1 id="29-11">29. <span style="color: #365f91">应用练习：第11版</span></h1>
+<p><span id="toc48549227" name="toc48549227" class="odt-bookmark-anchor"></span></p>
+<h2 id="291">29.1. <span style="color: #4f81bd">简介</span></h2>
+<p>在税款计算客户端/服务器应用程序的先前版本中，实现该计算业务规则的 <strong>[métier]</strong> 层位于服务器端。现在我们计划将其移至客户端。 这样做有什么好处？服务器原先承担的工作将转移至客户端。设想一个由 N 个客户端查询的服务器，N 项税务业务计算将由客户端完成。在之前的版本中，这些 N 项业务计算均由服务器完成。由于不再执行业务计算，服务器将更快地响应客户端请求，从而能够同时服务更多的客户端。</p>
+<p>客户端/服务器架构如下：</p>
+<p><img src="images/10000000000003CF000004EDD095C42F.png" width="426" height="550" style="width:11.261cm;height:14.564cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003CF000004EDD095C42F.png" /></p>
+<ul>
+  <li><b>[métier] [10]</b> 层已在客户端复制为 <b>[12]</b>；
+  </li>
+  <li>客户端新增了脚本 <b>[main2] [11]</b>；
+  </li>
+</ul>
+
+<p>Web客户端将有两种方式来计算<strong>[3]中</strong>找到的纳税人列表的税款：</p>
+<ul>
+  <li>使用上一版本的方法。该方法利用服务器端的 <b>[métier] 和 [10]</b> 层。脚本 <b>[main] </b>将采用此方法；
+  </li>
+  <li>仅向服务器请求税务管理数据（<b>[2-4]）</b>，然后使用客户端本地的 <b>[métier] 和 [12]</b> 层；
+  </li>
+</ul>
+
+<p>我们将对比这两种方法的性能。</p>
+<p><span id="toc48549228" name="toc48549228" class="odt-bookmark-anchor"></span></p>
+<h2 id="292-web">29.2. <span style="color: #4f81bd">Web 服务器</span></h2>
+<p>Web 服务器的目录结构如下：</p>
+<p><img src="images/1000000000000213000002CD6E21E5B2.png" width="209" height="282" style="width:5.519cm;height:7.454cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000213000002CD6E21E5B2.png" /></p>
+<ul>
+  <li>文件 <b>[http-servers/06]</b> 最初是通过复制文件 <b>[http-servers/05]</b> 生成的。 实际上，我们将保留前一版本（10版）的既有成果，仅在此基础上新增一项功能。该功能体现在新增的控制器 <b>[get_admindata_controller] [1] </b>上。 另一个控制器[calculate_tax_controller]，其实就是旧控制器[index_controller]更名后的版本；
+  </li>
+</ul>
+
+<p><span id="toc48549229" name="toc48549229" class="odt-bookmark-anchor"></span></p>
+<h2 id="293">29.3. <span style="color: #4f81bd">配置</span></h2>
+<p>服务器将提供两个 URL 服务：</p>
+<ul>
+  <li><b>[/calculate-tax]</b> 用于计算传递在 POST 主体中的纳税人列表的税款。 因此，它对应于先前第 10 版中的 URL <b>[/]</b>；
+  </li>
+  <li><b>[/get-admindata]</b> 生成税务管理数据链 jSON；
+  </li>
+</ul>
+
+<p>配置 <strong>[config]</strong> 将上述每个 URL 与负责处理它的控制器关联起来：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># Web 应用程序控制器字典</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">import</span><span style="color:#000000"> calculate_tax_controller, get_admindata_controller</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    controllers = {</span><span style="color:#a31515">&quot;calculate-tax&quot;</span><span style="color:#000000">: calculate_tax_controller, </span><span style="color:#a31515">&quot;get-admindata&quot;</span><span style="color:#000000">: get_admindata_controller}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;controllers&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = controllers</span></span></span>
+</code></pre></div>
+
+<p><span id="toc48549230" name="toc48549230" class="odt-bookmark-anchor"></span></p>
+<h2 id="294-main">29.4. <span style="color: #4f81bd"><strong>主脚本</strong> [main]</span></h2>
+<p>主脚本 <strong>[main]</strong> 对上一版本的脚本 <strong>[main]</strong> 进行了重组：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 等待 mysql 或 pgres 参数</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> sys</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">syntaxe = </span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="color:#000000">{sys.argv</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#098658">0</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">}</span><span style="color:#a31515"> mysql / pgres&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">erreur = len(sys.argv) != </span><span style="color:#098658">2</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">not</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    sgbd = sys.argv</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#098658">1</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">.lower()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    erreur = sgbd != </span><span style="color:#a31515">&quot;mysql&quot;</span><span style="color:#000000"> </span><span style="color:#0000ff">and</span><span style="color:#000000"> sgbd != </span><span style="color:#a31515">&quot;pgres&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;syntaxe : </span><span style="color:#000000">{syntaxe}</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    sys.exit()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">config = config.configure({</span><span style="color:#a31515">&#x27;sgbd&#x27;</span><span style="color:#000000">: sgbd})</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 依赖项</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 从税务管理部门获取数据</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">erreur = </span><span style="color:#0000ff">False</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># admindata 将作为应用程序范围内的只读数据</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;admindata&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;layers&quot;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&quot;dao&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">.get_admindata()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 成功日志</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    logger.write(</span><span style="color:#a31515">&quot;</span><span style="font-weight:bold;color:#a31515">[serveur]</span><span style="color:#a31515"> connexion à la base de données réussie\n&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">except</span><span style="color:#000000"> ImpôtsError </span><span style="color:#0000ff">as</span><span style="color:#000000"> ex:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 记录错误</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    …</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 若发生错误则终止</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    sys.exit(</span><span style="color:#098658">2</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># Flask 应用程序可以启动</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">app = Flask(__name__)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 主控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> main_controller() -&gt; tuple:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 获取请求的操作</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    dummy, action=request.path.split(</span><span style="color:#a31515">&#x27;/&#x27;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    logger = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 日志记录器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        logger = Logger(config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;logsFilename&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 将其存储在与线程关联的配置中</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        thread_config = {</span><span style="color:#a31515">&quot;logger&quot;</span><span style="color:#000000">: logger}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        thread_name = threading.current_thread().name</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        config</span><span style="font-weight:bold;color:#000000">[thread_name]</span><span style="color:#000000"> = {</span><span style="color:#a31515">&quot;config&quot;</span><span style="color:#000000">: thread_config}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 记录该请求</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        logger.write(</span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="font-weight:bold;color:#a31515">[index]</span><span style="color:#a31515"> requête : </span><span style="color:#000000">{request}\n</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 若收到中断请求，则中断该线程</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        sleep_time = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;sleep_time&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> sleep_time != </span><span style="color:#098658">0</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span># 暂停是随机的，以便某些线程被中断而其他线程不被中断</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            aléa = randint(</span><span style="color:#098658">0</span><span style="color:#000000">, </span><span style="color:#098658">1</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">if</span><span style="color:#000000"> aléa == </span><span style="color:#098658">1</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span># 暂停前的日志</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                logger.write(</span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="font-weight:bold;color:#a31515">[index]</span><span style="color:#a31515"> mis en pause du thread pendant </span><span style="color:#000000">{sleep_time}</span><span style="color:#a31515"> seconde(s)</span><span style="color:#000000">\n</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span># 暂停</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                time.sleep(sleep_time)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 由请求控制器执行该请求</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="background-color:#fff2cc;color:#000000">controller = config</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">[</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&#x27;controllers&#x27;</span><span style="font-weight:bold;background-color:#fff2cc;color:#000000">][action]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="background-color:#fff2cc;color:#000000">résultat, status_code = controller.execute(request, config)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 是否发生致命错误？</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> status_code == status.HTTP_500_INTERNAL_SERVER_ERROR:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span># 向应用程序管理员发送邮件</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            config_mail = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;adminMail&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            config_mail</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;logger&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = logger</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            SendAdminMail.send(config_mail, json.dumps(résultat, ensure_ascii=</span><span style="color:#0000ff">False</span><span style="color:#000000">))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 将响应记录到日志中</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        logger.write(</span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="font-weight:bold;color:#a31515">[index]</span><span style="color:#a31515"> </span><span style="color:#000000">{résultat}\n</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 发送响应</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        print(résultat)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> json_response(résultat, status_code)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">except</span><span style="color:#000000"> BaseException </span><span style="color:#0000ff">as</span><span style="color:#000000"> erreur:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 如果可能，记录错误</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> logger:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            logger.write(</span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="font-weight:bold;color:#a31515">[index]</span><span style="color:#a31515"> </span><span style="color:#000000">{erreur}</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 准备回复给客户</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        résultat = {</span><span style="color:#a31515">&quot;réponse&quot;</span><span style="color:#000000">: {</span><span style="color:#a31515">&quot;erreurs&quot;</span><span style="color:#000000">: </span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold;color:#000000">{erreur}</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">}}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 发送响应</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> json_response(résultat, status.HTTP_500_INTERNAL_SERVER_ERROR)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">finally</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 若日志文件已打开，则关闭</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> logger:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            logger.close()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 计算税款</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/calculate-tax&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;POST&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">@auth.login_required</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="background-color:#fff2cc;color:#000000">calculate_tax</span><span style="color:#000000">():</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 将控制权移交给主控制器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> main_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 获取税务部门的数据</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">@app.route(</span><span style="color:#a31515">&#x27;/get-admindata&#x27;</span><span style="color:#000000">, methods=</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;GET&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">@auth.login_required</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span><span style="color:#000000"> </span><span style="background-color:#fff2cc;color:#000000">get_admindata</span><span style="color:#000000">():</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 移交给首席审计员</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">return</span><span style="color:#000000"> main_controller()</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 仅控制</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">if</span><span style="color:#000000"> __name__ == </span><span style="color:#a31515">&#x27;__main__&#x27;</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 启动服务器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    app.config.update(ENV=</span><span style="color:#a31515">&quot;development&quot;</span><span style="color:#000000">, DEBUG=</span><span style="color:#0000ff">True</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    app.run(threaded=</span><span style="color:#0000ff">True</span><span style="color:#000000">)</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 88-93 行：函数 <b>[calculate_tax]</b> 处理 URL 和 <b>[/calculate-tax]</b>；
+  </li>
+  <li>第 95-100 行：函数 <b>[get_admindata]</b> 处理 URL 和 <b>[/get-admindata]</b>；
+  </li>
+  <li>这两个函数本身不执行任何操作。它们会立即将控制权移交给第37-86行的主<b>控制器[main_controller]</b>；
+  </li>
+  <li>第37-86行：主<b>控制器[main_controller]与</b>上一版本的<b>[index]</b>函数除了一处细节外并无二致： 在函数 <b>[index]</b> 仅处理单个 URL 的情况下，此处的 <b>[main_controller]</b> 则处理两个 URL。 因此，它需要让其中一个控制器 <b>[calculate_tax_controller, get_admin,data_controller]</b> 来处理这些文件；
+  </li>
+  <li>第39-40行：获取请求的操作<b>[calculate_tax]</b>或<b>[get_admindata]</b>。该信息位于URL到<b>[request.path]</b>的路径中。 根据具体<b>情况，[request.path]</b> 可能对应 <b>[/get-admindata] </b>或 <b>[/calculate_tax]</b>。第 40 行的拆分将产生两个元素：
+    <ul>
+      <li>/ 符号前部分的空字符串；
+      </li>
+      <li>/ 之后部分对应请求的操作名称；
+      </li>
+    </ul>
+  </li>
+  <li>第62-63行：一旦获取了URL的操作，便知晓应使用哪个控制器来处理URL。该信息存储<b>在[config]的</b>配置中；
+  </li>
+</ul>
+
+<p><span id="toc48549231" name="toc48549231" class="odt-bookmark-anchor"></span></p>
+<h2 id="295">29.5. <span style="color: #4f81bd">控制器</span></h2>
+<p>控制器 <strong>[calculate_tax_controller]</strong> 正是上一版本中的 <strong>[index_controller]</strong>。</p>
+<p>而控制器 <strong>[get_admindata_controller]</strong> 则如下所示：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> flask_api <span style="color:#0000ff">import</span> status</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> werkzeug.local <span style="color:#0000ff">import</span> LocalProxy</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> execute(request: LocalProxy, config: dict) -&gt; tuple:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 返回响应</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">return</span> {<span style="color:#a31515">&quot;réponse&quot;</span>: {<span style="color:#a31515">&quot;result&quot;</span>: config<span style="font-weight:bold">[</span><span style="font-weight:bold;color:#a31515">&quot;admindata&quot;</span><span style="font-weight:bold">]</span>.asdict()}}, status.HTTP_200_OK</span></span>
+</code></pre></div>
+
+<ul>
+  <li>URL <b>[/get-admindata]</b> 应生成税务管理数据的字符串 jSON；
+  </li>
+  <li>第6行：这些数据由主脚本<b>[main]</b>获取，并以对象<b>[AdminData]</b>的形式存入字典<b>[config]中</b>。此处返回该对象的字典；
+  </li>
+</ul>
+
+<p><span id="toc48549232" name="toc48549232" class="odt-bookmark-anchor"></span></p>
+<h2 id="296-postman">29.6. <span style="color: #4f81bd">Postman 测试</span></h2>
+<p>启动Web服务器、SGBD以及邮件服务器<strong>[hMailServer]</strong>。随后使用Postman客户端，对多位纳税人的税款进行计算：</p>
+<p><img src="images/10000000000003F7000002A033324B17.png" width="443" height="293" style="width:11.719cm;height:7.759cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003F7000002A033324B17.png" /></p>
+<p>在 Postman 控制台中，客户端与服务器的交互如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">POST /calculate-tax HTTP/1.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Authorization: Basic YWRtaW46YWRtaW4=</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Content-Type: application/json</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">User-Agent: PostmanRuntime/7.26.2</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Accept: */*</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Cache-Control: no-cache</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Postman-Token: 5e71461a-fec8-4315-85e8-41721de939e5</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Host: localhost:5000</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Accept-Encoding: gzip, deflate, br</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Connection: keep-alive</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Content-Length: 824</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">[ </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{ </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&quot;marié&quot;: &quot;oui&quot;, </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&quot;enfants&quot;: 2, </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&quot;salaire&quot;: 55555 </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}, </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">…</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{ </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&quot;marié&quot;: &quot;oui&quot;, </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&quot;enfants&quot;: 3, </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&quot;salaire&quot;: 200000 </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">} </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">HTTP/1.0 200 OK</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Content-Type: application/json; charset=utf-8</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Content-Length: 1461</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Server: Werkzeug/1.0.1 Python/3.8.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Date: Wed, 29 Jul 2020 07:02:07 GMT</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;réponse&quot;: {&quot;results&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 55555, &quot;impôt&quot;: 2814, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 1384, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 384, &quot;réduction&quot;: 347…]</span>}}</span></span>
+</code></pre></div>
+
+<p>现在让我们使用 URL 和 <strong>[/get-admindata]</strong> 来调用 GET：</p>
+<p><img src="images/10000000000002F9000000C1F96A179D.png" width="332" height="84" style="width:8.772cm;height:2.224cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002F9000000C1F96A179D.png" /></p>
+<p>Postman 控制台中的客户端/服务器对话如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content">GET /get-admindata HTTP/1.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Authorization: Basic YWRtaW46YWRtaW4=</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">User-Agent: PostmanRuntime/7.26.2</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Accept: */*</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Cache-Control: no-cache</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Postman-Token: 4af342c4-7ecb-4ab2-9e12-d653f81da424</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Host: localhost:5000</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Accept-Encoding: gzip, deflate, br</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Connection: keep-alive</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">HTTP/1.0 200 OK</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Content-Type: application/json; charset=utf-8</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Content-Length: 596</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Server: Werkzeug/1.0.1 Python/3.8.1</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">Date: Wed, 29 Jul 2020 07:07:24 GMT</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">{&quot;réponse&quot;: {&quot;<span style="background-color:#bdd6ee">result</span>&quot;: {&quot;limites&quot;: <span style="font-weight:bold">[9964.0, 27519.0, 73779.0, 156244.0, 93749.0]</span>, &quot;coeffr&quot;: <span style="font-weight:bold">[0.0, 0.14, 0.3, 0.41, 0.45]</span>, &quot;coeffn&quot;: <span style="font-weight:bold">[0.0, 1394.96, 5798.0, 13913.7, 20163.4]</span>, &quot;plafond_decote_couple&quot;: 1970.0, &quot;valeur_reduc_demi_part&quot;: 3797.0, &quot;plafond_revenus_celibataire_pour_reduction&quot;: 21037.0, &quot;plafond_qf_demi_part&quot;: 1551.0, &quot;abattement_dixpourcent_max&quot;: 12502.0, &quot;plafond_impot_celibataire_pour_decote&quot;: 1595.0, &quot;plafond_decote_celibataire&quot;: 1196.0, &quot;plafond_revenus_couple_pour_reduction&quot;: 42074.0, &quot;id&quot;: 1, &quot;abattement_dixpourcent_min&quot;: 437.0, &quot;plafond_impot_couple_pour_decote&quot;: 2627.0}}}</span></span>
+</code></pre></div>
+
+<p><span id="toc48549233" name="toc48549233" class="odt-bookmark-anchor"></span></p>
+<h2 id="297-web">29.7. <span style="color: #4f81bd">Web客户端</span></h2>
+<p><img src="images/10000000000004540000030D7699C9C1.png" width="484" height="341" style="width:12.809cm;height:9.029cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004540000030D7699C9C1.png" /></p>
+<p><img src="images/10000000000002450000026EC7BFAAF1.png" width="228" height="244" style="width:6.04cm;height:6.466cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002450000026EC7BFAAF1.png" /></p>
+<p>文件 <strong>[http-clients/06]</strong> 最初是通过复制文件 <strong>[http-clients/05]</strong> 获得的。修改工作主要包括：</p>
+<ul>
+  <li>修改配置 [config_layers]，使其现在包含一个 <b>[métier]</b> 层。此前它仅有一个 <b>[dao]</b> 层；
+  </li>
+  <li>在 <b>[dao]</b> 层中添加一个新方法；
+  </li>
+  <li>编写脚本 <b>[main2]</b>，该脚本将基于客户端的 <b>[métier]</b> 层来计算纳税人的税款；
+  </li>
+</ul>
+
+<p><span id="toc48549234" name="toc48549234" class="odt-bookmark-anchor"></span></p>
+<h3 id="2971">29.7.1. <span style="color: #4f81bd">客户端层的配置</span></h3>
+<p>层配置涉及两个方面：</p>
+<ul>
+  <li>在配置 <b>[config]</b> 时，需将包含 <b>[métier]</b> 层实现的文件夹添加到客户端的依赖项中。该文件夹此前已包含在依赖项中：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content">absolute_dependencies = <span style="font-weight:bold">[</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 项目文件夹</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># BaseEntity, MyException</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/classes/02/entities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># InterfaceImpôtsDao, InterfaceImpôtsMétier, InterfaceImpôtsUi</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v04/interfaces&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># AbstractImpôtsdao, ImpôtsConsole, ImpôtsMétier</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;background-color:#fff2cc;color:#0000ff">f</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">&quot;</span><span style="font-weight:bold;background-color:#fff2cc">{root_dir}</span><span style="font-weight:bold;background-color:#fff2cc;color:#a31515">/impots/v04/services&quot;</span><span style="font-weight:bold;background-color:#fff2cc">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># ImpotsDaoWithAdminDataInDatabase</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v05/services&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># AdminData, ImpôtsError, TaxPayer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v04/entities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 常量、区间</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/v05/entities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># ImpôtsDaoWithHttpClient</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{script_dir}</span><span style="font-weight:bold;color:#a31515">/../services&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 配置脚本</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        script_dir,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#008000"># 日志记录器</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">        </span><span style="font-weight:bold;color:#0000ff">f</span><span style="font-weight:bold;color:#a31515">&quot;</span><span style="font-weight:bold">{root_dir}</span><span style="font-weight:bold;color:#a31515">/impots/http-servers/02/utilities&quot;</span><span style="font-weight:bold">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    ]</span></span>
+</code></pre></div>
+
+<p>随后需修改文件 <strong>[config_layers]</strong>：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">def</span> configure(config: dict) -&gt; dict:</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 应用程序层的实例化</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># [métier] 层</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">from</span> ImpôtsMétier <span style="color:#0000ff">import</span> ImpôtsMétier</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    métier = ImpôtsMétier()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># DAO层</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">from</span> ImpôtsDaoWithHttpClient <span style="color:#0000ff">import</span> ImpôtsDaoWithHttpClient</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    dao = ImpôtsDaoWithHttpClient(config)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 返回图层配置</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">return</span> {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;dao&quot;</span>: dao,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#a31515">&quot;métier&quot;</span>: métier</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 4-6 行：实例化 <b>[métier]</b> 层；
+  </li>
+  <li>第13-16行：将<b>[métier]</b>层添加到层字典中；
+  </li>
+</ul>
+
+<p><span id="toc48549235" name="toc48549235" class="odt-bookmark-anchor"></span></p>
+<h3 id="2972-dao">29.7.2. <span style="color: #4f81bd"><strong>实现</strong> [dao] <strong>层</strong></span></h3>
+<p><img src="images/100000000000023B0000010ECF4FA858.png" width="224" height="106" style="width:5.93cm;height:2.805cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000023B0000010ECF4FA858.png" /></p>
+<p><strong>[dao]</strong> 层将提供以下 <strong>[InterfaceImpôtsDaoWithHttpClient]</strong> 接口：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> abc <span style="color:#0000ff">import</span> abstractmethod</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span> AbstractImpôtsDao <span style="color:#0000ff">import</span> AbstractImpôtsDao</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span> InterfaceImpôtsDaoWithHttpClient(AbstractImpôtsDao):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008000"># 计算税款</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    @abstractmethod</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#0000ff">def</span> calculate_tax_in_bulk_mode(self, taxpayers: list):</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#0000ff">pass</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 5 行：接口 <b>[InterfaceImpôtsDaoWithHttpClient]</b> 继承了抽象类 [AbstractImpôtsDao]，该类负责管理对客户端文件系统的访问。需要提醒的是，该类包含一个抽象方法 <b>[get_admindata]</b>；
+  </li>
+  <li>第7-10行：我们在上一版本中定义<b>的方法</b>[calculate_tax_in_bulk_mode]用于计算纳税人列表的税款；
+  </li>
+</ul>
+
+<p>该接口由以下 <strong>[ImpôtsDaoWithHttpClient]</strong> 类实现：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 导入</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> json</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> requests</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> flask_api </span><span style="color:#0000ff">import</span><span style="color:#000000"> status</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> AbstractImpôtsDao </span><span style="color:#0000ff">import</span><span style="color:#000000"> AbstractImpôtsDao</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> AdminData </span><span style="color:#0000ff">import</span><span style="color:#000000"> AdminData</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> ImpôtsError </span><span style="color:#0000ff">import</span><span style="color:#000000"> ImpôtsError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> InterfaceImpôtsDaoWithHttpClient </span><span style="color:#0000ff">import</span><span style="color:#000000"> InterfaceImpôtsDaoWithHttpClient</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">class</span><span style="color:#000000"> ImpôtsDaoWithHttpClient(InterfaceImpôtsDaoWithHttpClient):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 构建器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> __init__(self, config: dict):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 父级初始化</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        AbstractImpôtsDao.__init__(</span><span style="color:#0000ff">self</span><span style="color:#000000">, config)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 保存配置项</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 通用配置</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__config = config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 服务器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__config_server = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;server&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 调试模式</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__debug = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;debug&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 日志记录器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">self</span><span style="color:#000000">.__logger = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> get_admindata(self) -&gt; AdminData:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 允许异常上报</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 服务网址</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        config_server = </span><span style="color:#0000ff">self</span><span style="color:#000000">.__config_server</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        config_services = config_server</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;url_services&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        url_service = </span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="color:#000000">{config_server</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;urlServer&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">}{config_services</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;get-admindata&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">}</span><span style="color:#a31515">&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 连接</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> config_server</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;authBasic&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            response = requests.get(url_service,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">                                    auth=(</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                                        config_server</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;user&quot;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&quot;login&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                                        config_server</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;user&quot;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&quot;password&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">))</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">else</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            response = requests.get(url_service)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 调试模式？</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">self</span><span style="color:#000000">.__debug:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span># 日志记录器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">not</span><span style="color:#000000"> </span><span style="color:#0000ff">self</span><span style="color:#000000">.__logger:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#0000ff">self</span><span style="color:#000000">.__logger = </span><span style="color:#0000ff">self</span><span style="color:#000000">.__config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;logger&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span># 正在登录</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">self</span><span style="color:#000000">.__logger.write(</span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;</span><span style="color:#000000">{response.text}\n</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 状态代码</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        status_code = response.status_code</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 结果以字典形式呈现</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        résultat = json.loads(response.text)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 如果状态码不为 200OK</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">if</span><span style="color:#000000"> status_code != status.HTTP_200_OK:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#0000ff">raise</span><span style="color:#000000"> ImpôtsError(</span><span style="color:#098658">58</span><span style="color:#000000">, résultat</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;réponse&#x27;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&#x27;erreurs&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 返回结果（字典）</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">return</span><span style="color:#000000"> AdminData().fromdict(résultat</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;réponse&quot;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&quot;result&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 批量模式下计算税款</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">def</span><span style="color:#000000"> calculate_tax_in_bulk_mode(self, taxpayers: list):</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 允许异常上报</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span>…</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第13行：<b>类</b>[ImpôtsDaoWithHttpClient]实现了<b>接口[InterfaceImpôtsDaoWithHttpClient]</b>。因此，它继承自<b>类[AbstractImpôtsDao]</b>；
+  </li>
+  <li>第 65-66 行：前一版本中讨论过的 <b>[calculate_tax_in_bulk_mode]</b> 方法；
+  </li>
+  <li>第29-62行：方法[get_admindata]，其父类<b>[AbstractImpôtsDao]</b>已将其声明为抽象方法。因此，该方法在子类中被实现；
+  </li>
+  <li>第33-35行：确定Web服务URL，方法[get-admindata]需向其发起请求。 这些服务 URL 在客户端配置 <b>[config]</b> 中定义：
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">       </span># 税款计算服务器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#a31515">&quot;server&quot;</span><span style="color:#000000">: {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">&quot;urlServer&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;http://127.0.0.1:5000&quot;</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">&quot;authBasic&quot;</span><span style="color:#000000">: </span><span style="color:#0000ff">True</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">&quot;user&quot;</span><span style="color:#000000">: {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#a31515">&quot;login&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;admin&quot;</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#a31515">&quot;password&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;admin&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">            </span><span style="color:#a31515">&quot;url_services&quot;</span><span style="color:#000000">: {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#a31515">&quot;calculate-tax&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;/calculate-tax&quot;</span><span style="color:#000000">,</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">                </span><span style="color:#a31515">&quot;get-admindata&quot;</span><span style="color:#000000">: </span><span style="color:#a31515">&quot;/get-admindata&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">            }</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        },</span></span>
+</code></pre></div>
+
+<ul>
+  <li>（续）
+    <ul>
+      <li>第 9-12 行：Web 服务器的两个 URL；
+      </li>
+    </ul>
+  </li>
+  <li>第37-44行：以同步方式查询服务URL；
+  </li>
+  <li>第46-42行：若配置要求，则记录服务器的响应；
+  </li>
+  <li>第 57 行：已知服务器发送了字典中的一条字符串 jSON；
+  </li>
+  <li>第58-60行：如果响应状态HTTP不为200，则抛出异常；
+  </li>
+  <li>第61-62行：返回封装服务器发送的税务管理数据的<b>[AdminData]</b>对象；
+  </li>
+</ul>
+
+<p><span id="toc48549236" name="toc48549236" class="odt-bookmark-anchor"></span></p>
+<h2 id="298-main-main2">29.8. <span style="color: #4f81bd"><strong>脚本</strong> [main, main2]</span></h2>
+<p>脚本 <strong>[main]</strong> 是上一版本的脚本。它使用 <strong>[dao]</strong> 层中的 <strong>[calculate_tax_in_bulk_mode]</strong> 方法，因此使用服务器上的 <strong>[métier]</strong> 层；</p>
+<p>脚本 <strong>[main2]</strong> 与脚本 <strong>[main]</strong> 功能相同，但使用客户端的 <strong>[métier]</strong> 层：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line"><span class="odt-code-line-content"># 配置应用程序</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">import</span><span style="color:#000000"> config</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">config = config.configure({})</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 依赖项</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> ImpôtsError </span><span style="color:#0000ff">import</span><span style="color:#000000"> ImpôtsError</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">from</span><span style="color:#000000"> Logger </span><span style="color:#0000ff">import</span><span style="color:#000000"> Logger</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">logger = </span><span style="color:#0000ff">None</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 代码</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">try</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 日志记录器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    logger = Logger(config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;logsFilename&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 将其存储在配置中</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;logger&quot;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000"> = logger</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 启动日志</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    logger.write(</span><span style="color:#a31515">&quot;début du calcul de l&#x27;impôt des contribuables\n&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 获取 [dao] 层</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    dao = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;layers&quot;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&quot;dao&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 检索纳税人</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    taxpayers = dao.get_taxpayers_data()</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&quot;taxpayers&quot;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 纳税人？</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> </span><span style="color:#0000ff">not</span><span style="color:#000000"> taxpayers:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span><span style="color:#0000ff">raise</span><span style="color:#000000"> ImpôtsError(</span><span style="color:#098658">36</span><span style="color:#000000">, </span><span style="color:#0000ff">f</span><span style="color:#a31515">&quot;Pas de contribuables valides dans le fichier </span><span style="color:#000000">{config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;taxpayersFilename&#x27;</span><span style="font-weight:bold;color:#000000">]</span><span style="color:#000000">}</span><span style="color:#a31515">&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 获取税务部门的数据</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    admindata = dao.get_admindata()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 通过 [métier] 层计算纳税人的税款</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    métier = config</span><span style="font-weight:bold;color:#000000">[</span><span style="font-weight:bold;color:#a31515">&#x27;layers&#x27;</span><span style="font-weight:bold;color:#000000">][</span><span style="font-weight:bold;color:#a31515">&#x27;métier&#x27;</span><span style="font-weight:bold;color:#000000">]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">for</span><span style="color:#000000"> taxpayer </span><span style="color:#0000ff">in</span><span style="color:#000000"> taxpayers:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        métier.calculate_tax(taxpayer, admindata)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 将结果保存到文件中 jSON</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    dao.write_taxpayers_results(taxpayers)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># 除 BaseException 外均视为错误：</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># # 显示错误</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"># print(f&quot;发生以下错误：{错误}&quot;)</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">finally</span><span style="color:#000000">:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 关闭日志记录器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="color:#0000ff">if</span><span style="color:#000000"> logger:</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 结束日志</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        logger.write(</span><span style="color:#a31515">&quot;fin du calcul de l&#x27;impôt des contribuables\n&quot;</span><span style="color:#000000">)</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">        </span># 关闭日志器</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        logger.close()</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span># 已完成</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    print(</span><span style="color:#a31515">&quot;Travail terminé...&quot;</span><span style="color:#000000">)</span></span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 26-27 行：从服务器获取税务部门的数据；
+  </li>
+  <li>第 28-31 行：随后在本地计算纳税人的税款；
+  </li>
+</ul>
+
+<p><span id="toc48549237" name="toc48549237" class="odt-bookmark-anchor"></span></p>
+<h2 id="299">29.9. <span style="color: #4f81bd">客户端测试</span></h2>
+<p>在每个 <strong>[main, main2]</strong> 脚本中，我们都会记录脚本的开始和结束时间。这样就可以计算出脚本的执行时间。让我们做一些预测：</p>
+<ul>
+  <li>上一版本的脚本 <b>[main]</b>：
+    <ul>
+      <li>创建 N 个线程并同时执行；
+      </li>
+      <li>每个线程处理一批纳税人，并通过向服务器发送单次请求来计算其税款；
+      </li>
+      <li>由于 N 个线程同时运行，第 N+1 个请求会在第 N 个请求收到响应之前就被发起。因此，这 N 个请求的开销虽然高于单次请求，但可能不会高出太多。此外，服务器端还需进行 11 次（即纳税人数量）业务计算；
+      </li>
+    </ul>
+  </li>
+  <li>该版本的脚本 <b>[main2]</b>：
+    <ul>
+      <li>仅向服务器发起一次请求；
+      </li>
+      <li>在客户端本地执行11项业务计算；
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>无论在服务器端还是客户端，业务计算所需的时间都是一样的。因此，差异主要体现在请求上。可以预期，<strong>[main]的</strong>执行时间会比<strong>[main2]</strong>稍长一些。</p>
+<p>我们启动版本 11 的服务器、SGBD 以及邮件服务器 <strong>[hMailServer]</strong>。在服务器端，我们将参数 <strong>[sleep_time]</strong> 设为零，以确保两项测试在相同条件下执行。</p>
+<p><u><strong>运行 1 [main]</strong></u></p>
+<p>执行 <strong>[main]</strong> 生成以下日志：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 <span style="background-color:#bdd6ee">14:35:50.016079</span>, MainThread : <span style="background-color:#bdd6ee">début du calcul</span> de l&#x27;impôt des contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.016079, Thread-1 : début du calcul de l&#x27;impôt des 1 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.016079, Thread-2 : début du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.016079, Thread-3 : début du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.016079, Thread-4 : début du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.024426, Thread-5 : début du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.050473, Thread-1 : {&quot;réponse&quot;: {&quot;results&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 55555, &quot;impôt&quot;: 2814, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.050473, Thread-1 : fin du calcul de l&#x27;impôt des 1 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.050473, Thread-3 : {&quot;réponse&quot;: {&quot;results&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 9200, &quot;surcôte&quot;: 2180, &quot;taux&quot;: 0.3, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 5, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 4230, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.051214, Thread-3 : fin du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.051214, Thread-5 : {&quot;réponse&quot;: {&quot;results&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 64210, &quot;surcôte&quot;: 7498, &quot;taux&quot;: 0.45, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 200000, &quot;impôt&quot;: 42842, &quot;surcôte&quot;: 17283, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.051214, Thread-5 : fin du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.051214, Thread-2 : {&quot;réponse&quot;: {&quot;results&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 1384, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 384, &quot;réduction&quot;: 347}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 50000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.14, &quot;décôte&quot;: 720, &quot;réduction&quot;: 0}, {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 19884, &quot;surcôte&quot;: 4480, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}, {&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 3, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 16782, &quot;surcôte&quot;: 7176, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.051214, Thread-2 : fin du calcul de l&#x27;impôt des 4 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.051214, Thread-4 : {&quot;réponse&quot;: {&quot;results&quot;: <span style="font-weight:bold">[{&quot;marié&quot;: &quot;non&quot;, &quot;enfants&quot;: 0, &quot;salaire&quot;: 100000, &quot;impôt&quot;: 22986, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.41, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}, {&quot;marié&quot;: &quot;oui&quot;, &quot;enfants&quot;: 2, &quot;salaire&quot;: 30000, &quot;impôt&quot;: 0, &quot;surcôte&quot;: 0, &quot;taux&quot;: 0.0, &quot;décôte&quot;: 0, &quot;réduction&quot;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.051214, Thread-4 : fin du calcul de l&#x27;impôt des 2 contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:<span style="background-color:#bdd6ee">50.051214</span>, MainThread : <span style="background-color:#bdd6ee">fin du calcul</span> de l&#x27;impôt des contribuables</span></span>
+</code></pre></div>
+
+<p>执行耗时为 <strong>[051214-016079]</strong> 纳秒（第 17 行至第 1 行），即 35 毫秒和 135 纳秒。</p>
+<p>可以看出，从向服务器发出第一个请求到客户端收到最后一个响应，耗时相同，即 <strong>[051214-016079]</strong>（第 15 行至第 1 行），35 毫秒和 135 纳秒。</p>
+<p><u><strong>执行 2 [main2]</strong></u></p>
+<p>执行 <strong>[main2]</strong> 生成以下日志：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:41:03.<span style="background-color:#bdd6ee">303520</span>, MainThread : <span style="background-color:#bdd6ee">début du calcul</span> de l&#x27;impôt des contribuables</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:41:03.345084, MainThread : {&quot;réponse&quot;: {&quot;result&quot;: {&quot;limites&quot;: <span style="font-weight:bold">[9964.0, 27519.0, 73779.0, 156244.0, 13500.0]</span>, &quot;coeffr&quot;: <span style="font-weight:bold">[0.0, 0.14, 0.3, 0.41, 0.45]</span>, &quot;coeffn&quot;: <span style="font-weight:bold">[0.0, 1394.96, 5798.0, 13913.7, 20163.4]</span>, &quot;plafond_decote_couple&quot;: 1970.0, &quot;valeur_reduc_demi_part&quot;: 3797.0, &quot;plafond_revenus_celibataire_pour_reduction&quot;: 21037.0, &quot;plafond_qf_demi_part&quot;: 1551.0, &quot;abattement_dixpourcent_max&quot;: 12502.0, &quot;plafond_impot_celibataire_pour_decote&quot;: 1595.0, &quot;plafond_decote_celibataire&quot;: 1196.0, &quot;plafond_revenus_couple_pour_reduction&quot;: 42074.0, &quot;id&quot;: 1, &quot;abattement_dixpourcent_min&quot;: 437.0, &quot;plafond_impot_couple_pour_decote&quot;: 2627.0}}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:41:03.<span style="background-color:#bdd6ee">349975</span>, MainThread : <span style="background-color:#bdd6ee">fin du calcul</span> de l&#x27;impôt des contribuables</span></span>
+</code></pre></div>
+
+<p><strong>[349975-303520]的</strong>执行时间为（第3行至第1行）纳秒，即46毫秒和455纳秒。 出乎意料的是<strong>，[main]</strong> 比 <strong>[main2]</strong> 运行得更快。</p>
+<p>可以看出<strong>，[main2]</strong> 的单次请求耗时 <strong>[345084-303520]</strong>（第 2 行减去第 1 行），即 41 毫秒和 564 纳秒。 随后，税款计算耗时 <strong>[349975-345084]</strong>（第 3 行 – 第 2 行），即 4 毫秒又 91 纳秒。正是 HTTP 这个请求决定了执行时间。 令人惊讶的是，我们可以看到，<strong>[main2]的</strong>单个请求耗时比<strong>[41 millisecondes]</strong>的四个并发请求（<strong>[main]和[35 millisecondes]</strong>）更长。 </p>
+<p>服务器端日志如下：</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:27.047721, MainThread : <span style="font-weight:bold">[serveur]</span> démarrage du serveur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:27.140927, MainThread : <span style="font-weight:bold">[serveur]</span> connexion à la base de données réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:28.790716, MainThread : <span style="font-weight:bold">[serveur]</span> démarrage du serveur</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:28.847518, MainThread : <span style="font-weight:bold">[serveur]</span> connexion à la base de données réussie</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.039178, Thread-2 : [index] requête : &lt;Request &#x27;http://127.0.0.1:5000/calculate-tax&#x27; [POST]&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.039178, Thread-3 : [index] requête : &lt;Request &#x27;http://127.0.0.1:5000/calculate-tax&#x27; [POST]&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.043220, Thread-4 : [index] requête : &lt;Request &#x27;http://127.0.0.1:5000/calculate-tax&#x27; [POST]&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.044307, Thread-5 : [index] requête : &lt;Request &#x27;http://127.0.0.1:5000/calculate-tax&#x27; [POST]&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.045796, Thread-2 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;results&#x27;: <span style="font-weight:bold">[{&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 3, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 9200, &#x27;surcôte&#x27;: 2180, &#x27;taux&#x27;: 0.3, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}, {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 5, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 4230, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.14, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.045796, Thread-3 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;results&#x27;: <span style="font-weight:bold">[{&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 2, &#x27;salaire&#x27;: 55555, &#x27;impôt&#x27;: 2814, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.14, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.046825, Thread-6 : [index] requête : &lt;Request &#x27;http://127.0.0.1:5000/calculate-tax&#x27; [POST]&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.046825, Thread-6 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;results&#x27;: <span style="font-weight:bold">[{&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 2, &#x27;salaire&#x27;: 50000, &#x27;impôt&#x27;: 1384, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.14, &#x27;décôte&#x27;: 384, &#x27;réduction&#x27;: 347}, {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 3, &#x27;salaire&#x27;: 50000, &#x27;impôt&#x27;: 0, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.14, &#x27;décôte&#x27;: 720, &#x27;réduction&#x27;: 0}, {&#x27;marié&#x27;: &#x27;non&#x27;, &#x27;enfants&#x27;: 2, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 19884, &#x27;surcôte&#x27;: 4480, &#x27;taux&#x27;: 0.41, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}, {&#x27;marié&#x27;: &#x27;non&#x27;, &#x27;enfants&#x27;: 3, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 16782, &#x27;surcôte&#x27;: 7176, &#x27;taux&#x27;: 0.41, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.046825, Thread-4 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;results&#x27;: <span style="font-weight:bold">[{&#x27;marié&#x27;: &#x27;non&#x27;, &#x27;enfants&#x27;: 0, &#x27;salaire&#x27;: 200000, &#x27;impôt&#x27;: 64210, &#x27;surcôte&#x27;: 7498, &#x27;taux&#x27;: 0.45, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}, {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 3, &#x27;salaire&#x27;: 200000, &#x27;impôt&#x27;: 42842, &#x27;surcôte&#x27;: 17283, &#x27;taux&#x27;: 0.41, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:35:50.<span style="background-color:#bdd6ee">046825</span>, Thread-5 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;results&#x27;: <span style="font-weight:bold">[{&#x27;marié&#x27;: &#x27;non&#x27;, &#x27;enfants&#x27;: 0, &#x27;salaire&#x27;: 100000, &#x27;impôt&#x27;: 22986, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.41, &#x27;décôte&#x27;: 0, </span><span style="font-weight:bold">&#x27;réduction&#x27;: 0}, {&#x27;marié&#x27;: &#x27;oui&#x27;, &#x27;enfants&#x27;: 2, &#x27;salaire&#x27;: 30000, &#x27;impôt&#x27;: 0, &#x27;surcôte&#x27;: 0, &#x27;taux&#x27;: 0.0, &#x27;décôte&#x27;: 0, &#x27;réduction&#x27;: 0}]</span>}}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:41:03.341582, Thread-7 : [index] requête : &lt;Request &#x27;http://127.0.0.1:5000/get-admindata&#x27; [GET]&gt;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">2020-07-29 14:41:03.<span style="background-color:#bdd6ee">341582</span>, Thread-7 : <span style="font-weight:bold">[index]</span> {&#x27;réponse&#x27;: {&#x27;result&#x27;: {&#x27;limites&#x27;: <span style="font-weight:bold">[9964.0, 27519.0, 73779.0, 156244.0, 13500.0]</span>, &#x27;coeffr&#x27;: <span style="font-weight:bold">[0.0, 0.14, 0.3, 0.41, 0.45]</span>, &#x27;coeffn&#x27;: <span style="font-weight:bold">[0.0, 1394.96, 5798.0, 13913.7, 20163.4]</span>, &#x27;plafond_decote_couple&#x27;: 1970.0, &#x27;valeur_reduc_demi_part&#x27;: 3797.0, &#x27;plafond_revenus_celibataire_pour_reduction&#x27;: 21037.0, &#x27;plafond_qf_demi_part&#x27;: 1551.0, &#x27;abattement_dixpourcent_max&#x27;: 12502.0, &#x27;plafond_impot_celibataire_pour_decote&#x27;: 1595.0, &#x27;plafond_decote_celibataire&#x27;: 1196.0, &#x27;plafond_revenus_couple_pour_reduction&#x27;: 42074.0, &#x27;id&#x27;: 1, &#x27;abattement_dixpourcent_min&#x27;: 437.0, &#x27;plafond_impot_couple_pour_decote&#x27;: 2627.0}}}</span></span>
+</code></pre></div>
+
+<ul>
+  <li>第 5 行：客户端 <b>[main]</b> 的首次请求；
+  </li>
+  <li>第14行：对<b>客户端[main]的</b>最后一次响应。两者之间间隔6毫秒和647纳秒；
+  </li>
+  <li>第15-16行：客户端的唯一请求 <b>[main2]</b>。响应是即时的；
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        本教程由 <strong>Serge Tahé</strong> 编写，根据
+<em>知识共享 署名-非商业性使用-
+相同方式共享 3.0 未本地化</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
